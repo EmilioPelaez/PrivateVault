@@ -10,11 +10,11 @@ import SwiftUI
 struct Item: Identifiable {
 	var id: String = UUID().uuidString
 	
-	let color: Color
+	let image: Image
 }
 
 extension Item {
-	init(color: Color) {
-		self.color = color
+	init(image: Image) {
+		self.image = image
 	}
 }

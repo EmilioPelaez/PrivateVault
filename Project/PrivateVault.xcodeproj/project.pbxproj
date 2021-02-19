@@ -40,6 +40,7 @@
 				C8A792D325E06642009B862D /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		C8A792D325E06642009B862D /* Products */ = {
 			isa = PBXGroup;

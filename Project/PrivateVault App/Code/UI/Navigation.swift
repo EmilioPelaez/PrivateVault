@@ -8,19 +8,16 @@
 import SwiftUI
 
 struct Navigation: View {
-    var body: some View {
+	var body: some View {
 		NavigationView {
 			GalleryView()
 				.navigationTitle("Gallery")
-			KeypadView(input: { _ in
-				
-			})
 		}
-    }
+	}
 }
 
 struct Navigation_Previews: PreviewProvider {
-    static var previews: some View {
-        Navigation()
-    }
+	static var previews: some View {
+		Navigation()
+	}
 }

@@ -21,31 +21,34 @@ struct KeypadView: View {
     var body: some View {
 		LazyVGrid(columns: columns, alignment: .center, content: {
 			ForEach(1..<10){ index in
-				KeyButton(title: index) {
+				KeyButton(title: String(index)) {
 					input(index)
 				}
 			}
 			
 			Spacer()
-			KeyButton(title: 10) {
+			KeyButton(title: String(10)) {
 				
 			}
 			.aspectRatio(1, contentMode: .fill)
 			.clipShape(Circle())
-			Spacer()
+			KeyButton(title: "Clear"){
+				
+			}
 			
 		})
     }
 }
 
 struct KeyButton: View {
-	var title: Int
+	var title: String
 	var action: () -> Void
 	var body: some View {
 		Button(action: action, label: {
 			ZStack {
 				Color(#colorLiteral(red: 0.7065681379, green: 0.6965085175, blue: 0.7033597253, alpha: 1))
 				Text("\(title)")
+					.font(.largeTitle)
 					.foregroundColor(.white)
 			}
 		})

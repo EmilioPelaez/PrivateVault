@@ -31,9 +31,9 @@ struct GalleryView: View {
 				.navigationTitle("Gallery")
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
 			FileTypePickerView(action: selectType)
-			.padding(.horizontal)
-			.padding(.bottom, 5)
-			.sheet(item: $addSheet, content: filePicker)
+				.padding(.horizontal)
+				.padding(.bottom, 5)
+				.sheet(item: $addSheet, content: filePicker)
 		}
 	}
 	
@@ -68,25 +68,25 @@ struct GalleryView: View {
 		case .document: addSheet = .documentPicker
 		}
 	}
-
+	
 	func requestImageAuthorization() {
 		PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
 			switch status {
 			case .notDetermined:
-			// The user hasn't determined this app's access.
-			break
+				// The user hasn't determined this app's access.
+				break
 			case .restricted:
-			// The system restricted this app's access.
-			break
+				// The system restricted this app's access.
+				break
 			case .denied:
-			// The user explicitly denied this app's access.
-			break
+				// The user explicitly denied this app's access.
+				break
 			case .authorized:
-			// The user authorized this app to access Photos data.
-			addSheet = .imagePicker
+				// The user authorized this app to access Photos data.
+				addSheet = .imagePicker
 			case .limited:
-			// The user authorized this app for limited Photos access.
-			break
+				// The user authorized this app for limited Photos access.
+				break
 			@unknown default:
 				fatalError()
 			}
@@ -108,11 +108,11 @@ struct GalleryView: View {
 	
 	private func saveContext() {
 		do {
-				try viewContext.save()
+			try viewContext.save()
 		} catch {
-				// Replace this implementation with code to handle the error appropriately.
-				let nsError = error as NSError
-				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+			// Replace this implementation with code to handle the error appropriately.
+			let nsError = error as NSError
+			fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
 		}
 	}
 }

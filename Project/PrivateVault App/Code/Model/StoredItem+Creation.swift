@@ -11,15 +11,15 @@ import UIKit
 extension StoredItem {
 	
 	convenience init(context: NSManagedObjectContext, image: UIImage) {
+		let data = image.pngData()
+		let resizedImage = image.resized(toFit: CGSize(side: 200))?.jpegData(compressionQuality: 0.85)
 		self.init(context: context)
+		self.placeholderData = resizedImage
 		self.id = UUID().uuidString
 		self.name = "Image"
-		self.data = image.pngData()
+		self.data = data
 		self.dataType = .image
 		self.fileExtension = "png"
-		
-		let resizedImage = image.resized(toFit: CGSize(side: 200))
-		self.placeholderData = resizedImage?.jpegData(compressionQuality: 0.85)
 	}
 	
 }

@@ -25,6 +25,8 @@ struct GalleryGridView: View {
 	let selection: (StoredItem) -> Void
 	let delete: (StoredItem) -> Void
 	
+	@State var tagEditingItem: StoredItem?
+	
 	var filteredData: [StoredItem] {
 		data.filter { item in
 			selectedTags.reduce(true) {
@@ -59,6 +61,10 @@ struct GalleryGridView: View {
 						GalleryGridCell(item: item, contentMode: $contentMode, showDetails: $showDetails)
 							.onTapGesture { selection(item) }
 							.contextMenu {
+								Button(action: { tagEditingItem = item }) {
+									Text("Edit")
+									Image(systemName: "edit")
+								}
 								Menu {
 									Button(action: { delete(item) }) {
 										Text("Delete")
@@ -72,10 +78,14 @@ struct GalleryGridView: View {
 									Image(systemName: "trash")
 								}
 							}
+							
 					}
 				}
 				.padding(4)
 				.padding(.bottom, 55)
+			}
+			.popover(item: $tagEditingItem) { item in
+				ItemEditView(item: item) { tagEditingItem = nil }
 			}
 		}
 	}

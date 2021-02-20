@@ -25,15 +25,7 @@ struct TagListView: View {
 						HStack {
 							Text(tag.name ?? "??")
 							Spacer()
-							ZStack {
-								Circle()
-									.stroke(Color.blue, lineWidth: 2)
-									.frame(width: 24, height: 24)
-								Circle()
-									.fill(Color.blue)
-									.frame(width: 20, height: 20)
-									.scaleEffect(selectedTags.contains(tag) ? 1 : 0)
-							}
+							RadioButton(selected: selectedTags.contains(tag), size: 24, color: .blue, action: { })
 						}
 						.onTapGesture { toggleTag(tag) }
 					}

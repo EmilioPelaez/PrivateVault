@@ -25,7 +25,8 @@ struct GalleryGridView: View {
 		ScrollView {
 			LazyVGrid(columns: columns(spacing: 4), spacing: 4) {
 				ForEach(data) { item in
-					GalleryGridCell(item: item, contentMode: $contentMode, showDetails: $showDetails, selection: selection)
+					GalleryGridCell(item: item, contentMode: $contentMode, showDetails: $showDetails)
+						.onTapGesture { selection(item) }
 				}
 			}
 			.padding(4)

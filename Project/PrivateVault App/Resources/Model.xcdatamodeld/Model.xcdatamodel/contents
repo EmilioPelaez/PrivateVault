@@ -7,8 +7,9 @@
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="placeholderData" optional="YES" attributeType="Binary"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <elements>
-        <element name="StoredItem" positionX="-63" positionY="-18" width="128" height="119"/>
+        <element name="StoredItem" positionX="-63" positionY="-18" width="128" height="134"/>
     </elements>
 </model>

@@ -16,7 +16,7 @@ struct GalleryGridView: View {
 		]
 	}
 	
-	@FetchRequest(sortDescriptors: [], animation: .default)
+	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \StoredItem.timestamp, ascending: false)], animation: .default)
 	var data: FetchedResults<StoredItem>
 	
 	@Binding var contentMode: ContentMode

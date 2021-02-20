@@ -20,6 +20,7 @@ extension StoredItem {
 		self.data = data
 		self.dataType = .image
 		self.fileExtension = "png"
+		self.timestamp = Date()
 	}
 	
 }

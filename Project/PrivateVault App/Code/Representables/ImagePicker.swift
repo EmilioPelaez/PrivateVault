@@ -44,7 +44,9 @@ struct ImagePicker: UIViewControllerRepresentable {
 						if let error = error {
 							print("Can't load image \(error.localizedDescription)")
 						} else if let image = newImage as? UIImage {
-							self?.parent.selectImage(image)
+							DispatchQueue.main.async {
+								self?.parent.selectImage(image)
+							}
 						}
 					}
 				} else {

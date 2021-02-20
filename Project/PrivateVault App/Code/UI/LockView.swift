@@ -19,6 +19,7 @@ struct LockView: View {
 			Color(.systemBackground).ignoresSafeArea()
 			VStack(spacing: 25) {
 				InputDisplay(codeLength: maxDigits, input: $code, textColor: isIncorrect ? .red : .primary)
+					.shake(isIncorrect, distance: 10, count: 4)
 				KeypadView(input: input, delete: delete)
 			}
 			.frame(maxWidth: 280)
@@ -32,15 +33,16 @@ struct LockView: View {
 			if code == password {
 				isUnlocked = true
 			} else {
-				isIncorrect = true
+				withAnimation {
+					isIncorrect = true
+				}
 			}
-		} else {
-			isIncorrect = false
 		}
 	}
 	
 	func delete() {
 		code.removeLast()
+		isIncorrect = false
 	}
 	
 }

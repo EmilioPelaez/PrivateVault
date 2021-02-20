@@ -24,16 +24,15 @@ struct GalleryGridCell: View {
 				.clipped()
 			if showDetails {
 				VStack(alignment: .leading) {
-					Text("pup.jpg")
+					Text(item.title)
 						.font(.headline)
-					Text("12/31/20")
-						.font(.footnote)
-						.foregroundColor(.secondary)
-					Text("5.9 MB")
+//					Text("12/31/20")
+//						.font(.footnote)
+//						.foregroundColor(.secondary)
+					Text(String(format: "%.1f MB", CGFloat(item.size) / 1_000_000))
 						.font(.footnote)
 						.foregroundColor(.secondary)
 				}
-				.padding(.horizontal, 8)
 			}
 		}
 		.onTapGesture { selection(item) }

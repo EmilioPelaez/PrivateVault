@@ -12,7 +12,9 @@ struct Item: Identifiable {
 	
 	let id: String
 	let title: String
+	
 	let url: URL
+	let size: Int
 	
 	private var _placeholder: Image?
 	var placeholder: Image {
@@ -25,7 +27,7 @@ extension Item {
 	init(image: UIImage) {
 		let id = UUID().uuidString
 		self.id = id
-		self.title = ""
+		self.title = "Puppy!"
 		self._placeholder = Image(uiImage: image)
 		
 		do {
@@ -43,9 +45,11 @@ extension Item {
 			try data?.write(to: url)
 			
 			self.url = url
+			self.size = data?.count ?? 0
 		} catch {
 			print("Uh oh", error)
 			self.url = URL(fileURLWithPath: "~")
+			self.size = 0
 		}
 	}
 }

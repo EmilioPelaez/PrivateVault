@@ -29,7 +29,7 @@ enum GalleryViewSheetItem: Identifiable {
 
 struct GalleryView: View {
 	@State var contentMode: ContentMode = .fill //	Should this and showDetails be environment values?
-	@State var showDetails: Bool = false
+	@State var showDetails: Bool = true
 	@State var sheetState: GalleryViewSheetItem?
 	@State var data: [Item] = .examples
 	
@@ -65,7 +65,7 @@ struct GalleryView: View {
 	}
 	
 	func quickLookView(_ item: Item) -> some View {
-		return QuickLookView(title: item.id.description, url: item.url)
+		return QuickLookView(title: item.title, url: item.url)
 	}
 	
 	func selectImage(_ image: UIImage) {

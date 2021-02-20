@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct FileTypePickerView: View {
-	
-	enum FileType {
+	enum FileType: CaseIterable, Identifiable {
 		case photo
 		case document
+		case scan
 		case audio
 		
 		var systemName: String {
 			switch self {
 			case .photo: return "camera"
 			case .document: return "doc"
+			case .scan: return "doc.text.viewfinder"
 			case .audio: return "waveform"
 			}
 		}
@@ -26,7 +27,17 @@ struct FileTypePickerView: View {
 			switch self {
 			case .photo: return "Photo"
 			case .document: return "Document"
+			case .scan: return "Document Scan"
 			case .audio: return "Audio"
+			}
+		}
+
+		var id: Int {
+			switch self {
+			case .photo: return 1
+			case .document: return 2
+			case .scan: return 3
+			case .audio: return 4
 			}
 		}
 	}
@@ -49,9 +60,9 @@ struct FileTypePickerView: View {
 			}
 			if isExpanded {
 				HStack(spacing: 10) {
-					OptionIcon(fileType: .photo, action: buttonAction)
-					OptionIcon(fileType: .document, action: buttonAction)
-					OptionIcon(fileType: .audio, action: buttonAction)
+					ForEach(FileType.allCases) {
+						OptionIcon(fileType: $0, action: buttonAction)
+					}
 				}
 				.padding(.trailing, 10)
 				.transition(.scale(scale: 0, anchor: .leading))

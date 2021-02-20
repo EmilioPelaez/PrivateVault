@@ -16,6 +16,7 @@ struct GalleryView: View {
 		case imagePicker
 		case cameraPicker
 		case documentPicker
+		case documentScanner
 		case audioRecorder
 		
 		var id: Int { rawValue }
@@ -89,6 +90,7 @@ struct GalleryView: View {
 			case .imagePicker: PhotosPicker(closeSheet: { currentSheet = nil }, selectImage: selectImage)
 			case .cameraPicker: CameraPicker(selectImage: selectCameraCapture)
 			case .documentPicker: DocumentPicker(selectDocuments: selectDocuments)
+			case .documentScanner: DocumentScanner(selectScan: selectCameraCapture)
 			case .audioRecorder: AudioRecorder(recordAudio: recordAudio)
 			case .settings: SettingsView { currentSheet = nil }
 			}
@@ -100,6 +102,7 @@ struct GalleryView: View {
 		case .photo: showImageActionSheet = true
 		case .audio: currentSheet = .audioRecorder
 		case .document: currentSheet = .documentPicker
+		case .scan: currentSheet = .documentScanner
 		}
 	}
 

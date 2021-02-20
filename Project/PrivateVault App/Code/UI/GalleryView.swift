@@ -49,14 +49,24 @@ struct GalleryView: View {
 			ScrollView {
 				LazyVGrid(columns: columns) {
 					ForEach(data) { item in
-						Color.red.aspectRatio(1, contentMode: .fill)
-							.overlay(
-								item.image
-									.resizable()
-									.aspectRatio(contentMode: contentMode)
-							)
-							.clipped()
-							.onTapGesture { sheetState = .quickLook(item: item) }
+						VStack {
+							Color.red.aspectRatio(1, contentMode: .fill)
+								.overlay(
+									item.image
+										.resizable()
+										.aspectRatio(contentMode: contentMode)
+								)
+								.clipped()
+								.onTapGesture { sheetState = .quickLook(item: item) }
+							Text("pup.jpg")
+								.font(.headline)
+							Text("12/31/20")
+								.font(.footnote)
+								.foregroundColor(.secondary)
+							Text("5.9 MB")
+								.font(.footnote)
+								.foregroundColor(.secondary)
+						}
 					}
 				}
 			}

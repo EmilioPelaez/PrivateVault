@@ -27,7 +27,7 @@ struct GalleryView: View {
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
-			GalleryGridView(contentMode: $contentMode, showDetails: $showDetails, emptyView: emptyView, selection: select, delete: delete)
+			GalleryGridView(contentMode: $contentMode, showDetails: $showDetails, emptyView: EmptyGalleryView(), selection: select, delete: delete)
 				.navigationTitle("Gallery")
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
 			FileTypePickerView(action: selectType)
@@ -35,19 +35,6 @@ struct GalleryView: View {
 				.padding(.bottom, 5)
 				.sheet(item: $addSheet, content: filePicker)
 		}
-	}
-	
-	var emptyView: some View {
-		VStack(spacing: 10) {
-			Image(systemName: "face.smiling.fill")
-				.font(.largeTitle)
-			Text("Your gallery is empty!")
-				.font(.title)
-				.multilineTextAlignment(.center)
-			Text("Add some documents to get started :)")
-				.multilineTextAlignment(.center)
-		}
-		.font(.headline)
 	}
 	
 	func select(_ item: StoredItem) {

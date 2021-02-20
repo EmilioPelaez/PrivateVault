@@ -10,6 +10,11 @@ import SwiftUI
 struct GalleryView: View {
 	@State var contentMode: ContentMode = .fill
 	@State var selectedItem: Item?
+	@State var showPhotoLibrary = false
+	@State var data: [Item] = (1...6)
+		.map { "file\($0)" }
+		.map { Image($0) }
+		.map(Item.init)
 
 	var columns: [GridItem] {
 		[
@@ -18,11 +23,6 @@ struct GalleryView: View {
 			GridItem(.flexible())
 		]
 	}
-	
-	var data: [Item] = (1...6)
-		.map { "file\($0)" }
-		.map { Image($0) }
-		.map(Item.init)
 	
 	var body: some View {
 		ScrollView {
@@ -35,16 +35,36 @@ struct GalleryView: View {
 								.aspectRatio(contentMode: contentMode)
 						)
 						.clipped()
-						.onTapGesture {  }
+						.onTapGesture { selectedItem = item }
 				}
 			}
 		}
 		.navigation(item: $selectedItem, destination: quickLookView)
+		.sheet(isPresented: $showPhotoLibrary) {
+			ImagePicker(selectImage: selectImage)
+		}
+		.toolbar {
+			ToolbarItem(placement: .navigationBarLeading) {
+				Button {
+					showPhotoLibrary = true
+				} label: {
+					Image(systemName: "plus")
+				}
+			}
+		}
 	}
 
-	@ViewBuilder
 	func quickLookView(_ item: Item) -> some View {
-		QuickLookView(title: item.id.description, url: URL(string: "")!)
+		let data = try! Data(contentsOf: URL(string: "https://img.ibxk.com.br/2020/08/07/07115418185111.jpg?w=1120&h=420&mode=crop&scale=both")!)
+		let documentsPath = NSSearchPathForDirectoriesInDomains(.documentationDirectory,.userDomainMask,true)
+		let theFile: FileHandle? = FileHandle(forWritingAtPath: "\(documentsPath)/caramelo.jpg")
+		theFile?.write(data)
+		theFile?.closeFile()
+		return QuickLookView(title: item.id.description, url: URL(fileURLWithPath: "\(documentsPath)/caramelo.jpg"))
+	}
+
+	func selectImage(_ image: UIImage) {
+		data.append(Item(image: Image(uiImage: image)))
 	}
 }
 

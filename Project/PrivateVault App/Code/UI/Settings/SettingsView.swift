@@ -8,20 +8,27 @@
 import SwiftUI
 
 struct SettingsView: View {
+	@EnvironmentObject private var settings: UserSettings
 	let close: () -> Void
 	let version = "0.0.1"
 
 	var body: some View {
 		NavigationView {
 			Form {
-				Section {
-					Text("First Setting")
-				}
-				Section {
-					Text("Second Setting")
+				Section(header: Text("Gallery view")) {
+					HStack {
+						Text("Show file details")
+						Spacer()
+						Toggle("", isOn: $settings.showDetails)
+					}
+					Picker("Content mode", selection: $settings.contentMode) {
+						ForEach(ContentMode.allCases, id: \.self) {
+							Text($0.description)
+						}
+					}
 				}
 				Section(footer: footer) {
-					Text("Third Setting")
+					Text("...")
 				}
 			}
 			.listStyle(InsetGroupedListStyle())

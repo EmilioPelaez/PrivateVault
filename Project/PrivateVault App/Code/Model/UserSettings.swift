@@ -5,4 +5,9 @@
 //  Created by Ian Manor on 20/02/21.
 //
 
-struct UserSettings {}
+import SwiftUI
+
+final class UserSettings: ObservableObject {
+	@Published var contentMode: ContentMode = .fill
+	@Published var showDetails = true
+}

@@ -66,7 +66,7 @@ struct GalleryView: View {
 				case .imagePicker:
 					ImagePicker(selectImage: selectImage)
 				case .documentPicker:
-					DocumentPicker(selectDocument: selectDocument)
+					DocumentPicker(selectDocuments: selectDocuments)
 				case .audioRecorder:
 					AudioRecorder(recordAudio: recordAudio)
 				case let .quickLook(item):
@@ -120,9 +120,9 @@ struct GalleryView: View {
 	func selectImage(_ image: UIImage) {
 		data.append(Item(image: Image(uiImage: image)))
 	}
-	
-	func selectDocument(_ documentURL: URL) {
-		fatalError("Document selection is not implemented yet.")
+
+	func selectDocuments(_ documentURLs: [URL]) {
+		print(documentURLs)
 	}
 	
 	func recordAudio(_ audioURL: URL) {
@@ -136,18 +136,48 @@ struct GalleryView_Previews: PreviewProvider {
 	}
 }
 
-struct DocumentPicker: View {
-	var selectDocument: (URL) -> Void
-	
+struct AudioRecorder: View {
+	var recordAudio: (URL) -> Void
+
 	var body: some View {
 		EmptyView()
 	}
 }
 
-struct AudioRecorder: View {
-	var recordAudio: (URL) -> Void
-	
-	var body: some View {
-		EmptyView()
+final class DocumentPicker: NSObject, UIViewControllerRepresentable {
+	var selectDocuments: ([URL]) -> Void
+
+	init(selectDocuments: @escaping ([URL]) -> Void) {
+		self.selectDocuments = selectDocuments
+	}
+
+	typealias UIViewControllerType = UIDocumentPickerViewController
+
+	lazy var viewController:UIDocumentPickerViewController = {
+		// For picked only folder
+		let vc = UIDocumentPickerViewController(forOpeningContentTypes: [.image, .audio, .text, .usdz, .pdf], asCopy: true)
+		vc.allowsMultipleSelection = false
+		//        vc.accessibilityElements = [kFolderActionCode]
+		//        vc.shouldShowFileExtensions = true
+		vc.delegate = self
+		return vc
+	}()
+
+	func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
+		viewController.delegate = self
+		return viewController
+	}
+
+	func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: UIViewControllerRepresentableContext<DocumentPicker>) {
+	}
+}
+
+extension DocumentPicker: UIDocumentPickerDelegate {
+	func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+		selectDocuments(urls)
+	}
+
+	func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+		controller.dismiss(animated: true)
 	}
 }

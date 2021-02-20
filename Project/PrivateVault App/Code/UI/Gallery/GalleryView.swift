@@ -28,7 +28,6 @@ enum GalleryViewSheetItem: Identifiable {
 }
 
 struct GalleryView: View {
-	@State var isShowingActionSheet = false
 	@State var contentMode: ContentMode = .fill
 	@State var sheetState: GalleryViewSheetItem?
 	@State var data: [Item] = (1...6)
@@ -37,7 +36,7 @@ struct GalleryView: View {
 		.map(Item.init)
 	
 	var body: some View {
-		ZStack {
+		ZStack(alignment: .bottomLeading) {
 			GalleryGridView(data: $data, contentMode: $contentMode) { sheetState = .quickLook(item: $0) }
 				.navigationTitle("Gallery")
 				.fullScreenCover(item: $sheetState) {
@@ -52,44 +51,18 @@ struct GalleryView: View {
 						quickLookView(item)
 					}
 				}
-				.toolbar {
-					ToolbarItem(placement: .navigationBarTrailing) {
-						Button {
-							withAnimation(Animation.interpolatingSpring(stiffness: 70, damping: 10.0)) {
-								isShowingActionSheet = true
-							}
-						} label: {
-							Image(systemName: "plus")
-						}
-						
-					}
+			FileTypePickerView() { fileType in
+				switch fileType {
+				case .photo:
+					sheetState = .imagePicker
+				case .audio:
+					sheetState = .audioRecorder
+				case .document:
+					sheetState = .documentPicker
 				}
-			VStack {
-				Spacer()
-				ZStack {
-					RoundedRectangle(cornerRadius: 25.0)
-						.foregroundColor(.white)
-						.shadow(radius: 25)
-					FileTypePickerView() { fileType in
-						switch fileType {
-						case .photo:
-							sheetState = .imagePicker
-						case .audio:
-							sheetState = .audioRecorder
-						case .document:
-							sheetState = .documentPicker
-						}					}
-						.padding()
-				}
-				.frame(width: 300, height: 100, alignment: .center)
-				.offset(y: isShowingActionSheet ? 0 : 200)
 			}
+			.padding()
 		}
-		.onTapGesture(perform: {
-			withAnimation(Animation.easeIn(duration: 0.2)) {
-				isShowingActionSheet = false
-			}
-		})
 	}
 	
 	func quickLookView(_ item: Item) -> some View {

@@ -8,64 +8,94 @@
 import SwiftUI
 
 
-enum FileTypeIcon {
-	case photo
-	case document
-	case audio
+
+
+struct FileTypePickerView: View {
 	
-	var systemName: String {
-		switch self {
-			case .photo: return "camera.circle.fill"
-			case .document: return "doc.circle.fill"
-			case .audio: return "waveform.circle.fill"
+	enum FileType {
+		case photo
+		case document
+		case audio
+		
+		var systemName: String {
+			switch self {
+			case .photo: return "camera"
+			case .document: return "doc"
+			case .audio: return "waveform"
+			}
 		}
-	}
-	
-	var name: String {
-		switch self {
+		
+		var name: String {
+			switch self {
 			case .photo: return "Photo"
 			case .document: return "Document"
 			case .audio: return "Audio"
-		}
-	}
-	
-}
-
-struct FileTypePickerView: View {
-	var action: (FileTypeIcon) -> Void
-    var body: some View {
-		VStack {
-			HStack(spacing: 30) {
-				FileOptionIcon(fileType: .photo, action: action)
-				FileOptionIcon(fileType: .document, action: action)
-				FileOptionIcon(fileType: .audio, action: action)
 			}
 		}
-    }
+		
+	}
+	@State var isExpanded: Bool = false
+	var action: (FileType) -> Void
+	var body: some View {
+		HStack {
+			Button {
+				withAnimation {
+					isExpanded.toggle()
+				}
+			} label: {
+				Image(systemName: "plus")
+					.font(.system(size: 30))
+					.frame(width: 50, height: 50, alignment: .center)
+					.foregroundColor(.white)
+				.rotationEffect(.degrees(isExpanded ? 225 : 0))
+			}
+			if isExpanded {
+				HStack(spacing: 10) {
+					OptionIcon(fileType: .photo, action: buttonAction)
+					OptionIcon(fileType: .document, action: buttonAction)
+					OptionIcon(fileType: .audio, action: buttonAction)
+				}
+				.padding(.trailing, 10)
+				.transition(.scale(scale: 0, anchor: .leading))
+			}
+		}
+		.background(
+			RoundedRectangle(cornerRadius: 25, style: .circular)
+				.fill(Color.blue)
+		)
+	}
+	
+	func buttonAction(_ type: FileType) -> Void {
+		withAnimation {
+			isExpanded = false
+		}
+		action(type)
+	}
 }
 
-struct FileOptionIcon: View {
-	var fileType: FileTypeIcon
-	var action: (FileTypeIcon) -> Void
-	var body: some View {
-		Button(action: {action(fileType)} ) {
-			VStack(spacing: 2) {
-				Circle()
-					.strokeBorder(lineWidth: 2)
-					.frame(width:45, height: 50, alignment: .center)
-					.overlay(
-						Image(systemName: fileType.systemName)
-							.font(.largeTitle)
-							.aspectRatio(contentMode: .fit)
-					)
-				Text("\(fileType.name)")
+extension FileTypePickerView {
+	struct OptionIcon: View {
+		var fileType: FileType
+		var action: (FileType) -> Void
+		var body: some View {
+			Button(action: { action(fileType) } ) {
+				VStack(spacing: 2) {
+					Image(systemName: fileType.systemName)
+						.font(.system(size: 20))
+						.frame(width: 40, height: 40, alignment: .center)
+						.background(Circle().fill(Color.white))
+						.foregroundColor(.blue)
+				}
 			}
 		}
 	}
 }
 
 struct FileTypePickerView_Previews: PreviewProvider {
-    static var previews: some View {
-		FileTypePickerView(){ _ in}
-    }
+	static var previews: some View {
+		FileTypePickerView(isExpanded:  true) { _ in }
+			.previewLayout(.sizeThatFits)
+		FileTypePickerView() { _ in }
+			.previewLayout(.sizeThatFits)
+	}
 }

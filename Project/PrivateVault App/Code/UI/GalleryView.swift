@@ -61,7 +61,7 @@ struct GalleryView: View {
 			}
 		}
 		.toolbar {
-			ToolbarItem(placement: .navigationBarLeading) {
+			ToolbarItem(placement: .navigationBarTrailing) {
 				Button {
 					sheetState = .imagePicker
 				} label: {

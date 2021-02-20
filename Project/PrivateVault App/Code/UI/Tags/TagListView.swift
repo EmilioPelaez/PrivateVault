@@ -89,8 +89,12 @@ struct TagListView: View {
 	}
 	
 	private func deleteTags(offsets: IndexSet) {
+		
 		withAnimation {
-			offsets.map { tags[$0] }.forEach(viewContext.delete)
+			offsets.lazy.map { tags[$0] }.forEach {
+				selectedTags.remove($0)
+				viewContext.delete($0)
+			}
 			saveContext()
 		}
 	}

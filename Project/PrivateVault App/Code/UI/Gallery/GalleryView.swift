@@ -29,7 +29,7 @@ struct GalleryView: View {
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
-			GalleryGridView(contentMode: $contentMode, showDetails: $showDetails, selectedTags: $selectedTags, emptyView: EmptyGalleryView(), selection: select, delete: delete)
+			GalleryGridView(contentMode: $contentMode, showDetails: $showDetails, selectedTags: $selectedTags, selection: select, delete: delete)
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
 				.navigationTitle("Gallery")
 				.toolbar(content: {

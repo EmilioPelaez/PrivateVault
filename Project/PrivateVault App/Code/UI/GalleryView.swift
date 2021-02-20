@@ -21,7 +21,7 @@ struct GalleryView: View {
 	
 	var data: [Item] = (1...6)
 		.map { "file\($0)" }
-		.map { Image($0) }
+		.compactMap { UIImage(named: $0) }
 		.map(Item.init)
 	
 	var body: some View {
@@ -30,7 +30,7 @@ struct GalleryView: View {
 				ForEach(data) { item in
 					Color.red.aspectRatio(1, contentMode: .fill)
 						.overlay(
-							item.image
+							item.placeholder
 								.resizable()
 								.aspectRatio(contentMode: contentMode)
 						)

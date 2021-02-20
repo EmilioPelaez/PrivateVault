@@ -89,7 +89,6 @@ struct GalleryView: View {
 						withAnimation(Animation.interpolatingSpring(stiffness: 70, damping: 10.0)) {
 							isShowingActionSheet = true
 						}
-						//sheetState = .imagePicker
 					} label: {
 						Image(systemName: "plus")
 					}
@@ -117,6 +116,11 @@ struct GalleryView: View {
 				.offset(y: isShowingActionSheet ? 0 : 200)
 			}
 		}
+		.onTapGesture(perform: {
+			withAnimation(Animation.easeIn(duration: 0.2)) {
+				isShowingActionSheet = false
+			}
+		})
 	}
 	
 	func quickLookView(_ item: Item) -> some View {

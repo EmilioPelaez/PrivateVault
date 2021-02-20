@@ -22,6 +22,7 @@ enum GalleryViewSheetItem: Identifiable {
 }
 
 struct GalleryView: View {
+	@State var isShowingActionSheet = false
 	@State var contentMode: ContentMode = .fill
 	@State var sheetState: GalleryViewSheetItem?
 	@State var data: [Item] = (1...6)
@@ -38,37 +39,62 @@ struct GalleryView: View {
 	}
 	
 	var body: some View {
-		ScrollView {
-			LazyVGrid(columns: columns) {
-				ForEach(data) { item in
-					Color.red.aspectRatio(1, contentMode: .fill)
-						.overlay(
-							item.image
-								.resizable()
-								.aspectRatio(contentMode: contentMode)
-						)
-						.clipped()
-						.onTapGesture { sheetState = .quickLook(item: item) }
+		ZStack {
+			ScrollView {
+				LazyVGrid(columns: columns) {
+					ForEach(data) { item in
+						Color.red.aspectRatio(1, contentMode: .fill)
+							.overlay(
+								item.image
+									.resizable()
+									.aspectRatio(contentMode: contentMode)
+							)
+							.clipped()
+							.onTapGesture { sheetState = .quickLook(item: item) }
+					}
 				}
 			}
-		}
-		.fullScreenCover(item: $sheetState) {
-			switch $0 {
-			case .imagePicker:
-				ImagePicker(selectImage: selectImage)
-			case let .quickLook(item):
-				quickLookView(item)
-			}
-		}
-		.toolbar {
-			ToolbarItem(placement: .navigationBarTrailing) {
-				Button {
-					sheetState = .imagePicker
-				} label: {
-					Image(systemName: "plus")
+			.fullScreenCover(item: $sheetState) {
+				switch $0 {
+				case .imagePicker:
+					ImagePicker(selectImage: selectImage)
+				case let .quickLook(item):
+					quickLookView(item)
 				}
 			}
+			.toolbar {
+				ToolbarItem(placement: .navigationBarTrailing) {
+					Button {
+						withAnimation(.linear(duration: 0.2)) {
+							isShowingActionSheet = true
+						}
+						//sheetState = .imagePicker
+					} label: {
+						Image(systemName: "plus")
+					}
+					
+				}
+			}
+				VStack {
+					Spacer()
+					ZStack {
+						RoundedRectangle(cornerRadius: 25.0)
+							.foregroundColor(.white)
+							.shadow(radius: 25)
+								FileTypePickerView()
+									.padding()
+					}
+					.frame(width: 300, height: isShowingActionSheet ? 100: 0, alignment: .center)
+					
+				}
+			
+			
 		}
+		.onTapGesture(perform: {
+			withAnimation(.linear(duration: 0.2)){
+				isShowingActionSheet = false
+			}
+		})
 	}
 
 	func quickLookView(_ item: Item) -> some View {

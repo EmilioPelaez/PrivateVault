@@ -16,6 +16,11 @@ struct QuickLookView: UIViewControllerRepresentable {
 	func makeUIViewController(context: Context) -> UINavigationController {
 		let previewController = FilePreviewController(url: url)
 		previewController.navigationItem.title = title
+		let doneButton = UIBarButtonItem(title: "Cancel",
+										 style: .done,
+										 target: previewController,
+										 action: #selector(previewController.dismissModal))
+		previewController.navigationItem.leftBarButtonItem = doneButton
 		return UINavigationController(rootViewController: previewController)
 	}
 
@@ -47,5 +52,12 @@ final class FilePreviewController: QLPreviewController, QLPreviewItem, QLPreview
 
 	func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
 		return self
+	}
+}
+
+extension UIViewController {
+	@objc
+	public func dismissModal() {
+		self.dismiss(animated: true, completion: nil)
 	}
 }

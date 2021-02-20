@@ -48,16 +48,6 @@ struct ItemEditView: View {
 				}
 			}
 		}
-		.onDisappear {
-			do {
-				try viewContext.save()
-			} catch {
-				// Replace this implementation with code to handle the error appropriately.
-				print(error)
-				let nsError = error as NSError
-				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-			}
-		}
 	}
 	
 	func tagSelected(_ tag: Tag) -> Bool {

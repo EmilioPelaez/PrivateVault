@@ -16,47 +16,46 @@ struct GalleryGridView<E>: View where E: View {
 		]
 	}
 	
-	@Binding var data: [Item]
+	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \StoredItem.timestamp, ascending: false)], animation: .default)
+	var data: FetchedResults<StoredItem>
+	
 	@Binding var contentMode: ContentMode
 	@Binding var showDetails: Bool
-	let emptyView: () -> E
-	let selection: (Item) -> Void
-
-	init(
-		data: Binding<[Item]>,
-		contentMode: Binding<ContentMode>,
-		showDetails: Binding<Bool>,
-		emptyView: @autoclosure @escaping () -> E,
-		selection: @escaping (Item) -> Void
-	) {
-		self._data = data
-		self._contentMode = contentMode
-		self._showDetails = showDetails
-		self.emptyView = emptyView
-		self.selection = selection
-	}
+	let emptyView: E
+	let selection: (StoredItem) -> Void
+	let delete: (StoredItem) -> Void
 	
 	var body: some View {
 		if data.isEmpty {
-			VStack {
-				Spacer()
-				HStack {
-					Spacer()
-					emptyView()
-					Spacer()
-				}
-				Spacer()
+			ZStack {
+				Color.clear
+				emptyView
+					.frame(maxWidth: 280)
 			}
 		} else {
 			ScrollView {
-				LazyVGrid(columns: columns(spacing: 4), spacing: 4) {
-					ForEach(data) { item in
-						GalleryGridCell(item: item, contentMode: $contentMode, showDetails: $showDetails)
-							.onTapGesture { selection(item) }
-					}
+			LazyVGrid(columns: columns(spacing: 4), spacing: 4) {
+				ForEach(data) { item in
+					GalleryGridCell(item: item, contentMode: $contentMode, showDetails: $showDetails)
+						.onTapGesture { selection(item) }
+						.contextMenu {
+							Menu {
+								Button(action: { delete(item) }) {
+									Text("Delete")
+									Image(systemName: "trash")
+								}
+								Button(action: { }) {
+									Text("Cancel")
+								}
+							} label: {
+								Text("Delete")
+								Image(systemName: "trash")
+							}
+						}
 				}
-				.padding(4)
-				.padding(.bottom, 55)
+			}
+			.padding(4)
+			.padding(.bottom, 55)
 			}
 		}
 	}
@@ -65,8 +64,12 @@ struct GalleryGridView<E>: View where E: View {
 struct GalleryGridView_Previews: PreviewProvider {
 	static let data: [Item] = .examples
 	static var previews: some View {
-		GalleryGridView(data: .constant(data), contentMode: .constant(.fill), showDetails: .constant(true), emptyView: EmptyView()) { _ in }
+		GalleryGridView(contentMode: .constant(.fill), showDetails: .constant(true), emptyView: Color.red) { _ in }
+			delete: { _ in }
+			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 		
-		GalleryGridView(data: .constant(data), contentMode: .constant(.fill), showDetails: .constant(false), emptyView: EmptyView()) { _ in }
+		GalleryGridView(contentMode: .constant(.fill), showDetails: .constant(false), emptyView: Color.red) { _ in }
+			delete: { _ in }
+			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 	}
 }

@@ -10,7 +10,7 @@ import SwiftUI
 import QuickLook
 
 struct QuickLookView: UIViewControllerRepresentable {
-	let title: String
+	let title: String?
 	let url: URL
 
 	func makeUIViewController(context: Context) -> UINavigationController {
@@ -29,7 +29,7 @@ final class FilePreviewController: QLPreviewController, QLPreviewItem, QLPreview
 	var previewItemURL: URL?
 	var previewItemTitle: String?
 
-	init(url: URL, title: String) {
+	init(url: URL, title: String?) {
 		super.init(nibName: nil, bundle: nil)
 		previewItemURL = url
 		previewItemTitle = title

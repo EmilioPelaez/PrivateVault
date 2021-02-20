@@ -18,36 +18,49 @@ struct GalleryView: View {
 		var id: Int { rawValue }
 	}
 	
+	@Environment(\.managedObjectContext) private var viewContext
+	
 	@State var contentMode: ContentMode = .fill //	Should this and showDetails be environment values?
 	@State var showDetails: Bool = true
 	@State var addSheet: AddSheetItem?
-	@State var selectedItem: Item?
-	@State var data: [Item] = []
+	@State var selectedItem: StoredItem?
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
-			GalleryGridView(data: $data, contentMode: $contentMode, showDetails: $showDetails, emptyView: emptyView) { selectedItem = $0 }
+			GalleryGridView(contentMode: $contentMode, showDetails: $showDetails, emptyView: emptyView, selection: select, delete: delete)
 				.navigationTitle("Gallery")
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
 			FileTypePickerView(action: selectType)
-			.padding(.horizontal)
-			.padding(.bottom, 5)
-			.sheet(item: $addSheet, content: filePicker)
+				.padding(.horizontal)
+				.padding(.bottom, 5)
+				.sheet(item: $addSheet, content: filePicker)
 		}
 	}
-
+	
 	var emptyView: some View {
 		VStack(spacing: 10) {
 			Image(systemName: "face.smiling.fill")
 				.font(.largeTitle)
 			Text("Your gallery is empty!")
+				.font(.title)
+				.multilineTextAlignment(.center)
 			Text("Add some documents to get started :)")
+				.multilineTextAlignment(.center)
 		}
 		.font(.headline)
 	}
 	
-	func quickLookView(_ item: Item) -> some View {
-		QuickLookView(title: item.title, url: item.url).ignoresSafeArea()
+	func select(_ item: StoredItem) {
+		selectedItem = item
+	}
+	
+	func delete(_ item: StoredItem) {
+		viewContext.delete(item)
+		saveContext()
+	}
+	
+	func quickLookView(_ item: StoredItem) -> some View {
+		QuickLookView(title: item.name, url: item.url).ignoresSafeArea()
 	}
 	
 	func filePicker(_ item: AddSheetItem) -> some View {
@@ -62,39 +75,23 @@ struct GalleryView: View {
 	
 	func selectType(_ type: FileTypePickerView.FileType) {
 		switch type {
-		case .photo:
-			requestImageAuthorization()
+		case .photo: requestImageAuthorization()
 		case .audio: addSheet = .audioRecorder
 		case .document: addSheet = .documentPicker
 		}
 	}
-
+	
 	func requestImageAuthorization() {
-		PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
-			switch status {
-			case .notDetermined:
-			// The user hasn't determined this app's access.
-			break
-			case .restricted:
-			// The system restricted this app's access.
-			break
-			case .denied:
-			// The user explicitly denied this app's access.
-			break
-			case .authorized:
-			// The user authorized this app to access Photos data.
+		if PHPhotoLibrary.authorizationStatus() == .authorized {
 			addSheet = .imagePicker
-			case .limited:
-			// The user authorized this app for limited Photos access.
-			break
-			@unknown default:
-				fatalError()
-			}
+		} else {
+			PHPhotoLibrary.requestAuthorization(for: .readWrite) { _ in }
 		}
 	}
 	
 	func selectImage(_ image: UIImage) {
-		data.append(Item(image: image))
+		_ = StoredItem(context: viewContext, image: image)
+		saveContext()
 	}
 	
 	func selectDocuments(_ documentURLs: [URL]) {
@@ -103,6 +100,16 @@ struct GalleryView: View {
 	
 	func recordAudio(_ audioURL: URL) {
 		fatalError("Audio recording is not implemented yet.")
+	}
+	
+	private func saveContext() {
+		do {
+			try viewContext.save()
+		} catch {
+			// Replace this implementation with code to handle the error appropriately.
+			let nsError = error as NSError
+			fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+		}
 	}
 }
 

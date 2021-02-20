@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GalleryGridCell: View {
-	let item: Item
+	let item: StoredItem
 	@Binding var contentMode: ContentMode
 	@Binding var showDetails: Bool
 	
@@ -23,12 +23,12 @@ struct GalleryGridCell: View {
 				.clipped()
 			if showDetails {
 				VStack(alignment: .leading) {
-					Text(item.title)
+					Text(item.name ?? "??")
 						.font(.headline)
 //					Text("12/31/20")
 //						.font(.footnote)
 //						.foregroundColor(.secondary)
-					Text(String(format: "%.1f MB", CGFloat(item.size) / 1_000_000))
+					Text(String(format: "%.1f MB", CGFloat(item.data?.count ?? 0) / 1_000_000))
 						.font(.footnote)
 						.foregroundColor(.secondary)
 				}

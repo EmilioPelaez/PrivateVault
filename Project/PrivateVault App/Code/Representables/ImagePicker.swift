@@ -18,7 +18,7 @@ struct ImagePicker: UIViewControllerRepresentable {
 	func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> PHPickerViewController {
 		var configuration = PHPickerConfiguration()
 		configuration.selectionLimit = 0
-		configuration.filter = .any(of: [.images, .livePhotos, .videos])
+		configuration.filter = .any(of: [.images, .videos])
 		let imagePicker = PHPickerViewController(configuration: configuration)
 		imagePicker.delegate = context.coordinator
 		return imagePicker
@@ -44,7 +44,9 @@ struct ImagePicker: UIViewControllerRepresentable {
 						if let error = error {
 							print("Can't load image \(error.localizedDescription)")
 						} else if let image = newImage as? UIImage {
-							self?.parent.selectImage(image)
+							DispatchQueue.main.async {
+								self?.parent.selectImage(image)
+							}
 						}
 					}
 				} else {

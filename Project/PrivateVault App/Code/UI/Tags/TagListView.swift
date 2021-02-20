@@ -13,15 +13,29 @@ struct TagListView: View {
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Tag.name, ascending: true)], animation: .default)
 	var tags: FetchedResults<Tag>
 	
+	@Binding var selectedTags: Set<Tag>
 	@State var newTagName: String = ""
 	let close: () -> Void
 	
 	var body: some View {
 		NavigationView {
 			List {
-				Section(header: Text("All Tags")) {
+				Section(header: tagsHeader) {
 					ForEach(tags) { tag in
-						Text(tag.name ?? "??")
+						HStack {
+							Text(tag.name ?? "??")
+							Spacer()
+							ZStack {
+								Circle()
+									.stroke(Color.blue, lineWidth: 2)
+									.frame(width: 24, height: 24)
+								Circle()
+									.fill(Color.blue)
+									.frame(width: 20, height: 20)
+									.scaleEffect(selectedTags.contains(tag) ? 1 : 0)
+							}
+						}
+						.onTapGesture { toggleTag(tag) }
 					}
 					.onDelete(perform: deleteTags)
 				}
@@ -29,7 +43,8 @@ struct TagListView: View {
 					HStack {
 						TextField("Name", text: $newTagName)
 						Button(action: createTag) {
-							Image(systemName: "square.and.arrow.down")
+							Image(systemName: "plus.circle.fill")
+								.font(.system(size: 25))
 						}
 					}
 				}
@@ -42,6 +57,25 @@ struct TagListView: View {
 						Image(systemName: "xmark.circle.fill")
 					}
 				}
+			}
+		}
+	}
+	
+	var tagsHeader: some View {
+		HStack {
+			Text("All Tags")
+			Spacer()
+			Text("Filter")
+				.padding(.trailing, 15)
+		}
+	}
+	
+	func toggleTag(_ tag: Tag) {
+		withAnimation {
+			if selectedTags.contains(tag) {
+				selectedTags.remove(tag)
+			} else {
+				selectedTags.insert(tag)
 			}
 		}
 	}
@@ -74,7 +108,7 @@ struct TagListView: View {
 
 struct TagListView_Previews: PreviewProvider {
 	static var previews: some View {
-		TagListView { }
+		TagListView(selectedTags: .constant([])) { }
 			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 	}
 }

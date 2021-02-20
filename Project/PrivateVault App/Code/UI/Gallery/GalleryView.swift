@@ -25,10 +25,11 @@ struct GalleryView: View {
 	@State var showDetails: Bool = true
 	@State var currentSheet: SheetItem?
 	@State var selectedItem: StoredItem?
+	@State var selectedTags: Set<Tag> = []
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
-			GalleryGridView(contentMode: $contentMode, showDetails: $showDetails, emptyView: EmptyGalleryView(), selection: select, delete: delete)
+			GalleryGridView(contentMode: $contentMode, showDetails: $showDetails, selectedTags: $selectedTags, emptyView: EmptyGalleryView(), selection: select, delete: delete)
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
 				.navigationTitle("Gallery")
 				.toolbar(content: {
@@ -59,7 +60,7 @@ struct GalleryView: View {
 	func filePicker(_ item: SheetItem) -> some View {
 		Group {
 			switch item {
-			case .tags: TagListView { currentSheet = nil }
+			case .tags: TagListView(selectedTags: $selectedTags) { currentSheet = nil }
 			case .imagePicker: ImagePicker(closeSheet: { currentSheet = nil }, selectImage: selectImage)
 			case .documentPicker: DocumentPicker(selectDocuments: selectDocuments)
 			case .audioRecorder: AudioRecorder(recordAudio: recordAudio)

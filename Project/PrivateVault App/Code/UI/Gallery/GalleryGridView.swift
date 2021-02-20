@@ -21,9 +21,18 @@ struct GalleryGridView<E>: View where E: View {
 	
 	@Binding var contentMode: ContentMode
 	@Binding var showDetails: Bool
+	@Binding var selectedTags: Set<Tag>
 	let emptyView: E
 	let selection: (StoredItem) -> Void
 	let delete: (StoredItem) -> Void
+	
+	var filteredData: [StoredItem] {
+		data.filter { item in
+			selectedTags.reduce(true) {
+				$0 && (item.tags?.contains($1) ?? false)
+			}
+		}
+	}
 	
 	var body: some View {
 		if data.isEmpty {
@@ -34,28 +43,28 @@ struct GalleryGridView<E>: View where E: View {
 			}
 		} else {
 			ScrollView {
-			LazyVGrid(columns: columns(spacing: 4), spacing: 4) {
-				ForEach(data) { item in
-					GalleryGridCell(item: item, contentMode: $contentMode, showDetails: $showDetails)
-						.onTapGesture { selection(item) }
-						.contextMenu {
-							Menu {
-								Button(action: { delete(item) }) {
+				LazyVGrid(columns: columns(spacing: 4), spacing: 4) {
+					ForEach(filteredData) { item in
+						GalleryGridCell(item: item, contentMode: $contentMode, showDetails: $showDetails)
+							.onTapGesture { selection(item) }
+							.contextMenu {
+								Menu {
+									Button(action: { delete(item) }) {
+										Text("Delete")
+										Image(systemName: "trash")
+									}
+									Button(action: { }) {
+										Text("Cancel")
+									}
+								} label: {
 									Text("Delete")
 									Image(systemName: "trash")
 								}
-								Button(action: { }) {
-									Text("Cancel")
-								}
-							} label: {
-								Text("Delete")
-								Image(systemName: "trash")
 							}
-						}
+					}
 				}
-			}
-			.padding(4)
-			.padding(.bottom, 55)
+				.padding(4)
+				.padding(.bottom, 55)
 			}
 		}
 	}
@@ -64,11 +73,11 @@ struct GalleryGridView<E>: View where E: View {
 struct GalleryGridView_Previews: PreviewProvider {
 	static let data: [Item] = .examples
 	static var previews: some View {
-		GalleryGridView(contentMode: .constant(.fill), showDetails: .constant(true), emptyView: Color.red) { _ in }
+		GalleryGridView(contentMode: .constant(.fill), showDetails: .constant(true), selectedTags: .constant([]), emptyView: Color.red) { _ in }
 			delete: { _ in }
 			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 		
-		GalleryGridView(contentMode: .constant(.fill), showDetails: .constant(false), emptyView: Color.red) { _ in }
+		GalleryGridView(contentMode: .constant(.fill), showDetails: .constant(false), selectedTags: .constant([]), emptyView: Color.red) { _ in }
 			delete: { _ in }
 			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 	}

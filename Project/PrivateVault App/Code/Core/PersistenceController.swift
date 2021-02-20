@@ -20,6 +20,12 @@ struct PersistenceController {
 			.compactMap { (UIImage(named: $0)!, $0) }
 			.forEach { _ = StoredItem(context: viewContext, image: $0.0, filename: $0.1) }
 		
+		["Images", "Videos", "Documents", "Top Secret"]
+			.forEach {
+				let tag = Tag(context: viewContext)
+				tag.name = $0
+			}
+		
 		do {
 			try viewContext.save()
 		} catch {

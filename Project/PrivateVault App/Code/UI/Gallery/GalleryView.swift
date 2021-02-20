@@ -10,7 +10,8 @@ import SwiftUI
 
 struct GalleryView: View {
 	
-	enum AddSheetItem: Int, Identifiable {
+	enum SheetItem: Int, Identifiable {
+		case tags
 		case imagePicker
 		case documentPicker
 		case audioRecorder
@@ -22,18 +23,23 @@ struct GalleryView: View {
 	
 	@State var contentMode: ContentMode = .fill //	Should this and showDetails be environment values?
 	@State var showDetails: Bool = true
-	@State var addSheet: AddSheetItem?
+	@State var currentSheet: SheetItem?
 	@State var selectedItem: StoredItem?
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
 			GalleryGridView(contentMode: $contentMode, showDetails: $showDetails, emptyView: EmptyGalleryView(), selection: select, delete: delete)
-				.navigationTitle("Gallery")
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
+				.navigationTitle("Gallery")
+				.toolbar(content: {
+					Button(action: { currentSheet = .tags }) {
+						Image(systemName: "list.bullet")
+					}
+				})
 			FileTypePickerView(action: selectType)
+				.sheet(item: $currentSheet, content: filePicker)
 				.padding(.horizontal)
 				.padding(.bottom, 5)
-				.sheet(item: $addSheet, content: filePicker)
 		}
 	}
 	
@@ -50,10 +56,11 @@ struct GalleryView: View {
 		QuickLookView(title: item.name, url: item.url).ignoresSafeArea()
 	}
 	
-	func filePicker(_ item: AddSheetItem) -> some View {
+	func filePicker(_ item: SheetItem) -> some View {
 		Group {
 			switch item {
-			case .imagePicker: ImagePicker(closeSheet: { addSheet = nil }, selectImage: selectImage)
+			case .tags: TagListView { currentSheet = nil }
+			case .imagePicker: ImagePicker(closeSheet: { currentSheet = nil }, selectImage: selectImage)
 			case .documentPicker: DocumentPicker(selectDocuments: selectDocuments)
 			case .audioRecorder: AudioRecorder(recordAudio: recordAudio)
 			}
@@ -63,14 +70,14 @@ struct GalleryView: View {
 	func selectType(_ type: FileTypePickerView.FileType) {
 		switch type {
 		case .photo: requestImageAuthorization()
-		case .audio: addSheet = .audioRecorder
-		case .document: addSheet = .documentPicker
+		case .audio: currentSheet = .audioRecorder
+		case .document: currentSheet = .documentPicker
 		}
 	}
 	
 	func requestImageAuthorization() {
 		if PHPhotoLibrary.authorizationStatus() == .authorized {
-			addSheet = .imagePicker
+			currentSheet = .imagePicker
 		} else {
 			PHPhotoLibrary.requestAuthorization(for: .readWrite) { _ in }
 		}

@@ -22,6 +22,7 @@
 		C88ACB1B25E112A70064C160 /* View+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1A25E112A70064C160 /* View+Shake.swift */; };
 		C89C9DD625E16640003505B9 /* StoredItem+Example.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89C9DD525E16640003505B9 /* StoredItem+Example.swift */; };
 		C89C9DD825E1773E003505B9 /* EmptyGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89C9DD725E1773E003505B9 /* EmptyGalleryView.swift */; };
+		C89C9DDB25E17B98003505B9 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89C9DDA25E17B98003505B9 /* TagListView.swift */; };
 		C8A792D625E06642009B862D /* PrivateVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A792D525E06642009B862D /* PrivateVaultApp.swift */; };
 		C8A792D825E06642009B862D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A792D725E06642009B862D /* ContentView.swift */; };
 		C8A792DA25E06642009B862D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A792D925E06642009B862D /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		C88ACB1A25E112A70064C160 /* View+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shake.swift"; sourceTree = "<group>"; };
 		C89C9DD525E16640003505B9 /* StoredItem+Example.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredItem+Example.swift"; sourceTree = "<group>"; };
 		C89C9DD725E1773E003505B9 /* EmptyGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyGalleryView.swift; sourceTree = "<group>"; };
+		C89C9DDA25E17B98003505B9 /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
 		C8A792D225E06642009B862D /* PrivateVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivateVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8A792D525E06642009B862D /* PrivateVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateVaultApp.swift; sourceTree = "<group>"; };
 		C8A792D725E06642009B862D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -140,6 +142,14 @@
 			path = Gallery;
 			sourceTree = "<group>";
 		};
+		C89C9DD925E17AB8003505B9 /* Tags */ = {
+			isa = PBXGroup;
+			children = (
+				C89C9DDA25E17B98003505B9 /* TagListView.swift */,
+			);
+			path = Tags;
+			sourceTree = "<group>";
+		};
 		C8A792C925E06642009B862D = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +216,7 @@
 				C8A792D725E06642009B862D /* ContentView.swift */,
 				C88ACB1D25E1149C0064C160 /* LockView */,
 				C88ACB1E25E114AC0064C160 /* Gallery */,
+				C89C9DD925E17AB8003505B9 /* Tags */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -328,6 +339,7 @@
 				C89C9DD625E16640003505B9 /* StoredItem+Example.swift in Sources */,
 				C8A792ED25E06D75009B862D /* GalleryView.swift in Sources */,
 				C8EFD22925E14BDA00CB4141 /* PersistenceController.swift in Sources */,
+				C89C9DDB25E17B98003505B9 /* TagListView.swift in Sources */,
 				C8A792D625E06642009B862D /* PrivateVaultApp.swift in Sources */,
 				C8EFD22F25E15D1D00CB4141 /* StoredItem+DataType.swift in Sources */,
 				C8EFD1FC25E128C400CB4141 /* DocumentPicker.swift in Sources */,

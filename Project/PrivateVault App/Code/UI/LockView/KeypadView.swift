@@ -20,8 +20,8 @@ struct KeypadView: View {
 	let delete: () -> Void
 	
 	var body: some View {
-		LazyVGrid(columns: columns, alignment: .center, content: {
-			ForEach(1..<10){ index in
+		LazyVGrid(columns: columns, alignment: .center) {
+			ForEach(1..<10) { index in
 				KeyButton(title: Text("\(index)"), color: Color(.tertiarySystemFill)) {
 					FeedbackGenerator.impact(.rigid)
 					input("\(index)")
@@ -34,11 +34,11 @@ struct KeypadView: View {
 			}
 			.aspectRatio(1, contentMode: .fill)
 			.clipShape(Circle())
-			KeyButton(title: Image(systemName: "delete.left"), color: .red){
+			KeyButton(title: Image(systemName: "delete.left"), color: .red) {
 				FeedbackGenerator.impact(.rigid)
 				delete()
 			}
-		})
+		}
 	}
 }
 

@@ -111,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				C8A792EC25E06D75009B862D /* GalleryView.swift */,
-				468A75DB25E0976E00B87597 /* FileTypePickerView.swift */,
 				C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */,
 				C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */,
 			);
@@ -160,7 +159,7 @@
 				C8A792EB25E066B6009B862D /* Core */,
 				C8A792EA25E066B2009B862D /* Model */,
 				C8A792E925E066AD009B862D /* UI */,
-				C8A792E825E066A6009B862D /* Views */,
+				C8EFD20325E13D0E00CB4141 /* Views */,
 				C88ACB1425E10A6C0064C160 /* Utilities */,
 				C88ACB1C25E114850064C160 /* Representables */,
 				C88ACB1725E10B370064C160 /* Extensions */,
@@ -175,13 +174,6 @@
 				C8A792DE25E06642009B862D /* Info.plist */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		C8A792E825E066A6009B862D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		C8A792E925E066AD009B862D /* UI */ = {
@@ -207,6 +199,14 @@
 			children = (
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		C8EFD20325E13D0E00CB4141 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				468A75DB25E0976E00B87597 /* FileTypePickerView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

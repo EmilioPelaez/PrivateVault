@@ -29,10 +29,11 @@ struct FileTypePickerView: View {
 			case .audio: return "Audio"
 			}
 		}
-		
 	}
+	
 	@State var isExpanded: Bool = false
 	var action: (FileType) -> Void
+	
 	var body: some View {
 		HStack {
 			Button {

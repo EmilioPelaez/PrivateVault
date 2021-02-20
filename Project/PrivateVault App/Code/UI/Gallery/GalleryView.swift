@@ -49,7 +49,7 @@ struct GalleryView: View {
 						quickLookView(item)
 					}
 				}
-			FileTypePickerView() { fileType in
+			FileTypePickerView { fileType in
 				switch fileType {
 				case .photo:
 					sheetState = .imagePicker

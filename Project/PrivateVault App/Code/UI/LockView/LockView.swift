@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LockView: View {
 	let password = "1234"
-	@Binding var isUnlocked: Bool
+	@Binding var isLocked: Bool
 	@State var code: String = ""
 	@State var isIncorrect: Bool = false
 	let maxDigits: Int = 4
@@ -31,7 +31,7 @@ struct LockView: View {
 		code.append(string)
 		if code.count == password.count {
 			if code == password {
-				isUnlocked = true
+				isLocked = false
 			} else {
 				withAnimation {
 					isIncorrect = true
@@ -49,6 +49,6 @@ struct LockView: View {
 
 struct LockView_Previews: PreviewProvider {
 	static var previews: some View {
-		LockView(isUnlocked: .constant(false))
+		LockView(isLocked: .constant(true))
 	}
 }

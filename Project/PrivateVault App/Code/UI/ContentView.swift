@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-	@State var isUnlocked = false
+	@State var isLocked = true
+	@Environment(\.scenePhase) private var scenePhase
 
 	var body: some View {
 		NavigationView {
@@ -17,11 +18,16 @@ struct ContentView: View {
 		.navigationViewStyle(StackNavigationViewStyle())
 		.overlay(
 			Group {
-				if !isUnlocked {
-					LockView(isUnlocked: $isUnlocked)
+				if isLocked {
+					LockView(isLocked: $isLocked)
 				}
 			}
 		)
+		.onChange(of: scenePhase) { phase in
+			if [.inactive, .background].contains(phase) {
+				isLocked = true
+			}
+		}
 	}
 }
 

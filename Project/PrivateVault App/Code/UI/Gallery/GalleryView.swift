@@ -36,7 +36,7 @@ struct GalleryView: View {
 	}
 	
 	func quickLookView(_ item: Item) -> some View {
-		QuickLookView(title: item.title, url: item.url)
+		QuickLookView(title: item.title, url: item.url).ignoresSafeArea()
 	}
 	
 	func filePicker(_ item: AddSheetItem) -> some View {

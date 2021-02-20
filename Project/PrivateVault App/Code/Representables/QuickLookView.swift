@@ -14,13 +14,11 @@ struct QuickLookView: UIViewControllerRepresentable {
 	let url: URL
 
 	func makeUIViewController(context: Context) -> UINavigationController {
-		let previewController = FilePreviewController(url: url)
-		previewController.navigationItem.title = title
-		let doneButton = UIBarButtonItem(title: "Cancel",
-										 style: .done,
-										 target: previewController,
-										 action: #selector(previewController.dismissModal))
-		previewController.navigationItem.leftBarButtonItem = doneButton
+		let previewController = FilePreviewController(url: url, title: title)
+		let action = UIAction { [weak previewController] _ in
+			previewController?.dismiss(animated: true)
+		}
+		previewController.navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .close, primaryAction: action)
 		return UINavigationController(rootViewController: previewController)
 	}
 
@@ -29,10 +27,12 @@ struct QuickLookView: UIViewControllerRepresentable {
 
 final class FilePreviewController: QLPreviewController, QLPreviewItem, QLPreviewControllerDataSource, QLPreviewControllerDelegate {
 	var previewItemURL: URL?
+	var previewItemTitle: String?
 
-	init(url: URL) {
+	init(url: URL, title: String) {
 		super.init(nibName: nil, bundle: nil)
 		previewItemURL = url
+		previewItemTitle = title
 	}
 
 	@available(*, unavailable)
@@ -45,19 +45,9 @@ final class FilePreviewController: QLPreviewController, QLPreviewItem, QLPreview
 		self.delegate = self
 		self.dataSource = self
 	}
+	
+	func numberOfPreviewItems(in controller: QLPreviewController) -> Int { 1 }
 
-	func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
-		return 1
-	}
-
-	func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-		return self
-	}
-}
-
-extension UIViewController {
-	@objc
-	public func dismissModal() {
-		self.dismiss(animated: true, completion: nil)
-	}
+	func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem { self }
+	
 }

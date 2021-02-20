@@ -21,6 +21,7 @@ struct LockView: View {
 				InputDisplay(codeLength: maxDigits, input: $code, textColor: textColor)
 					.shake(isIncorrect, distance: 10, count: 4)
 					.soundEffect(soundEffect: isIncorrect ? .failure : .none )
+					.soundEffect(soundEffect: !isLocked ? .success : .none)
 				KeypadView(input: input, delete: delete)
 			}
 			.frame(maxWidth: 280)
@@ -34,6 +35,10 @@ struct LockView: View {
 	}
 	
 	func input(_ string: String) {
+		if (code.count ==  maxDigits && isIncorrect) {
+			code = ""
+			isIncorrect = false
+		}
 		guard code.count < maxDigits else { return }
 		code.append(string)
 		if code.count == password.count {

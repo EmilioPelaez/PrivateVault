@@ -7,10 +7,23 @@
 
 import SwiftUI
 
+enum GalleryViewSheetItem: Identifiable {
+	case imagePicker
+	case quickLook(item: Item)
+
+	var id: Int {
+		switch self {
+		case .imagePicker:
+			return 1
+		case .quickLook:
+			return 2
+		}
+	}
+}
+
 struct GalleryView: View {
 	@State var contentMode: ContentMode = .fill
-	@State var selectedItem: Item?
-	@State var showPhotoLibrary = false
+	@State var sheetState: GalleryViewSheetItem?
 	@State var data: [Item] = (1...6)
 		.map { "file\($0)" }
 		.map { Image($0) }
@@ -35,18 +48,22 @@ struct GalleryView: View {
 								.aspectRatio(contentMode: contentMode)
 						)
 						.clipped()
-						.onTapGesture { selectedItem = item }
+						.onTapGesture { sheetState = .quickLook(item: item) }
 				}
 			}
 		}
-		.navigation(item: $selectedItem, destination: quickLookView)
-		.sheet(isPresented: $showPhotoLibrary) {
-			ImagePicker(selectImage: selectImage)
+		.fullScreenCover(item: $sheetState) {
+			switch $0 {
+			case .imagePicker:
+				ImagePicker(selectImage: selectImage)
+			case let .quickLook(item):
+				quickLookView(item)
+			}
 		}
 		.toolbar {
 			ToolbarItem(placement: .navigationBarLeading) {
 				Button {
-					showPhotoLibrary = true
+					sheetState = .imagePicker
 				} label: {
 					Image(systemName: "plus")
 				}

@@ -1,5 +1,5 @@
 //
-//  ShakeEffect.swift
+//  View+Shake.swift
 //  PrivateVault
 //
 //  Created by Emilio Peláez on 20/2/21.

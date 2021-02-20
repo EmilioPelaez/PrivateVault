@@ -16,7 +16,7 @@
 		C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1225E109FD0064C160 /* InputDisplay.swift */; };
 		C88ACB1625E10A790064C160 /* FeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */; };
 		C88ACB1925E10B450064C160 /* UIDevice+iPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1825E10B450064C160 /* UIDevice+iPad.swift */; };
-		C88ACB1B25E112A70064C160 /* ShakeEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1A25E112A70064C160 /* ShakeEffect.swift */; };
+		C88ACB1B25E112A70064C160 /* View+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1A25E112A70064C160 /* View+Shake.swift */; };
 		C8A792D625E06642009B862D /* PrivateVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A792D525E06642009B862D /* PrivateVaultApp.swift */; };
 		C8A792D825E06642009B862D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A792D725E06642009B862D /* ContentView.swift */; };
 		C8A792DA25E06642009B862D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A792D925E06642009B862D /* Assets.xcassets */; };
@@ -35,7 +35,7 @@
 		C88ACB1225E109FD0064C160 /* InputDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDisplay.swift; sourceTree = "<group>"; };
 		C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerator.swift; sourceTree = "<group>"; };
 		C88ACB1825E10B450064C160 /* UIDevice+iPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+iPad.swift"; sourceTree = "<group>"; };
-		C88ACB1A25E112A70064C160 /* ShakeEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeEffect.swift; sourceTree = "<group>"; };
+		C88ACB1A25E112A70064C160 /* View+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shake.swift"; sourceTree = "<group>"; };
 		C8A792D225E06642009B862D /* PrivateVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivateVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8A792D525E06642009B862D /* PrivateVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateVaultApp.swift; sourceTree = "<group>"; };
 		C8A792D725E06642009B862D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,7 +61,6 @@
 			isa = PBXGroup;
 			children = (
 				C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */,
-				C88ACB1A25E112A70064C160 /* ShakeEffect.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -69,9 +68,39 @@
 		C88ACB1725E10B370064C160 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C88ACB1A25E112A70064C160 /* View+Shake.swift */,
+				2B081A7325E085FA00F9D522 /* View+Navigation.swift */,
 				C88ACB1825E10B450064C160 /* UIDevice+iPad.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C88ACB1C25E114850064C160 /* Representables */ = {
+			isa = PBXGroup;
+			children = (
+				2B081A7025E0847600F9D522 /* QuickLookView.swift */,
+				2B6C742B25E08BBF00EAF6FD /* ImagePicker.swift */,
+			);
+			path = Representables;
+			sourceTree = "<group>";
+		};
+		C88ACB1D25E1149C0064C160 /* LockView */ = {
+			isa = PBXGroup;
+			children = (
+				C88ACB1025E106D00064C160 /* LockView.swift */,
+				C88ACB1225E109FD0064C160 /* InputDisplay.swift */,
+				460E096125E077C4001343C2 /* KeypadView.swift */,
+			);
+			path = LockView;
+			sourceTree = "<group>";
+		};
+		C88ACB1E25E114AC0064C160 /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				C8A792EC25E06D75009B862D /* GalleryView.swift */,
+				468A75DB25E0976E00B87597 /* FileTypePickerView.swift */,
+			);
+			path = Gallery;
 			sourceTree = "<group>";
 		};
 		C8A792C925E06642009B862D = {
@@ -118,6 +147,7 @@
 				C8A792E925E066AD009B862D /* UI */,
 				C8A792E825E066A6009B862D /* Views */,
 				C88ACB1425E10A6C0064C160 /* Utilities */,
+				C88ACB1C25E114850064C160 /* Representables */,
 				C88ACB1725E10B370064C160 /* Extensions */,
 			);
 			path = Code;
@@ -143,14 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				C8A792D725E06642009B862D /* ContentView.swift */,
-				460E096125E077C4001343C2 /* KeypadView.swift */,
-				C8A792EC25E06D75009B862D /* GalleryView.swift */,
-				468A75DB25E0976E00B87597 /* FileTypePickerView.swift */,
-				2B081A7025E0847600F9D522 /* QuickLookView.swift */,
-				2B081A7325E085FA00F9D522 /* View+Navigation.swift */,
-				2B6C742B25E08BBF00EAF6FD /* ImagePicker.swift */,
-				C88ACB1025E106D00064C160 /* LockView.swift */,
-				C88ACB1225E109FD0064C160 /* InputDisplay.swift */,
+				C88ACB1D25E1149C0064C160 /* LockView */,
+				C88ACB1E25E114AC0064C160 /* Gallery */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -242,7 +266,7 @@
 				C8A792EF25E06FD3009B862D /* Item.swift in Sources */,
 				C88ACB1925E10B450064C160 /* UIDevice+iPad.swift in Sources */,
 				C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */,
-				C88ACB1B25E112A70064C160 /* ShakeEffect.swift in Sources */,
+				C88ACB1B25E112A70064C160 /* View+Shake.swift in Sources */,
 				C8A792D825E06642009B862D /* ContentView.swift in Sources */,
 				2B6C742C25E08BBF00EAF6FD /* ImagePicker.swift in Sources */,
 				C88ACB1125E106D00064C160 /* LockView.swift in Sources */,

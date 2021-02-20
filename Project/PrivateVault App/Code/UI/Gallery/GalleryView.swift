@@ -22,11 +22,11 @@ struct GalleryView: View {
 	@State var showDetails: Bool = true
 	@State var addSheet: AddSheetItem?
 	@State var selectedItem: Item?
-	@State var data: [Item] = .examples
+	@State var data: [Item] = []
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
-			GalleryGridView(data: $data, contentMode: $contentMode, showDetails: $showDetails) { selectedItem = $0 }
+			GalleryGridView(data: $data, contentMode: $contentMode, showDetails: $showDetails, emptyView: emptyView) { selectedItem = $0 }
 				.navigationTitle("Gallery")
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
 			FileTypePickerView(action: selectType)
@@ -34,6 +34,16 @@ struct GalleryView: View {
 			.padding(.bottom, 5)
 			.sheet(item: $addSheet, content: filePicker)
 		}
+	}
+
+	var emptyView: some View {
+		VStack(spacing: 10) {
+			Image(systemName: "face.smiling.fill")
+				.font(.largeTitle)
+			Text("Your gallery is empty!")
+			Text("Add some documents to get started :)")
+		}
+		.font(.headline)
 	}
 	
 	func quickLookView(_ item: Item) -> some View {

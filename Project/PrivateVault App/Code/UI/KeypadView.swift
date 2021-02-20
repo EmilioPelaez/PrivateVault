@@ -9,6 +9,7 @@ import SwiftUI
 
 struct KeypadView: View {
 	@Binding var code: String
+	let maxDigits: Int
 	
 	var columns: [GridItem] {
 		[
@@ -25,19 +26,20 @@ struct KeypadView: View {
 			LazyVGrid(columns: columns, alignment: .center, content: {
 				ForEach(1..<10){ index in
 					KeyButton(title: Text("\(index)"), color: Color(#colorLiteral(red: 0.7065681379, green: 0.6965085175, blue: 0.7033597253, alpha: 1))) {
+						guard code.count < maxDigits else { return }
 						code.append("\(index)")
 					}
 				}
 				Spacer()
 				KeyButton(title: Text("0"), color: Color(#colorLiteral(red: 0.7065681379, green: 0.6965085175, blue: 0.7033597253, alpha: 1))) {
+					guard code.count < maxDigits else { return }
 					code.append("0")
 				}
 				.aspectRatio(1, contentMode: .fill)
 				.clipShape(Circle())
 				KeyButton(title: Image(systemName: "delete.left"), color: Color(#colorLiteral(red: 0.8059458137, green: 0.1390043199, blue: 0.1966293752, alpha: 1))){
-					if code.count > 0 {
-						code.removeLast()
-					}
+					guard code.count > 0 else { return }
+					code.removeLast()
 				}
 			})
 			.frame(maxWidth: .infinity)
@@ -80,6 +82,6 @@ struct LockView_Previews: PreviewProvider {
 	@State static var code = ""
 
 	static var previews: some View {
-		KeypadView(code: $code)
+		KeypadView(code: $code, maxDigits: 5)
 	}
 }

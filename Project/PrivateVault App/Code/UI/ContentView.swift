@@ -14,7 +14,7 @@ struct ContentView: View {
 
 	var body: some View {
 		NavigationView {
-			KeypadView(code: $code)
+			KeypadView(code: $code, maxDigits: 5)
 				.navigation(
 					isPresenting: .init(get: { isUnlocked }, set: { _ in }),
 					destination: GalleryView()

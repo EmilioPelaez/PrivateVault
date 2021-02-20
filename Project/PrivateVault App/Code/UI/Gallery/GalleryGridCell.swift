@@ -17,7 +17,7 @@ struct GalleryGridCell: View {
 		VStack(alignment: .leading) {
 			Color.clear.aspectRatio(1, contentMode: .fill)
 				.overlay(
-					item.image
+					item.placeholder
 						.resizable()
 						.aspectRatio(contentMode: contentMode)
 				)
@@ -42,9 +42,9 @@ struct GalleryGridCell: View {
 
 struct GalleryGridCell_Previews: PreviewProvider {
 	static var previews: some View {
-		GalleryGridCell(item: Item(image: Image("file1")), contentMode: .constant(.fill), showDetails: .constant(true)) { _ in }
+		GalleryGridCell(item: .example, contentMode: .constant(.fill), showDetails: .constant(true)) { _ in }
 			.previewLayout(.fixed(width: 200, height: 300))
-		GalleryGridCell(item: Item(image: Image("file1")), contentMode: .constant(.fill), showDetails: .constant(false)) { _ in }
+		GalleryGridCell(item: .example, contentMode: .constant(.fill), showDetails: .constant(false)) { _ in }
 			.previewLayout(.fixed(width: 200, height: 200))
 	}
 }

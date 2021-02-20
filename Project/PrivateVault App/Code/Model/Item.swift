@@ -50,4 +50,13 @@ extension Item {
 	}
 }
 
+extension Item {
+	static let example = Item(image: #imageLiteral(resourceName: "file3"))
+}
 
+extension Array where Element == Item {
+	static let examples = (1...6)
+		.map { "file\($0)" }
+		.compactMap { UIImage(named: $0) }
+		.map(Item.init)
+}

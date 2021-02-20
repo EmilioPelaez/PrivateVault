@@ -31,10 +31,7 @@ struct GalleryView: View {
 	@State var contentMode: ContentMode = .fill //	Should this and showDetails be environment values?
 	@State var showDetails: Bool = false
 	@State var sheetState: GalleryViewSheetItem?
-	@State var data: [Item] = (1...6)
-		.map { "file\($0)" }
-		.map { Image($0) }
-		.map(Item.init)
+	@State var data: [Item] = .examples
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
@@ -76,7 +73,7 @@ struct GalleryView: View {
 	}
 	
 	func selectImage(_ image: UIImage) {
-		data.append(Item(image: Image(uiImage: image)))
+		data.append(Item(image: image))
 	}
 
 	func selectDocuments(_ documentURLs: [URL]) {

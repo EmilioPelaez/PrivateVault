@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
 	let close: () -> Void
+	let version = "0.0.1"
 
 	var body: some View {
 		NavigationView {
@@ -19,7 +20,7 @@ struct SettingsView: View {
 				Section {
 					Text("Second Setting")
 				}
-				Section {
+				Section(footer: footer) {
 					Text("Third Setting")
 				}
 			}
@@ -32,6 +33,16 @@ struct SettingsView: View {
 					}
 				}
 			}
+		}
+	}
+
+	var footer: some View {
+		HStack {
+			Spacer()
+			Text("Version \(version)")
+				.font(.footnote)
+				.foregroundColor(Color(.secondaryLabel))
+			Spacer()
 		}
 	}
 }

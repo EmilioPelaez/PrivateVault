@@ -37,7 +37,7 @@ struct GalleryGridView<E>: View where E: View {
 			ScrollView {
 			SearchBarView(text: $searchText, placeholder: "Search files...")
 			LazyVGrid(columns: columns(spacing: 4), spacing: 4) {
-				ForEach(data) { item in
+				ForEach(filteredData) { item in
 					GalleryGridCell(item: item, contentMode: $contentMode, showDetails: $showDetails)
 						.onTapGesture { selection(item) }
 						.contextMenu {
@@ -60,6 +60,11 @@ struct GalleryGridView<E>: View where E: View {
 			.padding(.bottom, 55)
 			}
 		}
+	}
+
+	var filteredData: [StoredItem] {
+		if searchText.isEmpty { return Array(data) }
+		return data.filter({ $0.name?.localizedStandardContains(searchText) ?? false })
 	}
 }
 

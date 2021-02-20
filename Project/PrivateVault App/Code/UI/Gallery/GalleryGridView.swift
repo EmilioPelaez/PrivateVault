@@ -16,10 +16,12 @@ struct GalleryGridView: View {
 		]
 	}
 	
-	@Binding var data: [Item]
+	@FetchRequest(sortDescriptors: [], animation: .default)
+	var data: FetchedResults<StoredItem>
+	
 	@Binding var contentMode: ContentMode
 	@Binding var showDetails: Bool
-	let selection: (Item) -> Void
+	let selection: (StoredItem) -> Void
 	
 	var body: some View {
 		ScrollView {
@@ -35,11 +37,11 @@ struct GalleryGridView: View {
 	}
 }
 
-struct GalleryGridView_Previews: PreviewProvider {
-	static let data: [Item] = .examples
-	static var previews: some View {
-		GalleryGridView(data: .constant(data), contentMode: .constant(.fill), showDetails: .constant(true)) { _ in }
-		
-		GalleryGridView(data: .constant(data), contentMode: .constant(.fill), showDetails: .constant(false)) { _ in }
-	}
-}
+//struct GalleryGridView_Previews: PreviewProvider {
+//	static let data: [Item] = .examples
+//	static var previews: some View {
+//		GalleryGridView(data: .constant(data), contentMode: .constant(.fill), showDetails: .constant(true)) { _ in }
+//
+//		GalleryGridView(data: .constant(data), contentMode: .constant(.fill), showDetails: .constant(false)) { _ in }
+//	}
+//}

@@ -18,15 +18,16 @@ struct GalleryView: View {
 		var id: Int { rawValue }
 	}
 	
+	@Environment(\.managedObjectContext) private var viewContext
+	
 	@State var contentMode: ContentMode = .fill //	Should this and showDetails be environment values?
 	@State var showDetails: Bool = true
 	@State var addSheet: AddSheetItem?
-	@State var selectedItem: Item?
-	@State var data: [Item] = .examples
+	@State var selectedItem: StoredItem?
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
-			GalleryGridView(data: $data, contentMode: $contentMode, showDetails: $showDetails) { selectedItem = $0 }
+			GalleryGridView(contentMode: $contentMode, showDetails: $showDetails) { selectedItem = $0 }
 				.navigationTitle("Gallery")
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
 			FileTypePickerView(action: selectType)
@@ -36,8 +37,8 @@ struct GalleryView: View {
 		}
 	}
 	
-	func quickLookView(_ item: Item) -> some View {
-		QuickLookView(title: item.title, url: item.url).ignoresSafeArea()
+	func quickLookView(_ item: StoredItem) -> some View {
+		QuickLookView(title: item.name, url: item.url).ignoresSafeArea()
 	}
 	
 	func filePicker(_ item: AddSheetItem) -> some View {
@@ -84,7 +85,14 @@ struct GalleryView: View {
 	}
 	
 	func selectImage(_ image: UIImage) {
-		data.append(Item(image: image))
+		let newItem = StoredItem(context: viewContext, image: image)
+		do {
+				try viewContext.save()
+		} catch {
+				// Replace this implementation with code to handle the error appropriately.
+				let nsError = error as NSError
+				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+		}
 	}
 	
 	func selectDocuments(_ documentURLs: [URL]) {

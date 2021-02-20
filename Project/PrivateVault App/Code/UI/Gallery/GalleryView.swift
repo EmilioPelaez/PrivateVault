@@ -28,7 +28,8 @@ enum GalleryViewSheetItem: Identifiable {
 }
 
 struct GalleryView: View {
-	@State var contentMode: ContentMode = .fill
+	@State var contentMode: ContentMode = .fill //	Should this and showDetails be environment values?
+	@State var showDetails: Bool = false
 	@State var sheetState: GalleryViewSheetItem?
 	@State var data: [Item] = (1...6)
 		.map { "file\($0)" }
@@ -37,7 +38,7 @@ struct GalleryView: View {
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
-			GalleryGridView(data: $data, contentMode: $contentMode) { sheetState = .quickLook(item: $0) }
+			GalleryGridView(data: $data, contentMode: $contentMode, showDetails: $showDetails) { sheetState = .quickLook(item: $0) }
 				.navigationTitle("Gallery")
 				.fullScreenCover(item: $sheetState) {
 					switch $0 {

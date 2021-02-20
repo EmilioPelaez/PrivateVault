@@ -18,13 +18,14 @@ struct GalleryGridView: View {
 	
 	@Binding var data: [Item]
 	@Binding var contentMode: ContentMode
+	@Binding var showDetails: Bool
 	let selection: (Item) -> Void
 	
 	var body: some View {
 		ScrollView {
 			LazyVGrid(columns: columns) {
 				ForEach(data) { item in
-					GalleryGridCell(item: item, contentMode: $contentMode, selection: selection)
+					GalleryGridCell(item: item, contentMode: $contentMode, showDetails: $showDetails, selection: selection)
 				}
 			}
 		}
@@ -37,6 +38,8 @@ struct GalleryGridView_Previews: PreviewProvider {
 		.map { Image($0) }
 		.map(Item.init)
 	static var previews: some View {
-		GalleryGridView(data: .constant(data), contentMode: .constant(.fill)) { _ in }
+		GalleryGridView(data: .constant(data), contentMode: .constant(.fill), showDetails: .constant(true)) { _ in }
+		
+		GalleryGridView(data: .constant(data), contentMode: .constant(.fill), showDetails: .constant(false)) { _ in }
 	}
 }

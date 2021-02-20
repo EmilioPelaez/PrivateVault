@@ -12,6 +12,7 @@ struct GalleryView: View {
 	
 	enum SheetItem: Int, Identifiable {
 		case tags
+		case settings
 		case imagePicker
 		case documentPicker
 		case audioRecorder
@@ -32,8 +33,13 @@ struct GalleryView: View {
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
 				.navigationTitle("Gallery")
 				.toolbar(content: {
-					Button(action: { currentSheet = .tags }) {
-						Image(systemName: "list.bullet")
+					ToolbarItemGroup(placement: .navigationBarTrailing) {
+						Button(action: { currentSheet = .tags }) {
+							Image(systemName: "list.bullet")
+						}
+						Button(action: { currentSheet = .settings }) {
+							Image(systemName: "gearshape")
+						}
 					}
 				})
 			FileTypePickerView(action: selectType)
@@ -63,6 +69,7 @@ struct GalleryView: View {
 			case .imagePicker: ImagePicker(closeSheet: { currentSheet = nil }, selectImage: selectImage)
 			case .documentPicker: DocumentPicker(selectDocuments: selectDocuments)
 			case .audioRecorder: AudioRecorder(recordAudio: recordAudio)
+			case .settings: SettingsView { currentSheet = nil }
 			}
 		}
 	}

@@ -13,8 +13,8 @@ struct TagListView: View {
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Tag.name, ascending: true)], animation: .default)
 	var tags: FetchedResults<Tag>
 	
-	@Binding var presenting: Bool
 	@State var newTagName: String = ""
+	let close: () -> Void
 	
 	var body: some View {
 		NavigationView {
@@ -38,7 +38,7 @@ struct TagListView: View {
 			.navigationTitle("Tags")
 			.toolbar {
 				ToolbarItem(placement: .navigationBarLeading) {
-					Button(action: { self.presenting = false }) {
+					Button(action: close) {
 						Image(systemName: "xmark.circle.fill")
 					}
 				}
@@ -74,7 +74,7 @@ struct TagListView: View {
 
 struct TagListView_Previews: PreviewProvider {
 	static var previews: some View {
-		TagListView(presenting: .constant(true))
+		TagListView { }
 			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 	}
 }

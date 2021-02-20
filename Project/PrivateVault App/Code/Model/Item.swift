@@ -28,7 +28,7 @@ extension Item {
 		let id = UUID().uuidString
 		self.id = id
 		self.title = "Puppy!"
-		self._placeholder = Image(uiImage: image)
+		self._placeholder = Image(uiImage: image.resized(toFit: CGSize(side: 300)) ?? UIImage())
 		
 		do {
 			let data = image.pngData()
@@ -59,7 +59,8 @@ extension Item {
 }
 
 extension Array where Element == Item {
-	static let examples = (1...6)
+	static let examples = (1...18)
+		.map { $0 % 6 + 1 }
 		.map { "file\($0)" }
 		.compactMap { UIImage(named: $0) }
 		.map(Item.init)

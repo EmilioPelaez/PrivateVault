@@ -28,6 +28,8 @@ struct GalleryGridView: View {
 					GalleryGridCell(item: item, contentMode: $contentMode, showDetails: $showDetails, selection: selection)
 				}
 			}
+			.padding(4)
+			.padding(.bottom, 55)
 		}
 	}
 }

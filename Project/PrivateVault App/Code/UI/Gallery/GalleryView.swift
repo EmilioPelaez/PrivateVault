@@ -36,7 +36,6 @@ struct GalleryView: View {
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
 			GalleryGridView(data: $data, contentMode: $contentMode, showDetails: $showDetails) { sheetState = .quickLook(item: $0) }
-				.padding(4)
 				.navigationTitle("Gallery")
 				.fullScreenCover(item: $sheetState) {
 					switch $0 {
@@ -60,7 +59,8 @@ struct GalleryView: View {
 					sheetState = .documentPicker
 				}
 			}
-			.padding()
+			.padding(.horizontal)
+			.padding(.bottom, 5)
 		}
 	}
 	

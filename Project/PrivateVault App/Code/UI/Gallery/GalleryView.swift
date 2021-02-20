@@ -27,7 +27,7 @@ struct GalleryView: View {
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
-			GalleryGridView(contentMode: $contentMode, showDetails: $showDetails) { selectedItem = $0 }
+			GalleryGridView(contentMode: $contentMode, showDetails: $showDetails, selection: select, delete: delete)
 				.navigationTitle("Gallery")
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
 			FileTypePickerView(action: selectType)
@@ -35,6 +35,15 @@ struct GalleryView: View {
 			.padding(.bottom, 5)
 			.sheet(item: $addSheet, content: filePicker)
 		}
+	}
+	
+	func select(_ item: StoredItem) {
+		selectedItem = item
+	}
+	
+	func delete(_ item: StoredItem) {
+		viewContext.delete(item)
+		saveContext()
 	}
 	
 	func quickLookView(_ item: StoredItem) -> some View {
@@ -86,13 +95,7 @@ struct GalleryView: View {
 	
 	func selectImage(_ image: UIImage) {
 		_ = StoredItem(context: viewContext, image: image)
-		do {
-				try viewContext.save()
-		} catch {
-				// Replace this implementation with code to handle the error appropriately.
-				let nsError = error as NSError
-				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-		}
+		saveContext()
 	}
 	
 	func selectDocuments(_ documentURLs: [URL]) {
@@ -101,6 +104,16 @@ struct GalleryView: View {
 	
 	func recordAudio(_ audioURL: URL) {
 		fatalError("Audio recording is not implemented yet.")
+	}
+	
+	private func saveContext() {
+		do {
+				try viewContext.save()
+		} catch {
+				// Replace this implementation with code to handle the error appropriately.
+				let nsError = error as NSError
+				fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+		}
 	}
 }
 

@@ -22,6 +22,7 @@ struct GalleryGridView: View {
 	@Binding var contentMode: ContentMode
 	@Binding var showDetails: Bool
 	let selection: (StoredItem) -> Void
+	let delete: (StoredItem) -> Void
 	
 	var body: some View {
 		ScrollView {
@@ -29,6 +30,22 @@ struct GalleryGridView: View {
 				ForEach(data) { item in
 					GalleryGridCell(item: item, contentMode: $contentMode, showDetails: $showDetails)
 						.onTapGesture { selection(item) }
+						.contextMenu {
+							Menu {
+								Button(action: { delete(item) }) {
+									Text("Delete")
+									Image(systemName: "trash")
+								}
+								Button(action: { }) {
+									Text("Cancel")
+								}
+							} label: {
+								Text("Delete")
+									.foregroundColor(.red)
+								Image(systemName: "trash")
+									.foregroundColor(.red)
+							}
+						}
 				}
 			}
 			.padding(4)

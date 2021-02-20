@@ -28,99 +28,43 @@ enum GalleryViewSheetItem: Identifiable {
 }
 
 struct GalleryView: View {
-	@State var isShowingActionSheet = false
-	@State var contentMode: ContentMode = .fill
+	@State var contentMode: ContentMode = .fill //	Should this and showDetails be environment values?
+	@State var showDetails: Bool = false
 	@State var sheetState: GalleryViewSheetItem?
 	@State var data: [Item] = (1...6)
 		.map { "file\($0)" }
 		.map { Image($0) }
 		.map(Item.init)
 	
-	var columns: [GridItem] {
-		[
-			GridItem(.flexible()),
-			GridItem(.flexible()),
-			GridItem(.flexible())
-		]
-	}
-	
 	var body: some View {
-		ZStack {
-			ScrollView {
-				LazyVGrid(columns: columns) {
-					ForEach(data) { item in
-						VStack {
-							Color.red.aspectRatio(1, contentMode: .fill)
-								.overlay(
-									item.image
-										.resizable()
-										.aspectRatio(contentMode: contentMode)
-								)
-								.clipped()
-								.onTapGesture { sheetState = .quickLook(item: item) }
-							Text("pup.jpg")
-								.font(.headline)
-							Text("12/31/20")
-								.font(.footnote)
-								.foregroundColor(.secondary)
-							Text("5.9 MB")
-								.font(.footnote)
-								.foregroundColor(.secondary)
-						}
+		ZStack(alignment: .bottomLeading) {
+			GalleryGridView(data: $data, contentMode: $contentMode, showDetails: $showDetails) { sheetState = .quickLook(item: $0) }
+				.padding(4)
+				.navigationTitle("Gallery")
+				.fullScreenCover(item: $sheetState) {
+					switch $0 {
+					case .imagePicker:
+						ImagePicker(selectImage: selectImage)
+					case .documentPicker:
+						DocumentPicker(selectDocuments: selectDocuments)
+					case .audioRecorder:
+						AudioRecorder(recordAudio: recordAudio)
+					case let .quickLook(item):
+						quickLookView(item)
 					}
 				}
-			}
-			.navigationTitle("Gallery")
-			.fullScreenCover(item: $sheetState) {
-				switch $0 {
-				case .imagePicker:
-					ImagePicker(selectImage: selectImage)
-				case .documentPicker:
-					DocumentPicker(selectDocuments: selectDocuments)
-				case .audioRecorder:
-					AudioRecorder(recordAudio: recordAudio)
-				case let .quickLook(item):
-					quickLookView(item)
+			FileTypePickerView() { fileType in
+				switch fileType {
+				case .photo:
+					sheetState = .imagePicker
+				case .audio:
+					sheetState = .audioRecorder
+				case .document:
+					sheetState = .documentPicker
 				}
 			}
-			.toolbar {
-				ToolbarItem(placement: .navigationBarTrailing) {
-					Button {
-						withAnimation(Animation.interpolatingSpring(stiffness: 70, damping: 10.0)) {
-							isShowingActionSheet = true
-						}
-					} label: {
-						Image(systemName: "plus")
-					}
-					
-				}
-			}
-			VStack {
-				Spacer()
-				ZStack {
-					RoundedRectangle(cornerRadius: 25.0)
-						.foregroundColor(.white)
-						.shadow(radius: 25)
-					FileTypePickerView() { fileType in
-						switch fileType {
-						case .photo:
-							sheetState = .imagePicker
-						case .audio:
-							sheetState = .audioRecorder
-						case .document:
-							sheetState = .documentPicker
-						}					}
-						.padding()
-				}
-				.frame(width: 300, height: 100, alignment: .center)
-				.offset(y: isShowingActionSheet ? 0 : 200)
-			}
+			.padding()
 		}
-		.onTapGesture(perform: {
-			withAnimation(Animation.easeIn(duration: 0.2)) {
-				isShowingActionSheet = false
-			}
-		})
 	}
 	
 	func quickLookView(_ item: Item) -> some View {
@@ -155,43 +99,5 @@ struct AudioRecorder: View {
 
 	var body: some View {
 		EmptyView()
-	}
-}
-
-final class DocumentPicker: NSObject, UIViewControllerRepresentable {
-	var selectDocuments: ([URL]) -> Void
-
-	init(selectDocuments: @escaping ([URL]) -> Void) {
-		self.selectDocuments = selectDocuments
-	}
-
-	typealias UIViewControllerType = UIDocumentPickerViewController
-
-	lazy var viewController:UIDocumentPickerViewController = {
-		// For picked only folder
-		let vc = UIDocumentPickerViewController(forOpeningContentTypes: [.image, .audio, .text, .usdz, .pdf], asCopy: true)
-		vc.allowsMultipleSelection = false
-		//        vc.accessibilityElements = [kFolderActionCode]
-		//        vc.shouldShowFileExtensions = true
-		vc.delegate = self
-		return vc
-	}()
-
-	func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
-		viewController.delegate = self
-		return viewController
-	}
-
-	func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: UIViewControllerRepresentableContext<DocumentPicker>) {
-	}
-}
-
-extension DocumentPicker: UIDocumentPickerDelegate {
-	func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-		selectDocuments(urls)
-	}
-
-	func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-		controller.dismiss(animated: true)
 	}
 }

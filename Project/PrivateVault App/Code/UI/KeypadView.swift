@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct KeypadView: View {
+	@State private var code: String = ""
+	
 	var columns: [GridItem] {
 		[
 			GridItem(.flexible()),
@@ -20,22 +22,43 @@ struct KeypadView: View {
 	var delete: () -> Void
 	
 	var body: some View {
-		LazyVGrid(columns: columns, alignment: .center, content: {
-			ForEach(1..<10){ index in
-				KeyButton(title: Text("\(index)"), color: Color(#colorLiteral(red: 0.7065681379, green: 0.6965085175, blue: 0.7033597253, alpha: 1))) {
-					input(index)
+		VStack {
+			InputDisplay(codeCount: code.count)
+			
+			LazyVGrid(columns: columns, alignment: .center, content: {
+				ForEach(1..<10){ index in
+					KeyButton(title: Text("\(index)"), color: Color(#colorLiteral(red: 0.7065681379, green: 0.6965085175, blue: 0.7033597253, alpha: 1))) {
+						input(index)
+						code.append("\(index)")
+					}
 				}
-			}
-			Spacer()
-			KeyButton(title: Text("0"), color: Color(#colorLiteral(red: 0.7065681379, green: 0.6965085175, blue: 0.7033597253, alpha: 1))) {
-				
-			}
-			.aspectRatio(1, contentMode: .fill)
-			.clipShape(Circle())
-			KeyButton(title: Image(systemName: "delete.left"), color: Color(#colorLiteral(red: 0.8059458137, green: 0.1390043199, blue: 0.1966293752, alpha: 1))){
-				delete()
-			}
-		})
+				Spacer()
+				KeyButton(title: Text("0"), color: Color(#colorLiteral(red: 0.7065681379, green: 0.6965085175, blue: 0.7033597253, alpha: 1))) {
+					code.append("0")
+				}
+				.aspectRatio(1, contentMode: .fill)
+				.clipShape(Circle())
+				KeyButton(title: Image(systemName: "delete.left"), color: Color(#colorLiteral(red: 0.8059458137, green: 0.1390043199, blue: 0.1966293752, alpha: 1))){
+					delete()
+					
+					if code.count > 0 {
+						code.removeLast()
+					}
+				}
+			})
+		}
+		
+	}
+}
+
+struct InputDisplay: View {
+	var codeCount: Int
+	var body: some View {
+		ZStack {
+			Color.white
+			Text(String(repeating: "*", count: codeCount))
+				.font(.largeTitle)
+		}
 	}
 }
 

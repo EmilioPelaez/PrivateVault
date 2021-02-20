@@ -9,14 +9,20 @@ import SwiftUI
 
 enum GalleryViewSheetItem: Identifiable {
 	case imagePicker
+	case documentPicker
+	case audioRecorder
 	case quickLook(item: Item)
 
 	var id: Int {
 		switch self {
 		case .imagePicker:
 			return 1
-		case .quickLook:
+		case .documentPicker:
 			return 2
+		case .audioRecorder:
+			return 3
+		case .quickLook:
+			return 4
 		}
 	}
 }
@@ -59,6 +65,10 @@ struct GalleryView: View {
 				switch $0 {
 				case .imagePicker:
 					ImagePicker(selectImage: selectImage)
+				case .documentPicker:
+					DocumentPicker(selectDocument: selectDocument)
+				case .audioRecorder:
+					AudioRecorder(recordAudio: recordAudio)
 				case let .quickLook(item):
 					quickLookView(item)
 				}
@@ -102,10 +112,34 @@ struct GalleryView: View {
 	func selectImage(_ image: UIImage) {
 		data.append(Item(image: Image(uiImage: image)))
 	}
+
+	func selectDocument(_ documentURL: URL) {
+		fatalError("Document selection is not implemented yet.")
+	}
+
+	func recordAudio(_ audioURL: URL) {
+		fatalError("Audio recording is not implemented yet.")
+	}
 }
 
 struct GalleryView_Previews: PreviewProvider {
 	static var previews: some View {
 		GalleryView()
+	}
+}
+
+struct DocumentPicker: View {
+	var selectDocument: (URL) -> Void
+
+	var body: some View {
+		EmptyView()
+	}
+}
+
+struct AudioRecorder: View {
+	var recordAudio: (URL) -> Void
+
+	var body: some View {
+		EmptyView()
 	}
 }

@@ -9,15 +9,19 @@ import SwiftUI
 
 struct LockView: View {
 	let password = "1234"
+	let maxAttempts = 5
 	@Binding var isLocked: Bool
 	@State var code: String = ""
 	@State var isIncorrect: Bool = false
+	@State var attempts: Int = 0
 	let maxDigits: Int = 4
 	
 	var body: some View {
 		ZStack {
 			Color(.systemBackground).ignoresSafeArea()
 			VStack(spacing: 25) {
+				AttemptsRemainingView(attemptsRemaining: maxAttempts - attempts)
+					.opacity(attempts > 0 ? 1.0 : 0.0)
 				InputDisplay(codeLength: maxDigits, input: $code, textColor: textColor)
 					.shake(isIncorrect, distance: 10, count: 4)
 					.soundEffect(soundEffect: isIncorrect ? .failure : .none )
@@ -46,6 +50,8 @@ struct LockView: View {
 				if code == password {
 					isLocked = false
 				} else {
+					attempts += 1
+					print(attempts)
 					isIncorrect = true
 				}
 			}

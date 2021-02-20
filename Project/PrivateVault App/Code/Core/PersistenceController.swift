@@ -17,8 +17,8 @@ struct PersistenceController {
 		(1...6)
 			.map { $0 % 6 + 1 }
 			.map { "file\($0)" }
-			.compactMap { UIImage(named: $0) }
-			.forEach { _ = StoredItem(context: viewContext, image: $0) }
+			.compactMap { (UIImage(named: $0)!, $0) }
+			.forEach { _ = StoredItem(context: viewContext, image: $0.0, filename: $0.1) }
 		
 		do {
 			try viewContext.save()

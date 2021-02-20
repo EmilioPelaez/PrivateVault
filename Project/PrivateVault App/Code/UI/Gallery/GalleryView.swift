@@ -76,8 +76,8 @@ struct GalleryView: View {
 		}
 	}
 	
-	func selectImage(_ image: UIImage) {
-		_ = StoredItem(context: viewContext, image: image)
+	func selectImage(_ image: UIImage, filename: String) {
+		_ = StoredItem(context: viewContext, image: image, filename: filename)
 		saveContext()
 	}
 	

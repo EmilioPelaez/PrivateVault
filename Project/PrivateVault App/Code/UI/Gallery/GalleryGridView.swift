@@ -18,7 +18,8 @@ struct GalleryGridView<E>: View where E: View {
 	
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \StoredItem.timestamp, ascending: false)], animation: .default)
 	var data: FetchedResults<StoredItem>
-	
+
+	@State var searchText = ""
 	@Binding var contentMode: ContentMode
 	@Binding var showDetails: Bool
 	let emptyView: E
@@ -34,6 +35,7 @@ struct GalleryGridView<E>: View where E: View {
 			}
 		} else {
 			ScrollView {
+			SearchBarView(text: $searchText, placeholder: "Search files...")
 			LazyVGrid(columns: columns(spacing: 4), spacing: 4) {
 				ForEach(data) { item in
 					GalleryGridCell(item: item, contentMode: $contentMode, showDetails: $showDetails)

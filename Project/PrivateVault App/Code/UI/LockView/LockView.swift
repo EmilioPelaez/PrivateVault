@@ -35,7 +35,7 @@ struct LockView: View {
 	}
 	
 	func input(_ string: String) {
-		if (code.count ==  maxDigits && isIncorrect) {
+		if (code.count ==  maxDigits) {
 			code = ""
 			isIncorrect = false
 		}

@@ -20,6 +20,7 @@ struct LockView: View {
 			VStack(spacing: 25) {
 				InputDisplay(codeLength: maxDigits, input: $code, textColor: isIncorrect ? .red : .primary)
 					.shake(isIncorrect, distance: 10, count: 4)
+					.soundEffect(soundEffect: isIncorrect ? .failure : .none )
 				KeypadView(input: input, delete: delete)
 			}
 			.frame(maxWidth: 280)

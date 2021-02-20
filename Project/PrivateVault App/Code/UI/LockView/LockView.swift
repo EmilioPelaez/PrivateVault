@@ -41,6 +41,9 @@ struct LockView: View {
 	}
 	
 	func delete() {
+		guard !code.isEmpty else {
+			return
+		}
 		code.removeLast()
 		isIncorrect = false
 	}

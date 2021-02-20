@@ -12,6 +12,8 @@
 		2B6C742C25E08BBF00EAF6FD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C742B25E08BBF00EAF6FD /* ImagePicker.swift */; };
 		460E096225E077C4001343C2 /* KeypadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E096125E077C4001343C2 /* KeypadView.swift */; };
 		468A75DC25E0976E00B87597 /* FileTypePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75DB25E0976E00B87597 /* FileTypePickerView.swift */; };
+		468A75E125E15B9300B87597 /* SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75E025E15B9300B87597 /* SoundEffect.swift */; };
+		468A75E425E15D2900B87597 /* View+SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75E325E15D2900B87597 /* View+SoundEffect.swift */; };
 		C88ACB1125E106D00064C160 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1025E106D00064C160 /* LockView.swift */; };
 		C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1225E109FD0064C160 /* InputDisplay.swift */; };
 		C88ACB1625E10A790064C160 /* FeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */; };
@@ -42,6 +44,8 @@
 		2B6C742B25E08BBF00EAF6FD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		460E096125E077C4001343C2 /* KeypadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadView.swift; sourceTree = "<group>"; };
 		468A75DB25E0976E00B87597 /* FileTypePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypePickerView.swift; sourceTree = "<group>"; };
+		468A75E025E15B9300B87597 /* SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SoundEffect.swift; path = "PrivateVault App/Code/UI/SoundEffect.swift"; sourceTree = SOURCE_ROOT; };
+		468A75E325E15D2900B87597 /* View+SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "View+SoundEffect.swift"; path = "PrivateVault App/Code/UI/View+SoundEffect.swift"; sourceTree = SOURCE_ROOT; };
 		C88ACB1025E106D00064C160 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		C88ACB1225E109FD0064C160 /* InputDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDisplay.swift; sourceTree = "<group>"; };
 		C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerator.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */,
+				468A75E025E15B9300B87597 /* SoundEffect.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -95,6 +100,7 @@
 				C88ACB1825E10B450064C160 /* UIDevice+iPad.swift */,
 				C8EFD1FF25E1373F00CB4141 /* UIImage+Resize.swift */,
 				C8EFD20125E1374F00CB4141 /* CGSize+Utilities.swift */,
+				468A75E325E15D2900B87597 /* View+SoundEffect.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 			files = (
 				C8A792EF25E06FD3009B862D /* Item.swift in Sources */,
 				C88ACB1925E10B450064C160 /* UIDevice+iPad.swift in Sources */,
+				468A75E125E15B9300B87597 /* SoundEffect.swift in Sources */,
 				C8EFD20225E1374F00CB4141 /* CGSize+Utilities.swift in Sources */,
 				C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */,
 				C88ACB1B25E112A70064C160 /* View+Shake.swift in Sources */,
@@ -321,6 +328,7 @@
 				2B081A7425E085FA00F9D522 /* View+Navigation.swift in Sources */,
 				468A75DC25E0976E00B87597 /* FileTypePickerView.swift in Sources */,
 				460E096225E077C4001343C2 /* KeypadView.swift in Sources */,
+				468A75E425E15D2900B87597 /* View+SoundEffect.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,21 +28,25 @@ extension Item {
 		self.title = ""
 		self._placeholder = Image(uiImage: image)
 		
-		let data = image.pngData()
-		let folder = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-			.appendingPathComponent("data")
-		let url = folder
-			.appendingPathComponent(id)
-			.appendingPathExtension("png")
 		do {
+			let data = image.pngData()
+			let folder = try FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+				.appendingPathComponent("data")
+			let url = folder
+				.appendingPathComponent(id)
+				.appendingPathExtension("png")
+			
 			try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
+			
+			//	For now this will write the data to disk on init and will never be removed
+			//	TODO: Write to disk as needed
+			try data?.write(to: url)
+			
+			self.url = url
 		} catch {
 			print("Uh oh", error)
+			self.url = URL(fileURLWithPath: "~")
 		}
-		
-		FileManager.default.createFile(atPath: url.absoluteString, contents: data, attributes: nil)
-		
-		self.url = url
 	}
 }
 

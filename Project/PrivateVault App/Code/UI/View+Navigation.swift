@@ -16,6 +16,15 @@ extension View {
 	}
 }
 
+extension View {
+	func navigation<Destination: View>(
+		isPresenting: Binding<Bool>,
+		destination: Destination
+	) -> some View {
+		background(NavigationLink(destination: destination, isActive: isPresenting, label: {}))
+	}
+}
+
 extension NavigationLink where Label == EmptyView {
 	public init?<V: Identifiable>(
 		item: Binding<V?>,

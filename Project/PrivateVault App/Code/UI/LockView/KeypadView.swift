@@ -22,19 +22,19 @@ struct KeypadView: View {
 	var body: some View {
 		LazyVGrid(columns: columns, alignment: .center, content: {
 			ForEach(1..<10){ index in
-				KeyButton(title: Text("\(index)"), color: Color(.secondarySystemFill)) {
+				KeyButton(title: Text("\(index)"), color: Color(.tertiarySystemFill)) {
 					FeedbackGenerator.impact(.rigid)
 					input("\(index)")
 				}
 			}
 			Spacer()
-			KeyButton(title: Text("0"), color: Color(.secondarySystemFill)) {
+			KeyButton(title: Text("0"), color: Color(.tertiarySystemFill)) {
 				FeedbackGenerator.impact(.rigid)
 				input("0")
 			}
 			.aspectRatio(1, contentMode: .fill)
 			.clipShape(Circle())
-			KeyButton(title: Image(systemName: "delete.left"), color: Color(#colorLiteral(red: 0.8059458137, green: 0.1390043199, blue: 0.1966293752, alpha: 1))){
+			KeyButton(title: Image(systemName: "delete.left"), color: .red){
 				FeedbackGenerator.impact(.rigid)
 				delete()
 			}
@@ -54,7 +54,7 @@ struct KeyButton<Body: View>: View {
 				color
 				title
 					.font(.largeTitle)
-					.foregroundColor(.white)
+					.foregroundColor(.primary)
 			}
 		})
 		.aspectRatio(1, contentMode: .fill)

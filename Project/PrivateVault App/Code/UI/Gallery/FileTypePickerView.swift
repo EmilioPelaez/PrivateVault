@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-
-
-
 struct FileTypePickerView: View {
 	
 	enum FileType {

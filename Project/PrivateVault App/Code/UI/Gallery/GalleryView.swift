@@ -29,17 +29,13 @@ enum GalleryViewSheetItem: Identifiable {
 
 struct GalleryView: View {
 	@State var contentMode: ContentMode = .fill //	Should this and showDetails be environment values?
-	@State var showDetails: Bool = false
+	@State var showDetails: Bool = true
 	@State var sheetState: GalleryViewSheetItem?
-	@State var data: [Item] = (1...6)
-		.map { "file\($0)" }
-		.map { Image($0) }
-		.map(Item.init)
+	@State var data: [Item] = .examples
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
 			GalleryGridView(data: $data, contentMode: $contentMode, showDetails: $showDetails) { sheetState = .quickLook(item: $0) }
-				.padding(4)
 				.navigationTitle("Gallery")
 				.fullScreenCover(item: $sheetState) {
 					switch $0 {
@@ -63,20 +59,17 @@ struct GalleryView: View {
 					sheetState = .documentPicker
 				}
 			}
-			.padding()
+			.padding(.horizontal)
+			.padding(.bottom, 5)
 		}
 	}
 	
 	func quickLookView(_ item: Item) -> some View {
-		let data = try! Data(contentsOf: URL(string: "https://img.ibxk.com.br/2020/08/07/07115418185111.jpg")!)
-		let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-		let imagePath = paths[0].appendingPathComponent("caramelo.jpg")
-		FileManager.default.createFile(atPath: imagePath.path, contents: data)
-		return QuickLookView(title: item.id.description, url: URL(fileURLWithPath: imagePath.path))
+		return QuickLookView(title: item.title, url: item.url)
 	}
 	
 	func selectImage(_ image: UIImage) {
-		data.append(Item(image: Image(uiImage: image)))
+		data.append(Item(image: image))
 	}
 
 	func selectDocuments(_ documentURLs: [URL]) {

@@ -28,15 +28,14 @@ struct GalleryGridView: View {
 					GalleryGridCell(item: item, contentMode: $contentMode, showDetails: $showDetails, selection: selection)
 				}
 			}
+			.padding(4)
+			.padding(.bottom, 55)
 		}
 	}
 }
 
 struct GalleryGridView_Previews: PreviewProvider {
-	static let data: [Item] = (1...6)
-		.map { "file\($0)" }
-		.map { Image($0) }
-		.map(Item.init)
+	static let data: [Item] = .examples
 	static var previews: some View {
 		GalleryGridView(data: .constant(data), contentMode: .constant(.fill), showDetails: .constant(true)) { _ in }
 		

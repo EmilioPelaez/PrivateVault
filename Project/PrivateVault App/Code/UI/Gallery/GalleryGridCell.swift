@@ -17,23 +17,22 @@ struct GalleryGridCell: View {
 		VStack(alignment: .leading) {
 			Color.clear.aspectRatio(1, contentMode: .fill)
 				.overlay(
-					item.image
+					item.placeholder
 						.resizable()
 						.aspectRatio(contentMode: contentMode)
 				)
 				.clipped()
 			if showDetails {
 				VStack(alignment: .leading) {
-					Text("pup.jpg")
+					Text(item.title)
 						.font(.headline)
-					Text("12/31/20")
-						.font(.footnote)
-						.foregroundColor(.secondary)
-					Text("5.9 MB")
+//					Text("12/31/20")
+//						.font(.footnote)
+//						.foregroundColor(.secondary)
+					Text(String(format: "%.1f MB", CGFloat(item.size) / 1_000_000))
 						.font(.footnote)
 						.foregroundColor(.secondary)
 				}
-				.padding(.horizontal, 8)
 			}
 		}
 		.onTapGesture { selection(item) }
@@ -42,9 +41,9 @@ struct GalleryGridCell: View {
 
 struct GalleryGridCell_Previews: PreviewProvider {
 	static var previews: some View {
-		GalleryGridCell(item: Item(image: Image("file1")), contentMode: .constant(.fill), showDetails: .constant(true)) { _ in }
+		GalleryGridCell(item: .example, contentMode: .constant(.fill), showDetails: .constant(true)) { _ in }
 			.previewLayout(.fixed(width: 200, height: 300))
-		GalleryGridCell(item: Item(image: Image("file1")), contentMode: .constant(.fill), showDetails: .constant(false)) { _ in }
+		GalleryGridCell(item: .example, contentMode: .constant(.fill), showDetails: .constant(false)) { _ in }
 			.previewLayout(.fixed(width: 200, height: 200))
 	}
 }

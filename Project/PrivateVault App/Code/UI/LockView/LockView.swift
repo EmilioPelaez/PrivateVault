@@ -52,9 +52,9 @@ struct LockView: View {
 			withAnimation {
 				if code == password {
 					isLocked = false
+					code = ""
 				} else {
 					attempts += 1
-					print(attempts)
 					isIncorrect = true
 					if(attempts == maxAttempts) {isLockedOut = true}
 				}

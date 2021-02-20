@@ -36,65 +36,34 @@ struct GalleryView: View {
 		.map { Image($0) }
 		.map(Item.init)
 	
-	var columns: [GridItem] {
-		[
-			GridItem(.flexible()),
-			GridItem(.flexible()),
-			GridItem(.flexible())
-		]
-	}
-	
 	var body: some View {
 		ZStack {
-			ScrollView {
-				LazyVGrid(columns: columns) {
-					ForEach(data) { item in
-						VStack {
-							Color.red.aspectRatio(1, contentMode: .fill)
-								.overlay(
-									item.image
-										.resizable()
-										.aspectRatio(contentMode: contentMode)
-								)
-								.clipped()
-								.onTapGesture { sheetState = .quickLook(item: item) }
-							Text("pup.jpg")
-								.font(.headline)
-							Text("12/31/20")
-								.font(.footnote)
-								.foregroundColor(.secondary)
-							Text("5.9 MB")
-								.font(.footnote)
-								.foregroundColor(.secondary)
-						}
+			GalleryGridView(data: $data, contentMode: $contentMode) { sheetState = .quickLook(item: $0) }
+				.navigationTitle("Gallery")
+				.fullScreenCover(item: $sheetState) {
+					switch $0 {
+					case .imagePicker:
+						ImagePicker(selectImage: selectImage)
+					case .documentPicker:
+						DocumentPicker(selectDocuments: selectDocuments)
+					case .audioRecorder:
+						AudioRecorder(recordAudio: recordAudio)
+					case let .quickLook(item):
+						quickLookView(item)
 					}
 				}
-			}
-			.navigationTitle("Gallery")
-			.fullScreenCover(item: $sheetState) {
-				switch $0 {
-				case .imagePicker:
-					ImagePicker(selectImage: selectImage)
-				case .documentPicker:
-					DocumentPicker(selectDocuments: selectDocuments)
-				case .audioRecorder:
-					AudioRecorder(recordAudio: recordAudio)
-				case let .quickLook(item):
-					quickLookView(item)
-				}
-			}
-			.toolbar {
-				ToolbarItem(placement: .navigationBarTrailing) {
-					Button {
-						withAnimation(Animation.interpolatingSpring(stiffness: 70, damping: 10.0)) {
-							isShowingActionSheet = true
+				.toolbar {
+					ToolbarItem(placement: .navigationBarTrailing) {
+						Button {
+							withAnimation(Animation.interpolatingSpring(stiffness: 70, damping: 10.0)) {
+								isShowingActionSheet = true
+							}
+						} label: {
+							Image(systemName: "plus")
 						}
-					} label: {
-						Image(systemName: "plus")
+						
 					}
-					
 				}
-			}
 			VStack {
 				Spacer()
 				ZStack {
@@ -195,3 +164,5 @@ extension DocumentPicker: UIDocumentPickerDelegate {
 		controller.dismiss(animated: true)
 	}
 }
+
+

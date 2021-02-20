@@ -23,6 +23,7 @@
 		C8A792DD25E06642009B862D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A792DC25E06642009B862D /* Preview Assets.xcassets */; };
 		C8A792ED25E06D75009B862D /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A792EC25E06D75009B862D /* GalleryView.swift */; };
 		C8A792EF25E06FD3009B862D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A792EE25E06FD3009B862D /* Item.swift */; };
+		C8EFD1FA25E1281600CB4141 /* GalleryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		C8A792DE25E06642009B862D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8A792EC25E06D75009B862D /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
 		C8A792EE25E06FD3009B862D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				C8A792EC25E06D75009B862D /* GalleryView.swift */,
 				468A75DB25E0976E00B87597 /* FileTypePickerView.swift */,
+				C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				C88ACB1925E10B450064C160 /* UIDevice+iPad.swift in Sources */,
 				C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */,
 				C88ACB1B25E112A70064C160 /* View+Shake.swift in Sources */,
+				C8EFD1FA25E1281600CB4141 /* GalleryGridView.swift in Sources */,
 				C8A792D825E06642009B862D /* ContentView.swift in Sources */,
 				2B6C742C25E08BBF00EAF6FD /* ImagePicker.swift in Sources */,
 				C88ACB1125E106D00064C160 /* LockView.swift in Sources */,

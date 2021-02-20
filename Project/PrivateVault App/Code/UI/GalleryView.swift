@@ -65,7 +65,7 @@ struct GalleryView: View {
 			.toolbar {
 				ToolbarItem(placement: .navigationBarTrailing) {
 					Button {
-						withAnimation(.linear(duration: 0.2)) {
+						withAnimation(Animation.interpolatingSpring(stiffness: 70, damping: 10.0)) {
 							isShowingActionSheet = true
 						}
 						//sheetState = .imagePicker
@@ -84,14 +84,15 @@ struct GalleryView: View {
 								FileTypePickerView()
 									.padding()
 					}
-					.frame(width: 300, height: isShowingActionSheet ? 100: 0, alignment: .center)
+					.frame(width: 300, height: 100, alignment: .center)
+					.offset(y: isShowingActionSheet ? 0 : 200)
 					
 				}
 			
 			
 		}
 		.onTapGesture(perform: {
-			withAnimation(.linear(duration: 0.2)){
+			withAnimation(.easeIn){
 				isShowingActionSheet = false
 			}
 		})

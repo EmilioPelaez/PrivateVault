@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct GalleryView: View {
-	
+	@State var contentMode: ContentMode = .fill
+	@State var selectedItem: Item?
+
 	var columns: [GridItem] {
 		[
 			GridItem(.flexible()),
@@ -16,8 +18,6 @@ struct GalleryView: View {
 			GridItem(.flexible())
 		]
 	}
-	
-	@State var contentMode: ContentMode = .fill
 	
 	var data: [Item] = (1...6)
 		.map { "file\($0)" }
@@ -35,16 +35,17 @@ struct GalleryView: View {
 								.aspectRatio(contentMode: contentMode)
 						)
 						.clipped()
-						.onTapGesture { self.display(item) }
+						.onTapGesture {  }
 				}
 			}
 		}
+		.navigation(item: $selectedItem, destination: quickLookView)
 	}
-	
-	func display(_ item: Item) {
-		print(item.id)
+
+	@ViewBuilder
+	func quickLookView(_ item: Item) -> some View {
+		QuickLookView(title: item.id.description, url: URL(string: "")!)
 	}
-	
 }
 
 struct GalleryView_Previews: PreviewProvider {

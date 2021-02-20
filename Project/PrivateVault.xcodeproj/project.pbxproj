@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B081A7125E0847600F9D522 /* QuickLookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B081A7025E0847600F9D522 /* QuickLookView.swift */; };
+		2B081A7425E085FA00F9D522 /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B081A7325E085FA00F9D522 /* View+Navigation.swift */; };
 		460E095F25E0769F001343C2 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E095E25E0769F001343C2 /* Navigation.swift */; };
 		460E096225E077C4001343C2 /* KeypadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E096125E077C4001343C2 /* KeypadView.swift */; };
 		C8A792D625E06642009B862D /* PrivateVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A792D525E06642009B862D /* PrivateVaultApp.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B081A7025E0847600F9D522 /* QuickLookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLookView.swift; sourceTree = "<group>"; };
+		2B081A7325E085FA00F9D522 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
 		460E095E25E0769F001343C2 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		460E096125E077C4001343C2 /* KeypadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadView.swift; sourceTree = "<group>"; };
 		C8A792D225E06642009B862D /* PrivateVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivateVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +131,8 @@
 				460E095E25E0769F001343C2 /* Navigation.swift */,
 				460E096125E077C4001343C2 /* KeypadView.swift */,
 				C8A792EC25E06D75009B862D /* GalleryView.swift */,
+				2B081A7025E0847600F9D522 /* QuickLookView.swift */,
+				2B081A7325E085FA00F9D522 /* View+Navigation.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -218,8 +224,10 @@
 				C8A792EF25E06FD3009B862D /* Item.swift in Sources */,
 				C8A792D825E06642009B862D /* ContentView.swift in Sources */,
 				460E095F25E0769F001343C2 /* Navigation.swift in Sources */,
+				2B081A7125E0847600F9D522 /* QuickLookView.swift in Sources */,
 				C8A792ED25E06D75009B862D /* GalleryView.swift in Sources */,
 				C8A792D625E06642009B862D /* PrivateVaultApp.swift in Sources */,
+				2B081A7425E085FA00F9D522 /* View+Navigation.swift in Sources */,
 				460E096225E077C4001343C2 /* KeypadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

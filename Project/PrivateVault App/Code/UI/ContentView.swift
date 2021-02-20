@@ -8,12 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-	@State var isUnlocked = false
+	@State var password = "123"
+	@State var code = ""
+	var isUnlocked: Bool { code == password }
 
 	var body: some View {
 		NavigationView {
-			KeypadView(input: { _ in }, delete: { isUnlocked = true })
-				.navigation(isPresenting: $isUnlocked, destination: GalleryView())
+			KeypadView(code: $code)
+				.navigation(
+					isPresenting: .init(get: { isUnlocked }, set: { _ in }),
+					destination: GalleryView()
+				)
 		}
 		.navigationViewStyle(StackNavigationViewStyle())
 	}

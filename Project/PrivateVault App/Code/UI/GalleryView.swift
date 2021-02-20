@@ -55,12 +55,11 @@ struct GalleryView: View {
 	}
 
 	func quickLookView(_ item: Item) -> some View {
-		let data = try! Data(contentsOf: URL(string: "https://img.ibxk.com.br/2020/08/07/07115418185111.jpg?w=1120&h=420&mode=crop&scale=both")!)
-		let documentsPath = NSSearchPathForDirectoriesInDomains(.documentationDirectory,.userDomainMask,true)
-		let theFile: FileHandle? = FileHandle(forWritingAtPath: "\(documentsPath)/caramelo.jpg")
-		theFile?.write(data)
-		theFile?.closeFile()
-		return QuickLookView(title: item.id.description, url: URL(fileURLWithPath: "\(documentsPath)/caramelo.jpg"))
+		let data = try! Data(contentsOf: URL(string: "https://img.ibxk.com.br/2020/08/07/07115418185111.jpg")!)
+		let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+		let imagePath = paths[0].appendingPathComponent("caramelo.jpg")
+		FileManager.default.createFile(atPath: imagePath.path, contents: data)
+		return QuickLookView(title: item.id.description, url: URL(fileURLWithPath: imagePath.path))
 	}
 
 	func selectImage(_ image: UIImage) {

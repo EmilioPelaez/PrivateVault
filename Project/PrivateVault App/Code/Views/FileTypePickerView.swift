@@ -60,6 +60,7 @@ struct FileTypePickerView: View {
 		.background(
 			RoundedRectangle(cornerRadius: 25, style: .circular)
 				.fill(Color.blue)
+				.shadow(color: Color(white: 0, opacity: 0.2), radius: 4, x: 0, y: 2)
 		)
 	}
 	
@@ -92,8 +93,10 @@ extension FileTypePickerView {
 struct FileTypePickerView_Previews: PreviewProvider {
 	static var previews: some View {
 		FileTypePickerView(isExpanded:  true) { _ in }
+			.padding()
 			.previewLayout(.sizeThatFits)
 		FileTypePickerView() { _ in }
+			.padding()
 			.previewLayout(.sizeThatFits)
 	}
 }

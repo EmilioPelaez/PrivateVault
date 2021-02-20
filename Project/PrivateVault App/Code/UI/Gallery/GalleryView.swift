@@ -5,6 +5,7 @@
 //  Created by Emilio Peláez on 19/2/21.
 //
 
+import Photos
 import SwiftUI
 
 struct GalleryView: View {
@@ -42,7 +43,7 @@ struct GalleryView: View {
 	func filePicker(_ item: AddSheetItem) -> some View {
 		Group {
 			switch item {
-			case .imagePicker: ImagePicker(selectImage: selectImage)
+			case .imagePicker: ImagePicker(closeSheet: { addSheet = nil }, selectImage: selectImage)
 			case .documentPicker: DocumentPicker(selectDocuments: selectDocuments)
 			case .audioRecorder: AudioRecorder(recordAudio: recordAudio)
 			}
@@ -51,9 +52,34 @@ struct GalleryView: View {
 	
 	func selectType(_ type: FileTypePickerView.FileType) {
 		switch type {
-		case .photo: addSheet = .imagePicker
+		case .photo:
+			requestImageAuthorization()
 		case .audio: addSheet = .audioRecorder
 		case .document: addSheet = .documentPicker
+		}
+	}
+
+	func requestImageAuthorization() {
+		PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+			switch status {
+			case .notDetermined:
+			// The user hasn't determined this app's access.
+			break
+			case .restricted:
+			// The system restricted this app's access.
+			break
+			case .denied:
+			// The user explicitly denied this app's access.
+			break
+			case .authorized:
+			// The user authorized this app to access Photos data.
+			addSheet = .imagePicker
+			case .limited:
+			// The user authorized this app for limited Photos access.
+			break
+			@unknown default:
+				fatalError()
+			}
 		}
 	}
 	

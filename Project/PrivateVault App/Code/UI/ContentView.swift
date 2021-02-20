@@ -13,7 +13,7 @@ struct ContentView: View {
 
 	var body: some View {
 		NavigationView {
-			GalleryView()
+			GalleryView(isLocked: $isLocked)
 		}
 		.navigationViewStyle(StackNavigationViewStyle())
 		.overlay(
@@ -22,6 +22,7 @@ struct ContentView: View {
 					LockView(isLocked: $isLocked).offset(y: isLocked ? 0 : proxy.size.height)
 				}
 			}
+			.animation(.linear)
 		)
 		.onChange(of: scenePhase) { phase in
 			if [.inactive, .background].contains(phase) {

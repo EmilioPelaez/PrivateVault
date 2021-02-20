@@ -27,6 +27,7 @@ struct GalleryView: View {
 	@State var showPermissionAlert = false
 	@State var currentSheet: SheetItem?
 	@State var selectedItem: StoredItem?
+	@Binding var isLocked: Bool
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
@@ -35,6 +36,9 @@ struct GalleryView: View {
 				.navigationTitle("Gallery")
 				.toolbar(content: {
 					ToolbarItemGroup(placement: .navigationBarTrailing) {
+						Button(action: { isLocked = true }) {
+							Image(systemName: "lock")
+						}
 						Button(action: { currentSheet = .tags }) {
 							Image(systemName: "list.bullet")
 						}
@@ -156,7 +160,7 @@ struct GalleryView: View {
 
 struct GalleryView_Previews: PreviewProvider {
 	static var previews: some View {
-		GalleryView()
+		GalleryView(isLocked: .constant(false))
 	}
 }
 

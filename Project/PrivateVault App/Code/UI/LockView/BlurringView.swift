@@ -24,7 +24,8 @@ struct BlurringView<Content>: View where Content: View {
 					.contentShape(Rectangle())
 				Image(systemName: "lock")
 					.font(.largeTitle)
-					.foregroundColor(Color(.tertiarySystemFill))
+					.foregroundColor(Color.black)
+					.padding()
 					.background(
 						Circle().opacity(0.2)
 							.foregroundColor(.green)

@@ -14,6 +14,7 @@ struct LockView: View {
 	@State var code: String = ""
 	@State var isIncorrect: Bool = false
 	@State var attempts: Int = 0
+	@State var isLockedOut: Bool = false
 	let maxDigits: Int = 4
 	
 	var body: some View {
@@ -26,7 +27,9 @@ struct LockView: View {
 					.shake(isIncorrect, distance: 10, count: 4)
 					.soundEffect(soundEffect: isIncorrect ? .failure : .none )
 					.soundEffect(soundEffect: !isLocked ? .success : .none)
-				KeypadView(input: input, delete: delete)
+				BlurringView(isBlurred: $isLockedOut ) {
+					KeypadView(input: input, delete: delete)
+				}
 			}
 			.frame(maxWidth: 280)
 		}
@@ -53,6 +56,7 @@ struct LockView: View {
 					attempts += 1
 					print(attempts)
 					isIncorrect = true
+					if(attempts == maxAttempts) {isLockedOut = true}
 				}
 			}
 		}

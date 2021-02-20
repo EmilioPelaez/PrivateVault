@@ -41,9 +41,7 @@ struct GalleryGridView: View {
 								}
 							} label: {
 								Text("Delete")
-									.foregroundColor(.red)
 								Image(systemName: "trash")
-									.foregroundColor(.red)
 							}
 						}
 				}
@@ -54,11 +52,15 @@ struct GalleryGridView: View {
 	}
 }
 
-//struct GalleryGridView_Previews: PreviewProvider {
-//	static let data: [Item] = .examples
-//	static var previews: some View {
-//		GalleryGridView(data: .constant(data), contentMode: .constant(.fill), showDetails: .constant(true)) { _ in }
-//
-//		GalleryGridView(data: .constant(data), contentMode: .constant(.fill), showDetails: .constant(false)) { _ in }
-//	}
-//}
+struct GalleryGridView_Previews: PreviewProvider {
+	static let data: [Item] = .examples
+	static var previews: some View {
+		GalleryGridView(contentMode: .constant(.fill), showDetails: .constant(true)) { _ in }
+			delete: { _ in }
+			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+
+		GalleryGridView(contentMode: .constant(.fill), showDetails: .constant(false)) { _ in }
+			delete: { _ in }
+			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+	}
+}

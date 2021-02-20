@@ -37,11 +37,11 @@ struct GalleryGridCell: View {
 	}
 }
 
-//struct GalleryGridCell_Previews: PreviewProvider {
-//	static var previews: some View {
-//		GalleryGridCell(item: .example, contentMode: .constant(.fill), showDetails: .constant(true))
-//			.previewLayout(.fixed(width: 200, height: 300))
-//		GalleryGridCell(item: .example, contentMode: .constant(.fill), showDetails: .constant(false))
-//			.previewLayout(.fixed(width: 200, height: 200))
-//	}
-//}
+struct GalleryGridCell_Previews: PreviewProvider {
+	static var previews: some View {
+		GalleryGridCell(item: .example, contentMode: .constant(.fill), showDetails: .constant(true))
+			.previewLayout(.fixed(width: 200, height: 300))
+		GalleryGridCell(item: .example, contentMode: .constant(.fill), showDetails: .constant(false))
+			.previewLayout(.fixed(width: 200, height: 200))
+	}
+}

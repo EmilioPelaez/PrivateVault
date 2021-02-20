@@ -14,7 +14,7 @@ struct PersistenceController {
 		let result = PersistenceController(inMemory: true)
 		let viewContext = result.container.viewContext
 		
-		(1...18)
+		(1...6)
 			.map { $0 % 6 + 1 }
 			.map { "file\($0)" }
 			.compactMap { UIImage(named: $0) }

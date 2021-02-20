@@ -12,7 +12,7 @@ enum GalleryViewSheetItem: Identifiable {
 	case documentPicker
 	case audioRecorder
 	case quickLook(item: Item)
-
+	
 	var id: Int {
 		switch self {
 		case .imagePicker:
@@ -35,7 +35,7 @@ struct GalleryView: View {
 		.map { "file\($0)" }
 		.map { Image($0) }
 		.map(Item.init)
-
+	
 	var columns: [GridItem] {
 		[
 			GridItem(.flexible()),
@@ -92,15 +92,23 @@ struct GalleryView: View {
 					RoundedRectangle(cornerRadius: 25.0)
 						.foregroundColor(.white)
 						.shadow(radius: 25)
-							FileTypePickerView()
-								.padding()
+					FileTypePickerView() { fileType in
+						switch fileType {
+						case .photo:
+							sheetState = .imagePicker
+						case .audio:
+							sheetState = .audioRecorder
+						case .document:
+							sheetState = .documentPicker
+						}					}
+						.padding()
 				}
 				.frame(width: 300, height: 100, alignment: .center)
 				.offset(y: isShowingActionSheet ? 0 : 200)
 			}
 		}
 	}
-
+	
 	func quickLookView(_ item: Item) -> some View {
 		let data = try! Data(contentsOf: URL(string: "https://img.ibxk.com.br/2020/08/07/07115418185111.jpg")!)
 		let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -108,15 +116,15 @@ struct GalleryView: View {
 		FileManager.default.createFile(atPath: imagePath.path, contents: data)
 		return QuickLookView(title: item.id.description, url: URL(fileURLWithPath: imagePath.path))
 	}
-
+	
 	func selectImage(_ image: UIImage) {
 		data.append(Item(image: Image(uiImage: image)))
 	}
-
+	
 	func selectDocument(_ documentURL: URL) {
 		fatalError("Document selection is not implemented yet.")
 	}
-
+	
 	func recordAudio(_ audioURL: URL) {
 		fatalError("Audio recording is not implemented yet.")
 	}
@@ -130,7 +138,7 @@ struct GalleryView_Previews: PreviewProvider {
 
 struct DocumentPicker: View {
 	var selectDocument: (URL) -> Void
-
+	
 	var body: some View {
 		EmptyView()
 	}
@@ -138,7 +146,7 @@ struct DocumentPicker: View {
 
 struct AudioRecorder: View {
 	var recordAudio: (URL) -> Void
-
+	
 	var body: some View {
 		EmptyView()
 	}

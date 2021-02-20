@@ -10,13 +10,13 @@ import SwiftUI
 
 enum FileTypeIcon {
 	case photo
-	case file
+	case document
 	case audio
 	
 	var systemName: String {
 		switch self {
 			case .photo: return "camera.circle.fill"
-			case .file: return "doc.circle.fill"
+			case .document: return "doc.circle.fill"
 			case .audio: return "waveform.circle.fill"
 		}
 	}
@@ -24,7 +24,7 @@ enum FileTypeIcon {
 	var name: String {
 		switch self {
 			case .photo: return "Photo"
-			case .file: return "Document"
+			case .document: return "Document"
 			case .audio: return "Audio"
 		}
 	}
@@ -32,12 +32,13 @@ enum FileTypeIcon {
 }
 
 struct FileTypePickerView: View {
+	var action: (FileTypeIcon) -> Void
     var body: some View {
 		VStack {
 			HStack(spacing: 30) {
-				FileOptionIcon(fileType: .photo)
-				FileOptionIcon(fileType: .file)
-				FileOptionIcon(fileType: .audio)
+				FileOptionIcon(fileType: .photo, action: action)
+				FileOptionIcon(fileType: .document, action: action)
+				FileOptionIcon(fileType: .audio, action: action)
 			}
 		}
     }
@@ -45,8 +46,9 @@ struct FileTypePickerView: View {
 
 struct FileOptionIcon: View {
 	var fileType: FileTypeIcon
+	var action: (FileTypeIcon) -> Void
 	var body: some View {
-		Button(action: {} ) {
+		Button(action: {action(fileType)} ) {
 			VStack(spacing: 2) {
 				Circle()
 					.strokeBorder(lineWidth: 2)
@@ -64,6 +66,6 @@ struct FileOptionIcon: View {
 
 struct FileTypePickerView_Previews: PreviewProvider {
     static var previews: some View {
-        FileTypePickerView()
+		FileTypePickerView(){ _ in}
     }
 }

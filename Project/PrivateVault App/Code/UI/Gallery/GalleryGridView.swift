@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct GalleryGridView: View {
-	var columns: [GridItem] {
+	func columns(spacing: CGFloat) -> [GridItem] {
 		[
-			GridItem(.flexible()),
-			GridItem(.flexible()),
-			GridItem(.flexible())
+			GridItem(.flexible(), spacing: spacing),
+			GridItem(.flexible(), spacing: spacing),
+			GridItem(.flexible(), spacing: spacing)
 		]
 	}
 	
@@ -23,7 +23,7 @@ struct GalleryGridView: View {
 	
 	var body: some View {
 		ScrollView {
-			LazyVGrid(columns: columns) {
+			LazyVGrid(columns: columns(spacing: 4), spacing: 4) {
 				ForEach(data) { item in
 					GalleryGridCell(item: item, contentMode: $contentMode, showDetails: $showDetails, selection: selection)
 				}

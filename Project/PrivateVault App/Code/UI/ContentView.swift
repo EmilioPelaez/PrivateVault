@@ -18,8 +18,8 @@ struct ContentView: View {
 		.navigationViewStyle(StackNavigationViewStyle())
 		.overlay(
 			Group {
-				if isLocked {
-					LockView(isLocked: $isLocked)
+				GeometryReader { proxy in
+					LockView(isLocked: $isLocked).offset(y: isLocked ? 0 : proxy.size.height)
 				}
 			}
 		)

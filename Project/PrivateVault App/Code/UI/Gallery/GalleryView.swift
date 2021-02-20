@@ -23,9 +23,6 @@ struct GalleryView: View {
 	}
 	
 	@Environment(\.managedObjectContext) private var viewContext
-	
-	@State var contentMode: ContentMode = .fill //	Should this and showDetails be environment values?
-	@State var showDetails = true
 	@State var showImageActionSheet = false
 	@State var showPermissionAlert = false
 	@State var currentSheet: SheetItem?
@@ -33,7 +30,7 @@ struct GalleryView: View {
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
-			GalleryGridView(contentMode: $contentMode, showDetails: $showDetails, emptyView: EmptyGalleryView(), selection: select, delete: delete)
+			GalleryGridView(emptyView: EmptyGalleryView(), selection: select, delete: delete)
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
 				.navigationTitle("Gallery")
 				.toolbar(content: {

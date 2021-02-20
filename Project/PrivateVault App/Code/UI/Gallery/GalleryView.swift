@@ -7,71 +7,60 @@
 
 import SwiftUI
 
-enum GalleryViewSheetItem: Identifiable {
-	case imagePicker
-	case documentPicker
-	case audioRecorder
-	case quickLook(item: Item)
-	
-	var id: Int {
-		switch self {
-		case .imagePicker:
-			return 1
-		case .documentPicker:
-			return 2
-		case .audioRecorder:
-			return 3
-		case .quickLook:
-			return 4
-		}
-	}
-}
-
 struct GalleryView: View {
+	
+	enum AddSheetItem: Int, Identifiable {
+		case imagePicker
+		case documentPicker
+		case audioRecorder
+		
+		var id: Int { rawValue }
+	}
+	
 	@State var contentMode: ContentMode = .fill //	Should this and showDetails be environment values?
 	@State var showDetails: Bool = true
-	@State var sheetState: GalleryViewSheetItem?
+	@State var addSheet: AddSheetItem?
+	@State var selectedItem: Item?
 	@State var data: [Item] = .examples
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
-			GalleryGridView(data: $data, contentMode: $contentMode, showDetails: $showDetails) { sheetState = .quickLook(item: $0) }
+			GalleryGridView(data: $data, contentMode: $contentMode, showDetails: $showDetails) { selectedItem = $0 }
 				.navigationTitle("Gallery")
-				.fullScreenCover(item: $sheetState) {
-					switch $0 {
-					case .imagePicker:
-						ImagePicker(selectImage: selectImage)
-					case .documentPicker:
-						DocumentPicker(selectDocuments: selectDocuments)
-					case .audioRecorder:
-						AudioRecorder(recordAudio: recordAudio)
-					case let .quickLook(item):
-						quickLookView(item)
-					}
-				}
-			FileTypePickerView { fileType in
-				switch fileType {
-				case .photo:
-					sheetState = .imagePicker
-				case .audio:
-					sheetState = .audioRecorder
-				case .document:
-					sheetState = .documentPicker
-				}
-			}
+				.fullScreenCover(item: $selectedItem, content: quickLookView)
+			FileTypePickerView(action: selectType)
 			.padding(.horizontal)
 			.padding(.bottom, 5)
+			.sheet(item: $addSheet, content: filePicker)
 		}
 	}
 	
 	func quickLookView(_ item: Item) -> some View {
-		return QuickLookView(title: item.title, url: item.url)
+		QuickLookView(title: item.title, url: item.url)
+	}
+	
+	func filePicker(_ item: AddSheetItem) -> some View {
+		Group {
+			switch item {
+			case .imagePicker: ImagePicker(selectImage: selectImage)
+			case .documentPicker: DocumentPicker(selectDocuments: selectDocuments)
+			case .audioRecorder: AudioRecorder(recordAudio: recordAudio)
+			}
+		}
+	}
+	
+	func selectType(_ type: FileTypePickerView.FileType) {
+		switch type {
+		case .photo: addSheet = .imagePicker
+		case .audio: addSheet = .audioRecorder
+		case .document: addSheet = .documentPicker
+		}
 	}
 	
 	func selectImage(_ image: UIImage) {
 		data.append(Item(image: image))
 	}
-
+	
 	func selectDocuments(_ documentURLs: [URL]) {
 		print(documentURLs)
 	}
@@ -89,7 +78,7 @@ struct GalleryView_Previews: PreviewProvider {
 
 struct AudioRecorder: View {
 	var recordAudio: (URL) -> Void
-
+	
 	var body: some View {
 		EmptyView()
 	}

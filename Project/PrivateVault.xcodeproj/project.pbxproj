@@ -25,6 +25,7 @@
 		C8A792EF25E06FD3009B862D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A792EE25E06FD3009B862D /* Item.swift */; };
 		C8EFD1FA25E1281600CB4141 /* GalleryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */; };
 		C8EFD1FC25E128C400CB4141 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1FB25E128C400CB4141 /* DocumentPicker.swift */; };
+		C8EFD1FE25E12F6100CB4141 /* GalleryGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		C8A792EE25E06FD3009B862D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGridView.swift; sourceTree = "<group>"; };
 		C8EFD1FB25E128C400CB4141 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
+		C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGridCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				C8A792EC25E06D75009B862D /* GalleryView.swift */,
 				468A75DB25E0976E00B87597 /* FileTypePickerView.swift */,
 				C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */,
+				C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				2B6C742C25E08BBF00EAF6FD /* ImagePicker.swift in Sources */,
 				C88ACB1125E106D00064C160 /* LockView.swift in Sources */,
 				2B081A7125E0847600F9D522 /* QuickLookView.swift in Sources */,
+				C8EFD1FE25E12F6100CB4141 /* GalleryGridCell.swift in Sources */,
 				C88ACB1625E10A790064C160 /* FeedbackGenerator.swift in Sources */,
 				C8A792ED25E06D75009B862D /* GalleryView.swift in Sources */,
 				C8A792D625E06642009B862D /* PrivateVaultApp.swift in Sources */,

@@ -24,24 +24,7 @@ struct GalleryGridView: View {
 		ScrollView {
 			LazyVGrid(columns: columns) {
 				ForEach(data) { item in
-					VStack {
-						Color.red.aspectRatio(1, contentMode: .fill)
-							.overlay(
-								item.image
-									.resizable()
-									.aspectRatio(contentMode: contentMode)
-							)
-							.clipped()
-							.onTapGesture { selection(item) }
-						Text("pup.jpg")
-							.font(.headline)
-						Text("12/31/20")
-							.font(.footnote)
-							.foregroundColor(.secondary)
-						Text("5.9 MB")
-							.font(.footnote)
-							.foregroundColor(.secondary)
-					}
+					GalleryGridCell(item: item, contentMode: $contentMode, selection: selection)
 				}
 			}
 		}
@@ -49,7 +32,11 @@ struct GalleryGridView: View {
 }
 
 struct GalleryGridView_Previews: PreviewProvider {
+	static let data: [Item] = (1...6)
+		.map { "file\($0)" }
+		.map { Image($0) }
+		.map(Item.init)
 	static var previews: some View {
-		GalleryGridView(data: .constant([]), contentMode: .constant(.fill)) { _ in }
+		GalleryGridView(data: .constant(data), contentMode: .constant(.fill)) { _ in }
 	}
 }

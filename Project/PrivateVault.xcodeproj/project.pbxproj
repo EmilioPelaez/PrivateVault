@@ -18,6 +18,8 @@
 		468A75DC25E0976E00B87597 /* FileTypePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75DB25E0976E00B87597 /* FileTypePickerView.swift */; };
 		468A75E125E15B9300B87597 /* SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75E025E15B9300B87597 /* SoundEffect.swift */; };
 		468A75E425E15D2900B87597 /* View+SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75E325E15D2900B87597 /* View+SoundEffect.swift */; };
+		46F26BEC25E19C6700070858 /* AttemptsRemainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */; };
+		46F26BEF25E19C8600070858 /* BlurringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F26BEE25E19C8600070858 /* BlurringView.swift */; };
 		C88ACB1125E106D00064C160 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1025E106D00064C160 /* LockView.swift */; };
 		C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1225E109FD0064C160 /* InputDisplay.swift */; };
 		C88ACB1625E10A790064C160 /* FeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */; };
@@ -56,6 +58,8 @@
 		468A75DB25E0976E00B87597 /* FileTypePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypePickerView.swift; sourceTree = "<group>"; };
 		468A75E025E15B9300B87597 /* SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SoundEffect.swift; path = "PrivateVault App/Code/UI/SoundEffect.swift"; sourceTree = SOURCE_ROOT; };
 		468A75E325E15D2900B87597 /* View+SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "View+SoundEffect.swift"; path = "PrivateVault App/Code/UI/View+SoundEffect.swift"; sourceTree = SOURCE_ROOT; };
+		46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttemptsRemainingView.swift; sourceTree = "<group>"; };
+		46F26BEE25E19C8600070858 /* BlurringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurringView.swift; sourceTree = "<group>"; };
 		C88ACB1025E106D00064C160 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		C88ACB1225E109FD0064C160 /* InputDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDisplay.swift; sourceTree = "<group>"; };
 		C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerator.swift; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 				C88ACB1025E106D00064C160 /* LockView.swift */,
 				C88ACB1225E109FD0064C160 /* InputDisplay.swift */,
 				460E096125E077C4001343C2 /* KeypadView.swift */,
+				46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */,
+				46F26BEE25E19C8600070858 /* BlurringView.swift */,
 			);
 			path = LockView;
 			sourceTree = "<group>";
@@ -367,6 +373,8 @@
 				2B081A7425E085FA00F9D522 /* View+Navigation.swift in Sources */,
 				2B39CD7525E17AFB00E63EDD /* SearchBarView.swift in Sources */,
 				468A75DC25E0976E00B87597 /* FileTypePickerView.swift in Sources */,
+				46F26BEC25E19C6700070858 /* AttemptsRemainingView.swift in Sources */,
+				46F26BEF25E19C8600070858 /* BlurringView.swift in Sources */,
 				460E096225E077C4001343C2 /* KeypadView.swift in Sources */,
 				468A75E425E15D2900B87597 /* View+SoundEffect.swift in Sources */,
 			);
@@ -498,7 +506,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PrivateVault App/Preview Content\"";
-				DEVELOPMENT_TEAM = FS696NSBK7;
+				DEVELOPMENT_TEAM = 36Z926C244;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "PrivateVault App/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -520,7 +528,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PrivateVault App/Preview Content\"";
-				DEVELOPMENT_TEAM = FS696NSBK7;
+				DEVELOPMENT_TEAM = 36Z926C244;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "PrivateVault App/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

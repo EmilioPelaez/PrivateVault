@@ -54,6 +54,7 @@ struct GalleryView: View {
 					}
 				}
 			}
+			.navigationTitle("Gallery")
 			.fullScreenCover(item: $sheetState) {
 				switch $0 {
 				case .imagePicker:
@@ -75,27 +76,19 @@ struct GalleryView: View {
 					
 				}
 			}
-				VStack {
-					Spacer()
-					ZStack {
-						RoundedRectangle(cornerRadius: 25.0)
-							.foregroundColor(.white)
-							.shadow(radius: 25)
-								FileTypePickerView()
-									.padding()
-					}
-					.frame(width: 300, height: 100, alignment: .center)
-					.offset(y: isShowingActionSheet ? 0 : 200)
-					
+			VStack {
+				Spacer()
+				ZStack {
+					RoundedRectangle(cornerRadius: 25.0)
+						.foregroundColor(.white)
+						.shadow(radius: 25)
+							FileTypePickerView()
+								.padding()
 				}
-			
-			
-		}
-		.onTapGesture(perform: {
-			withAnimation(.easeIn){
-				isShowingActionSheet = false
+				.frame(width: 300, height: 100, alignment: .center)
+				.offset(y: isShowingActionSheet ? 0 : 200)
 			}
-		})
+		}
 	}
 
 	func quickLookView(_ item: Item) -> some View {

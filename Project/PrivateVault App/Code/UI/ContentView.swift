@@ -8,19 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
-	@State var password = "123"
+	@State var password = "12345"
 	@State var code = ""
-	var isUnlocked: Bool { code == password }
+	@State var isUnlocked = false
+	var isIncorrect: Bool { code.count == password.count && code != password }
 
 	var body: some View {
 		NavigationView {
-			KeypadView(code: $code, maxDigits: 5)
-				.navigation(
-					isPresenting: .init(get: { isUnlocked }, set: { _ in }),
-					destination: GalleryView()
-				)
+			KeypadView(code: $code, maxDigits: 5, isIncorrect: isIncorrect)
+				.navigation(isPresenting: $isUnlocked, destination: GalleryView())
+				.navigationBarHidden(true)
 		}
 		.navigationViewStyle(StackNavigationViewStyle())
+		.onChange(of: code) { _ in
+			if code == password {
+				code = ""
+				isUnlocked = true
+			}
+		}
 	}
 }
 

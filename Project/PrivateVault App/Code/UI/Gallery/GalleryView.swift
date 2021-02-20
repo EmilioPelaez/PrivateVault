@@ -24,12 +24,19 @@ struct GalleryView: View {
 	@State var showDetails: Bool = true
 	@State var addSheet: AddSheetItem?
 	@State var selectedItem: StoredItem?
+	@State var showTags: Bool = false
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
 			GalleryGridView(contentMode: $contentMode, showDetails: $showDetails, emptyView: EmptyGalleryView(), selection: select, delete: delete)
 				.navigationTitle("Gallery")
+				.toolbar(content: {
+					Button(action: { showTags = true }) {
+						Image(systemName: "list.bullet")
+					}
+				})
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
+				.sheet(isPresented: $showTags) { TagListView(presenting: $showTags) }
 			FileTypePickerView(action: selectType)
 				.padding(.horizontal)
 				.padding(.bottom, 5)

@@ -8,8 +8,14 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="placeholderData" optional="YES" attributeType="Binary"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="items" inverseEntity="Tag"/>
+    </entity>
+    <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StoredItem" inverseName="tags" inverseEntity="StoredItem"/>
     </entity>
     <elements>
-        <element name="StoredItem" positionX="-63" positionY="-18" width="128" height="134"/>
+        <element name="StoredItem" positionX="-63" positionY="-18" width="128" height="149"/>
+        <element name="Tag" positionX="-63" positionY="36" width="128" height="59"/>
     </elements>
 </model>

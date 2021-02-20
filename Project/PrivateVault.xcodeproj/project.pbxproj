@@ -12,7 +12,8 @@
 		2B39CD7525E17AFB00E63EDD /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CD7425E17AFB00E63EDD /* SearchBarView.swift */; };
 		2B39CD8725E18B6900E63EDD /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CD8625E18B6900E63EDD /* UserSettings.swift */; };
 		2B39CD8A25E18B8100E63EDD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CD8925E18B8100E63EDD /* SettingsView.swift */; };
-		2B6C742C25E08BBF00EAF6FD /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C742B25E08BBF00EAF6FD /* ImagePicker.swift */; };
+		2B39CD9525E1913A00E63EDD /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CD9425E1913A00E63EDD /* CameraPicker.swift */; };
+		2B6C742C25E08BBF00EAF6FD /* PhotosPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C742B25E08BBF00EAF6FD /* PhotosPicker.swift */; };
 		460E096225E077C4001343C2 /* KeypadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E096125E077C4001343C2 /* KeypadView.swift */; };
 		468A75DC25E0976E00B87597 /* FileTypePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75DB25E0976E00B87597 /* FileTypePickerView.swift */; };
 		468A75E125E15B9300B87597 /* SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75E025E15B9300B87597 /* SoundEffect.swift */; };
@@ -49,7 +50,8 @@
 		2B39CD7425E17AFB00E63EDD /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		2B39CD8625E18B6900E63EDD /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		2B39CD8925E18B8100E63EDD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		2B6C742B25E08BBF00EAF6FD /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		2B39CD9425E1913A00E63EDD /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
+		2B6C742B25E08BBF00EAF6FD /* PhotosPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPicker.swift; sourceTree = "<group>"; };
 		460E096125E077C4001343C2 /* KeypadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadView.swift; sourceTree = "<group>"; };
 		468A75DB25E0976E00B87597 /* FileTypePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypePickerView.swift; sourceTree = "<group>"; };
 		468A75E025E15B9300B87597 /* SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SoundEffect.swift; path = "PrivateVault App/Code/UI/SoundEffect.swift"; sourceTree = SOURCE_ROOT; };
@@ -127,8 +129,9 @@
 			isa = PBXGroup;
 			children = (
 				2B081A7025E0847600F9D522 /* QuickLookView.swift */,
-				2B6C742B25E08BBF00EAF6FD /* ImagePicker.swift */,
+				2B6C742B25E08BBF00EAF6FD /* PhotosPicker.swift */,
 				C8EFD1FB25E128C400CB4141 /* DocumentPicker.swift */,
+				2B39CD9425E1913A00E63EDD /* CameraPicker.swift */,
 			);
 			path = Representables;
 			sourceTree = "<group>";
@@ -344,13 +347,14 @@
 				C8EFD20025E1373F00CB4141 /* UIImage+Resize.swift in Sources */,
 				C8EFD22625E14B2B00CB4141 /* Model.xcdatamodeld in Sources */,
 				C8A792D825E06642009B862D /* ContentView.swift in Sources */,
-				2B6C742C25E08BBF00EAF6FD /* ImagePicker.swift in Sources */,
+				2B6C742C25E08BBF00EAF6FD /* PhotosPicker.swift in Sources */,
 				C8EFD22B25E159EA00CB4141 /* StoredItem+Properties.swift in Sources */,
 				C88ACB1125E106D00064C160 /* LockView.swift in Sources */,
 				2B081A7125E0847600F9D522 /* QuickLookView.swift in Sources */,
 				C8EFD1FE25E12F6100CB4141 /* GalleryGridCell.swift in Sources */,
 				C88ACB1625E10A790064C160 /* FeedbackGenerator.swift in Sources */,
 				C89C9DD625E16640003505B9 /* StoredItem+Example.swift in Sources */,
+				2B39CD9525E1913A00E63EDD /* CameraPicker.swift in Sources */,
 				C8A792ED25E06D75009B862D /* GalleryView.swift in Sources */,
 				C8EFD22925E14BDA00CB4141 /* PersistenceController.swift in Sources */,
 				C89C9DDB25E17B98003505B9 /* TagListView.swift in Sources */,

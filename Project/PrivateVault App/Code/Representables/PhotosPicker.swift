@@ -1,21 +1,20 @@
 //
-//  ImagePicker.swift
-//  SwiftUIImagePicker
+//  PhotosPicker.swift
+//  PrivateVault
 //
-//  Created by Simon Ng on 10/6/2020.
-//  Copyright © 2020 AppCoda. All rights reserved.
+//  Created by Ian Manor on 19/02/21.
 //
 
 import UIKit
 import SwiftUI
 import PhotosUI
 
-struct ImagePicker: UIViewControllerRepresentable {
+struct PhotosPicker: UIViewControllerRepresentable {
 	@Environment(\.presentationMode) private var presentationMode
 	var closeSheet: () -> Void
 	var selectImage: (UIImage, String) -> Void
 
-	func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> PHPickerViewController {
+	func makeUIViewController(context: UIViewControllerRepresentableContext<PhotosPicker>) -> PHPickerViewController {
 		var configuration = PHPickerConfiguration()
 		configuration.selectionLimit = 0
 		configuration.filter = .any(of: [.images, .videos/*, .livePhotos*/])
@@ -24,16 +23,16 @@ struct ImagePicker: UIViewControllerRepresentable {
 		return imagePicker
 	}
 
-	func updateUIViewController(_ uiViewController: PHPickerViewController, context: UIViewControllerRepresentableContext<ImagePicker>) {}
+	func updateUIViewController(_ uiViewController: PHPickerViewController, context: UIViewControllerRepresentableContext<PhotosPicker>) {}
 
 	func makeCoordinator() -> Coordinator {
 		Coordinator(self)
 	}
 
 	final class Coordinator: NSObject, PHPickerViewControllerDelegate, UINavigationControllerDelegate {
-		var parent: ImagePicker
+		var parent: PhotosPicker
 
-		init(_ parent: ImagePicker) {
+		init(_ parent: PhotosPicker) {
 			self.parent = parent
 		}
 

@@ -14,6 +14,7 @@ struct GalleryView: View {
 		case tags
 		case settings
 		case imagePicker
+		case cameraPicker
 		case documentPicker
 		case audioRecorder
 		
@@ -23,7 +24,9 @@ struct GalleryView: View {
 	@Environment(\.managedObjectContext) private var viewContext
 	
 	@State var contentMode: ContentMode = .fill //	Should this and showDetails be environment values?
-	@State var showDetails: Bool = true
+	@State var showDetails = true
+	@State var showImageActionSheet = false
+	@State var showPermissionAlert = false
 	@State var currentSheet: SheetItem?
 	@State var selectedItem: StoredItem?
 	
@@ -47,6 +50,23 @@ struct GalleryView: View {
 				.padding(.horizontal)
 				.padding(.bottom, 5)
 		}
+		.alert(isPresented: $showPermissionAlert) {
+			Alert(
+				title: Text("Camera Access"),
+				message: Text("PrivateVault doesn't have access to use your camera, please update your privacy settings."),
+				primaryButton: .default(
+					Text("Settings"),
+					action: { UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!) }
+				),
+				secondaryButton: .cancel())
+		}
+		.actionSheet(isPresented: $showImageActionSheet) {
+			ActionSheet(title: Text("Import images"), buttons: [
+				.default(Text("Camera"), action: { requestCameraAuthorization() }),
+				.default(Text("Photo Library"), action: { requestImageAuthorization() }),
+				.cancel()
+			])
+		}
 	}
 	
 	func select(_ item: StoredItem) {
@@ -66,7 +86,8 @@ struct GalleryView: View {
 		Group {
 			switch item {
 			case .tags: TagListView { currentSheet = nil }
-			case .imagePicker: ImagePicker(closeSheet: { currentSheet = nil }, selectImage: selectImage)
+			case .imagePicker: PhotosPicker(closeSheet: { currentSheet = nil }, selectImage: selectImage)
+			case .cameraPicker: CameraPicker(selectImage: selectCameraCapture)
 			case .documentPicker: DocumentPicker(selectDocuments: selectDocuments)
 			case .audioRecorder: AudioRecorder(recordAudio: recordAudio)
 			case .settings: SettingsView { currentSheet = nil }
@@ -76,12 +97,12 @@ struct GalleryView: View {
 	
 	func selectType(_ type: FileTypePickerView.FileType) {
 		switch type {
-		case .photo: requestImageAuthorization()
+		case .photo: showImageActionSheet = true
 		case .audio: currentSheet = .audioRecorder
 		case .document: currentSheet = .documentPicker
 		}
 	}
-	
+
 	func requestImageAuthorization() {
 		if PHPhotoLibrary.authorizationStatus() == .authorized {
 			currentSheet = .imagePicker
@@ -89,9 +110,28 @@ struct GalleryView: View {
 			PHPhotoLibrary.requestAuthorization(for: .readWrite) { _ in }
 		}
 	}
-	
+
+	func requestCameraAuthorization() {
+		switch AVCaptureDevice.authorizationStatus(for: .video) {
+		case .authorized:
+			currentSheet = .cameraPicker
+		case .notDetermined:
+			AVCaptureDevice.requestAccess(for: .video, completionHandler: { granted in
+				guard granted else { return }
+				currentSheet = .cameraPicker
+			})
+		default:
+			showPermissionAlert = true
+		}
+	}
+
 	func selectImage(_ image: UIImage, filename: String) {
 		_ = StoredItem(context: viewContext, image: image, filename: filename)
+		saveContext()
+	}
+
+	func selectCameraCapture(_ image: UIImage) {
+		_ = StoredItem(context: viewContext, image: image, filename: "New photo")
 		saveContext()
 	}
 	

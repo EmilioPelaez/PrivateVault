@@ -25,7 +25,7 @@ struct LockView: View {
 					.opacity(attempts > 0 ? 1.0 : 0.0)
 				InputDisplay(codeLength: maxDigits, input: $code, textColor: textColor)
 					.shake(isIncorrect, distance: 10, count: 4)
-					.soundEffect(soundEffect: isIncorrect ? .failure : .none )
+					.soundEffect(soundEffect: isIncorrect ? .failure : .none)
 					.soundEffect(soundEffect: !isLocked ? .success : .none)
 				BlurringView(isBlurred: $isLockedOut ) {
 					KeypadView(input: input, delete: delete)
@@ -34,10 +34,10 @@ struct LockView: View {
 			.frame(maxWidth: 280)
 		}
 	}
-
+	
 	var textColor: Color {
 		guard code.count == maxDigits else { return .primary }
-
+		
 		return isIncorrect ? .red : .green
 	}
 	

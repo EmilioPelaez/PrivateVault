@@ -32,13 +32,13 @@ struct BlurringView<Content>: View where Content: View {
 					)
 			}
 		}
-    }
+	}
 }
 
 struct BlurringView_Previews: PreviewProvider {
-    static var previews: some View {
+	static var previews: some View {
 		BlurringView(isBlurred: .constant(true)) {
 			Text("Hello World")
 		}
-    }
+	}
 }

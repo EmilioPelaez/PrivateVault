@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
 	@State var isLocked = true
 	@Environment(\.scenePhase) private var scenePhase
-
+	
 	var body: some View {
 		NavigationView {
 			GalleryView(isLocked: $isLocked)

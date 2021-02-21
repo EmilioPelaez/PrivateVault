@@ -23,15 +23,18 @@ struct GalleryView: View {
 	}
 	
 	@Environment(\.managedObjectContext) private var viewContext
+	@Environment(\.persistenceController) private var persistenceController
+	
 	@State var showImageActionSheet = false
 	@State var showPermissionAlert = false
 	@State var currentSheet: SheetItem?
 	@State var selectedItem: StoredItem?
+	@State var selectedTags: Set<Tag> = []
 	@Binding var isLocked: Bool
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
-			GalleryGridView(emptyView: EmptyGalleryView(), selection: select, delete: delete)
+			GalleryGridView(selectedTags: $selectedTags, selection: select, delete: delete)
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
 				.navigationTitle("Gallery")
 				.toolbar(content: {
@@ -77,7 +80,7 @@ struct GalleryView: View {
 	
 	func delete(_ item: StoredItem) {
 		viewContext.delete(item)
-		saveContext()
+		persistenceController?.saveContext()
 	}
 	
 	func quickLookView(_ item: StoredItem) -> some View {
@@ -87,7 +90,7 @@ struct GalleryView: View {
 	func filePicker(_ item: SheetItem) -> some View {
 		Group {
 			switch item {
-			case .tags: TagListView { currentSheet = nil }
+			case .tags: TagListView(selectedTags: $selectedTags) { currentSheet = nil }
 			case .imagePicker: PhotosPicker(closeSheet: { currentSheet = nil }, selectImage: selectImage)
 			case .cameraPicker: CameraPicker(selectImage: selectCameraCapture)
 			case .documentPicker: DocumentPicker(selectDocuments: selectDocuments)
@@ -106,7 +109,7 @@ struct GalleryView: View {
 		case .scan: currentSheet = .documentScanner
 		}
 	}
-
+	
 	func requestImageAuthorization() {
 		if PHPhotoLibrary.authorizationStatus() == .authorized {
 			currentSheet = .imagePicker
@@ -114,7 +117,7 @@ struct GalleryView: View {
 			PHPhotoLibrary.requestAuthorization(for: .readWrite) { _ in }
 		}
 	}
-
+	
 	func requestCameraAuthorization() {
 		switch AVCaptureDevice.authorizationStatus(for: .video) {
 		case .authorized:
@@ -128,15 +131,15 @@ struct GalleryView: View {
 			showPermissionAlert = true
 		}
 	}
-
+	
 	func selectImage(_ image: UIImage, filename: String) {
 		_ = StoredItem(context: viewContext, image: image, filename: filename)
-		saveContext()
+		persistenceController?.saveContext()
 	}
-
+	
 	func selectCameraCapture(_ image: UIImage) {
 		_ = StoredItem(context: viewContext, image: image, filename: "New photo")
-		saveContext()
+		persistenceController?.saveContext()
 	}
 	
 	func selectDocuments(_ documentURLs: [URL]) {
@@ -145,16 +148,6 @@ struct GalleryView: View {
 	
 	func recordAudio(_ audioURL: URL) {
 		fatalError("Audio recording is not implemented yet.")
-	}
-	
-	private func saveContext() {
-		do {
-			try viewContext.save()
-		} catch {
-			// Replace this implementation with code to handle the error appropriately.
-			let nsError = error as NSError
-			fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-		}
 	}
 }
 

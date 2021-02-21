@@ -24,7 +24,7 @@ struct Shake: GeometryEffect {
 extension View {
 	
 	func shake(_ shake: Bool, distance: CGFloat = 10, count: Int = 3) -> some View {
-		self.modifier(Shake(distance: distance, shakeCount: count, animatableData: shake ? 1 : 0))
+		modifier(Shake(distance: distance, shakeCount: count, animatableData: shake ? 1 : 0))
 	}
 	
 }

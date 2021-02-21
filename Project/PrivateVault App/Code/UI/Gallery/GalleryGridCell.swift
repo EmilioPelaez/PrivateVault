@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GalleryGridCell: View {
-	let item: StoredItem
+	@ObservedObject var item: StoredItem
 	@Binding var contentMode: ContentMode
 	@Binding var showDetails: Bool
 	

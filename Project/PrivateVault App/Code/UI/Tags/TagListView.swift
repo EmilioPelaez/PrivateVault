@@ -22,12 +22,14 @@ struct TagListView: View {
 			List {
 				Section(header: tagsHeader) {
 					ForEach(tags) { tag in
-						HStack {
-							Text(tag.name ?? "??")
-							Spacer()
-							RadioButton(selected: selectedTags.contains(tag), size: 24, color: .blue, action: { })
+						Button(action: { toggleTag(tag) }) {
+							HStack {
+								Text(tag.name ?? "??")
+									.foregroundColor(.primary)
+								Spacer()
+								RadioButton(selected: selectedTags.contains(tag), size: 24, color: .blue)
+							}
 						}
-						.onTapGesture { toggleTag(tag) }
 					}
 					.onDelete(perform: deleteTags)
 				}

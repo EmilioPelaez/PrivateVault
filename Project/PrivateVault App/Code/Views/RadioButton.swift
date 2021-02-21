@@ -11,7 +11,6 @@ struct RadioButton: View {
 	let selected: Bool
 	let size: CGFloat
 	let color: Color
-	let action: () -> Void
 	
 	var body: some View {
 		ZStack {
@@ -23,15 +22,14 @@ struct RadioButton: View {
 				.frame(width: size - 4, height: size - 4)
 				.scaleEffect(selected ? 1 : 0)
 		}
-		.onTapGesture(perform: action)
 	}
 }
 
 struct RadioButton_Previews: PreviewProvider {
 	static var previews: some View {
-		RadioButton(selected: true, size: 24, color: .blue) { }
+		RadioButton(selected: true, size: 24, color: .blue)
 			.previewLayout(.sizeThatFits)
-		RadioButton(selected: false, size: 24, color: .blue) { }
+		RadioButton(selected: false, size: 24, color: .blue)
 			.previewLayout(.sizeThatFits)
 	}
 }

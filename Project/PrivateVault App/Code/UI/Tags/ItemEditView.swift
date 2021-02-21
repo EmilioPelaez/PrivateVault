@@ -20,21 +20,20 @@ struct ItemEditView: View {
 		NavigationView {
 			List {
 				Section(header: Text("Name")) {
-					TextField("Name", text: .init(get: { item.name ?? "" },
-																				set: { item.name = $0 }))
+					TextField("Name", text: $item.name.default(""))
 				}
 				Section(header: Text("Tags")) {
 					ForEach(tags) { tag in
-						HStack {
-							Text(tag.name ?? "??")
-							Spacer()
-							RadioButton(selected: tagSelected(tag), size: 20, color: .blue, action: { })
+						Button(action: { toggleTag(tag) }) {
+							HStack {
+								Text(tag.name ?? "??")
+									.foregroundColor(.primary)
+								Spacer()
+								RadioButton(selected: tagSelected(tag), size: 20, color: .blue)
+							}
 						}
 						.padding(.horizontal)
 						.padding(.vertical, 8)
-						.onTapGesture {
-							toggleTag(tag)
-						}
 					}
 				}
 			}

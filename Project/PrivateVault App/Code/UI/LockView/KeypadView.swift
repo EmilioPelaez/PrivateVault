@@ -6,11 +6,32 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 struct KeypadView: View {
 	@EnvironmentObject private var settings: UserSettings
 	let input: (String) -> Void
 	let delete: () -> Void
+	
+	func authenticate() {
+		let context = LAContext()
+		var error: NSError?
+		
+		if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+			let reason = "To unlock your private vault app"
+			context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+				DispatchQueue.main.async {
+					if success {
+						input(settings.passcode)
+					} else {
+						return
+					}
+				}
+			}
+		} else {
+			return
+		}
+	}
 	
 	var body: some View {
 		LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), alignment: .center) {
@@ -20,7 +41,10 @@ struct KeypadView: View {
 					input("\(index)")
 				}
 			}
-			Spacer()
+			KeyButton(title: Image(systemName: "faceid"), color: Color(.tertiarySystemFill), textColor: .primary) {
+				if settings.hapticFeedback { FeedbackGenerator.impact(.rigid) }
+				authenticate()
+			}
 			KeyButton(title: Text("0"), color: Color(.tertiarySystemFill), textColor: .primary) {
 				if settings.hapticFeedback { FeedbackGenerator.impact(.rigid) }
 				input("0")

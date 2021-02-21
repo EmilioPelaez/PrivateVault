@@ -16,7 +16,6 @@ struct GalleryGridCell: View {
 			Color.clear.aspectRatio(1, contentMode: .fill)
 				.overlay(
 					item.placeholder
-						.resizable()
 						.aspectRatio(contentMode: settings.contentMode)
 				)
 				.clipped()

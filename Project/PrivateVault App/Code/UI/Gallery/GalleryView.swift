@@ -135,7 +135,10 @@ struct GalleryView: View {
 	}
 	
 	func selectDocuments(_ documentURLs: [URL]) {
-		print(documentURLs)
+		for documentURL in documentURLs {
+			_ = StoredItem(context: viewContext, url: documentURL)
+			persistenceController?.saveContext()
+		}
 	}
 }
 

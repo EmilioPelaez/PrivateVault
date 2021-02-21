@@ -30,13 +30,41 @@ extension StoredItem {
 			return URL(fileURLWithPath: "")
 		}
 	}
-	
-	var placeholder: Image {
-		Image(uiImage:
-			placeholderData.flatMap { UIImage(data: $0) } ??
-				UIImage(systemName: "xmark.octagon.fill") ??
-				UIImage()
-		)
+
+	var systemName: String {
+		switch url.pathExtension {
+		case "pdf", "doc":
+			return "doc.richtext"
+		case "txt":
+			return "doc.text"
+		case "mp4":
+			return "video"
+		case "usdz":
+			return "arkit"
+		case "zip":
+			return "doc.zipper"
+		default:
+			return "xmark.octagon.fill"
+		}
+	}
+
+	@ViewBuilder
+	var placeholder: some View {
+		if let placeholderImage = placeholderData.flatMap({ UIImage(data: $0) }) {
+			Image(uiImage: placeholderImage)
+				.resizable()
+		} else {
+			VStack {
+				Spacer()
+				HStack {
+					Spacer()
+					Image(systemName: systemName)
+						.font(.largeTitle)
+					Spacer()
+				}
+				Spacer()
+			}
+		}
 	}
 	
 	var searchText: String {

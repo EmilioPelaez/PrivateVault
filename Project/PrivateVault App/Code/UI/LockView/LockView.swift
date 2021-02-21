@@ -93,7 +93,7 @@ struct LockView: View {
 		attempts = 0
 		isLocked = false
 		code = ""
-		entryStatus = .accepted
+		entryStatus = .undetermined
 	}
 	
 	func rejectEntry() -> Void {

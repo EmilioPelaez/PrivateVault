@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
 	@EnvironmentObject private var settings: UserSettings
-	@State var showPasscode = false
+	@State var resetPasscode: Bool = false
 	let close: () -> Void
 	let version = "0.0.1"
 
@@ -30,28 +30,13 @@ struct SettingsView: View {
 				}
 				Section(header: Text("Vault"), footer: footer) {
 					HStack {
-						Text("Passcode")
-						Spacer()
-						if showPasscode {
-							TextField("", text: $settings.passcode)
-								.keyboardType(.numberPad)
-						} else {
-							SecureField("", text: $settings.passcode)
-								.keyboardType(.numberPad)
-						}
-						Spacer()
-						Button {
-							showPasscode.toggle()
-						} label: {
-							Image(systemName: showPasscode ? "eye.slash" : "eye")
-						}
-						.buttonStyle(BorderlessButtonStyle())
+						Text("Attempt Limit").layoutPriority(1)
+						Color.clear
+						Text("\(settings.maxAttempts)")
+						Stepper("", value: $settings.maxAttempts)
 					}
-					HStack {
-						Text("Maximum number of attempts")
-						Spacer()
-						TextField("", text: $settings.maxAttempts.toString())
-						.keyboardType(.numberPad)
+					Button(action: { resetPasscode = true }) {
+						Text("Reset Passcode")
 					}
 				}
 			}
@@ -62,6 +47,13 @@ struct SettingsView: View {
 					Button(action: close) {
 						Image(systemName: "xmark.circle.fill")
 					}
+				}
+			}
+			.sheet(isPresented: $resetPasscode) {
+				SetPasscodeView { newCode, newLength in
+					settings.codeLength = newLength
+					settings.passcode = newCode
+					resetPasscode = false
 				}
 			}
 		}
@@ -75,5 +67,11 @@ struct SettingsView: View {
 				.foregroundColor(Color(.secondaryLabel))
 			Spacer()
 		}
+	}
+}
+
+struct SettingsView_Previews: PreviewProvider {
+	static var previews: some View {
+		SettingsView { }
 	}
 }

@@ -12,6 +12,7 @@ struct KeypadView: View {
 	@EnvironmentObject private var settings: UserSettings
 	let input: (String) -> Void
 	let delete: () -> Void
+	let isPasswordReset: Bool
 	
 	func authenticate() {
 		let context = LAContext()
@@ -41,10 +42,15 @@ struct KeypadView: View {
 					input("\(index)")
 				}
 			}
-			KeyButton(title: Image(systemName: "faceid"), color: Color(.tertiarySystemFill), textColor: .primary) {
-				if settings.hapticFeedback { FeedbackGenerator.impact(.rigid) }
-				authenticate()
+			if isPasswordReset {
+				Spacer()
+			} else {
+				KeyButton(title: Image(systemName: "faceid"), color: Color(.tertiarySystemFill), textColor: .primary) {
+					if settings.hapticFeedback { FeedbackGenerator.impact(.rigid) }
+					authenticate()
+				}
 			}
+			
 			KeyButton(title: Text("0"), color: Color(.tertiarySystemFill), textColor: .primary) {
 				if settings.hapticFeedback { FeedbackGenerator.impact(.rigid) }
 				input("0")
@@ -85,7 +91,7 @@ struct KeypadView_Previews: PreviewProvider {
 	@State static var code = ""
 	
 	static var previews: some View {
-		KeypadView(input: { _ in }, delete: { })
+		KeypadView(input: { _ in }, delete: { }, isPasswordReset: false)
 			.environmentObject(UserSettings())
 	}
 }

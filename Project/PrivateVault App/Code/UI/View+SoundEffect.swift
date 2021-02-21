@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 extension View {
 
 	func soundEffect(soundEffect: SoundEffect) -> some View {
@@ -17,4 +15,3 @@ extension View {
 	}
 	
 }
-

@@ -38,15 +38,16 @@ struct GalleryView: View {
 				.toolbar(content: {
 					ToolbarItemGroup(placement: .navigationBarLeading) {
 						Button(action: { currentSheet = .settings }) {
-							Image(systemName: "gearshape")
+							Image(systemName: "gearshape.fill")
+						}
+						Button(action: { isLocked = true }) {
+							Image(systemName: "lock.fill")
 						}
 					}
 					ToolbarItemGroup(placement: .navigationBarTrailing) {
-						Button(action: { isLocked = true }) {
-							Image(systemName: "lock")
-						}
+						
 						Button(action: { currentSheet = .tags }) {
-							Image(systemName: "list.bullet")
+							Image(systemName: "tag.fill")
 						}
 					}
 				})
@@ -91,6 +92,7 @@ struct GalleryView: View {
 			case .settings: SettingsView { currentSheet = nil }
 			}
 		}
+		.ignoresSafeArea()
 	}
 	
 	func selectType(_ type: FileTypePickerView.FileType) {

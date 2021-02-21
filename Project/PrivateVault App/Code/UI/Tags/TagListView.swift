@@ -36,7 +36,7 @@ struct TagListView: View {
 				}
 				Section(header: Text("Create Tag")) {
 					HStack {
-						TextField("Name", text: $newTagName)
+						TextField("Enter Name", text: $newTagName)
 						Button(action: createTag) {
 							Image(systemName: "plus.circle.fill")
 								.font(.system(size: 25))

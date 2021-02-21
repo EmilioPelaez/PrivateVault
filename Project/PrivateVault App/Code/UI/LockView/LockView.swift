@@ -38,7 +38,7 @@ struct LockView: View {
 				AttemptsRemainingView(attemptsRemaining: settings.maxAttempts - attempts)
 					.opacity(attempts > 0 ? 1.0 : 0.0)
 				InputDisplay(input: $code, textColor: textColor)
-					.shake(entryStatus, distance: 10, count: 4)
+					.shake(entryStatus == .rejected, distance: 10, count: 4)
 					.soundEffect(soundEffect: entryStatus == .rejected ? .failure : .none )
 					.soundEffect(soundEffect: !isLocked ? .success : .none)
 				BlurringView(isBlurred: $isLockedOut ) {

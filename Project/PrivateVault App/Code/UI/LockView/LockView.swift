@@ -16,9 +16,9 @@ struct LockView: View {
 	@State var incorrectAnimation = false
 	@State var isLockedOut = false
 	
-	var maxDigits: Int { settings.password.count }
+	var maxDigits: Int { settings.passcode.count }
 	var codeIsFullyEntered: Bool { code.count == maxDigits }
-	var codeIsCorrect: Bool { code == settings.password }
+	var codeIsCorrect: Bool { code == settings.passcode }
 	
 	var body: some View {
 		ZStack {
@@ -26,7 +26,7 @@ struct LockView: View {
 			VStack(spacing: 25) {
 				AttemptsRemainingView(attemptsRemaining: settings.maxAttempts - attempts)
 					.opacity(attempts > 0 ? 1.0 : 0.0)
-				InputDisplay(input: $code, textColor: textColor)
+				InputDisplay(input: $code, codeLength: settings.codeLength, textColor: textColor)
 					.shake(incorrectAnimation, distance: 10, count: 4)
 				BlurringView(isBlurred: $isLockedOut ) {
 					KeypadView(input: input, delete: delete)
@@ -93,5 +93,6 @@ struct LockView: View {
 struct LockView_Previews: PreviewProvider {
 	static var previews: some View {
 		LockView(isLocked: .constant(true))
+			.environmentObject(UserSettings())
 	}
 }

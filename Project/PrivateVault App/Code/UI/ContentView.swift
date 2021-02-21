@@ -9,24 +9,37 @@ import SwiftUI
 
 struct ContentView: View {
 	@Environment(\.scenePhase) private var scenePhase
+	@EnvironmentObject private var settings: UserSettings
 	@State var isLocked = true
 	
 	var body: some View {
-		NavigationView {
-			GalleryView(isLocked: $isLocked)
-		}
-		.navigationViewStyle(StackNavigationViewStyle())
-		.overlay(
-			Group {
-				GeometryReader { proxy in
-					LockView(isLocked: $isLocked).offset(y: isLocked ? 0 : proxy.size.height)
+		if settings.codeLength != settings.passcode.count {
+			SetPasscodeView { newCode, newLength in
+				withAnimation {
+					settings.codeLength = newLength
+					settings.passcode = newCode
+					isLocked = false
 				}
 			}
-			.animation(.linear)
-		)
-		.onChange(of: scenePhase) { phase in
-			if [.inactive, .background].contains(phase) {
-				isLocked = true
+			.transition(.slide)
+		} else {
+			NavigationView {
+				GalleryView(isLocked: $isLocked)
+			}
+			.navigationViewStyle(StackNavigationViewStyle())
+			.transition(.slide)
+			.overlay(
+				Group {
+					GeometryReader { proxy in
+						LockView(isLocked: $isLocked).offset(y: isLocked ? 0 : proxy.size.height)
+					}
+				}
+				.animation(.linear)
+			)
+			.onChange(of: scenePhase) { phase in
+				if [.inactive, .background].contains(phase) {
+					isLocked = true
+				}
 			}
 		}
 	}

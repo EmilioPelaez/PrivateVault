@@ -24,6 +24,7 @@
 		468A75E425E15D2900B87597 /* View+SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75E325E15D2900B87597 /* View+SoundEffect.swift */; };
 		46F26BEC25E19C6700070858 /* AttemptsRemainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */; };
 		46F26BEF25E19C8600070858 /* BlurringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F26BEE25E19C8600070858 /* BlurringView.swift */; };
+		C868FD6125E2AFA5005A3EA9 /* SetPasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */; };
 		C88ACB1125E106D00064C160 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1025E106D00064C160 /* LockView.swift */; };
 		C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1225E109FD0064C160 /* InputDisplay.swift */; };
 		C88ACB1625E10A790064C160 /* FeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */; };
@@ -78,6 +79,7 @@
 		468A75E325E15D2900B87597 /* View+SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "View+SoundEffect.swift"; path = "PrivateVault App/Code/UI/View+SoundEffect.swift"; sourceTree = SOURCE_ROOT; };
 		46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttemptsRemainingView.swift; sourceTree = "<group>"; };
 		46F26BEE25E19C8600070858 /* BlurringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurringView.swift; sourceTree = "<group>"; };
+		C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasscodeView.swift; sourceTree = "<group>"; };
 		C88ACB1025E106D00064C160 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		C88ACB1225E109FD0064C160 /* InputDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDisplay.swift; sourceTree = "<group>"; };
 		C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerator.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				C88ACB1025E106D00064C160 /* LockView.swift */,
+				C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */,
 				C88ACB1225E109FD0064C160 /* InputDisplay.swift */,
 				460E096125E077C4001343C2 /* KeypadView.swift */,
 				46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */,
@@ -409,6 +412,7 @@
 				C8EFD22B25E159EA00CB4141 /* StoredItem+Properties.swift in Sources */,
 				C89C9DE525E196A5003505B9 /* PreviewEnvironment.swift in Sources */,
 				C89C9DF125E1DD27003505B9 /* PersistenceEnvironment.swift in Sources */,
+				C868FD6125E2AFA5005A3EA9 /* SetPasscodeView.swift in Sources */,
 				C88ACB1125E106D00064C160 /* LockView.swift in Sources */,
 				2B081A7125E0847600F9D522 /* QuickLookView.swift in Sources */,
 				C8EFD1FE25E12F6100CB4141 /* GalleryGridCell.swift in Sources */,

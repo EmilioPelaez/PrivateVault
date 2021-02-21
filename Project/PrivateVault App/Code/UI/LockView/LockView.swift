@@ -26,7 +26,7 @@ struct LockView: View {
 			VStack(spacing: 25) {
 				AttemptsRemainingView(attemptsRemaining: settings.maxAttempts - attempts)
 					.opacity(attempts > 0 ? 1.0 : 0.0)
-				InputDisplay(input: $code, textColor: textColor)
+				InputDisplay(input: $code, codeLength: settings.codeLength, textColor: textColor)
 					.shake(incorrectAnimation, distance: 10, count: 4)
 					.soundEffect(soundEffect: isIncorrect ? .failure : .none )
 					.soundEffect(soundEffect: !isLocked ? .success : .none)
@@ -93,5 +93,6 @@ struct LockView: View {
 struct LockView_Previews: PreviewProvider {
 	static var previews: some View {
 		LockView(isLocked: .constant(true))
+			.environmentObject(UserSettings())
 	}
 }

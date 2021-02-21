@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct InputDisplay: View {
-	@EnvironmentObject var settings: UserSettings
-	var codeLength: Int { settings.password.count }
 	@Binding var input: String
+	let codeLength: Int
 	let textColor: Color
 	
 	var body: some View {
 		HStack(spacing: 0) {
 			Spacer()
-			ForEach(0..<codeLength) { index in
+			ForEach(0..<codeLength, id: \.self) { index in
 				Group {
 					Text(index < input.count ? "●" : "○")
 					Spacer()
 				}
 				.font(.largeTitle)
 				.foregroundColor(textColor)
+				.transition(.opacity)
 			}
 		}
 		.padding(.vertical, 20)
@@ -35,7 +35,10 @@ struct InputDisplay: View {
 
 struct InputDisplay_Previews: PreviewProvider {
 	static var previews: some View {
-		InputDisplay(input: .constant("X"), textColor: .red)
+		InputDisplay(input: .constant("X"), codeLength: 4, textColor: .primary)
+			.previewLayout(.sizeThatFits)
+		
+		InputDisplay(input: .constant("XX"), codeLength: 6, textColor: .primary)
 			.previewLayout(.sizeThatFits)
 	}
 }

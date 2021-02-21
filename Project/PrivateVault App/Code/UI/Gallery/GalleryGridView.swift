@@ -39,27 +39,33 @@ struct GalleryGridView: View {
 	}
 	
 	var body: some View {
-		ScrollView {
-			SearchBarView(text: $searchText, placeholder: "Search files...")
-			if data.isEmpty {
+		if data.isEmpty {
+			VStack {
+				SearchBarView(text: $searchText, placeholder: "Search files...")
 				ZStack {
 					Color.clear
 					EmptyGalleryView()
 						.frame(maxWidth: 280)
 						.transition(.opacity)
 				}
-			} else if filteredData.isEmpty {
-				ZStack(alignment: .top) {
-					Color.clear
-					FilteredGalleryView {
-						withAnimation {
-							selectedTags = []
-						}
+			}
+		} else if filteredData.isEmpty {VStack {
+			SearchBarView(text: $searchText, placeholder: "Search files...")
+			ZStack {
+				Color.clear
+				FilteredGalleryView {
+					withAnimation {
+						selectedTags = []
+						searchText = ""
 					}
-					.frame(maxWidth: 280)
-					.transition(.opacity)
 				}
-			} else {
+				.frame(maxWidth: 280)
+				.transition(.opacity)
+			}
+		}
+		} else {
+			ScrollView {
+				SearchBarView(text: $searchText, placeholder: "Search files...")
 				LazyVGrid(columns: columns(spacing: 4), spacing: 4) {
 					ForEach(filteredData) { item in
 						GalleryGridCell(item: item)
@@ -86,11 +92,11 @@ struct GalleryGridView: View {
 				}
 				.padding(4)
 				.padding(.bottom, 55)
+			}.popover(item: $tagEditingItem) { item in
+				ItemEditView(item: item) { tagEditingItem = nil }
 			}
 		}
-		.popover(item: $tagEditingItem) { item in
-			ItemEditView(item: item) { tagEditingItem = nil }
-		}
+		
 	}
 }
 

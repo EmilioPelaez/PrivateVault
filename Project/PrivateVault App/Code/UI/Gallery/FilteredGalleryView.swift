@@ -20,11 +20,9 @@ struct FilteredGalleryView: View {
 				Text("No Matches!")
 					.font(.title2)
 					.multilineTextAlignment(.center)
-				Text("Remove some filters to see some results.")
-					.multilineTextAlignment(.center)
 			}
 			Button(action: action) {
-				Text("Clear Filters")
+				Text("Clear Filters & Search")
 					.font(.headline)
 					.foregroundColor(.white)
 					.padding(.horizontal, 15)

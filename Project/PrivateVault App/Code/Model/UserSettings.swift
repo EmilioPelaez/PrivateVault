@@ -9,30 +9,14 @@ import SwiftUI
 
 final class UserSettings: ObservableObject {
 	//	TODO: Move this out of UserDefaults and into CoreData
-	@Published var passcode = UserDefaults.standard.object(forKey: .passcode) as? String ?? "" {
-		didSet { UserDefaults.standard.set(passcode, forKey: .passcode) }
-	}
-	@Published var codeLength = UserDefaults.standard.object(forKey: .codeLength) as? Int ?? 4 {
-		didSet { UserDefaults.standard.set(codeLength, forKey: .codeLength) }
-	}
-	@Published var maxAttempts = UserDefaults.standard.object(forKey: .maxAttempts) as? Int ?? 5 {
-		didSet { UserDefaults.standard.set(maxAttempts, forKey: .maxAttempts) }
-	}
-	
-	@Published var columns = UserDefaults.standard.object(forKey: .columns) as? Int ?? 3 {
-		didSet { UserDefaults.standard.set(columns, forKey: .columns) }
-	}
-	@Published var showDetails = UserDefaults.standard.bool(forKey: .showDetailsKey) {
-		didSet { UserDefaults.standard.set(showDetails, forKey: .showDetailsKey) }
-	}
-	
-	@Published var sound = UserDefaults.standard.object(forKey: .sound) as? Bool ?? true {
-		didSet { UserDefaults.standard.set(sound, forKey: .sound) }
-	}
-	@Published var hapticFeedback = UserDefaults.standard.object(forKey: .hapticFeedback) as? Bool ?? true {
-		didSet { UserDefaults.standard.set(hapticFeedback, forKey: .hapticFeedback) }
-	}
-	
+	@AppStorage(.passcode) var passcode = ""
+	@AppStorage(.codeLength) var codeLength =  4
+	@AppStorage(.maxAttempts) var maxAttempts = 5
+	@AppStorage(.columns) var columns = 3
+	@AppStorage(.showDetailsKey) var showDetails = true
+	@AppStorage(.sound) var sound = true
+	@AppStorage(.hapticFeedback) var hapticFeedback = true
+
 	//	Ignored for now
 	@Published var contentMode: ContentMode = .fill
 }

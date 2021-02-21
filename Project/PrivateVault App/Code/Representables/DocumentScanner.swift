@@ -34,8 +34,7 @@ struct DocumentScanner: UIViewControllerRepresentable {
 		}
 		
 		func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
-			let extractedImage = extractImages(from: scan).first.map(UIImage.init)!
-			parent.selectScan(extractedImage)
+			extractImages(from: scan).map(UIImage.init).forEach(parent.selectScan)
 			parent.presentationMode.wrappedValue.dismiss()
 		}
 		

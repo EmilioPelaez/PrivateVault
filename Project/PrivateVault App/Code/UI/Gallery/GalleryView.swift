@@ -139,7 +139,10 @@ struct GalleryView: View {
 	}
 	
 	func selectDocuments(_ documentURLs: [URL]) {
-		print(documentURLs)
+		for documentURL in documentURLs {
+			_ = StoredItem(context: viewContext, url: documentURL)
+			persistenceController?.saveContext()
+		}
 	}
 }
 
@@ -153,11 +156,11 @@ extension GalleryView: DropDelegate {
 	func dropEntered(info: DropInfo) {
 		dragOver = true
 	}
-
+	
 	func dropExited(info: DropInfo) {
 		dragOver = false
 	}
-
+	
 	func performDrop(info: DropInfo) -> Bool {
 		info.itemProviders(for: [.jpeg, .png]).forEach(loadData)
 		return true
@@ -167,19 +170,19 @@ extension GalleryView: DropDelegate {
 extension GalleryView {
 	func loadData(from itemProvider: NSItemProvider) {
 		guard let typeIdentifier = itemProvider.registeredTypeIdentifiers.first,
-			  let utType = UTType(typeIdentifier)
+					let utType = UTType(typeIdentifier)
 		else { return }
-
+		
 		itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { url, error in
 			if let error = error {
 				print(error.localizedDescription)
 			}
-
+			
 			guard let url = url else {
 				print("Failed to get url")
 				return
 			}
-
+			
 			if utType.conforms(to: .image) {
 				getPhoto(from: itemProvider, url: url)
 			} else if utType.conforms(to: .movie) {
@@ -189,16 +192,16 @@ extension GalleryView {
 			}
 		}
 	}
-
+	
 	private func getPhoto(from itemProvider: NSItemProvider, url: URL, isLivePhoto: Bool = false) {
 		let objectType: NSItemProviderReading.Type = !isLivePhoto ? UIImage.self : PHLivePhoto.self
-
+		
 		if itemProvider.canLoadObject(ofClass: objectType) {
 			itemProvider.loadObject(ofClass: objectType) { object, error in
 				if let error = error {
 					print(error.localizedDescription)
 				}
-
+				
 				if !isLivePhoto {
 					if let image = object as? UIImage {
 						DispatchQueue.main.async {
@@ -218,19 +221,19 @@ extension GalleryView {
 			}
 		}
 	}
-
-
+	
+	
 	private func getVideo(from url: URL) {
 		let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
 		guard let targetURL = documentsDirectory?.appendingPathComponent(url.lastPathComponent) else { return }
-
+		
 		do {
 			if FileManager.default.fileExists(atPath: targetURL.path) {
 				try FileManager.default.removeItem(at: targetURL)
 			}
-
+			
 			try FileManager.default.copyItem(at: url, to: targetURL)
-
+			
 			DispatchQueue.main.async {
 				//self.parent.selectImage(targetURL, "filename")
 				//self.photoPicker.mediaItems.append(item: PhotoPickerModel(with: targetURL))

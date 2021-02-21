@@ -26,6 +26,13 @@ final class UserSettings: ObservableObject {
 		didSet { UserDefaults.standard.set(showDetails, forKey: .showDetailsKey) }
 	}
 	
+	@Published var sound = UserDefaults.standard.object(forKey: .sound) as? Bool ?? true {
+		didSet { UserDefaults.standard.set(sound, forKey: .sound) }
+	}
+	@Published var hapticFeedback = UserDefaults.standard.object(forKey: .hapticFeedback) as? Bool ?? true {
+		didSet { UserDefaults.standard.set(hapticFeedback, forKey: .hapticFeedback) }
+	}
+	
 	//	Ignored for now
 	@Published var contentMode: ContentMode = .fill
 }
@@ -36,4 +43,6 @@ fileprivate extension String {
 	static let maxAttempts = "maxAttempts"
 	static let columns = "columns"
 	static let showDetailsKey = "showDetailsKey"
+	static let sound = "sound"
+	static let hapticFeedback = "hapticFeedback"
 }

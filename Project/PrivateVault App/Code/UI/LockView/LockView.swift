@@ -88,7 +88,6 @@ struct LockView: View {
 	}
 	
 	func allowEntry() -> Void {
-		SoundEffect.success.play()
 		codeState = .correct
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
 			withAnimation {
@@ -96,6 +95,7 @@ struct LockView: View {
 				codeState = .undefined
 				attempts = 0
 				code = ""
+				if settings.sound { SoundEffect.success.play() }
 			}
 		}
 		
@@ -106,7 +106,7 @@ struct LockView: View {
 		attempts += 1
 		codeState = .incorrect
 		incorrectAnimation.toggle()
-		SoundEffect.failure.play()
+		if settings.sound { SoundEffect.failure.play() }
 		if attempts == settings.maxAttempts { isLockedOut = true }
 	}
 }

@@ -12,7 +12,7 @@ struct SettingsView: View {
 	@State var resetPasscode: Bool = false
 	let close: () -> Void
 	let version = "0.0.1"
-
+	
 	var body: some View {
 		NavigationView {
 			Form {
@@ -32,11 +32,6 @@ struct SettingsView: View {
 						Spacer()
 						Toggle("", isOn: $settings.showDetails)
 					}
-//					Picker("Content mode", selection: $settings.contentMode) {
-//						ForEach(ContentMode.allCases, id: \.self) {
-//							Text($0.description)
-//						}
-//					}
 				}
 				Section(header: Text("Vault"), footer: footer) {
 					HStack {
@@ -47,6 +42,19 @@ struct SettingsView: View {
 					}
 					Button(action: { resetPasscode = true }) {
 						Text("Reset Passcode")
+					}
+				}
+				Section(header: Text("General")) {
+					HStack {
+						Text("Haptic Feedback")
+						Spacer()
+						Toggle("", isOn: $settings.hapticFeedback)
+					}
+					
+					HStack {
+						Text("Sound")
+						Spacer()
+						Toggle("", isOn: $settings.sound)
 					}
 				}
 			}
@@ -68,7 +76,7 @@ struct SettingsView: View {
 			}
 		}
 	}
-
+	
 	var footer: some View {
 		HStack {
 			Spacer()

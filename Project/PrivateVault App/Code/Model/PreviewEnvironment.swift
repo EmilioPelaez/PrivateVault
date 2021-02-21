@@ -25,8 +25,10 @@ struct PreviewEnvironment {
 		let items = (1...6)
 			.map { $0 % 6 + 1 }
 			.map { "file\($0)" }
-			.compactMap { UIImage(named: $0) }
-			.map { StoredItem(context: viewContext, image: $0) }
+			.compactMap { name -> StoredItem? in
+				guard let image = UIImage(named: name) else { return nil }
+				return StoredItem(context: viewContext, image: image, filename: name + ".png")
+			}
 		
 		let tags = ["Images", "Videos", "Documents", "Top Secret"]
 			.map { Tag(context: viewContext, name: $0) }

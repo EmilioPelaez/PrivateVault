@@ -19,8 +19,7 @@ struct GalleryGridView: View {
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \StoredItem.timestamp, ascending: false)], animation: .default)
 	var data: FetchedResults<StoredItem>
 	
-	@Binding var contentMode: ContentMode
-	@Binding var showDetails: Bool
+	@State var searchText = ""
 	@Binding var selectedTags: Set<Tag>
 	let selection: (StoredItem) -> Void
 	let delete: (StoredItem) -> Void
@@ -32,6 +31,10 @@ struct GalleryGridView: View {
 			selectedTags.reduce(true) {
 				$0 && (item.tags?.contains($1) ?? false)
 			}
+		}
+		.filter { item in
+			if searchText.isEmpty { return true }
+			return item.searchText.localizedStandardContains(searchText)
 		}
 	}
 	
@@ -51,14 +54,15 @@ struct GalleryGridView: View {
 						selectedTags = []
 					}
 				}
-					.frame(maxWidth: 280)
-					.transition(.opacity)
+				.frame(maxWidth: 280)
+				.transition(.opacity)
 			}
 		} else {
 			ScrollView {
+				SearchBarView(text: $searchText, placeholder: "Search files...")
 				LazyVGrid(columns: columns(spacing: 4), spacing: 4) {
 					ForEach(filteredData) { item in
-						GalleryGridCell(item: item, contentMode: $contentMode, showDetails: $showDetails)
+						GalleryGridCell(item: item)
 							.onTapGesture { selection(item) }
 							.contextMenu {
 								Button(action: { tagEditingItem = item }) {
@@ -78,7 +82,7 @@ struct GalleryGridView: View {
 									Image(systemName: "trash")
 								}
 							}
-							
+						
 					}
 				}
 				.padding(4)
@@ -89,18 +93,23 @@ struct GalleryGridView: View {
 			}
 		}
 	}
+	
+//	var filteredData: [StoredItem] {
+//		if searchText.isEmpty { return Array(data) }
+//		return data.filter({ $0.name?.localizedStandardContains(searchText) ?? false })
+//	}
 }
 
 struct GalleryGridView_Previews: PreviewProvider {
 	static let data: [Item] = .examples
 	static var previews: some View {
 		EmptyView()
-		//		GalleryGridView(contentMode: .constant(.fill), showDetails: .constant(true), selectedTags: .constant([])) { _ in }
-		//			delete: { _ in }
-		//			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-		//
-		//		GalleryGridView(contentMode: .constant(.fill), showDetails: .constant(false), selectedTags: .constant([])) { _ in }
-		//			delete: { _ in }
-		//			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+		GalleryGridView(selectedTags: .constant([])) { _ in }
+			delete: { _ in }
+			.environment(\.managedObjectContext, PreviewEnvironment().context)
+		
+		GalleryGridView(selectedTags: .constant([])) { _ in }
+			delete: { _ in }
+			.environment(\.managedObjectContext, PreviewEnvironment().context)
 	}
 }

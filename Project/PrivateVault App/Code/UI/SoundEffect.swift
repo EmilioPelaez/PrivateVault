@@ -16,7 +16,7 @@ enum SoundEffect {
 	func play() -> Void {
 		switch self {
 		case .success:
-			AudioServicesPlaySystemSound(1101)
+			AudioServicesPlaySystemSound(1115)
 		case .failure:
 			AudioServicesPlaySystemSound(1109)
 		case .none:

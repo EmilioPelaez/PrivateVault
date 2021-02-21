@@ -9,8 +9,7 @@ import SwiftUI
 
 struct GalleryGridCell: View {
 	@ObservedObject var item: StoredItem
-	@Binding var contentMode: ContentMode
-	@Binding var showDetails: Bool
+	@EnvironmentObject private var settings: UserSettings
 	
 	var body: some View {
 		VStack(alignment: .leading) {
@@ -18,14 +17,15 @@ struct GalleryGridCell: View {
 				.overlay(
 					item.placeholder
 						.resizable()
-						.aspectRatio(contentMode: contentMode)
+						.aspectRatio(contentMode: settings.contentMode)
 				)
 				.clipped()
-			if showDetails {
+			if settings.showDetails {
 				VStack(alignment: .leading) {
 					Text(item.name ?? "??")
 						.font(.headline)
 						.lineLimit(1)
+						.foregroundColor(.secondary)
 				}
 				.padding([.horizontal, .bottom], 5)
 			}
@@ -36,9 +36,9 @@ struct GalleryGridCell: View {
 
 struct GalleryGridCell_Previews: PreviewProvider {
 	static var previews: some View {
-		GalleryGridCell(item: .example, contentMode: .constant(.fill), showDetails: .constant(true))
+		GalleryGridCell(item: .example)
 			.previewLayout(.fixed(width: 200, height: 300))
-		GalleryGridCell(item: .example, contentMode: .constant(.fill), showDetails: .constant(false))
+		GalleryGridCell(item: .example)
 			.previewLayout(.fixed(width: 200, height: 200))
 	}
 }

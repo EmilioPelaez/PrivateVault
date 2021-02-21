@@ -12,8 +12,11 @@ struct GalleryView: View {
 	
 	enum SheetItem: Int, Identifiable {
 		case tags
+		case settings
 		case imagePicker
+		case cameraPicker
 		case documentPicker
+		case documentScanner
 		case audioRecorder
 		
 		var id: Int { rawValue }
@@ -22,26 +25,52 @@ struct GalleryView: View {
 	@Environment(\.managedObjectContext) private var viewContext
 	@Environment(\.persistenceController) private var persistenceController
 	
-	@State var contentMode: ContentMode = .fill //	Should this and showDetails be environment values?
-	@State var showDetails: Bool = true
+	@State var showImageActionSheet = false
+	@State var showPermissionAlert = false
 	@State var currentSheet: SheetItem?
 	@State var selectedItem: StoredItem?
 	@State var selectedTags: Set<Tag> = []
+	@Binding var isLocked: Bool
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
-			GalleryGridView(contentMode: $contentMode, showDetails: $showDetails, selectedTags: $selectedTags, selection: select, delete: delete)
+			GalleryGridView(selectedTags: $selectedTags, selection: select, delete: delete)
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
 				.navigationTitle("Gallery")
 				.toolbar(content: {
-					Button(action: { currentSheet = .tags }) {
-						Image(systemName: "list.bullet")
+					ToolbarItemGroup(placement: .navigationBarTrailing) {
+						Button(action: { isLocked = true }) {
+							Image(systemName: "lock")
+						}
+						Button(action: { currentSheet = .tags }) {
+							Image(systemName: "list.bullet")
+						}
+						Button(action: { currentSheet = .settings }) {
+							Image(systemName: "gearshape")
+						}
 					}
 				})
 			FileTypePickerView(action: selectType)
 				.sheet(item: $currentSheet, content: filePicker)
 				.padding(.horizontal)
 				.padding(.bottom, 5)
+		}
+		.alert(isPresented: $showPermissionAlert) {
+			Alert(
+				title: Text("Camera Access"),
+				message: Text("PrivateVault doesn't have access to use your camera, please update your privacy settings."),
+				primaryButton: .default(
+					Text("Settings"),
+					action: { UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!) }
+				),
+				secondaryButton: .cancel())
+		}
+		.actionSheet(isPresented: $showImageActionSheet) {
+			ActionSheet(title: Text("Import images"), buttons: [
+				.default(Text("Camera"), action: { requestCameraAuthorization() }),
+				.default(Text("Photo Library"), action: { requestImageAuthorization() }),
+				.cancel()
+			])
 		}
 	}
 	
@@ -62,18 +91,22 @@ struct GalleryView: View {
 		Group {
 			switch item {
 			case .tags: TagListView(selectedTags: $selectedTags) { currentSheet = nil }
-			case .imagePicker: ImagePicker(closeSheet: { currentSheet = nil }, selectImage: selectImage)
+			case .imagePicker: PhotosPicker(closeSheet: { currentSheet = nil }, selectImage: selectImage)
+			case .cameraPicker: CameraPicker(selectImage: selectCameraCapture)
 			case .documentPicker: DocumentPicker(selectDocuments: selectDocuments)
+			case .documentScanner: DocumentScanner(selectScan: selectCameraCapture)
 			case .audioRecorder: AudioRecorder(recordAudio: recordAudio)
+			case .settings: SettingsView { currentSheet = nil }
 			}
 		}
 	}
 	
 	func selectType(_ type: FileTypePickerView.FileType) {
 		switch type {
-		case .photo: requestImageAuthorization()
+		case .photo: showImageActionSheet = true
 		case .audio: currentSheet = .audioRecorder
 		case .document: currentSheet = .documentPicker
+		case .scan: currentSheet = .documentScanner
 		}
 	}
 	
@@ -85,8 +118,27 @@ struct GalleryView: View {
 		}
 	}
 	
-	func selectImage(_ image: UIImage) {
-		_ = StoredItem(context: viewContext, image: image)
+	func requestCameraAuthorization() {
+		switch AVCaptureDevice.authorizationStatus(for: .video) {
+		case .authorized:
+			currentSheet = .cameraPicker
+		case .notDetermined:
+			AVCaptureDevice.requestAccess(for: .video, completionHandler: { granted in
+				guard granted else { return }
+				currentSheet = .cameraPicker
+			})
+		default:
+			showPermissionAlert = true
+		}
+	}
+	
+	func selectImage(_ image: UIImage, filename: String) {
+		_ = StoredItem(context: viewContext, image: image, filename: filename)
+		persistenceController?.saveContext()
+	}
+	
+	func selectCameraCapture(_ image: UIImage) {
+		_ = StoredItem(context: viewContext, image: image, filename: "New photo")
 		persistenceController?.saveContext()
 	}
 	
@@ -101,7 +153,7 @@ struct GalleryView: View {
 
 struct GalleryView_Previews: PreviewProvider {
 	static var previews: some View {
-		GalleryView()
+		GalleryView(isLocked: .constant(false))
 	}
 }
 

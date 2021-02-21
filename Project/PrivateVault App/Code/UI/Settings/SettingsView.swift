@@ -22,11 +22,11 @@ struct SettingsView: View {
 						Spacer()
 						Toggle("", isOn: $settings.showDetails)
 					}
-					Picker("Content mode", selection: $settings.contentMode) {
-						ForEach(ContentMode.allCases, id: \.self) {
-							Text($0.description)
-						}
-					}
+//					Picker("Content mode", selection: $settings.contentMode) {
+//						ForEach(ContentMode.allCases, id: \.self) {
+//							Text($0.description)
+//						}
+//					}
 				}
 				Section(header: Text("Vault"), footer: footer) {
 					HStack {

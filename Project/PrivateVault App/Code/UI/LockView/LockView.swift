@@ -35,7 +35,7 @@ struct LockView: View {
 				InputDisplay(input: $code, codeLength: settings.codeLength, textColor: textColor, displayColor: displayColor)
 					.shake(incorrectAnimation, distance: 10, count: 4)
 				BlurringView(isBlurred: $isLockedOut ) {
-					KeypadView(input: input, delete: delete)
+					KeypadView(input: input, delete: delete, isPasswordReset: false )
 				}
 			}
 			.frame(maxWidth: 280)

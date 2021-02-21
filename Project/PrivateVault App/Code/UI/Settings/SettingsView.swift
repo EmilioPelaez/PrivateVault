@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
 	@EnvironmentObject private var settings: UserSettings
+	@State var showPassword = false
 	let close: () -> Void
 	let version = "0.0.1"
 
@@ -27,8 +28,31 @@ struct SettingsView: View {
 						}
 					}
 				}
-				Section(footer: footer) {
-					Text("...")
+				Section(header: Text("Vault"), footer: footer) {
+					HStack {
+						Text("Password")
+						Spacer()
+						if showPassword {
+							TextField("", text: $settings.password)
+								.keyboardType(.numberPad)
+						} else {
+							SecureField("", text: $settings.password)
+								.keyboardType(.numberPad)
+						}
+						Spacer()
+						Button {
+							showPassword.toggle()
+						} label: {
+							Image(systemName: showPassword ? "eye.slash" : "eye")
+						}
+						.buttonStyle(BorderlessButtonStyle())
+					}
+					HStack {
+						Text("Maximum number of attempts")
+						Spacer()
+						TextField("", text: $settings.maxAttempts.toString())
+						.keyboardType(.numberPad)
+					}
 				}
 			}
 			.listStyle(InsetGroupedListStyle())

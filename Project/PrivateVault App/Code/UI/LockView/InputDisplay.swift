@@ -8,22 +8,17 @@
 import SwiftUI
 
 struct InputDisplay: View {
-	let codeLength: Int
+	@EnvironmentObject var settings: UserSettings
+	var codeLength: Int { settings.password.count }
 	@Binding var input: String
 	let textColor: Color
 	
 	var body: some View {
 		HStack(spacing: 0) {
+			Spacer()
 			ForEach(0..<codeLength) { index in
 				Group {
-					if index == 0 {
-						Spacer()
-					}
-					if index < input.count {
-						Text("●")
-					} else {
-						Text("○")
-					}
+					Text(index < input.count ? "●" : "○")
 					Spacer()
 				}
 				.font(.largeTitle)
@@ -40,7 +35,7 @@ struct InputDisplay: View {
 
 struct InputDisplay_Previews: PreviewProvider {
 	static var previews: some View {
-		InputDisplay(codeLength: 4, input: .constant("X"), textColor: .red)
+		InputDisplay(input: .constant("X"), textColor: .red)
 			.previewLayout(.sizeThatFits)
 	}
 }

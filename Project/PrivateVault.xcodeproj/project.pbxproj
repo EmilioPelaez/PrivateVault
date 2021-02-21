@@ -16,6 +16,7 @@
 		2B39CDAC25E1A05500E63EDD /* DocumentScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CDAB25E1A05500E63EDD /* DocumentScanner.swift */; };
 		2B39CDB825E1BB5700E63EDD /* Binding+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CDB725E1BB5700E63EDD /* Binding+Map.swift */; };
 		2B39CDBC25E1BEAB00E63EDD /* ContentMode+description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CDBB25E1BEAB00E63EDD /* ContentMode+description.swift */; };
+		2B39CDC225E1C6C500E63EDD /* String+Capping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CDC125E1C6C500E63EDD /* String+Capping.swift */; };
 		2B6C742C25E08BBF00EAF6FD /* PhotosPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C742B25E08BBF00EAF6FD /* PhotosPicker.swift */; };
 		460E096225E077C4001343C2 /* KeypadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E096125E077C4001343C2 /* KeypadView.swift */; };
 		468A75DC25E0976E00B87597 /* FileTypePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75DB25E0976E00B87597 /* FileTypePickerView.swift */; };
@@ -59,6 +60,7 @@
 		2B39CDAB25E1A05500E63EDD /* DocumentScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentScanner.swift; sourceTree = "<group>"; };
 		2B39CDB725E1BB5700E63EDD /* Binding+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Map.swift"; sourceTree = "<group>"; };
 		2B39CDBB25E1BEAB00E63EDD /* ContentMode+description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentMode+description.swift"; sourceTree = "<group>"; };
+		2B39CDC125E1C6C500E63EDD /* String+Capping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capping.swift"; sourceTree = "<group>"; };
 		2B6C742B25E08BBF00EAF6FD /* PhotosPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPicker.swift; sourceTree = "<group>"; };
 		460E096125E077C4001343C2 /* KeypadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadView.swift; sourceTree = "<group>"; };
 		468A75DB25E0976E00B87597 /* FileTypePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypePickerView.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				468A75E325E15D2900B87597 /* View+SoundEffect.swift */,
 				2B39CDB725E1BB5700E63EDD /* Binding+Map.swift */,
 				2B39CDBB25E1BEAB00E63EDD /* ContentMode+description.swift */,
+				2B39CDC125E1C6C500E63EDD /* String+Capping.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				C8EFD22F25E15D1D00CB4141 /* StoredItem+DataType.swift in Sources */,
 				C8EFD1FC25E128C400CB4141 /* DocumentPicker.swift in Sources */,
 				2B39CD8A25E18B8100E63EDD /* SettingsView.swift in Sources */,
+				2B39CDC225E1C6C500E63EDD /* String+Capping.swift in Sources */,
 				C89C9DD825E1773E003505B9 /* EmptyGalleryView.swift in Sources */,
 				2B081A7425E085FA00F9D522 /* View+Navigation.swift in Sources */,
 				2B39CD7525E17AFB00E63EDD /* SearchBarView.swift in Sources */,

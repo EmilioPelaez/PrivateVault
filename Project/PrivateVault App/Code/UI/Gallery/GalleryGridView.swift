@@ -16,7 +16,7 @@ struct GalleryGridView: View {
 	@Binding var selectedTags: Set<Tag>
 	let selection: (StoredItem) -> Void
 	let delete: (StoredItem) -> Void
-	
+
 	@State var tagEditingItem: StoredItem?
 	
 	var filteredData: [StoredItem] {
@@ -69,15 +69,7 @@ struct GalleryGridView: View {
 									Text("Edit")
 									Image(systemName: "edit")
 								}
-								Menu {
-									Button(action: { delete(item) }) {
-										Text("Delete")
-										Image(systemName: "trash")
-									}
-									Button(action: { }) {
-										Text("Cancel")
-									}
-								} label: {
+								Button(action: { delete(item) }) {
 									Text("Delete")
 									Image(systemName: "trash")
 								}
@@ -91,7 +83,6 @@ struct GalleryGridView: View {
 				ItemEditView(item: item) { tagEditingItem = nil }
 			}
 		}
-		
 	}
 }
 

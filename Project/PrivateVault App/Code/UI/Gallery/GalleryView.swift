@@ -19,6 +19,20 @@ struct GalleryView: View {
 		
 		var id: Int { rawValue }
 	}
+
+	enum AlertItem: Identifiable {
+		case showPermissionAlert
+		case deleteItemConfirmation(StoredItem)
+
+		var id: Int {
+			switch self {
+			case .showPermissionAlert:
+				return 0
+			case .deleteItemConfirmation:
+				return 1
+			}
+		}
+	}
 	
 	@Environment(\.managedObjectContext) private var viewContext
 	@Environment(\.persistenceController) private var persistenceController
@@ -26,13 +40,15 @@ struct GalleryView: View {
 	@State var showImageActionSheet = false
 	@State var showPermissionAlert = false
 	@State var currentSheet: SheetItem?
+	@State var currentAlert: AlertItem?
 	@State var selectedItem: StoredItem?
+	@State var itemBeingDeleted: StoredItem?
 	@State var selectedTags: Set<Tag> = []
 	@Binding var isLocked: Bool
 	
 	var body: some View {
 		ZStack(alignment: .bottomLeading) {
-			GalleryGridView(selectedTags: $selectedTags, selection: select, delete: delete)
+			GalleryGridView(selectedTags: $selectedTags, selection: select, delete: { currentAlert = .deleteItemConfirmation($0) })
 				.onDrop(of: [.fileURL], delegate: self)
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
 				.navigationTitle("Gallery")
@@ -61,22 +77,36 @@ struct GalleryView: View {
 				.padding(.horizontal)
 				.padding(.bottom, 10)
 		}
-		.alert(isPresented: $showPermissionAlert) {
-			Alert(
-				title: Text("Camera Access"),
-				message: Text("PrivateVault doesn't have access to use your camera, please update your privacy settings."),
-				primaryButton: .default(
-					Text("Settings"),
-					action: { UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!) }
-				),
-				secondaryButton: .cancel())
-		}
+		.alert(item: $currentAlert, content: alert)
 		.onChange(of: isLocked) {
 			guard $0 else { return }
 			showImageActionSheet = false
 			showPermissionAlert = false
 			currentSheet = nil
 			selectedItem = nil
+			itemBeingDeleted = nil
+		}
+	}
+
+	func alert(currentAlert: AlertItem) -> Alert {
+		switch currentAlert {
+		case .showPermissionAlert:
+			return Alert(
+				title: Text("Camera Access"),
+				message: Text("PrivateVault doesn't have access to use your camera, please update your privacy settings."),
+				primaryButton: .default(
+					Text("Settings"),
+					action: { UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!) }
+				),
+				secondaryButton: .cancel()
+			)
+		case let .deleteItemConfirmation(item):
+			return Alert(
+				title: Text("Delete File"),
+				message: Text("Are you sure you want to delete this item? This action can't be undone."),
+				primaryButton: .destructive(Text("Delete"), action: { delete(item) }),
+				secondaryButton: .cancel()
+			)
 		}
 	}
 	

@@ -16,9 +16,9 @@ struct LockView: View {
 	@State var incorrectAnimation = false
 	@State var isLockedOut = false
 	
-	var maxDigits: Int { settings.password.count }
+	var maxDigits: Int { settings.passcode.count }
 	var codeIsFullyEntered: Bool { code.count == maxDigits }
-	var codeIsCorrect: Bool { code == settings.password }
+	var codeIsCorrect: Bool { code == settings.passcode }
 	
 	var body: some View {
 		ZStack {

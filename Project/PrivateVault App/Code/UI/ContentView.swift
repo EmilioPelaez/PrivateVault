@@ -13,11 +13,11 @@ struct ContentView: View {
 	@State var isLocked = true
 	
 	var body: some View {
-		if settings.codeLength != settings.password.count {
+		if settings.codeLength != settings.passcode.count {
 			SetPasscodeView { newCode, newLength in
 				withAnimation {
 					settings.codeLength = newLength
-					settings.password = newCode
+					settings.passcode = newCode
 					isLocked = false
 				}
 			}

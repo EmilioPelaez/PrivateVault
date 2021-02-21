@@ -10,7 +10,7 @@ import SwiftUI
 final class UserSettings: ObservableObject {
 	@Published var contentMode: ContentMode = .fill
 	@Published var showDetails = true
-	@Published var password = ""
+	@Published var passcode = ""
 	@Published var codeLength = 4
 	@Published var maxAttempts = 5
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SetPasscodeView: View {
 	@State var code: String = ""
+	@State var codeLengthIndex: Int = 0
 	@State var codeLength: Int = 4
 	let newCode: (String, Int) -> Void
 	
@@ -19,9 +20,9 @@ struct SetPasscodeView: View {
 				VStack(spacing: 10) {
 					Text("Create your Passcode")
 						.font(.title)
-					Picker(selection: $codeLength, label: Text("")) {
-						Text("4 Digits").tag(4)
-						Text("6 Digits").tag(6)
+					Picker(selection: $codeLengthIndex, label: Text("")) {
+						Text("4 Digits").tag(0)
+						Text("6 Digits").tag(1)
 					}
 					.pickerStyle(SegmentedPickerStyle())
 				}
@@ -30,7 +31,12 @@ struct SetPasscodeView: View {
 			}
 			.frame(maxWidth: 280)
 		}
-		.onChange(of: codeLength) { code = String(code.prefix($0)) }
+		.onChange(of: codeLengthIndex) { index in
+			withAnimation {
+				codeLength = [4, 6][index]
+				code = String(code.prefix(max(0, codeLength - 1)))
+			}
+		}
 	}
 	
 	func input(_ string: String) {

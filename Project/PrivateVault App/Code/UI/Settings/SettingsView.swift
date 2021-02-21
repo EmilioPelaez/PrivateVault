@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
 	@EnvironmentObject private var settings: UserSettings
-	@State var showPassword = false
+	@State var showPasscode = false
 	let close: () -> Void
 	let version = "0.0.1"
 
@@ -30,20 +30,20 @@ struct SettingsView: View {
 				}
 				Section(header: Text("Vault"), footer: footer) {
 					HStack {
-						Text("Password")
+						Text("Passcode")
 						Spacer()
-						if showPassword {
-							TextField("", text: $settings.password)
+						if showPasscode {
+							TextField("", text: $settings.passcode)
 								.keyboardType(.numberPad)
 						} else {
-							SecureField("", text: $settings.password)
+							SecureField("", text: $settings.passcode)
 								.keyboardType(.numberPad)
 						}
 						Spacer()
 						Button {
-							showPassword.toggle()
+							showPasscode.toggle()
 						} label: {
-							Image(systemName: showPassword ? "eye.slash" : "eye")
+							Image(systemName: showPasscode ? "eye.slash" : "eye")
 						}
 						.buttonStyle(BorderlessButtonStyle())
 					}

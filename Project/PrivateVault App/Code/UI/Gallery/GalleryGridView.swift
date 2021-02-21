@@ -87,7 +87,6 @@ struct GalleryGridView: View {
 }
 
 struct GalleryGridView_Previews: PreviewProvider {
-	static let data: [Item] = .examples
 	static var previews: some View {
 		EmptyView()
 		GalleryGridView(selectedTags: .constant([])) { _ in }

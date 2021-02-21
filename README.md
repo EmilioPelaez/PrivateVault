@@ -21,8 +21,7 @@ PrivateVault is an iPhone and iPad app for securely storing private user data. I
 - [x] Import files and photos from device
 - [x] Built-in camera
 - [x] Document scanner
-- [x] Touch ID 
-- [x] Face ID
+- [x] Biometric access (Touch ID / Face ID)
 
 ## Building the code
 

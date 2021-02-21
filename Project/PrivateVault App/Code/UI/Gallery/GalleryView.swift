@@ -38,6 +38,11 @@ struct GalleryView: View {
 				.fullScreenCover(item: $selectedItem, content: quickLookView)
 				.navigationTitle("Gallery")
 				.toolbar(content: {
+					ToolbarItemGroup(placement: .navigationBarLeading) {
+						Button(action: { currentSheet = .settings }) {
+							Image(systemName: "gearshape")
+						}
+					}
 					ToolbarItemGroup(placement: .navigationBarTrailing) {
 						Button(action: { isLocked = true }) {
 							Image(systemName: "lock")
@@ -45,15 +50,12 @@ struct GalleryView: View {
 						Button(action: { currentSheet = .tags }) {
 							Image(systemName: "list.bullet")
 						}
-						Button(action: { currentSheet = .settings }) {
-							Image(systemName: "gearshape")
-						}
 					}
 				})
 			FileTypePickerView(action: selectType)
 				.sheet(item: $currentSheet, content: filePicker)
 				.padding(.horizontal)
-				.padding(.bottom, 5)
+				.padding(.bottom, 10)
 		}
 		.alert(isPresented: $showPermissionAlert) {
 			Alert(

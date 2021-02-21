@@ -21,7 +21,6 @@
 		460E096225E077C4001343C2 /* KeypadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E096125E077C4001343C2 /* KeypadView.swift */; };
 		468A75DC25E0976E00B87597 /* FileTypePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75DB25E0976E00B87597 /* FileTypePickerView.swift */; };
 		468A75E125E15B9300B87597 /* SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75E025E15B9300B87597 /* SoundEffect.swift */; };
-		468A75E425E15D2900B87597 /* View+SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75E325E15D2900B87597 /* View+SoundEffect.swift */; };
 		46F26BEC25E19C6700070858 /* AttemptsRemainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */; };
 		46F26BEF25E19C8600070858 /* BlurringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F26BEE25E19C8600070858 /* BlurringView.swift */; };
 		C868FD6125E2AFA5005A3EA9 /* SetPasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */; };
@@ -76,7 +75,6 @@
 		460E096125E077C4001343C2 /* KeypadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadView.swift; sourceTree = "<group>"; };
 		468A75DB25E0976E00B87597 /* FileTypePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypePickerView.swift; sourceTree = "<group>"; };
 		468A75E025E15B9300B87597 /* SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SoundEffect.swift; path = "PrivateVault App/Code/UI/SoundEffect.swift"; sourceTree = SOURCE_ROOT; };
-		468A75E325E15D2900B87597 /* View+SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "View+SoundEffect.swift"; path = "PrivateVault App/Code/UI/View+SoundEffect.swift"; sourceTree = SOURCE_ROOT; };
 		46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttemptsRemainingView.swift; sourceTree = "<group>"; };
 		46F26BEE25E19C8600070858 /* BlurringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurringView.swift; sourceTree = "<group>"; };
 		C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasscodeView.swift; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 				C88ACB1825E10B450064C160 /* UIDevice+iPad.swift */,
 				C8EFD1FF25E1373F00CB4141 /* UIImage+Resize.swift */,
 				C8EFD20125E1374F00CB4141 /* CGSize+Utilities.swift */,
-				468A75E325E15D2900B87597 /* View+SoundEffect.swift */,
 				C89C9DEE25E1D804003505B9 /* Binding+Optional.swift */,
 				2B39CDB725E1BB5700E63EDD /* Binding+Map.swift */,
 				2B39CDBB25E1BEAB00E63EDD /* ContentMode+description.swift */,
@@ -444,7 +441,6 @@
 				46F26BEC25E19C6700070858 /* AttemptsRemainingView.swift in Sources */,
 				46F26BEF25E19C8600070858 /* BlurringView.swift in Sources */,
 				460E096225E077C4001343C2 /* KeypadView.swift in Sources */,
-				468A75E425E15D2900B87597 /* View+SoundEffect.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

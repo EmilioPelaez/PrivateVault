@@ -98,9 +98,9 @@ struct GalleryView: View {
 			switch item {
 			case .tags: TagListView(selectedTags: $selectedTags) { currentSheet = nil }
 			case .imagePicker: PhotosPicker(closeSheet: { currentSheet = nil }, loadData: loadData)
-			case .cameraPicker: CameraPicker(selectImage: selectCameraCapture)
-			case .documentPicker: DocumentPicker(selectDocuments: selectDocuments)
-			case .documentScanner: DocumentScanner(selectScan: selectCameraCapture)
+			case .cameraPicker: CameraPicker(selectImage: { selectItem(.capture($0)) })
+			case .documentPicker: DocumentPicker(selectDocuments: { selectItems($0.map({ .file($0) })) })
+			case .documentScanner: DocumentScanner(selectScan: { selectItem(.capture($0)) })
 			case .settings: SettingsView { currentSheet = nil }
 			}
 		}
@@ -134,28 +134,14 @@ struct GalleryView: View {
 			showPermissionAlert = true
 		}
 	}
-	
-	func selectImage(_ image: UIImage, filename: String) {
-		_ = StoredItem(context: viewContext, image: image, filename: filename)
-		persistenceController?.saveContext()
-	}
-	
-	func selectCameraCapture(_ image: UIImage) {
-		_ = StoredItem(context: viewContext, image: image, filename: "New photo")
-		persistenceController?.saveContext()
-	}
-	
-	func selectDocuments(_ documentURLs: [URL]) {
-		for documentURL in documentURLs {
-			_ = StoredItem(context: viewContext, url: documentURL)
-			persistenceController?.saveContext()
-		}
-	}
-}
 
-struct GalleryView_Previews: PreviewProvider {
-	static var previews: some View {
-		GalleryView(isLocked: .constant(false))
+	func selectItems(_ items: [ItemType]) {
+		items.forEach(selectItem)
+	}
+
+	func selectItem(_ item: ItemType) {
+		_ = StoredItem(context: viewContext, item: item)
+		persistenceController?.saveContext()
 	}
 }
 
@@ -169,12 +155,22 @@ extension GalleryView: DropDelegate {
 	}
 	
 	func performDrop(info: DropInfo) -> Bool {
-		info.itemProviders(for: [.jpeg, .png]).forEach(loadData)
+		loadData(from: info.itemProviders(for: [.jpeg, .png]))
 		return true
 	}
 }
 
+enum ItemType {
+	case photo(UIImage, String)
+	case capture(UIImage)
+	case file(URL)
+}
+
 extension GalleryView {
+	func loadData(from itemProviders: [NSItemProvider]) {
+		itemProviders.forEach(loadData)
+	}
+
 	func loadData(from itemProvider: NSItemProvider) {
 		guard let typeIdentifier = itemProvider.registeredTypeIdentifiers.first,
 					let utType = UTType(typeIdentifier)
@@ -211,18 +207,14 @@ extension GalleryView {
 				
 				if !isLivePhoto {
 					if let image = object as? UIImage {
-						DispatchQueue.main.async {
-							self.selectImage(image, filename: url.lastPathComponent)
-							//self.photoPicker.mediaItems.append(item: PhotoPickerModel(with: image))
-						}
+						selectItem(.photo(image, url.lastPathComponent))
+						//self.photoPicker.mediaItems.append(item: PhotoPickerModel(with: image))
 					}
 				} else {
 					if let livePhoto = object as? PHLivePhoto {
-						DispatchQueue.main.async {
-							print(livePhoto)
-							//self.parent.selectImage(livePhoto, "filename")
-							//self.photoPicker.mediaItems.append(item: PhotoPickerModel(with: livePhoto))
-						}
+						print(livePhoto)
+						//self.parent.selectImage(livePhoto, "filename")
+						//self.photoPicker.mediaItems.append(item: PhotoPickerModel(with: livePhoto))
 					}
 				}
 			}
@@ -240,13 +232,16 @@ extension GalleryView {
 			}
 			
 			try FileManager.default.copyItem(at: url, to: targetURL)
-			
-			DispatchQueue.main.async {
-				//self.parent.selectImage(targetURL, "filename")
-				//self.photoPicker.mediaItems.append(item: PhotoPickerModel(with: targetURL))
-			}
+
+			selectItem(.file(targetURL))
 		} catch {
 			print(error.localizedDescription)
 		}
+	}
+}
+
+struct GalleryView_Previews: PreviewProvider {
+	static var previews: some View {
+		GalleryView(isLocked: .constant(false))
 	}
 }

@@ -48,7 +48,7 @@ struct LockView: View {
 			.frame(maxWidth: 280)
 		}
 	}
-
+	
 	var textColor: Color {
 		switch entryStatus {
 		case .accepted:

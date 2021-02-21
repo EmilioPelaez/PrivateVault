@@ -9,19 +9,28 @@ import SwiftUI
 
 struct TagListView: View {
 	@Environment(\.managedObjectContext) private var viewContext
+	@Environment(\.persistenceController) private var persistenceController
 	
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Tag.name, ascending: true)], animation: .default)
 	var tags: FetchedResults<Tag>
 	
+	@Binding var selectedTags: Set<Tag>
 	@State var newTagName: String = ""
 	let close: () -> Void
 	
 	var body: some View {
 		NavigationView {
 			List {
-				Section(header: Text("All Tags")) {
+				Section(header: tagsHeader) {
 					ForEach(tags) { tag in
-						Text(tag.name ?? "??")
+						Button(action: { toggleTag(tag) }) {
+							HStack {
+								Text(tag.name ?? "??")
+									.foregroundColor(.primary)
+								Spacer()
+								RadioButton(selected: selectedTags.contains(tag), size: 24, color: .blue)
+							}
+						}
 					}
 					.onDelete(perform: deleteTags)
 				}
@@ -29,7 +38,8 @@ struct TagListView: View {
 					HStack {
 						TextField("Name", text: $newTagName)
 						Button(action: createTag) {
-							Image(systemName: "square.and.arrow.down")
+							Image(systemName: "plus.circle.fill")
+								.font(.system(size: 25))
 						}
 					}
 				}
@@ -46,35 +56,47 @@ struct TagListView: View {
 		}
 	}
 	
+	var tagsHeader: some View {
+		HStack {
+			Text("All Tags")
+			Spacer()
+			Text("Filter")
+				.padding(.trailing, 15)
+		}
+	}
+	
+	func toggleTag(_ tag: Tag) {
+		withAnimation {
+			if selectedTags.contains(tag) {
+				selectedTags.remove(tag)
+			} else {
+				selectedTags.insert(tag)
+			}
+		}
+	}
+	
 	func createTag() {
 		guard !newTagName.isEmpty else { return }
 		let tag = Tag(context: viewContext)
 		tag.name = newTagName
 		newTagName = ""
-		saveContext()
+		persistenceController?.saveContext()
 	}
 	
 	private func deleteTags(offsets: IndexSet) {
 		withAnimation {
-			offsets.map { tags[$0] }.forEach(viewContext.delete)
-			saveContext()
-		}
-	}
-	
-	private func saveContext() {
-		do {
-			try viewContext.save()
-		} catch {
-			// Replace this implementation with code to handle the error appropriately.
-			let nsError = error as NSError
-			fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+			offsets.lazy.map { tags[$0] }.forEach {
+				selectedTags.remove($0)
+				viewContext.delete($0)
+			}
+			persistenceController?.saveContext()
 		}
 	}
 }
 
 struct TagListView_Previews: PreviewProvider {
 	static var previews: some View {
-		TagListView { }
-			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+		TagListView(selectedTags: .constant([])) { }
+			.environment(\.managedObjectContext, PreviewEnvironment().context)
 	}
 }

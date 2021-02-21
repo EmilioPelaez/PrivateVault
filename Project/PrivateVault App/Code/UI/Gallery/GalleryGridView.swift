@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GalleryGridView<E>: View where E: View {
+struct GalleryGridView: View {
 	private func columns(spacing: CGFloat) -> [GridItem] {
 		[
 			GridItem(.flexible(), spacing: spacing),
@@ -15,66 +15,95 @@ struct GalleryGridView<E>: View where E: View {
 			GridItem(.flexible(), spacing: spacing)
 		]
 	}
-
+	
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \StoredItem.timestamp, ascending: false)], animation: .default)
 	var data: FetchedResults<StoredItem>
-
+	
 	@State var searchText = ""
-	let emptyView: E
+	@Binding var selectedTags: Set<Tag>
 	let selection: (StoredItem) -> Void
 	let delete: (StoredItem) -> Void
 	
-	var body: some View {
-		if data.isEmpty {
-			ZStack {
-				Color.clear
-				emptyView
-					.frame(maxWidth: 280)
+	@State var tagEditingItem: StoredItem?
+	
+	var filteredData: [StoredItem] {
+		data.filter { item in
+			selectedTags.reduce(true) {
+				$0 && (item.tags?.contains($1) ?? false)
 			}
-		} else {
-			ScrollView {
+		}
+		.filter { item in
+			if searchText.isEmpty { return true }
+			return item.searchText.localizedStandardContains(searchText)
+		}
+	}
+	
+	var body: some View {
+		ScrollView {
 			SearchBarView(text: $searchText, placeholder: "Search files...")
-			LazyVGrid(columns: columns(spacing: 4), spacing: 4) {
-				ForEach(filteredData) { item in
-					GalleryGridCell(item: item)
-						.onTapGesture { selection(item) }
-						.contextMenu {
-							Menu {
-								Button(action: { delete(item) }) {
+			if data.isEmpty {
+				ZStack {
+					Color.clear
+					EmptyGalleryView()
+						.frame(maxWidth: 280)
+						.transition(.opacity)
+				}
+			} else if filteredData.isEmpty {
+				ZStack(alignment: .top) {
+					Color.clear
+					FilteredGalleryView {
+						withAnimation {
+							selectedTags = []
+						}
+					}
+					.frame(maxWidth: 280)
+					.transition(.opacity)
+				}
+			} else {
+				LazyVGrid(columns: columns(spacing: 4), spacing: 4) {
+					ForEach(filteredData) { item in
+						GalleryGridCell(item: item)
+							.onTapGesture { selection(item) }
+							.contextMenu {
+								Button(action: { tagEditingItem = item }) {
+									Text("Edit")
+									Image(systemName: "edit")
+								}
+								Menu {
+									Button(action: { delete(item) }) {
+										Text("Delete")
+										Image(systemName: "trash")
+									}
+									Button(action: { }) {
+										Text("Cancel")
+									}
+								} label: {
 									Text("Delete")
 									Image(systemName: "trash")
 								}
-								Button(action: { }) {
-									Text("Cancel")
-								}
-							} label: {
-								Text("Delete")
-								Image(systemName: "trash")
 							}
-						}
+					}
 				}
-			}
-			.padding(4)
-			.padding(.bottom, 55)
+				.padding(4)
+				.padding(.bottom, 55)
 			}
 		}
-	}
-
-	var filteredData: [StoredItem] {
-		if searchText.isEmpty { return Array(data) }
-		return data.filter({ $0.name?.localizedStandardContains(searchText) ?? false })
+		.popover(item: $tagEditingItem) { item in
+			ItemEditView(item: item) { tagEditingItem = nil }
+		}
 	}
 }
 
 struct GalleryGridView_Previews: PreviewProvider {
 	static let data: [Item] = .examples
 	static var previews: some View {
-		GalleryGridView(emptyView: Color.red) { _ in }
+		EmptyView()
+		GalleryGridView(selectedTags: .constant([])) { _ in }
 			delete: { _ in }
-			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+			.environment(\.managedObjectContext, PreviewEnvironment().context)
 		
-		GalleryGridView(emptyView: Color.red) { _ in }
+		GalleryGridView(selectedTags: .constant([])) { _ in }
 			delete: { _ in }
-			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+			.environment(\.managedObjectContext, PreviewEnvironment().context)
 	}
 }

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct GalleryGridCell: View {
+	@ObservedObject var item: StoredItem
 	@EnvironmentObject private var settings: UserSettings
-	let item: StoredItem
 	
 	var body: some View {
 		VStack(alignment: .leading) {
@@ -24,15 +24,13 @@ struct GalleryGridCell: View {
 				VStack(alignment: .leading) {
 					Text(item.name?.capping(30) ?? "Untitled")
 						.font(.headline)
-//					Text("12/31/20")
-//						.font(.footnote)
-//						.foregroundColor(.secondary)
-					Text(String(format: "%.1f MB", CGFloat(item.data?.count ?? 0) / 1_000_000))
-						.font(.footnote)
+						.lineLimit(1)
 						.foregroundColor(.secondary)
 				}
+				.padding([.horizontal, .bottom], 5)
 			}
 		}
+		.background(Color(.systemBackground))
 	}
 }
 

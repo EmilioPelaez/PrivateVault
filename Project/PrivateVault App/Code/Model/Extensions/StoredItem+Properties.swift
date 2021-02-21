@@ -39,4 +39,10 @@ extension StoredItem {
 		)
 	}
 	
+	var searchText: String {
+		let tags = self.tags as? Set<Tag>
+		let tagSearch = tags?.compactMap(\.name).joined(separator: " ")
+		return [tagSearch, name].compactMap { $0 }.joined(separator: " ")
+	}
+	
 }

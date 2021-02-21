@@ -13,10 +13,10 @@ struct EmptyGalleryView: View {
 			Image("EmptyGallery")
 				.resizable()
 				.aspectRatio(CGSize(width: 765, height: 573), contentMode: .fit)
-				.padding(.horizontal, 25)
+				.padding(.horizontal, 45)
 			VStack(spacing: 8) {
 				Text("Your gallery is empty!")
-					.font(.title)
+					.font(.title2)
 					.multilineTextAlignment(.center)
 				Text("Add some documents to get started :)")
 					.multilineTextAlignment(.center)

@@ -21,7 +21,11 @@ struct AttemptsRemainingView: View {
 	}
 	var body: some View {
 		ZStack {
-			Text("\(attemptsRemaining) \(attemptsRemainingText) ")
+			Text(
+				attemptsRemaining > 0
+					? "\(attemptsRemaining) \(attemptsRemainingText) "
+					: "No Attempts Remaining"
+			)
 				.bold()
 				.padding(10)
 				.background(
@@ -30,7 +34,6 @@ struct AttemptsRemainingView: View {
 						.opacity(0.3)
 						.shadow(radius: 10 )
 				)
-			
 		}
 	}
 }

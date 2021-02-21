@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct GalleryGridView: View {
-	
 	@EnvironmentObject private var settings: UserSettings
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \StoredItem.timestamp, ascending: false)], animation: .default)
 	var data: FetchedResults<StoredItem>
@@ -43,20 +42,21 @@ struct GalleryGridView: View {
 						.transition(.opacity)
 				}
 			}
-		} else if filteredData.isEmpty {VStack {
-			SearchBarView(text: $searchText, placeholder: "Search files...")
-			ZStack {
-				Color.clear
-				FilteredGalleryView {
-					withAnimation {
-						selectedTags = []
-						searchText = ""
+		} else if filteredData.isEmpty {
+			VStack {
+				SearchBarView(text: $searchText, placeholder: "Search files...")
+				ZStack {
+					Color.clear
+					FilteredGalleryView {
+						withAnimation {
+							selectedTags = []
+							searchText = ""
+						}
 					}
+					.frame(maxWidth: 280)
+					.transition(.opacity)
 				}
-				.frame(maxWidth: 280)
-				.transition(.opacity)
 			}
-		}
 		} else {
 			ScrollView {
 				SearchBarView(text: $searchText, placeholder: "Search files...")
@@ -86,7 +86,8 @@ struct GalleryGridView: View {
 				}
 				.padding(4)
 				.padding(.bottom, 55)
-			}.popover(item: $tagEditingItem) { item in
+			}
+			.popover(item: $tagEditingItem) { item in
 				ItemEditView(item: item) { tagEditingItem = nil }
 			}
 		}

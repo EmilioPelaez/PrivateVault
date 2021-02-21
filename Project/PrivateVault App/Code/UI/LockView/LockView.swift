@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct LockView: View {
+	enum CodeState {
+		case undefined
+		case correct
+		case incorrect
+	}
+	
 	@EnvironmentObject private var settings: UserSettings
 	@Binding var isLocked: Bool
 	@State var code = ""
 	@State var attempts = 0
-	@State var isIncorrect = false
+	@State var codeState: CodeState = .undefined
 	@State var incorrectAnimation = false
 	@State var isLockedOut = false
 	
@@ -26,7 +32,7 @@ struct LockView: View {
 			VStack(spacing: 25) {
 				AttemptsRemainingView(attemptsRemaining: settings.maxAttempts - attempts)
 					.opacity(attempts > 0 ? 1.0 : 0.0)
-				InputDisplay(input: $code, codeLength: settings.codeLength, textColor: textColor)
+				InputDisplay(input: $code, codeLength: settings.codeLength, textColor: textColor, displayColor: displayColor)
 					.shake(incorrectAnimation, distance: 10, count: 4)
 				BlurringView(isBlurred: $isLockedOut ) {
 					KeypadView(input: input, delete: delete)
@@ -37,10 +43,18 @@ struct LockView: View {
 	}
 	
 	var textColor: Color {
-		switch (isIncorrect, isLocked) {
-		case (_, false): return .green
-		case (true, _): return .red
+		switch codeState {
+		case .correct: return .green
+		case .incorrect: return .red
 		case _: return .primary
+		}
+	}
+	
+	var displayColor: Color? {
+		switch codeState {
+		case .correct: return .green
+		case .incorrect: return .red
+		case _: return nil
 		}
 	}
 	
@@ -62,7 +76,7 @@ struct LockView: View {
 			return
 		}
 		
-		isIncorrect = false
+		codeState = .undefined
 	}
 	
 	func delete() {
@@ -70,20 +84,27 @@ struct LockView: View {
 			return
 		}
 		code.removeLast()
-		isIncorrect = false
+		codeState = .undefined
 	}
 	
 	func allowEntry() -> Void {
-		attempts = 0
-		isLocked = false
-		code = ""
 		SoundEffect.success.play()
+		codeState = .correct
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+			withAnimation {
+				isLocked = false
+				codeState = .undefined
+				attempts = 0
+				code = ""
+			}
+		}
+		
 	}
 	
 	func rejectEntry() -> Void {
 		code = ""
 		attempts += 1
-		isIncorrect = true
+		codeState = .incorrect
 		incorrectAnimation.toggle()
 		SoundEffect.failure.play()
 		if attempts == settings.maxAttempts { isLockedOut = true }

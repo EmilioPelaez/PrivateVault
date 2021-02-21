@@ -26,7 +26,7 @@ struct SetPasscodeView: View {
 					}
 					.pickerStyle(SegmentedPickerStyle())
 				}
-				InputDisplay(input: $code, codeLength: codeLength, textColor: .primary)
+				InputDisplay(input: $code, codeLength: codeLength, textColor: .primary, displayColor: nil)
 				KeypadView(input: input, delete: delete)
 			}
 			.frame(maxWidth: 280)

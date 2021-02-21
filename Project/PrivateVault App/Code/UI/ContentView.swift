@@ -21,20 +21,20 @@ struct ContentView: View {
 					isLocked = false
 				}
 			}
-			.transition(.slide)
+			.transition(.move(edge: .trailing))
 		} else {
 			NavigationView {
 				GalleryView(isLocked: $isLocked)
 			}
 			.navigationViewStyle(StackNavigationViewStyle())
-			.transition(.slide)
+			.transition(.move(edge: .leading))
 			.overlay(
 				Group {
-					GeometryReader { proxy in
-						LockView(isLocked: $isLocked).offset(y: isLocked ? 0 : proxy.size.height)
+					if isLocked {
+						LockView(isLocked: $isLocked)
+							.transition(.asymmetric(insertion: .opacity, removal: .move(edge: .bottom)))
 					}
 				}
-				.animation(.linear)
 			)
 			.onChange(of: scenePhase) { phase in
 				if [.inactive, .background].contains(phase) {

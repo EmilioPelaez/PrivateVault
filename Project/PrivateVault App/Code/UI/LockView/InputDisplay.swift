@@ -11,6 +11,7 @@ struct InputDisplay: View {
 	@Binding var input: String
 	let codeLength: Int
 	let textColor: Color
+	let displayColor: Color?
 	
 	var body: some View {
 		HStack(spacing: 0) {
@@ -28,17 +29,17 @@ struct InputDisplay: View {
 		.padding(.vertical, 20)
 		.background(
 			RoundedRectangle(cornerRadius: 20, style: .continuous)
-				.fill(Color(.tertiarySystemFill))
+				.fill(displayColor?.opacity(0.2) ?? Color(.tertiarySystemFill))
 		)
 	}
 }
 
 struct InputDisplay_Previews: PreviewProvider {
 	static var previews: some View {
-		InputDisplay(input: .constant("X"), codeLength: 4, textColor: .primary)
+		InputDisplay(input: .constant("X"), codeLength: 4, textColor: .primary, displayColor: nil)
 			.previewLayout(.sizeThatFits)
 		
-		InputDisplay(input: .constant("XX"), codeLength: 6, textColor: .primary)
+		InputDisplay(input: .constant("XX"), codeLength: 6, textColor: .primary, displayColor: nil)
 			.previewLayout(.sizeThatFits)
 	}
 }

@@ -41,7 +41,11 @@ struct GalleryView: View {
 						Button(action: { currentSheet = .settings }) {
 							Image(systemName: "gearshape.fill")
 						}
-						Button(action: { isLocked = true }) {
+						Button(action: {
+							withAnimation {
+								isLocked = true
+							}
+						}) {
 							Image(systemName: "lock.fill")
 						}
 					}

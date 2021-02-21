@@ -22,6 +22,12 @@ final class UserSettings: ObservableObject {
 	@Published var maxAttempts = UserDefaults.standard.object(forKey: .maxAttempts) as? Int ?? 5 {
 		didSet { UserDefaults.standard.set(maxAttempts, forKey: .maxAttempts) }
 	}
+	@Published var sound = UserDefaults.standard.object(forKey: .sound) as? Bool ?? true {
+		didSet { UserDefaults.standard.set(sound, forKey: .sound) }
+	}
+	@Published var hapticFeedback = UserDefaults.standard.object(forKey: .hapticFeedback) as? Bool ?? true {
+		didSet { UserDefaults.standard.set(hapticFeedback, forKey: .hapticFeedback) }
+	}
 }
 
 fileprivate extension String {
@@ -29,4 +35,6 @@ fileprivate extension String {
 	static let passcode = "passcode"
 	static let codeLength = "codeLength"
 	static let maxAttempts = "maxAttempts"
+	static let sound = "sound"
+	static let hapticFeedback = "hapticFeedback"
 }

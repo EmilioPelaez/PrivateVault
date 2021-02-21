@@ -39,6 +39,21 @@ struct SettingsView: View {
 						Text("Reset Passcode")
 					}
 				}
+				
+				Section(header: Text("General")) {
+					HStack {
+						Text("Haptic Feedback")
+						Spacer()
+						Toggle("", isOn: $settings.hapticFeedback)
+					}
+					
+					HStack {
+						Text("Sound")
+						Spacer()
+						Toggle("", isOn: $settings.sound)
+					}
+				}
+				
 			}
 			.listStyle(InsetGroupedListStyle())
 			.navigationTitle("Settings")

@@ -77,7 +77,8 @@ struct LockView: View {
 		attempts = 0
 		isLocked = false
 		code = ""
-		SoundEffect.success.play()
+		if settings.sound { SoundEffect.success.play() }
+		
 	}
 	
 	func rejectEntry() -> Void {
@@ -85,7 +86,8 @@ struct LockView: View {
 		attempts += 1
 		isIncorrect = true
 		incorrectAnimation.toggle()
-		SoundEffect.failure.play()
+		if settings.sound { SoundEffect.failure.play() }
+		
 		if attempts == settings.maxAttempts { isLockedOut = true }
 	}
 }

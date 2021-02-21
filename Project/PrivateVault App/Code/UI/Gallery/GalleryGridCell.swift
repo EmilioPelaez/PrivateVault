@@ -25,15 +25,12 @@ struct GalleryGridCell: View {
 				VStack(alignment: .leading) {
 					Text(item.name ?? "??")
 						.font(.headline)
-//					Text("12/31/20")
-//						.font(.footnote)
-//						.foregroundColor(.secondary)
-					Text(String(format: "%.1f MB", CGFloat(item.data?.count ?? 0) / 1_000_000))
-						.font(.footnote)
-						.foregroundColor(.secondary)
+						.lineLimit(1)
 				}
+				.padding([.horizontal, .bottom], 5)
 			}
 		}
+		.background(Color(.systemBackground))
 	}
 }
 

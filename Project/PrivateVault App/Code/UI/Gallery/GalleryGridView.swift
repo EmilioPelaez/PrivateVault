@@ -8,14 +8,8 @@
 import SwiftUI
 
 struct GalleryGridView: View {
-	private func columns(spacing: CGFloat) -> [GridItem] {
-		[
-			GridItem(.flexible(), spacing: spacing),
-			GridItem(.flexible(), spacing: spacing),
-			GridItem(.flexible(), spacing: spacing)
-		]
-	}
 	
+	@EnvironmentObject private var settings: UserSettings
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \StoredItem.timestamp, ascending: false)], animation: .default)
 	var data: FetchedResults<StoredItem>
 	
@@ -66,7 +60,7 @@ struct GalleryGridView: View {
 		} else {
 			ScrollView {
 				SearchBarView(text: $searchText, placeholder: "Search files...")
-				LazyVGrid(columns: columns(spacing: 4), spacing: 4) {
+				LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: settings.columns), spacing: 4) {
 					ForEach(filteredData) { item in
 						GalleryGridCell(item: item)
 							.onTapGesture { selection(item) }

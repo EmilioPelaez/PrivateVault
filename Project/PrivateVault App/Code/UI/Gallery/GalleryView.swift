@@ -17,7 +17,6 @@ struct GalleryView: View {
 		case cameraPicker
 		case documentPicker
 		case documentScanner
-		case audioRecorder
 		
 		var id: Int { rawValue }
 	}
@@ -25,7 +24,6 @@ struct GalleryView: View {
 	@Environment(\.managedObjectContext) private var viewContext
 	@Environment(\.persistenceController) private var persistenceController
 	
-	@State var showImageActionSheet = false
 	@State var showPermissionAlert = false
 	@State var currentSheet: SheetItem?
 	@State var selectedItem: StoredItem?
@@ -67,13 +65,6 @@ struct GalleryView: View {
 				),
 				secondaryButton: .cancel())
 		}
-		.actionSheet(isPresented: $showImageActionSheet) {
-			ActionSheet(title: Text("Import images"), buttons: [
-				.default(Text("Camera"), action: { requestCameraAuthorization() }),
-				.default(Text("Photo Library"), action: { requestImageAuthorization() }),
-				.cancel()
-			])
-		}
 	}
 	
 	func select(_ item: StoredItem) {
@@ -97,7 +88,6 @@ struct GalleryView: View {
 			case .cameraPicker: CameraPicker(selectImage: selectCameraCapture)
 			case .documentPicker: DocumentPicker(selectDocuments: selectDocuments)
 			case .documentScanner: DocumentScanner(selectScan: selectCameraCapture)
-			case .audioRecorder: AudioRecorder(recordAudio: recordAudio)
 			case .settings: SettingsView { currentSheet = nil }
 			}
 		}
@@ -105,7 +95,8 @@ struct GalleryView: View {
 	
 	func selectType(_ type: FileTypePickerView.FileType) {
 		switch type {
-		case .photo: showImageActionSheet = true
+		case .camera: requestCameraAuthorization()
+		case .album: requestImageAuthorization()
 		case .document: currentSheet = .documentPicker
 		case .scan: currentSheet = .documentScanner
 		}
@@ -124,10 +115,7 @@ struct GalleryView: View {
 		case .authorized:
 			currentSheet = .cameraPicker
 		case .notDetermined:
-			AVCaptureDevice.requestAccess(for: .video, completionHandler: { granted in
-				guard granted else { return }
-				currentSheet = .cameraPicker
-			})
+			AVCaptureDevice.requestAccess(for: .video) { _ in }
 		default:
 			showPermissionAlert = true
 		}
@@ -146,22 +134,10 @@ struct GalleryView: View {
 	func selectDocuments(_ documentURLs: [URL]) {
 		print(documentURLs)
 	}
-	
-	func recordAudio(_ audioURL: URL) {
-		fatalError("Audio recording is not implemented yet.")
-	}
 }
 
 struct GalleryView_Previews: PreviewProvider {
 	static var previews: some View {
 		GalleryView(isLocked: .constant(false))
-	}
-}
-
-struct AudioRecorder: View {
-	var recordAudio: (URL) -> Void
-	
-	var body: some View {
-		EmptyView()
 	}
 }

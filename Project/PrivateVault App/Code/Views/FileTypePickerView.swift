@@ -9,13 +9,15 @@ import SwiftUI
 
 struct FileTypePickerView: View {
 	enum FileType: CaseIterable, Identifiable {
-		case photo
+		case camera
+		case album
 		case document
 		case scan
 		
 		var systemName: String {
 			switch self {
-			case .photo: return "camera"
+			case .camera: return "camera"
+			case .album: return "photo.on.rectangle"
 			case .document: return "doc"
 			case .scan: return "doc.text.viewfinder"
 			}
@@ -23,23 +25,21 @@ struct FileTypePickerView: View {
 		
 		var name: String {
 			switch self {
-			case .photo: return "Photo"
+			case .camera: return "Camera"
+			case .album: return "Album"
 			case .document: return "Document"
 			case .scan: return "Document Scan"
 			}
 		}
 
-		var id: Int {
-			switch self {
-			case .photo: return 1
-			case .document: return 2
-			case .scan: return 3
-			}
-		}
+		var id: Int { FileType.allCases.firstIndex(of: self) ?? 0 }
 	}
 	
 	@State var isExpanded: Bool = false
 	var action: (FileType) -> Void
+	
+	let height: CGFloat = 60
+	let margin: CGFloat = 5
 	
 	var body: some View {
 		HStack {
@@ -49,23 +49,23 @@ struct FileTypePickerView: View {
 				}
 			} label: {
 				Image(systemName: "plus")
-					.font(.system(size: 30))
-					.frame(width: 50, height: 50, alignment: .center)
+					.font(.system(size: height / 2))
+					.frame(width: height, height: height)
 					.foregroundColor(.white)
 				.rotationEffect(.degrees(isExpanded ? 225 : 0))
 			}
 			if isExpanded {
-				HStack(spacing: 10) {
+				HStack(spacing: margin) {
 					ForEach(FileType.allCases) {
-						OptionIcon(fileType: $0, action: buttonAction)
+						OptionIcon(fileType: $0, height: height - margin * 2, action: buttonAction)
 					}
 				}
-				.padding(.trailing, 10)
+				.padding(.trailing, margin)
 				.transition(.scale(scale: 0, anchor: .leading))
 			}
 		}
 		.background(
-			RoundedRectangle(cornerRadius: 25, style: .circular)
+			RoundedRectangle(cornerRadius: 30, style: .circular)
 				.fill(Color.blue)
 				.shadow(color: Color(white: 0, opacity: 0.2), radius: 4, x: 0, y: 2)
 		)
@@ -81,14 +81,16 @@ struct FileTypePickerView: View {
 
 extension FileTypePickerView {
 	struct OptionIcon: View {
-		var fileType: FileType
-		var action: (FileType) -> Void
+		let fileType: FileType
+		let height: CGFloat
+		let action: (FileType) -> Void
+		
 		var body: some View {
 			Button(action: { action(fileType) } ) {
 				VStack(spacing: 2) {
 					Image(systemName: fileType.systemName)
-						.font(.system(size: 20))
-						.frame(width: 40, height: 40, alignment: .center)
+						.font(.system(size: height / 2))
+						.frame(width: height, height: height)
 						.background(Circle().fill(Color.white))
 						.foregroundColor(.blue)
 				}

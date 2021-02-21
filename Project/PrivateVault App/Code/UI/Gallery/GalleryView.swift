@@ -106,7 +106,6 @@ struct GalleryView: View {
 	func selectType(_ type: FileTypePickerView.FileType) {
 		switch type {
 		case .photo: showImageActionSheet = true
-		case .audio: currentSheet = .audioRecorder
 		case .document: currentSheet = .documentPicker
 		case .scan: currentSheet = .documentScanner
 		}

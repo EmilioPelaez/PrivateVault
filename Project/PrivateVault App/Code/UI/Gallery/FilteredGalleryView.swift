@@ -15,10 +15,10 @@ struct FilteredGalleryView: View {
 			Image("GalleryFiltered")
 				.resizable()
 				.aspectRatio(CGSize(width: 579, height: 622), contentMode: .fit)
-				.padding(.horizontal, 25)
+				.padding(.horizontal, 45)
 			VStack(spacing: 8) {
-				Text("No Items Match Your Search")
-					.font(.title)
+				Text("No Matches!")
+					.font(.title2)
 					.multilineTextAlignment(.center)
 				Text("Remove some filters to see some results.")
 					.multilineTextAlignment(.center)
@@ -36,7 +36,6 @@ struct FilteredGalleryView: View {
 			}
 		}
 		.frame(maxWidth: 300)
-		.padding(.bottom, 50)
 	}
 }
 

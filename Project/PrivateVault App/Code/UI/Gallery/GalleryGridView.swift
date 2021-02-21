@@ -39,27 +39,27 @@ struct GalleryGridView: View {
 	}
 	
 	var body: some View {
-		if data.isEmpty {
-			ZStack {
-				Color.clear
-				EmptyGalleryView()
+		ScrollView {
+			SearchBarView(text: $searchText, placeholder: "Search files...")
+			if data.isEmpty {
+				ZStack {
+					Color.clear
+					EmptyGalleryView()
+						.frame(maxWidth: 280)
+						.transition(.opacity)
+				}
+			} else if filteredData.isEmpty {
+				ZStack(alignment: .top) {
+					Color.clear
+					FilteredGalleryView {
+						withAnimation {
+							selectedTags = []
+						}
+					}
 					.frame(maxWidth: 280)
 					.transition(.opacity)
-			}
-		} else if filteredData.isEmpty {
-			ZStack {
-				Color.clear
-				FilteredGalleryView {
-					withAnimation {
-						selectedTags = []
-					}
 				}
-				.frame(maxWidth: 280)
-				.transition(.opacity)
-			}
-		} else {
-			ScrollView {
-				SearchBarView(text: $searchText, placeholder: "Search files...")
+			} else {
 				LazyVGrid(columns: columns(spacing: 4), spacing: 4) {
 					ForEach(filteredData) { item in
 						GalleryGridCell(item: item)
@@ -82,22 +82,16 @@ struct GalleryGridView: View {
 									Image(systemName: "trash")
 								}
 							}
-						
 					}
 				}
 				.padding(4)
 				.padding(.bottom, 55)
 			}
-			.popover(item: $tagEditingItem) { item in
-				ItemEditView(item: item) { tagEditingItem = nil }
-			}
+		}
+		.popover(item: $tagEditingItem) { item in
+			ItemEditView(item: item) { tagEditingItem = nil }
 		}
 	}
-	
-//	var filteredData: [StoredItem] {
-//		if searchText.isEmpty { return Array(data) }
-//		return data.filter({ $0.name?.localizedStandardContains(searchText) ?? false })
-//	}
 }
 
 struct GalleryGridView_Previews: PreviewProvider {

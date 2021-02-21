@@ -80,9 +80,24 @@ struct SettingsView: View {
 					}
 				}
 				Section(header: Text("Legal"), footer: footer) {
-					SettingsDetailRow(label: "Privacy", text: "PrivateVault does not upload any user data.")
-					SettingsDetailRow(label: "License", text: license)
-					SettingsDetailRow(label: "About", text: "Created by Emilio, Danny and Ian.")
+					NavigationLink(destination: AboutView()) {
+						Text("About")
+					}
+					SettingsDetailRow(label: "License") {
+						Text(license).multilineTextAlignment(.leading)
+					}
+					SettingsDetailRow(label: "Privacy") {
+						VStack(spacing: 25) {
+							Text("With Private Vault, your data is safe and is not uploaded anywhere other than your own personal iCloud (when available). You can see the source code or Private Vault here:").multilineTextAlignment(.leading)
+							Button {
+								guard let url = URL(string: "https://github.com/EmilioPelaez/PrivateVault") else { return }
+								UIApplication.shared.open(url)
+							}
+							label: {
+								Text("View Source Code")
+							}
+						}
+					}
 				}
 			}
 			.listStyle(InsetGroupedListStyle())
@@ -118,12 +133,13 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
 	static var previews: some View {
 		SettingsView { }
+			.environmentObject(UserSettings())
 	}
 }
 
-struct SettingsDetailRow: View {
+struct SettingsDetailRow<Content: View>: View {
 	var label: String
-	var text: String
+	var content: () -> (Content)
 
 	var body: some View {
 		NavigationLink(destination: destination) {
@@ -136,15 +152,12 @@ struct SettingsDetailRow: View {
 
 	var destination: some View {
 		ScrollView {
-			VStack {
-				HStack {
-					Text(text).multilineTextAlignment(.leading)
-					Spacer()
-				}
-				Spacer()
+			ZStack(alignment: .topLeading) {
+				Color.clear
+				content()
 			}
+			.padding()
 		}
-		.padding()
 		.navigationBarTitle(label, displayMode: .inline)
 	}
 }

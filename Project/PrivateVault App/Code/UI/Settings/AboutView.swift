@@ -9,39 +9,46 @@ import SwiftUI
 
 struct AboutView: View {
 	var body: some View {
-		NavigationView {
-			ScrollView(.vertical, showsIndicators: true) {
-				VStack(spacing: 0) {
-					HStack(alignment: .top, spacing: 20) {
-						Image("Icon")
-							.resizable()
-							.frame(width: 120, height: 120)
-							.clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
-						VStack(alignment: .leading, spacing: 8) {
-							Text("Private Vault")
-								.bold()
-								.font(.title)
-							Text("Version 0.0.1")
-								.font(.subheadline)
-						}
-						.padding(.top, 10)
-						Spacer()
-					}
-					.padding()
+		ScrollView(.vertical, showsIndicators: true) {
+			VStack(spacing: 0) {
+				HStack(alignment: .top, spacing: 20) {
+					Image("Icon")
+						.resizable()
+						.frame(width: 120, height: 120)
+						.clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
 					VStack(alignment: .leading, spacing: 8) {
-						Text("Created by")
-							.font(.headline)
-						CreatorRow(name: "Emilio Peláez", title: "Programmer", links: [
-							.website("http://emiliopelaez.me"),
-							.twitter("http://twitter.com/EmilioPelaez"),
-							.appStore("https://apps.apple.com/us/developer/emilio-pelaez/id408763858")
-						])
+						Text("Private Vault")
+							.bold()
+							.font(.title)
+						Text("Version 0.0.1")
+							.font(.subheadline)
 					}
-					.padding()
+					.padding(.top, 10)
+					Spacer()
 				}
+				.padding()
+				VStack(alignment: .leading, spacing: 8) {
+					Text("Created by")
+						.font(.headline)
+					CreatorRow(name: "Emilio Peláez", title: "Programmer", links: [
+						.website("http://emiliopelaez.me"),
+						.twitter("http://twitter.com/EmilioPelaez"),
+						.appStore("https://apps.apple.com/us/developer/emilio-pelaez/id408763858")
+					])
+					CreatorRow(name: "Ian Manor", title: "Programmer", links: [
+						.website("https://www.ianmanor.com/portfolio"),
+						.twitter("https://twitter.com/ian_manor"),
+						.github("https://www.github.com/imvm")
+					])
+					CreatorRow(name: "Daniel Behar", title: "Programmer", links: [
+						.twitter("https://twitter.com/dannybehar"),
+						.github("https://github.com/DannyBehar")
+					])
+				}
+				.padding()
 			}
-			.navigationTitle("About")
 		}
+		.navigationTitle("About")
 	}
 	
 	struct CreatorRow: View {
@@ -72,12 +79,14 @@ struct AboutView: View {
 			case twitter(String)
 			case website(String)
 			case appStore(String)
+			case github(String)
 			
 			var systemName: String {
 				switch self {
 				case .twitter: return "message.fill"
 				case .website: return "globe"
 				case .appStore: return "apps.iphone"
+				case .github: return "chevron.left.slash.chevron.right"
 				}
 			}
 			
@@ -85,15 +94,16 @@ struct AboutView: View {
 				switch self {
 				case .twitter: return Color(red: 0.11, green: 0.63, blue: 0.95)
 				case .website: return .blue
-				case .appStore: return .black
+				case .appStore, .github: return .black
 				}
 			}
 			
 			var size: CGFloat {
 				switch self {
-				case .twitter: return 20
-				case .website: return 30
-				case .appStore: return 26
+				case .twitter: return 18
+				case .website: return 28
+				case .appStore: return 22
+				case .github: return 14
 				}
 			}
 			
@@ -102,6 +112,7 @@ struct AboutView: View {
 				case .twitter(let urlString): return urlString
 				case .website(let urlString): return urlString
 				case .appStore(let urlString): return urlString
+				case .github(let urlString): return urlString
 				}
 			}
 		}

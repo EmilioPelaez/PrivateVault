@@ -71,6 +71,13 @@ struct GalleryView: View {
 				),
 				secondaryButton: .cancel())
 		}
+		.onChange(of: isLocked) {
+			guard $0 else { return }
+			showImageActionSheet = false
+			showPermissionAlert = false
+			currentSheet = nil
+			selectedItem = nil
+		}
 	}
 	
 	func select(_ item: StoredItem) {

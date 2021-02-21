@@ -25,6 +25,8 @@
 		46F26BEF25E19C8600070858 /* BlurringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F26BEE25E19C8600070858 /* BlurringView.swift */; };
 		C868FD6125E2AFA5005A3EA9 /* SetPasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */; };
 		C868FD6325E2D458005A3EA9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6225E2D458005A3EA9 /* AboutView.swift */; };
+		C868FD6625E30619005A3EA9 /* BiometricAuthenticationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6525E30619005A3EA9 /* BiometricAuthenticationButton.swift */; };
+		C868FD6825E30B23005A3EA9 /* LAContext+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6725E30B23005A3EA9 /* LAContext+Shared.swift */; };
 		C88ACB1125E106D00064C160 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1025E106D00064C160 /* LockView.swift */; };
 		C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1225E109FD0064C160 /* InputDisplay.swift */; };
 		C88ACB1625E10A790064C160 /* FeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */; };
@@ -80,6 +82,8 @@
 		46F26BEE25E19C8600070858 /* BlurringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurringView.swift; sourceTree = "<group>"; };
 		C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasscodeView.swift; sourceTree = "<group>"; };
 		C868FD6225E2D458005A3EA9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		C868FD6525E30619005A3EA9 /* BiometricAuthenticationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationButton.swift; sourceTree = "<group>"; };
+		C868FD6725E30B23005A3EA9 /* LAContext+Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LAContext+Shared.swift"; sourceTree = "<group>"; };
 		C88ACB1025E106D00064C160 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		C88ACB1225E109FD0064C160 /* InputDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDisplay.swift; sourceTree = "<group>"; };
 		C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerator.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 				2B39CDB725E1BB5700E63EDD /* Binding+Map.swift */,
 				2B39CDBB25E1BEAB00E63EDD /* ContentMode+description.swift */,
 				2B39CDC125E1C6C500E63EDD /* String+Capping.swift */,
+				C868FD6725E30B23005A3EA9 /* LAContext+Shared.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 				460E096125E077C4001343C2 /* KeypadView.swift */,
 				46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */,
 				46F26BEE25E19C8600070858 /* BlurringView.swift */,
+				C868FD6525E30619005A3EA9 /* BiometricAuthenticationButton.swift */,
 			);
 			path = LockView;
 			sourceTree = "<group>";
@@ -408,6 +414,7 @@
 				C8EFD22625E14B2B00CB4141 /* Model.xcdatamodeld in Sources */,
 				C8A792D825E06642009B862D /* ContentView.swift in Sources */,
 				C89C9DE725E197C5003505B9 /* Tag+Creation.swift in Sources */,
+				C868FD6825E30B23005A3EA9 /* LAContext+Shared.swift in Sources */,
 				2B6C742C25E08BBF00EAF6FD /* PhotosPicker.swift in Sources */,
 				C8EFD22B25E159EA00CB4141 /* StoredItem+Properties.swift in Sources */,
 				C89C9DE525E196A5003505B9 /* PreviewEnvironment.swift in Sources */,
@@ -441,6 +448,7 @@
 				C89C9DED25E19E44003505B9 /* Tag+Comparable.swift in Sources */,
 				C868FD6325E2D458005A3EA9 /* AboutView.swift in Sources */,
 				2B39CD7525E17AFB00E63EDD /* SearchBarView.swift in Sources */,
+				C868FD6625E30619005A3EA9 /* BiometricAuthenticationButton.swift in Sources */,
 				468A75DC25E0976E00B87597 /* FileTypePickerView.swift in Sources */,
 				46F26BEC25E19C6700070858 /* AttemptsRemainingView.swift in Sources */,
 				46F26BEF25E19C8600070858 /* BlurringView.swift in Sources */,

@@ -18,6 +18,9 @@ final class UserSettings: ObservableObject {
 	@Published var maxAttempts = UserDefaults.standard.object(forKey: .maxAttempts) as? Int ?? 5 {
 		didSet { UserDefaults.standard.set(maxAttempts, forKey: .maxAttempts) }
 	}
+	@Published var biometrics = UserDefaults.standard.bool(forKey: .biometrics) {
+		didSet { UserDefaults.standard.set(biometrics, forKey: .biometrics) }
+	}
 	
 	@Published var columns = UserDefaults.standard.object(forKey: .columns) as? Int ?? 3 {
 		didSet { UserDefaults.standard.set(columns, forKey: .columns) }
@@ -40,6 +43,7 @@ final class UserSettings: ObservableObject {
 fileprivate extension String {
 	static let passcode = "passcode"
 	static let codeLength = "codeLength"
+	static let biometrics = "biometrics"
 	static let maxAttempts = "maxAttempts"
 	static let columns = "columns"
 	static let showDetailsKey = "showDetailsKey"

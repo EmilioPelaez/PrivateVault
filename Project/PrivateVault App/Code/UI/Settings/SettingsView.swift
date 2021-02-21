@@ -5,10 +5,14 @@
 //  Created by Ian Manor on 20/02/21.
 //
 
+import LocalAuthentication
 import SwiftUI
 
 struct SettingsView: View {
 	@EnvironmentObject private var settings: UserSettings
+	
+	let biometricsContext = LAContext()
+	
 	@State var resetPasscode: Bool = false
 	let close: () -> Void
 	let version = "0.0.1"
@@ -36,6 +40,18 @@ struct SettingsView: View {
 	SOFTWARE.
 	"""
 	
+	var biometricSupported: Bool {
+		biometricsContext.availableType != .none
+	}
+	
+	var biometricTitle: String {
+		switch biometricsContext.availableType {
+		case .faceID: return "Face ID"
+		case .touchID: return "Touch ID"
+		case _: return ""
+		}
+	}
+	
 	var body: some View {
 		NavigationView {
 			Form {
@@ -57,6 +73,13 @@ struct SettingsView: View {
 					}
 				}
 				Section(header: Text("Vault")) {
+					if biometricSupported {
+						HStack {
+							Text(biometricTitle)
+							Spacer()
+							Toggle("", isOn: $settings.biometrics)
+						}
+					}
 					HStack {
 						Text("Attempt Limit").layoutPriority(1)
 						Color.clear
@@ -117,6 +140,9 @@ struct SettingsView: View {
 				}
 			}
 		}
+		.onAppear {
+			
+		}
 	}
 	
 	var footer: some View {
@@ -126,6 +152,16 @@ struct SettingsView: View {
 				.font(.footnote)
 				.foregroundColor(Color(.secondaryLabel))
 			Spacer()
+		}
+	}
+	
+	func requestBiometric() {
+		let context = LAContext()
+		var error: NSError?
+		
+		if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+		} else {
+			return
 		}
 	}
 }

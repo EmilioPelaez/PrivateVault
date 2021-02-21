@@ -8,31 +8,11 @@
 import SwiftUI
 import LocalAuthentication
 
-struct KeypadView: View {
+struct KeypadView<Button: View>: View {
 	@EnvironmentObject private var settings: UserSettings
 	let input: (String) -> Void
 	let delete: () -> Void
-	let isPasswordReset: Bool
-	
-	func authenticate() {
-		let context = LAContext()
-		var error: NSError?
-		
-		if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-			let reason = "To unlock your private vault app"
-			context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
-				DispatchQueue.main.async {
-					if success {
-						input(settings.passcode)
-					} else {
-						return
-					}
-				}
-			}
-		} else {
-			return
-		}
-	}
+	let bottomLeftInput: () -> (Button)
 	
 	var body: some View {
 		LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), alignment: .center) {
@@ -42,15 +22,7 @@ struct KeypadView: View {
 					input("\(index)")
 				}
 			}
-			if isPasswordReset {
-				Spacer()
-			} else {
-				KeyButton(title: Image(systemName: "faceid"), color: Color(.tertiarySystemFill), textColor: .primary) {
-					if settings.hapticFeedback { FeedbackGenerator.impact(.rigid) }
-					authenticate()
-				}
-			}
-			
+			bottomLeftInput()
 			KeyButton(title: Text("0"), color: Color(.tertiarySystemFill), textColor: .primary) {
 				if settings.hapticFeedback { FeedbackGenerator.impact(.rigid) }
 				input("0")
@@ -91,7 +63,7 @@ struct KeypadView_Previews: PreviewProvider {
 	@State static var code = ""
 	
 	static var previews: some View {
-		KeypadView(input: { _ in }, delete: { }, isPasswordReset: false)
+		KeypadView(input: { _ in }, delete: { }) { Spacer() }
 			.environmentObject(UserSettings())
 	}
 }

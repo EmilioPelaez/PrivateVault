@@ -23,8 +23,8 @@ struct Shake: GeometryEffect {
 
 extension View {
 	
-	func shake(_ flag: Bool, distance: CGFloat = 10, count: Int = 3) -> some View {
-		self.modifier(Shake(distance: distance, shakeCount: count, animatableData: flag ? 1 : 0))
+	func shake(_ entryStatus: EntryStatus, distance: CGFloat = 10, count: Int = 3) -> some View {
+		self.modifier(Shake(distance: distance, shakeCount: count, animatableData: entryStatus == .rejected ? 1 : 0))
 	}
 	
 }

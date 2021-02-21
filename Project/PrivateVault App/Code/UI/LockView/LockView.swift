@@ -7,15 +7,29 @@
 
 import SwiftUI
 
+enum EntryStatus {
+	case accepted
+	case rejected
+	case undetermined
+}
+
 struct LockView: View {
 	let password = "1234"
 	let maxAttempts = 5
 	@Binding var isLocked: Bool
 	@State var code: String = ""
-	@State var isIncorrect: Bool = false
 	@State var attempts: Int = 0
 	@State var isLockedOut: Bool = false
+	@State var entryStatus: EntryStatus = .undetermined
 	let maxDigits: Int = 4
+	
+	var codeIsFullyEntered: Bool {
+		code.count == maxDigits
+	}
+	
+	var codeIsCorrect: Bool {
+		code == password
+	}
 	
 	var body: some View {
 		ZStack {
@@ -24,8 +38,8 @@ struct LockView: View {
 				AttemptsRemainingView(attemptsRemaining: maxAttempts - attempts)
 					.opacity(attempts > 0 ? 1.0 : 0.0)
 				InputDisplay(codeLength: maxDigits, input: $code, textColor: textColor)
-					.shake(isIncorrect, distance: 10, count: 4)
-					.soundEffect(soundEffect: isIncorrect ? .failure : .none)
+					.shake(entryStatus, distance: 10, count: 4)
+					.soundEffect(soundEffect: entryStatus == .rejected ? .failure : .none )
 					.soundEffect(soundEffect: !isLocked ? .success : .none)
 				BlurringView(isBlurred: $isLockedOut ) {
 					KeypadView(input: input, delete: delete)
@@ -36,30 +50,35 @@ struct LockView: View {
 	}
 	
 	var textColor: Color {
-		guard code.count == maxDigits else { return .primary }
-		
-		return isIncorrect ? .red : .green
+		switch entryStatus {
+		case .accepted:
+			return .green
+		case .rejected:
+			return .red
+		case .undetermined:
+			return .primary
+		}
 	}
 	
 	func input(_ string: String) {
-		if (code.count ==  maxDigits) {
-			code = ""
-			isIncorrect = false
-		}
 		guard code.count < maxDigits else { return }
 		code.append(string)
-		if code.count == password.count {
+		
+		if codeIsFullyEntered && codeIsCorrect {
 			withAnimation {
-				if code == password {
-					isLocked = false
-					code = ""
-				} else {
-					attempts += 1
-					isIncorrect = true
-					if(attempts == maxAttempts) {isLockedOut = true}
-				}
+				allowEntry()
 			}
+			return
 		}
+		
+		if codeIsFullyEntered && !codeIsCorrect {
+			withAnimation {
+				rejectEntry()
+			}
+			return
+		}
+		
+		entryStatus = .undetermined
 	}
 	
 	func delete() {
@@ -67,9 +86,22 @@ struct LockView: View {
 			return
 		}
 		code.removeLast()
-		isIncorrect = false
+		entryStatus = .undetermined
 	}
 	
+	func allowEntry() -> Void {
+		attempts = 0
+		isLocked = false
+		code = ""
+		entryStatus = .accepted
+	}
+	
+	func rejectEntry() -> Void {
+		code = ""
+		attempts += 1
+		entryStatus = .rejected
+		if attempts == maxAttempts { isLockedOut = true }
+	}
 }
 
 struct LockView_Previews: PreviewProvider {

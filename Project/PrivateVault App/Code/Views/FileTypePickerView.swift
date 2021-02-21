@@ -12,14 +12,12 @@ struct FileTypePickerView: View {
 		case photo
 		case document
 		case scan
-		case audio
 		
 		var systemName: String {
 			switch self {
 			case .photo: return "camera"
 			case .document: return "doc"
 			case .scan: return "doc.text.viewfinder"
-			case .audio: return "waveform"
 			}
 		}
 		
@@ -28,7 +26,6 @@ struct FileTypePickerView: View {
 			case .photo: return "Photo"
 			case .document: return "Document"
 			case .scan: return "Document Scan"
-			case .audio: return "Audio"
 			}
 		}
 
@@ -37,7 +34,6 @@ struct FileTypePickerView: View {
 			case .photo: return 1
 			case .document: return 2
 			case .scan: return 3
-			case .audio: return 4
 			}
 		}
 	}

@@ -24,6 +24,47 @@ struct Item: Identifiable {
 }
 
 extension Item {
+	init(url: URL) {
+		let id = UUID().uuidString
+		self.id = id
+		self.title = url.lastPathComponent
+		print("DEBUG: \(url.pathExtension)")
+		switch url.pathExtension {
+		case ".pdf", ".doc":
+			self._placeholder = Image(systemName: "doc.richtext")
+		case ".txt":
+			self._placeholder = Image(systemName: "doc.text")
+		case ".mp4":
+			self._placeholder = Image(systemName: "video")
+		case ".usdz":
+			self._placeholder = Image(systemName: "arkit")
+		default:
+			self._placeholder = Image(systemName: "doc")
+		}
+
+		do {
+			let data = try? Data(contentsOf: url)
+			let folder = try FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+				.appendingPathComponent("data")
+			let url = folder
+				.appendingPathComponent(id)
+				.appendingPathExtension(url.pathExtension)
+
+			try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
+
+			//	For now this will write the data to disk on init and will never be removed
+			//	TODO: Write to disk as needed
+			try data?.write(to: url)
+
+			self.url = url
+			self.size = data?.count ?? 0
+		} catch {
+			print("Uh oh", error)
+			self.url = URL(fileURLWithPath: "~")
+			self.size = 0
+		}
+	}
+
 	init(image: UIImage) {
 		let id = UUID().uuidString
 		self.id = id

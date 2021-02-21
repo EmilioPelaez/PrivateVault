@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct KeypadView: View {
+	@EnvironmentObject private var settings: UserSettings
 	var columns: [GridItem] {
 		[
 			GridItem(.flexible()),
@@ -23,19 +24,20 @@ struct KeypadView: View {
 		LazyVGrid(columns: columns, alignment: .center) {
 			ForEach(1..<10) { index in
 				KeyButton(title: Text("\(index)"), color: Color(.tertiarySystemFill)) {
-					FeedbackGenerator.impact(.rigid)
+					if settings.hapticFeedback { FeedbackGenerator.impact(.rigid) }
 					input("\(index)")
 				}
 			}
 			Spacer()
 			KeyButton(title: Text("0"), color: Color(.tertiarySystemFill)) {
-				FeedbackGenerator.impact(.rigid)
+				if settings.hapticFeedback { FeedbackGenerator.impact(.rigid) }
 				input("0")
 			}
 			.aspectRatio(1, contentMode: .fill)
 			.clipShape(Circle())
 			KeyButton(title: Image(systemName: "delete.left"), color: .red) {
-				FeedbackGenerator.impact(.rigid)
+				if settings.hapticFeedback { FeedbackGenerator.impact(.rigid) }
+				
 				delete()
 			}
 		}

@@ -22,7 +22,7 @@ struct GalleryGridCell: View {
 				.clipped()
 			if settings.showDetails {
 				VStack(alignment: .leading) {
-					Text(item.name ?? "??")
+					Text(item.name?.capping(30) ?? "Untitled")
 						.font(.headline)
 //					Text("12/31/20")
 //						.font(.footnote)

@@ -28,8 +28,6 @@ struct LockView: View {
 					.opacity(attempts > 0 ? 1.0 : 0.0)
 				InputDisplay(input: $code, textColor: textColor)
 					.shake(incorrectAnimation, distance: 10, count: 4)
-					.soundEffect(soundEffect: isIncorrect ? .failure : .none )
-					.soundEffect(soundEffect: !isLocked ? .success : .none)
 				BlurringView(isBlurred: $isLockedOut ) {
 					KeypadView(input: input, delete: delete)
 				}
@@ -79,6 +77,7 @@ struct LockView: View {
 		attempts = 0
 		isLocked = false
 		code = ""
+		SoundEffect.success.play()
 	}
 	
 	func rejectEntry() -> Void {
@@ -86,6 +85,7 @@ struct LockView: View {
 		attempts += 1
 		isIncorrect = true
 		incorrectAnimation.toggle()
+		SoundEffect.failure.play()
 		if attempts == settings.maxAttempts { isLockedOut = true }
 	}
 }

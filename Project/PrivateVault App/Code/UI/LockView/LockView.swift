@@ -14,30 +14,30 @@ enum EntryStatus {
 }
 
 struct LockView: View {
-	let password = "1234"
-	let maxAttempts = 5
+	@EnvironmentObject private var settings: UserSettings
 	@Binding var isLocked: Bool
-	@State var code: String = ""
-	@State var attempts: Int = 0
-	@State var isLockedOut: Bool = false
+	@State var code = ""
+	@State var attempts = 0
+	@State var isIncorrect = false
+	@State var isLockedOut = false
 	@State var entryStatus: EntryStatus = .undetermined
-	let maxDigits: Int = 4
+	var maxDigits: Int { settings.password.count }
 	
 	var codeIsFullyEntered: Bool {
 		code.count == maxDigits
 	}
 	
 	var codeIsCorrect: Bool {
-		code == password
+        code == settings.password
 	}
 	
 	var body: some View {
 		ZStack {
 			Color(.systemBackground).ignoresSafeArea()
 			VStack(spacing: 25) {
-				AttemptsRemainingView(attemptsRemaining: maxAttempts - attempts)
+				AttemptsRemainingView(attemptsRemaining: settings.maxAttempts - attempts)
 					.opacity(attempts > 0 ? 1.0 : 0.0)
-				InputDisplay(codeLength: maxDigits, input: $code, textColor: textColor)
+				InputDisplay(input: $code, textColor: textColor)
 					.shake(entryStatus, distance: 10, count: 4)
 					.soundEffect(soundEffect: entryStatus == .rejected ? .failure : .none )
 					.soundEffect(soundEffect: !isLocked ? .success : .none)
@@ -100,7 +100,7 @@ struct LockView: View {
 		code = ""
 		attempts += 1
 		entryStatus = .rejected
-		if attempts == maxAttempts { isLockedOut = true }
+		if attempts == settings.maxAttempts { isLockedOut = true }
 	}
 }
 

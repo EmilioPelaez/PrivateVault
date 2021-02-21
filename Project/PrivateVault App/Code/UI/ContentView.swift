@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-	@State var isLocked = true
 	@Environment(\.scenePhase) private var scenePhase
+	@State var isLocked = true
 	
 	var body: some View {
 		NavigationView {

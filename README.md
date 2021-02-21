@@ -1,8 +1,8 @@
 # PrivateVault
 
-PrivateVault is an iOS app for securely storing private user data.
+PrivateVault is an iOS app for securely storing private user data. Built by Emilio Peláez, Danny Behar and Ian Manor for the 2021 SwiftUI Jam Hackathon.
 
-## Features:
+# Features:
 - [x] PIN-style passcode protection
 - [x] File gallery
 - [x] File search 
@@ -11,4 +11,6 @@ PrivateVault is an iOS app for securely storing private user data.
 - [ ] Touch ID 
 - [ ] Face ID
 
-Built by Emilio Peláez, Danny Behar and Ian Manor for the 2021 SwiftUI Jam Hackathon.
+# License
+
+PrivateVault is available under the MIT license. See the LICENSE file for more info.

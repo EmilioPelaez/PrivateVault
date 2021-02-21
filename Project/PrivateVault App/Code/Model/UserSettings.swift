@@ -9,13 +9,13 @@ import SwiftUI
 
 final class UserSettings: ObservableObject {
 	//	TODO: Move this out of UserDefaults and into CoreData
-	@AppStorage(.passcode) var passcode = ""
-	@AppStorage(.codeLength) var codeLength =  4
-	@AppStorage(.maxAttempts) var maxAttempts = 5
-	@AppStorage(.columns) var columns = 3
-	@AppStorage(.showDetailsKey) var showDetails = true
-	@AppStorage(.sound) var sound = true
-	@AppStorage(.hapticFeedback) var hapticFeedback = true
+	@AppStorage("passcode") var passcode = ""
+	@AppStorage("codeLength") var codeLength =  4
+	@AppStorage("maxAttempts") var maxAttempts = 5
+	@AppStorage("columns") var columns = 3
+	@AppStorage("showDetails") var showDetails = true
+	@AppStorage("sound") var sound = true
+	@AppStorage("hapticFeedback") var hapticFeedback = true
 
 	//	Ignored for now
 	@Published var contentMode: ContentMode = .fill

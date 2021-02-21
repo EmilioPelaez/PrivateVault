@@ -20,6 +20,7 @@ struct GalleryView: View {
 	}
 	
 	@Environment(\.managedObjectContext) private var viewContext
+	@Environment(\.persistenceController) private var persistenceController
 	
 	@State var contentMode: ContentMode = .fill //	Should this and showDetails be environment values?
 	@State var showDetails: Bool = true
@@ -50,7 +51,7 @@ struct GalleryView: View {
 	
 	func delete(_ item: StoredItem) {
 		viewContext.delete(item)
-		saveContext()
+		persistenceController?.saveContext()
 	}
 	
 	func quickLookView(_ item: StoredItem) -> some View {
@@ -86,7 +87,7 @@ struct GalleryView: View {
 	
 	func selectImage(_ image: UIImage) {
 		_ = StoredItem(context: viewContext, image: image)
-		saveContext()
+		persistenceController?.saveContext()
 	}
 	
 	func selectDocuments(_ documentURLs: [URL]) {
@@ -95,16 +96,6 @@ struct GalleryView: View {
 	
 	func recordAudio(_ audioURL: URL) {
 		fatalError("Audio recording is not implemented yet.")
-	}
-	
-	private func saveContext() {
-		do {
-			try viewContext.save()
-		} catch {
-			// Replace this implementation with code to handle the error appropriately.
-			let nsError = error as NSError
-			fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-		}
 	}
 }
 

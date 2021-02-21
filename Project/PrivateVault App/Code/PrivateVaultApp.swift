@@ -15,6 +15,7 @@ struct PrivateVaultApp: App {
 		WindowGroup {
 			ContentView()
 				.environment(\.managedObjectContext, persistenceController.container.viewContext)
+				.environment(\.persistenceController, persistenceController)
 		}
 	}
 }

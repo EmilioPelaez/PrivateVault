@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TagListView: View {
 	@Environment(\.managedObjectContext) private var viewContext
+	@Environment(\.persistenceController) private var persistenceController
 	
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Tag.name, ascending: true)], animation: .default)
 	var tags: FetchedResults<Tag>
@@ -79,27 +80,16 @@ struct TagListView: View {
 		let tag = Tag(context: viewContext)
 		tag.name = newTagName
 		newTagName = ""
-		saveContext()
+		persistenceController?.saveContext()
 	}
 	
 	private func deleteTags(offsets: IndexSet) {
-		
 		withAnimation {
 			offsets.lazy.map { tags[$0] }.forEach {
 				selectedTags.remove($0)
 				viewContext.delete($0)
 			}
-			saveContext()
-		}
-	}
-	
-	private func saveContext() {
-		do {
-			try viewContext.save()
-		} catch {
-			// Replace this implementation with code to handle the error appropriately.
-			let nsError = error as NSError
-			fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+			persistenceController?.saveContext()
 		}
 	}
 }
@@ -107,6 +97,6 @@ struct TagListView: View {
 struct TagListView_Previews: PreviewProvider {
 	static var previews: some View {
 		TagListView(selectedTags: .constant([])) { }
-			.environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+			.environment(\.managedObjectContext, PreviewEnvironment().context)
 	}
 }

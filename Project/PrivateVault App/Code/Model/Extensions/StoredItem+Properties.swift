@@ -10,18 +10,22 @@ import SwiftUI
 import UIKit
 
 extension StoredItem {
-	
 	var url: URL {
 		guard let data = data, let fileExtension = fileExtension else { return URL(fileURLWithPath: "") }
 		do {
-			let folder = try FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+			let folder = try FileManager.default.url(
+				for: .cachesDirectory,
+				in: .userDomainMask,
+				appropriateFor: nil,
+				create: false
+			)
 				.appendingPathComponent("data")
 			let url = folder
 				.appendingPathComponent("temp")
 				.appendingPathExtension(fileExtension)
-			
+
 			try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
-			
+
 			//	For now this will write the data to disk on init and will never be removed
 			//	TODO: Write to disk as needed
 			try data.write(to: url)
@@ -30,7 +34,7 @@ extension StoredItem {
 			return URL(fileURLWithPath: "")
 		}
 	}
-	
+
 	var systemName: String {
 		switch url.pathExtension {
 		case "pdf", "doc":
@@ -47,7 +51,7 @@ extension StoredItem {
 			return "xmark.octagon.fill"
 		}
 	}
-	
+
 	@ViewBuilder
 	var placeholder: some View {
 		if let placeholderImage = placeholderData.flatMap({ UIImage(data: $0) }) {
@@ -66,11 +70,10 @@ extension StoredItem {
 			}
 		}
 	}
-	
+
 	var searchText: String {
 		let tags = self.tags as? Set<Tag>
 		let tagSearch = tags?.compactMap(\.name).joined(separator: " ")
 		return [tagSearch, name].compactMap { $0 }.joined(separator: " ")
 	}
-	
 }

@@ -10,20 +10,22 @@ import SwiftUI
 struct TagListView: View {
 	@Environment(\.managedObjectContext) private var viewContext
 	@Environment(\.persistenceController) private var persistenceController
-	
+
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Tag.name, ascending: true)], animation: .default)
 	var tags: FetchedResults<Tag>
-	
+
 	@Binding var selectedTags: Set<Tag>
 	@State var newTagName: String = ""
 	let close: () -> Void
-	
+
 	var body: some View {
 		NavigationView {
 			List {
 				Section(header: tagsHeader) {
 					ForEach(tags) { tag in
-						Button(action: { toggleTag(tag) }) {
+						Button {
+							toggleTag(tag)
+						} label: {
 							HStack {
 								Text(tag.name ?? "??")
 									.foregroundColor(.primary)
@@ -41,7 +43,7 @@ struct TagListView: View {
 							Image(systemName: "plus.circle.fill")
 								.font(.system(size: 25))
 						}
-						.disabled(tags.contains(where: { $0.name == newTagName}))
+						.disabled(tags.contains(where: { $0.name == newTagName }))
 					}
 				}
 			}
@@ -56,7 +58,7 @@ struct TagListView: View {
 			}
 		}
 	}
-	
+
 	var tagsHeader: some View {
 		HStack {
 			Text("All Tags")
@@ -65,7 +67,7 @@ struct TagListView: View {
 				.padding(.trailing, 15)
 		}
 	}
-	
+
 	func toggleTag(_ tag: Tag) {
 		withAnimation {
 			if selectedTags.contains(tag) {
@@ -75,7 +77,7 @@ struct TagListView: View {
 			}
 		}
 	}
-	
+
 	func createTag() {
 		guard !newTagName.isEmpty else { return }
 		let tag = Tag(context: viewContext)
@@ -83,7 +85,7 @@ struct TagListView: View {
 		newTagName = ""
 		persistenceController?.saveContext()
 	}
-	
+
 	private func deleteTags(offsets: IndexSet) {
 		withAnimation {
 			offsets.lazy.map { tags[$0] }.forEach {

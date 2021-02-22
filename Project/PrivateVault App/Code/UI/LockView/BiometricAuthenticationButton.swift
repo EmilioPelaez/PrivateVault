@@ -10,15 +10,13 @@ import SwiftUI
 
 struct BiometricAuthenticationButton: View {
 	@EnvironmentObject private var settings: UserSettings
-	
 	let biometricsContext = LAContext()
-	
-	let success: () -> ()
-	
+	let success: () -> Void
+
 	var biometricSupported: Bool {
 		biometricsContext.availableType != .none
 	}
-	
+
 	var imageName: String {
 		switch biometricsContext.biometryType {
 		case .faceID: return "faceid"
@@ -26,7 +24,7 @@ struct BiometricAuthenticationButton: View {
 		case _: return "lock.open"
 		}
 	}
-	
+
 	var body: some View {
 		if biometricSupported && settings.biometrics {
 			KeyButton(title: Image(systemName: imageName), color: .green, textColor: .white) {
@@ -37,10 +35,13 @@ struct BiometricAuthenticationButton: View {
 			Spacer()
 		}
 	}
-	
+
 	func biometricAuthentication() {
 		let reason = "To unlock your private vault."
-		biometricsContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+		biometricsContext.evaluatePolicy(
+			.deviceOwnerAuthenticationWithBiometrics,
+			localizedReason: reason
+		) { success, _ in
 			DispatchQueue.main.async {
 				if success {
 					self.success()
@@ -49,8 +50,7 @@ struct BiometricAuthenticationButton: View {
 				}
 			}
 		}
-		
-		
+
 	}
 }
 

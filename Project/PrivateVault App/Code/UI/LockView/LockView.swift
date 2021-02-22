@@ -14,7 +14,7 @@ struct LockView: View {
 		case correct
 		case incorrect
 	}
-	
+
 	@EnvironmentObject private var settings: UserSettings
 	@Binding var isLocked: Bool
 	@State var code = ""
@@ -22,11 +22,11 @@ struct LockView: View {
 	@State var codeState: CodeState = .undefined
 	@State var incorrectAnimation = false
 	@State var isLockedOut = false
-	
+
 	var maxDigits: Int { settings.passcode.count }
 	var codeIsFullyEntered: Bool { code.count == maxDigits }
 	var codeIsCorrect: Bool { code == settings.passcode }
-	
+
 	var body: some View {
 		ZStack {
 			Color(.systemBackground).ignoresSafeArea()
@@ -46,7 +46,7 @@ struct LockView: View {
 			.frame(maxWidth: 280)
 		}
 	}
-	
+
 	var textColor: Color {
 		switch codeState {
 		case .correct: return .green
@@ -54,7 +54,7 @@ struct LockView: View {
 		case _: return .primary
 		}
 	}
-	
+
 	var displayColor: Color? {
 		switch codeState {
 		case .correct: return .green
@@ -62,28 +62,25 @@ struct LockView: View {
 		case _: return nil
 		}
 	}
-	
+
 	func input(_ string: String) {
 		guard code.count < maxDigits else { return }
 		code.append(string)
-		
-		if codeIsFullyEntered && codeIsCorrect {
+
+		if codeIsFullyEntered {
 			withAnimation {
-				allowEntry()
+				if codeIsCorrect {
+					allowEntry()
+				} else {
+					rejectEntry()
+				}
 			}
 			return
 		}
-		
-		if codeIsFullyEntered && !codeIsCorrect {
-			withAnimation {
-				rejectEntry()
-			}
-			return
-		}
-		
+
 		codeState = .undefined
 	}
-	
+
 	func delete() {
 		guard !code.isEmpty else {
 			return
@@ -91,8 +88,8 @@ struct LockView: View {
 		code.removeLast()
 		codeState = .undefined
 	}
-	
-	func allowEntry() -> Void {
+
+	func allowEntry() {
 		codeState = .correct
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
 			withAnimation {
@@ -103,10 +100,9 @@ struct LockView: View {
 				if settings.sound { SoundEffect.success.play() }
 			}
 		}
-		
 	}
-	
-	func rejectEntry() -> Void {
+
+	func rejectEntry() {
 		code = ""
 		attempts += 1
 		codeState = .incorrect

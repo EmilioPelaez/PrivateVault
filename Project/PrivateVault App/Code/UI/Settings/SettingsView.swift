@@ -10,9 +10,9 @@ import SwiftUI
 
 struct SettingsView: View {
 	@EnvironmentObject private var settings: UserSettings
-	
+
 	let biometricsContext = LAContext()
-	
+
 	@State var resetPasscode: Bool = false
 	let close: () -> Void
 	let version = "0.0.1"
@@ -39,11 +39,11 @@ struct SettingsView: View {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	"""
-	
+
 	var biometricSupported: Bool {
 		biometricsContext.availableType != .none
 	}
-	
+
 	var biometricTitle: String {
 		switch biometricsContext.availableType {
 		case .faceID: return "Face ID"
@@ -51,7 +51,7 @@ struct SettingsView: View {
 		case _: return ""
 		}
 	}
-	
+
 	var body: some View {
 		NavigationView {
 			Form {
@@ -86,7 +86,9 @@ struct SettingsView: View {
 						Text("\(settings.maxAttempts)")
 						Stepper("", value: $settings.maxAttempts)
 					}
-					Button(action: { resetPasscode = true }) {
+					Button {
+						resetPasscode = true
+					} label: {
 						Text("Reset Passcode")
 					}
 				}
@@ -111,7 +113,8 @@ struct SettingsView: View {
 					}
 					SettingsDetailRow(label: "Privacy") {
 						VStack(spacing: 25) {
-							Text("With Private Vault, your data is safe and is not uploaded anywhere other than your own personal iCloud (when available). You can see the source code or Private Vault here:").multilineTextAlignment(.leading)
+							Text("With Private Vault, your data is safe and is not uploaded anywhere other than your own personal iCloud (when available). You can see the source code or Private Vault here:")
+								.multilineTextAlignment(.leading)
 							Button {
 								guard let url = URL(string: "https://github.com/EmilioPelaez/PrivateVault") else { return }
 								UIApplication.shared.open(url)
@@ -140,11 +143,8 @@ struct SettingsView: View {
 				}
 			}
 		}
-		.onAppear {
-			
-		}
 	}
-	
+
 	var footer: some View {
 		HStack {
 			Spacer()
@@ -154,11 +154,11 @@ struct SettingsView: View {
 			Spacer()
 		}
 	}
-	
+
 	func requestBiometric() {
 		let context = LAContext()
 		var error: NSError?
-		
+
 		if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
 		} else {
 			return

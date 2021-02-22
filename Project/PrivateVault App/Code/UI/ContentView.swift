@@ -11,7 +11,7 @@ struct ContentView: View {
 	@Environment(\.scenePhase) private var scenePhase
 	@EnvironmentObject private var settings: UserSettings
 	@State var isLocked = true
-	
+
 	var body: some View {
 		if settings.codeLength != settings.passcode.count {
 			SetPasscodeView { newCode, newLength in

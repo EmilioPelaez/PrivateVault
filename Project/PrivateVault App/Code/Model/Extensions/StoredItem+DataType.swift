@@ -8,15 +8,13 @@
 import Foundation
 
 extension StoredItem {
-	
 	enum DataType: Int16 {
 		case unknown
 		case image
 	}
-	
+
 	var dataType: DataType {
-		set { dataTypeValue = newValue.rawValue }
 		get { DataType(rawValue: dataTypeValue) ?? .unknown }
+		set { dataTypeValue = newValue.rawValue }
 	}
-	
 }

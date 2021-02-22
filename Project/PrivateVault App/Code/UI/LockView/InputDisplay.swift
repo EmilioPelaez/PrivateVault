@@ -12,7 +12,7 @@ struct InputDisplay: View {
 	let codeLength: Int
 	let textColor: Color
 	let displayColor: Color?
-	
+
 	var body: some View {
 		HStack(spacing: 0) {
 			Spacer()
@@ -38,7 +38,7 @@ struct InputDisplay_Previews: PreviewProvider {
 	static var previews: some View {
 		InputDisplay(input: .constant("X"), codeLength: 4, textColor: .primary, displayColor: nil)
 			.previewLayout(.sizeThatFits)
-		
+
 		InputDisplay(input: .constant("XX"), codeLength: 6, textColor: .primary, displayColor: nil)
 			.previewLayout(.sizeThatFits)
 	}

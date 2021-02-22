@@ -8,9 +8,7 @@
 import CoreData
 
 extension Array where Element == Tag {
-	
 	static let examples: [Tag] = {
 		PreviewEnvironment().tags
 	}()
-	
 }

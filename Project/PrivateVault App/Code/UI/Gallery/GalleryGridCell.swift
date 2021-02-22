@@ -10,14 +10,14 @@ import SwiftUI
 struct GalleryGridCell: View {
 	@ObservedObject var item: StoredItem
 	@EnvironmentObject private var settings: UserSettings
-	
+
 	static let dateFormatter: DateFormatter = {
 		let formatter = DateFormatter()
 		formatter.dateStyle = .short
 		formatter.timeStyle = .short
 		return formatter
 	}()
-	
+
 	var body: some View {
 		VStack(alignment: .leading) {
 			Color.clear.aspectRatio(1, contentMode: .fill)

@@ -12,7 +12,7 @@ struct SetPasscodeView: View {
 	@State var codeLengthIndex: Int = 0
 	@State var codeLength: Int = 4
 	let newCode: (String, Int) -> Void
-	
+
 	var body: some View {
 		ZStack {
 			Color(.systemBackground)
@@ -38,7 +38,7 @@ struct SetPasscodeView: View {
 			}
 		}
 	}
-	
+
 	func input(_ string: String) {
 		guard code.count < codeLength else { return }
 		code.append(string)
@@ -46,18 +46,16 @@ struct SetPasscodeView: View {
 			newCode(code, codeLength)
 		}
 	}
-	
+
 	func delete() {
 		guard !code.isEmpty else { return }
 		code.removeLast()
 	}
-	
 }
 
 struct SetPasscodeView_Previews: PreviewProvider {
 	static var previews: some View {
 		SetPasscodeView(code: "01") { _, _ in }
-		
 		SetPasscodeView(code: "012", codeLength: 6) { _, _ in }
 	}
 }

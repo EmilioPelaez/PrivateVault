@@ -11,18 +11,17 @@ struct GalleryGridView: View {
 	@EnvironmentObject private var settings: UserSettings
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \StoredItem.timestamp, ascending: false)], animation: .default)
 	var data: FetchedResults<StoredItem>
-	
+
 	@State var searchText = ""
+	@State var tagEditingItem: StoredItem?
 	@Binding var selectedTags: Set<Tag>
 	let selection: (StoredItem) -> Void
 	let delete: (StoredItem) -> Void
 
-	@State var tagEditingItem: StoredItem?
-	
 	var filteredData: [StoredItem] {
 		data.filter { item in
-			selectedTags.reduce(true) {
-				$0 && (item.tags?.contains($1) ?? false)
+			selectedTags.allSatisfy {
+				item.tags?.contains($0) ?? false
 			}
 		}
 		.filter { item in
@@ -30,7 +29,7 @@ struct GalleryGridView: View {
 			return item.searchText.localizedStandardContains(searchText)
 		}
 	}
-	
+
 	var body: some View {
 		if data.isEmpty {
 			VStack {
@@ -65,11 +64,15 @@ struct GalleryGridView: View {
 						GalleryGridCell(item: item)
 							.onTapGesture { selection(item) }
 							.contextMenu {
-								Button(action: { tagEditingItem = item }) {
+								Button {
+									tagEditingItem = item
+								} label: {
 									Text("Edit")
 									Image(systemName: "edit")
 								}
-								Button(action: { delete(item) }) {
+								Button {
+									delete(item)
+								} label: {
 									Text("Delete")
 									Image(systemName: "trash")
 								}
@@ -89,12 +92,10 @@ struct GalleryGridView: View {
 struct GalleryGridView_Previews: PreviewProvider {
 	static var previews: some View {
 		EmptyView()
-		GalleryGridView(selectedTags: .constant([])) { _ in }
-			delete: { _ in }
+		GalleryGridView(selectedTags: .constant([])) { _ in } delete: { _ in }
 			.environment(\.managedObjectContext, PreviewEnvironment().context)
-		
-		GalleryGridView(selectedTags: .constant([])) { _ in }
-			delete: { _ in }
+
+		GalleryGridView(selectedTags: .constant([])) { _ in } delete: { _ in }
 			.environment(\.managedObjectContext, PreviewEnvironment().context)
 	}
 }

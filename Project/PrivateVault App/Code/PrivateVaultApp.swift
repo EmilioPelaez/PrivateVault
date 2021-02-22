@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct PrivateVaultApp: App {
-	let persistenceController = PersistenceController()
 	@ObservedObject var settings = UserSettings()
-	
+	let persistenceController = PersistenceController()
+
 	var body: some Scene {
 		WindowGroup {
 			ContentView()

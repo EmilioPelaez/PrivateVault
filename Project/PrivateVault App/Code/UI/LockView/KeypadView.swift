@@ -13,7 +13,7 @@ struct KeypadView<Button: View>: View {
 	let input: (String) -> Void
 	let delete: () -> Void
 	let bottomLeftInput: () -> (Button)
-	
+
 	var body: some View {
 		LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), alignment: .center) {
 			ForEach(1..<10) { index in
@@ -37,8 +37,6 @@ struct KeypadView<Button: View>: View {
 	}
 }
 
-
-
 struct KeyButton<Body: View>: View {
 	let title: Body
 	let color: Color
@@ -58,12 +56,13 @@ struct KeyButton<Body: View>: View {
 	}
 }
 
-
 struct KeypadView_Previews: PreviewProvider {
 	@State static var code = ""
-	
+
 	static var previews: some View {
-		KeypadView(input: { _ in }, delete: { }) { Spacer() }
-			.environmentObject(UserSettings())
+		KeypadView(input: { _ in }, delete: { }) {
+			Spacer()
+		}
+		.environmentObject(UserSettings())
 	}
 }

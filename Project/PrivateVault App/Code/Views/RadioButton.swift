@@ -11,7 +11,7 @@ struct RadioButton: View {
 	let selected: Bool
 	let size: CGFloat
 	let color: Color
-	
+
 	var body: some View {
 		ZStack {
 			Circle()

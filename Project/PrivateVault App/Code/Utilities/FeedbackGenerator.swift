@@ -9,13 +9,12 @@ import AudioToolbox
 import UIKit
 
 class FeedbackGenerator {
-	
 	static func impact(_ style: UIImpactFeedbackGenerator.FeedbackStyle) {
 		if UIDevice.supportsHapticFeedback {
 			UIImpactFeedbackGenerator(style: style).impactOccurred()
 		} else {
+			// swiftlint:disable:next number_separator
 			AudioServicesPlaySystemSound(SystemSoundID(UInt32(1104)))
 		}
 	}
-	
 }

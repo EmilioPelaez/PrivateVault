@@ -11,7 +11,7 @@ extension CGSize {
 	var aspectRatio: CGFloat {
 		width / height
 	}
-	
+
 	init(aspectRatio: CGFloat, maxSize size: CGSize) {
 		let sizeRatio = size.aspectRatio
 		if aspectRatio > sizeRatio {
@@ -20,17 +20,16 @@ extension CGSize {
 			self.init(width: size.height * aspectRatio, height: size.height)
 		}
 	}
-	
+
 	init(side: CGFloat) {
 		self.init(width: side, height: side)
 	}
-	
-	static func *(lhs: CGSize, rhs: CGFloat) -> CGSize {
+
+	static func * (lhs: CGSize, rhs: CGFloat) -> CGSize {
 		CGSize(width: lhs.width * rhs, height: lhs.height * rhs)
 	}
-	
-	static func /(lhs: CGSize, rhs: CGFloat) -> CGSize {
+
+	static func / (lhs: CGSize, rhs: CGFloat) -> CGSize {
 		CGSize(width: lhs.width / rhs, height: lhs.height / rhs)
 	}
-	
 }

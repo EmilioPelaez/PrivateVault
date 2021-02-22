@@ -10,13 +10,13 @@ import SwiftUI
 struct ItemEditView: View {
 	@Environment(\.managedObjectContext) private var viewContext
 	@Environment(\.persistenceController) private var persistenceController
-	
+
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Tag.name, ascending: true)], animation: .default)
 	var tags: FetchedResults<Tag>
-	
+
 	@ObservedObject var item: StoredItem
 	let close: () -> Void
-	
+
 	var body: some View {
 		NavigationView {
 			List {
@@ -25,7 +25,9 @@ struct ItemEditView: View {
 				}
 				Section(header: Text("Tags")) {
 					ForEach(tags) { tag in
-						Button(action: { toggleTag(tag) }) {
+						Button {
+							toggleTag(tag)
+						} label: {
 							HStack {
 								Text(tag.name ?? "??")
 									.foregroundColor(.primary)
@@ -49,11 +51,11 @@ struct ItemEditView: View {
 			}
 		}
 	}
-	
+
 	func tagSelected(_ tag: Tag) -> Bool {
 		item.tags?.contains(tag) ?? false
 	}
-	
+
 	func toggleTag(_ tag: Tag) {
 		withAnimation {
 			if tagSelected(tag) {
@@ -62,14 +64,13 @@ struct ItemEditView: View {
 				item.addToTags(tag)
 			}
 		}
-		
 		persistenceController?.saveContext()
 	}
 }
 
 struct ItemTagsView_Previews: PreviewProvider {
 	static let preview = PreviewEnvironment()
-	
+
 	static var previews: some View {
 		ItemEditView(item: preview.item) { }
 			.environment(\.managedObjectContext, PreviewEnvironment().context)

@@ -17,6 +17,10 @@
 		2B39CDB825E1BB5700E63EDD /* Binding+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CDB725E1BB5700E63EDD /* Binding+Map.swift */; };
 		2B39CDBC25E1BEAB00E63EDD /* ContentMode+description.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CDBB25E1BEAB00E63EDD /* ContentMode+description.swift */; };
 		2B39CDC225E1C6C500E63EDD /* String+Capping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CDC125E1C6C500E63EDD /* String+Capping.swift */; };
+		2B39CDFE25E3290500E63EDD /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 2B39CDFD25E3290500E63EDD /* .swiftlint.yml */; };
+		2B39CE0425E32B8100E63EDD /* CreatorRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CE0325E32B8100E63EDD /* CreatorRow.swift */; };
+		2B39CE0825E32B9500E63EDD /* LinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CE0725E32B9500E63EDD /* LinkButton.swift */; };
+		2B39CE1125E32CA200E63EDD /* LinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CE1025E32CA200E63EDD /* LinkType.swift */; };
 		2B6C742C25E08BBF00EAF6FD /* PhotosPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C742B25E08BBF00EAF6FD /* PhotosPicker.swift */; };
 		460E096225E077C4001343C2 /* KeypadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E096125E077C4001343C2 /* KeypadView.swift */; };
 		468A75DC25E0976E00B87597 /* FileTypePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75DB25E0976E00B87597 /* FileTypePickerView.swift */; };
@@ -73,6 +77,10 @@
 		2B39CDB725E1BB5700E63EDD /* Binding+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Map.swift"; sourceTree = "<group>"; };
 		2B39CDBB25E1BEAB00E63EDD /* ContentMode+description.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentMode+description.swift"; sourceTree = "<group>"; };
 		2B39CDC125E1C6C500E63EDD /* String+Capping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capping.swift"; sourceTree = "<group>"; };
+		2B39CDFD25E3290500E63EDD /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		2B39CE0325E32B8100E63EDD /* CreatorRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorRow.swift; sourceTree = "<group>"; };
+		2B39CE0725E32B9500E63EDD /* LinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkButton.swift; sourceTree = "<group>"; };
+		2B39CE1025E32CA200E63EDD /* LinkType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkType.swift; sourceTree = "<group>"; };
 		2B6C742B25E08BBF00EAF6FD /* PhotosPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPicker.swift; sourceTree = "<group>"; };
 		460E096125E077C4001343C2 /* KeypadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadView.swift; sourceTree = "<group>"; };
 		468A75DB25E0976E00B87597 /* FileTypePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypePickerView.swift; sourceTree = "<group>"; };
@@ -135,9 +143,20 @@
 			isa = PBXGroup;
 			children = (
 				2B39CD8925E18B8100E63EDD /* SettingsView.swift */,
-				C868FD6225E2D458005A3EA9 /* AboutView.swift */,
+				2B39CE0225E32B7300E63EDD /* About */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		2B39CE0225E32B7300E63EDD /* About */ = {
+			isa = PBXGroup;
+			children = (
+				C868FD6225E2D458005A3EA9 /* AboutView.swift */,
+				2B39CE0325E32B8100E63EDD /* CreatorRow.swift */,
+				2B39CE0725E32B9500E63EDD /* LinkButton.swift */,
+				2B39CE1025E32CA200E63EDD /* LinkType.swift */,
+			);
+			path = About;
 			sourceTree = "<group>";
 		};
 		C88ACB1425E10A6C0064C160 /* Utilities */ = {
@@ -231,6 +250,7 @@
 		C8A792C925E06642009B862D = {
 			isa = PBXGroup;
 			children = (
+				2B39CDFD25E3290500E63EDD /* .swiftlint.yml */,
 				C8A792D425E06642009B862D /* PrivateVault App */,
 				C8A792D325E06642009B862D /* Products */,
 			);
@@ -339,6 +359,7 @@
 				C8A792CE25E06642009B862D /* Sources */,
 				C8A792CF25E06642009B862D /* Frameworks */,
 				C8A792D025E06642009B862D /* Resources */,
+				2B39CDFA25E327EF00E63EDD /* SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -386,12 +407,34 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B39CDFE25E3290500E63EDD /* .swiftlint.yml in Resources */,
 				C8A792DD25E06642009B862D /* Preview Assets.xcassets in Resources */,
 				C8A792DA25E06642009B862D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2B39CDFA25E327EF00E63EDD /* SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint lint --config $PROJECT_DIR/.swiftlint.yml --path $PROJECT_DIR/$TARGET_NAME*\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C8A792CE25E06642009B862D /* Sources */ = {
@@ -401,6 +444,7 @@
 				C88ACB1925E10B450064C160 /* UIDevice+iPad.swift in Sources */,
 				468A75E125E15B9300B87597 /* SoundEffect.swift in Sources */,
 				C8EFD20225E1374F00CB4141 /* CGSize+Utilities.swift in Sources */,
+				2B39CE1125E32CA200E63EDD /* LinkType.swift in Sources */,
 				C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */,
 				C88ACB1B25E112A70064C160 /* View+Shake.swift in Sources */,
 				C8EFD1FA25E1281600CB4141 /* GalleryGridView.swift in Sources */,
@@ -412,9 +456,11 @@
 				C89C9DE725E197C5003505B9 /* Tag+Creation.swift in Sources */,
 				C868FD6825E30B23005A3EA9 /* LAContext+Shared.swift in Sources */,
 				2B6C742C25E08BBF00EAF6FD /* PhotosPicker.swift in Sources */,
+				2B39CE0825E32B9500E63EDD /* LinkButton.swift in Sources */,
 				C8EFD22B25E159EA00CB4141 /* StoredItem+Properties.swift in Sources */,
 				C89C9DE525E196A5003505B9 /* PreviewEnvironment.swift in Sources */,
 				C89C9DF125E1DD27003505B9 /* PersistenceEnvironment.swift in Sources */,
+				2B39CE0425E32B8100E63EDD /* CreatorRow.swift in Sources */,
 				C868FD6125E2AFA5005A3EA9 /* SetPasscodeView.swift in Sources */,
 				C88ACB1125E106D00064C160 /* LockView.swift in Sources */,
 				2B081A7125E0847600F9D522 /* QuickLookView.swift in Sources */,

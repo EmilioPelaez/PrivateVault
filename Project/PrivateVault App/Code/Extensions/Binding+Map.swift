@@ -8,8 +8,10 @@
 import SwiftUI
 
 extension Binding {
-	func map<T>(to: @escaping (Value) -> T,
-							from: @escaping (T) -> Value) -> Binding<T> {
+	func map<T>(
+		to: @escaping (Value) -> T,
+		from: @escaping (T) -> Value
+	) -> Binding<T> {
 		.init(get: {
 			to(wrappedValue)
 		}, set: { value in

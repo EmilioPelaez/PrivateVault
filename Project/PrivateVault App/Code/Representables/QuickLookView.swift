@@ -45,9 +45,8 @@ final class FilePreviewController: QLPreviewController, QLPreviewItem, QLPreview
 		self.delegate = self
 		self.dataSource = self
 	}
-	
+
 	func numberOfPreviewItems(in controller: QLPreviewController) -> Int { 1 }
 
 	func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem { self }
-	
 }

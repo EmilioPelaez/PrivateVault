@@ -13,7 +13,7 @@ struct FileTypePickerView: View {
 		case album
 		case document
 		case scan
-		
+
 		var systemName: String {
 			switch self {
 			case .camera: return "camera"
@@ -22,7 +22,7 @@ struct FileTypePickerView: View {
 			case .scan: return "doc.text.viewfinder"
 			}
 		}
-		
+
 		var name: String {
 			switch self {
 			case .camera: return "Camera"
@@ -34,13 +34,12 @@ struct FileTypePickerView: View {
 
 		var id: Int { FileType.allCases.firstIndex(of: self) ?? 0 }
 	}
-	
+
 	@State var isExpanded: Bool = false
-	var action: (FileType) -> Void
-	
 	let height: CGFloat = 60
 	let margin: CGFloat = 5
-	
+	var action: (FileType) -> Void
+
 	var body: some View {
 		HStack {
 			Button {
@@ -70,8 +69,8 @@ struct FileTypePickerView: View {
 				.shadow(color: Color(white: 0, opacity: 0.2), radius: 4, x: 0, y: 2)
 		)
 	}
-	
-	func buttonAction(_ type: FileType) -> Void {
+
+	func buttonAction(_ type: FileType) {
 		withAnimation {
 			isExpanded = false
 		}
@@ -84,9 +83,11 @@ extension FileTypePickerView {
 		let fileType: FileType
 		let height: CGFloat
 		let action: (FileType) -> Void
-		
+
 		var body: some View {
-			Button(action: { action(fileType) } ) {
+			Button {
+				action(fileType)
+			} label: {
 				VStack(spacing: 2) {
 					Image(systemName: fileType.systemName)
 						.font(.system(size: height / 2))
@@ -101,10 +102,10 @@ extension FileTypePickerView {
 
 struct FileTypePickerView_Previews: PreviewProvider {
 	static var previews: some View {
-		FileTypePickerView(isExpanded:  true) { _ in }
+		FileTypePickerView(isExpanded: true) { _ in }
 			.padding()
 			.previewLayout(.sizeThatFits)
-		FileTypePickerView() { _ in }
+		FileTypePickerView { _ in }
 			.padding()
 			.previewLayout(.sizeThatFits)
 	}

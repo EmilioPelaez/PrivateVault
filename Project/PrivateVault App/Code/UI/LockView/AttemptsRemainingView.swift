@@ -7,18 +7,17 @@
 
 import SwiftUI
 
-
-
 struct AttemptsRemainingView: View {
 	var attemptsRemaining: Int
-	
-	private var attemptsRemainingText:  String  {
+
+	private var attemptsRemainingText: String {
 		if attemptsRemaining > 1 {
 			return "Attempts Remaining"
 		} else {
 			return "Attempt Remaining"
 		}
 	}
+
 	var body: some View {
 		ZStack {
 			Text(

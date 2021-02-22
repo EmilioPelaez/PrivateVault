@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 extension Binding {
-	func `default`<Wrapped>(_ default: Wrapped) -> Binding<Wrapped> where Optional<Wrapped> == Value {
+	func `default`<Wrapped>(_ default: Wrapped) -> Binding<Wrapped> where Wrapped? == Value {
 		Binding<Wrapped>(get: { wrappedValue ?? `default` },
 										 set: { wrappedValue = $0 })
 	}

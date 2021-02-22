@@ -8,9 +8,7 @@
 import CoreData
 
 extension StoredItem {
-	
 	static let example: StoredItem = {
 		PreviewEnvironment().item
 	}()
-	
 }

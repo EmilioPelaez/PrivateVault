@@ -18,12 +18,12 @@ struct GalleryView: View {
 			GridItem(.flexible())
 		]
 	}
-	
+
 	var data: [Item] = (1...6)
 		.map { "file\($0)" }
 		.compactMap { UIImage(named: $0) }
 		.map(Item.init)
-	
+
 	var body: some View {
 		ScrollView {
 			LazyVGrid(columns: columns) {

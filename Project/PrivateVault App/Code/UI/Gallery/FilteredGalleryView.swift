@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FilteredGalleryView: View {
 	let action: () -> Void
-	
+
 	var body: some View {
 		VStack(spacing: 25) {
 			Image("GalleryFiltered")

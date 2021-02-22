@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 struct VisualEffectView: UIViewRepresentable {
 	let style: UIBlurEffect.Style

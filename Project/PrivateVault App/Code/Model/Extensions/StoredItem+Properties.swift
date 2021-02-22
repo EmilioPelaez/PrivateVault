@@ -5,9 +5,7 @@
 //  Created by Emilio Peláez on 20/2/21.
 //
 
-import Foundation
 import SwiftUI
-import UIKit
 
 extension StoredItem {
 	var url: URL {

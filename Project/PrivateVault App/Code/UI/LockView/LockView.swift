@@ -5,7 +5,6 @@
 //  Created by Emilio Peláez on 20/2/21.
 //
 
-import LocalAuthentication
 import SwiftUI
 
 struct LockView: View {

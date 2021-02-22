@@ -5,8 +5,8 @@
 //  Created by Ian Manor on 20/02/21.
 //
 
-import LocalAuthentication
 import SwiftUI
+import LocalAuthentication
 
 struct SettingsView: View {
 	@EnvironmentObject private var settings: UserSettings

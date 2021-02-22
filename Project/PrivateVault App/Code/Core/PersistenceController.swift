@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import UIKit
 
 struct PersistenceController {
 	let container: NSPersistentCloudKitContainer

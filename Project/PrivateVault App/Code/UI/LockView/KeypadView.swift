@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import LocalAuthentication
 
 struct KeypadView<Button: View>: View {
 	@EnvironmentObject private var settings: UserSettings

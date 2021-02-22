@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import UIKit
 
 extension Tag {
 	convenience init(context: NSManagedObjectContext, name: String) {

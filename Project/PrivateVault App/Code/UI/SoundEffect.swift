@@ -5,7 +5,6 @@
 //  Created by Daniel Behar on 2/20/21.
 //
 
-import Foundation
 import AVFoundation
 
 // swiftlint:disable number_separator

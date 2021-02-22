@@ -5,7 +5,6 @@
 //  Created by Ian Manor on 20/02/21.
 //
 
-import UIKit
 import SwiftUI
 
 struct CameraPicker: UIViewControllerRepresentable {

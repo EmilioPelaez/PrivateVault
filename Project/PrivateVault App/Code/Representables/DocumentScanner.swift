@@ -5,9 +5,7 @@
 //  Created by Ian Manor on 20/02/21.
 //
 
-import UIKit
 import SwiftUI
-import Vision
 import VisionKit
 
 struct DocumentScanner: UIViewControllerRepresentable {

@@ -6,7 +6,6 @@
 //
 
 import CoreData
-import SwiftUI
 import UIKit
 
 struct PreviewEnvironment {

@@ -5,7 +5,6 @@
 //  Created by Emilio Peláez on 21/2/21.
 //
 
-import Foundation
 import SwiftUI
 
 extension Binding {

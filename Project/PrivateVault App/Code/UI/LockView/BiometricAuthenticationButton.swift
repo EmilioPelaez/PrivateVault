@@ -5,8 +5,8 @@
 //  Created by Emilio Peláez on 21/2/21.
 //
 
-import LocalAuthentication
 import SwiftUI
+import LocalAuthentication
 
 struct BiometricAuthenticationButton: View {
 	@EnvironmentObject private var settings: UserSettings

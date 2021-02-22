@@ -21,6 +21,7 @@
 		2B39CE0425E32B8100E63EDD /* CreatorRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CE0325E32B8100E63EDD /* CreatorRow.swift */; };
 		2B39CE0825E32B9500E63EDD /* LinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CE0725E32B9500E63EDD /* LinkButton.swift */; };
 		2B39CE1125E32CA200E63EDD /* LinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CE1025E32CA200E63EDD /* LinkType.swift */; };
+		2B39CE3025E33B8600E63EDD /* String+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B39CE2F25E33B8600E63EDD /* String+Tests.swift */; };
 		2B6C742C25E08BBF00EAF6FD /* PhotosPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C742B25E08BBF00EAF6FD /* PhotosPicker.swift */; };
 		460E096225E077C4001343C2 /* KeypadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E096125E077C4001343C2 /* KeypadView.swift */; };
 		468A75DC25E0976E00B87597 /* FileTypePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75DB25E0976E00B87597 /* FileTypePickerView.swift */; };
@@ -66,6 +67,16 @@
 		C8EFD22F25E15D1D00CB4141 /* StoredItem+DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22E25E15D1D00CB4141 /* StoredItem+DataType.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2B39CE2825E33B5200E63EDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8A792CA25E06642009B862D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C8A792D125E06642009B862D;
+			remoteInfo = PrivateVault;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		2B081A7025E0847600F9D522 /* QuickLookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLookView.swift; sourceTree = "<group>"; };
 		2B081A7325E085FA00F9D522 /* View+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
@@ -81,6 +92,9 @@
 		2B39CE0325E32B8100E63EDD /* CreatorRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorRow.swift; sourceTree = "<group>"; };
 		2B39CE0725E32B9500E63EDD /* LinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkButton.swift; sourceTree = "<group>"; };
 		2B39CE1025E32CA200E63EDD /* LinkType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkType.swift; sourceTree = "<group>"; };
+		2B39CE2325E33B5200E63EDD /* PrivateVaultTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PrivateVaultTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B39CE2725E33B5200E63EDD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B39CE2F25E33B8600E63EDD /* String+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Tests.swift"; sourceTree = "<group>"; };
 		2B6C742B25E08BBF00EAF6FD /* PhotosPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPicker.swift; sourceTree = "<group>"; };
 		460E096125E077C4001343C2 /* KeypadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadView.swift; sourceTree = "<group>"; };
 		468A75DB25E0976E00B87597 /* FileTypePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTypePickerView.swift; sourceTree = "<group>"; };
@@ -129,6 +143,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2B39CE2025E33B5200E63EDD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C8A792CF25E06642009B862D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -157,6 +178,15 @@
 				2B39CE1025E32CA200E63EDD /* LinkType.swift */,
 			);
 			path = About;
+			sourceTree = "<group>";
+		};
+		2B39CE2425E33B5200E63EDD /* PrivateVaultTests */ = {
+			isa = PBXGroup;
+			children = (
+				2B39CE2725E33B5200E63EDD /* Info.plist */,
+				2B39CE2F25E33B8600E63EDD /* String+Tests.swift */,
+			);
+			path = PrivateVaultTests;
 			sourceTree = "<group>";
 		};
 		C88ACB1425E10A6C0064C160 /* Utilities */ = {
@@ -252,6 +282,7 @@
 			children = (
 				2B39CDFD25E3290500E63EDD /* .swiftlint.yml */,
 				C8A792D425E06642009B862D /* PrivateVault App */,
+				2B39CE2425E33B5200E63EDD /* PrivateVaultTests */,
 				C8A792D325E06642009B862D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -261,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				C8A792D225E06642009B862D /* PrivateVault.app */,
+				2B39CE2325E33B5200E63EDD /* PrivateVaultTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -352,6 +384,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2B39CE2225E33B5200E63EDD /* PrivateVaultTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B39CE2A25E33B5200E63EDD /* Build configuration list for PBXNativeTarget "PrivateVaultTests" */;
+			buildPhases = (
+				2B39CE1F25E33B5200E63EDD /* Sources */,
+				2B39CE2025E33B5200E63EDD /* Frameworks */,
+				2B39CE2125E33B5200E63EDD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2B39CE2925E33B5200E63EDD /* PBXTargetDependency */,
+			);
+			name = PrivateVaultTests;
+			productName = PrivateVaultTests;
+			productReference = 2B39CE2325E33B5200E63EDD /* PrivateVaultTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C8A792D125E06642009B862D /* PrivateVault */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C8A792E125E06642009B862D /* Build configuration list for PBXNativeTarget "PrivateVault" */;
@@ -376,9 +426,13 @@
 		C8A792CA25E06642009B862D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					2B39CE2225E33B5200E63EDD = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = C8A792D125E06642009B862D;
+					};
 					C8A792D125E06642009B862D = {
 						CreatedOnToolsVersion = 12.5;
 					};
@@ -398,11 +452,19 @@
 			projectRoot = "";
 			targets = (
 				C8A792D125E06642009B862D /* PrivateVault */,
+				2B39CE2225E33B5200E63EDD /* PrivateVaultTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2B39CE2125E33B5200E63EDD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C8A792D025E06642009B862D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -437,6 +499,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2B39CE1F25E33B5200E63EDD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B39CE3025E33B8600E63EDD /* String+Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C8A792CE25E06642009B862D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -500,7 +570,55 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		2B39CE2925E33B5200E63EDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C8A792D125E06642009B862D /* PrivateVault */;
+			targetProxy = 2B39CE2825E33B5200E63EDD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		2B39CE2B25E33B5200E63EDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PrivateVaultTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.PrivateVaultTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PrivateVault.app/PrivateVault";
+			};
+			name = Debug;
+		};
+		2B39CE2C25E33B5200E63EDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = PrivateVaultTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.PrivateVaultTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PrivateVault.app/PrivateVault";
+			};
+			name = Release;
+		};
 		C8A792DF25E06642009B862D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -664,6 +782,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2B39CE2A25E33B5200E63EDD /* Build configuration list for PBXNativeTarget "PrivateVaultTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B39CE2B25E33B5200E63EDD /* Debug */,
+				2B39CE2C25E33B5200E63EDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C8A792CD25E06642009B862D /* Build configuration list for PBXProject "PrivateVault" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

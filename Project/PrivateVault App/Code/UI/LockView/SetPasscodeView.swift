@@ -20,6 +20,7 @@ struct SetPasscodeView: View {
 	@State var codeLength: Int = 4
 	@State var codeState: CodeState = .undefined
 	@State var waitingForAnimation = false
+	@State var showMismatchAlert = false
 	
 	let newCode: (String, Int) -> Void
 	
@@ -52,6 +53,11 @@ struct SetPasscodeView: View {
 					.disabled(waitingForAnimation)
 			}
 			.frame(maxWidth: 280)
+		}
+		.alert(isPresented: $showMismatchAlert) {
+			Alert(title: Text("Try Again!"),
+						message: Text("Make sure your passcodes match."),
+						dismissButton: .default(Text("Ok!")))
 		}
 		.onChange(of: codeLengthIndex) { index in
 			withAnimation {
@@ -105,6 +111,7 @@ struct SetPasscodeView: View {
 				newCode(code, codeLength)
 			}
 		} else {
+			showMismatchAlert = true
 			withAnimation {
 				enteredCode = ""
 				code = ""

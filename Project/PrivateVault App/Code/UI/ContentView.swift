@@ -21,13 +21,13 @@ struct ContentView: View {
 					isLocked = false
 				}
 			}
-			.transition(.move(edge: .trailing))
+			.transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
 		} else {
 			NavigationView {
 				GalleryView(isLocked: $isLocked)
 			}
 			.navigationViewStyle(StackNavigationViewStyle())
-			.transition(.move(edge: .leading))
+			.transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
 			.overlay(
 				Group {
 					if isLocked {

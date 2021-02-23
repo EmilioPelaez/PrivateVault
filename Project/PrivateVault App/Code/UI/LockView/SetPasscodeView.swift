@@ -8,26 +8,48 @@
 import SwiftUI
 
 struct SetPasscodeView: View {
+	enum CodeState {
+		case undefined
+		case match
+		case mismatch
+	}
+	
 	@State var code: String = ""
+	@State var enteredCode: String = ""
 	@State var codeLengthIndex: Int = 0
 	@State var codeLength: Int = 4
+	@State var codeState: CodeState = .undefined
+	@State var waitingForAnimation = false
+	
 	let newCode: (String, Int) -> Void
-
+	
 	var body: some View {
 		ZStack {
 			Color(.systemBackground)
 			VStack(spacing: 25) {
 				VStack(spacing: 10) {
-					Text("Create your Passcode")
-						.font(.title)
+					if enteredCode.isEmpty {
+						VStack {
+							Text("Create your Passcode")
+								.font(.title)
+							
+						}
+						.transition(.opacity.combined(with: .asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing))))
+					} else {
+						Text("Confirm your Passcode")
+							.font(.title)
+							.transition(.opacity.combined(with: .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))))
+					}
 					Picker(selection: $codeLengthIndex, label: Text("")) {
 						Text("4 Digits").tag(0)
 						Text("6 Digits").tag(1)
 					}
 					.pickerStyle(SegmentedPickerStyle())
+					.opacity(enteredCode.isEmpty ? 1 : 0)
 				}
-				InputDisplay(input: $code, codeLength: codeLength, textColor: .primary, displayColor: nil)
+				InputDisplay(input: $code, codeLength: codeLength, textColor: textColor, displayColor: displayColor)
 				KeypadView(input: input, delete: delete) { Spacer() }
+					.disabled(waitingForAnimation)
 			}
 			.frame(maxWidth: 280)
 		}
@@ -38,18 +60,65 @@ struct SetPasscodeView: View {
 			}
 		}
 	}
-
-	func input(_ string: String) {
-		guard code.count < codeLength else { return }
-		code.append(string)
-		if code.count == codeLength {
-			newCode(code, codeLength)
+	
+	var textColor: Color {
+		switch codeState {
+		case .match: return .green
+		case .mismatch: return .red
+		case _: return .primary
 		}
 	}
 
+	var displayColor: Color? {
+		switch codeState {
+		case .match: return .green
+		case .mismatch: return .red
+		case _: return nil
+		}
+	}
+	
+	func input(_ string: String) {
+		guard code.count < codeLength else { return }
+		code.append(string)
+		guard code.count == codeLength else {
+			withAnimation {
+				codeState = .undefined
+			}
+			return
+		}
+		if enteredCode.isEmpty {
+			waitingForAnimation = true
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+				withAnimation {
+					waitingForAnimation = false
+					enteredCode = code
+					code = ""
+				}
+			}
+		} else if enteredCode == code {
+			withAnimation {
+				codeState = .match
+			}
+			waitingForAnimation = true
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+				waitingForAnimation = false
+				newCode(code, codeLength)
+			}
+		} else {
+			withAnimation {
+				enteredCode = ""
+				code = ""
+				codeState = .mismatch
+			}
+		}
+	}
+	
 	func delete() {
 		guard !code.isEmpty else { return }
 		code.removeLast()
+		withAnimation {
+			codeState = .undefined
+		}
 	}
 }
 

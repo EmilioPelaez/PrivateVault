@@ -244,7 +244,7 @@ extension GalleryView {
 
 				if !isLivePhoto {
 					if let image = object as? UIImage {
-						selectItem(.photo(image, url.lastPathComponent))
+						selectItem(.photo(image.fixOrientation(), url.lastPathComponent))
 						//self.photoPicker.mediaItems.append(item: PhotoPickerModel(with: image))
 					}
 				} else {

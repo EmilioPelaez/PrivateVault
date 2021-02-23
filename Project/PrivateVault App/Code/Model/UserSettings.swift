@@ -8,7 +8,6 @@
 import SwiftUI
 
 final class UserSettings: ObservableObject {
-	//	TODO: Move this out of UserDefaults and into CoreData
 	@Published var passcode = UserDefaults.standard.object(forKey: .passcode) as? String ?? "" {
 		didSet { UserDefaults.standard.set(passcode, forKey: .passcode) }
 	}

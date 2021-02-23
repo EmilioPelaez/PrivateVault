@@ -44,7 +44,7 @@ struct GalleryView: View {
 
 	@ViewBuilder
 	func quickLookView(_ item: Item) -> some View {
-		QuickLookView(title: item.id.description, url: URL(string: "")!)
+		QuickLookView(title: item.id.description, url: URL(string: ""))
 	}
 }
 

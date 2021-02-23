@@ -42,14 +42,14 @@ struct KeyButton<Body: View>: View {
 	let textColor: Color
 	let action: () -> Void
 	var body: some View {
-		Button(action: action, label: {
+		Button(action: action) {
 			ZStack {
 				color
 				title
 					.font(.largeTitle)
 					.foregroundColor(textColor)
 			}
-		})
+		}
 		.aspectRatio(1, contentMode: .fill)
 		.clipShape(Circle())
 	}
@@ -59,9 +59,9 @@ struct KeypadView_Previews: PreviewProvider {
 	@State static var code = ""
 
 	static var previews: some View {
-		KeypadView(input: { _ in }, delete: { }) {
+		KeypadView(input: { _ in }, delete: { }, bottomLeftInput: {
 			Spacer()
-		}
+		})
 		.environmentObject(UserSettings())
 	}
 }

@@ -13,11 +13,7 @@ struct PersistenceControllerEnvironmentKey: EnvironmentKey {
 
 extension EnvironmentValues {
 	var persistenceController: PersistenceController? {
-		get {
-			return self[PersistenceControllerEnvironmentKey]
-		}
-		set {
-			self[PersistenceControllerEnvironmentKey] = newValue
-		}
+		get { self[PersistenceControllerEnvironmentKey] }
+		set { self[PersistenceControllerEnvironmentKey] = newValue }
 	}
 }

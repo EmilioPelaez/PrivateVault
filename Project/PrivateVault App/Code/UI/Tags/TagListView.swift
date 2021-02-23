@@ -43,7 +43,7 @@ struct TagListView: View {
 							Image(systemName: "plus.circle.fill")
 								.font(.system(size: 25))
 						}
-						.disabled(tags.contains(where: { $0.name == newTagName }))
+						.disabled(tags.contains { $0.name == newTagName })
 					}
 				}
 			}

@@ -21,7 +21,7 @@ extension View {
 		isPresenting: Binding<Bool>,
 		destination: Destination
 	) -> some View {
-		background(NavigationLink(destination: destination, isActive: isPresenting, label: {}))
+		background(NavigationLink(destination: destination, isActive: isPresenting) {})
 	}
 }
 
@@ -41,11 +41,7 @@ extension NavigationLink where Label == EmptyView {
 				}
 			)
 
-			self.init(
-				destination: destination(value),
-				isActive: isActive,
-				label: { EmptyView() }
-			)
+			self.init(destination: destination(value), isActive: isActive) { EmptyView() }
 		} else {
 			return nil
 		}

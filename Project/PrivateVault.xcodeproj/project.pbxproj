@@ -407,9 +407,9 @@
 			buildConfigurationList = C8A792E125E06642009B862D /* Build configuration list for PBXNativeTarget "PrivateVault" */;
 			buildPhases = (
 				C8A792CE25E06642009B862D /* Sources */,
+				2B39CDFA25E327EF00E63EDD /* SwiftLint */,
 				C8A792CF25E06642009B862D /* Frameworks */,
 				C8A792D025E06642009B862D /* Resources */,
-				2B39CDFA25E327EF00E63EDD /* SwiftLint Script */,
 			);
 			buildRules = (
 			);
@@ -478,7 +478,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2B39CDFA25E327EF00E63EDD /* SwiftLint Script */ = {
+		2B39CDFA25E327EF00E63EDD /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -487,7 +487,7 @@
 			);
 			inputPaths = (
 			);
-			name = "SwiftLint Script";
+			name = SwiftLint;
 			outputFileListPaths = (
 			);
 			outputPaths = (

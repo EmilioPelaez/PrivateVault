@@ -23,9 +23,7 @@ extension StoredItem {
 				.appendingPathExtension(fileExtension)
 
 			try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
-
-			//	For now this will write the data to disk on init and will never be removed
-			//	TODO: Write to disk as needed
+			
 			try data.write(to: url)
 			return url
 		} catch {

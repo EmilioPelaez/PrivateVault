@@ -34,8 +34,7 @@ struct GalleryView: View {
 		}
 	}
 	
-	@Environment(\.managedObjectContext) private var viewContext
-	@Environment(\.persistenceController) private var persistenceController
+	@EnvironmentObject private var persistenceController: PersistenceController
 	@State var dragOver = false
 	@State var showImageActionSheet = false
 	@State var showPermissionAlert = false
@@ -122,8 +121,8 @@ struct GalleryView: View {
 	}
 	
 	func delete(_ item: StoredItem) {
-		viewContext.delete(item)
-		persistenceController?.saveContext()
+		persistenceController.context.delete(item)
+		persistenceController.saveContext()
 	}
 	
 	func quickLookView(_ item: StoredItem) -> some View {
@@ -177,8 +176,8 @@ struct GalleryView: View {
 	}
 	
 	func selectItem(_ item: ItemType) {
-		_ = StoredItem(context: viewContext, item: item)
-		persistenceController?.saveContext()
+		_ = StoredItem(context: persistenceController.context, item: item)
+		persistenceController.saveContext()
 	}
 }
 
@@ -277,7 +276,12 @@ extension GalleryView {
 }
 
 struct GalleryView_Previews: PreviewProvider {
+	static let preview = PreviewEnvironment()
+	
 	static var previews: some View {
 		GalleryView(isLocked: .constant(false))
+			.environment(\.managedObjectContext, preview.context)
+			.environmentObject(preview.controller)
+			.environmentObject(UserSettings())
 	}
 }

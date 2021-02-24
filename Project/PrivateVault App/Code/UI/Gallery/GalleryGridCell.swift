@@ -55,10 +55,15 @@ struct GalleryGridCell: View {
 }
 
 struct GalleryGridCell_Previews: PreviewProvider {
+	static let preview = PreviewEnvironment()
+	
 	static var previews: some View {
-		GalleryGridCell(item: .example)
+		GalleryGridCell(item: preview.item)
 			.previewLayout(.fixed(width: 200, height: 300))
-		GalleryGridCell(item: .example)
+			.environmentObject(UserSettings())
+		
+		GalleryGridCell(item: preview.item)
 			.previewLayout(.fixed(width: 200, height: 200))
+			.environmentObject(UserSettings())
 	}
 }

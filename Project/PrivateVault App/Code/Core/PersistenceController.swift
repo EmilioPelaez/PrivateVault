@@ -7,9 +7,10 @@
 
 import CoreData
 
-struct PersistenceController {
+class PersistenceController: ObservableObject {
 	let container: NSPersistentCloudKitContainer
-
+	var context: NSManagedObjectContext { container.viewContext }
+	
 	init(inMemory: Bool = false) {
 		container = NSPersistentCloudKitContainer(name: "Model")
 		if inMemory {
@@ -22,9 +23,13 @@ struct PersistenceController {
 		}
 	}
 
+	func delete(_ object: NSManagedObject) {
+		context.delete(object)
+	}
+	
 	func saveContext() {
 		do {
-			try container.viewContext.save()
+			try context.save()
 		} catch {
 			print(error)
 		}

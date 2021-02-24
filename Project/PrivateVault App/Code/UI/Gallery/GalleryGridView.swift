@@ -90,12 +90,13 @@ struct GalleryGridView: View {
 }
 
 struct GalleryGridView_Previews: PreviewProvider {
+	static let preview = PreviewEnvironment()
+	
 	static var previews: some View {
 		EmptyView()
 		GalleryGridView(selectedTags: .constant([])) { _ in } delete: { _ in }
-			.environment(\.managedObjectContext, PreviewEnvironment().context)
-
-		GalleryGridView(selectedTags: .constant([])) { _ in } delete: { _ in }
-			.environment(\.managedObjectContext, PreviewEnvironment().context)
+			.environment(\.managedObjectContext, preview.context)
+			.environmentObject(preview.controller)
+			.environmentObject(UserSettings())
 	}
 }

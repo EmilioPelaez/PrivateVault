@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct TagListView: View {
-	@Environment(\.managedObjectContext) private var viewContext
-	@Environment(\.persistenceController) private var persistenceController
+	@EnvironmentObject private var persistenceController: PersistenceController
 
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Tag.name, ascending: true)], animation: .default)
 	var tags: FetchedResults<Tag>
@@ -80,26 +79,30 @@ struct TagListView: View {
 
 	func createTag() {
 		guard !newTagName.isEmpty else { return }
-		let tag = Tag(context: viewContext)
+		let tag = Tag(context: persistenceController.context)
 		tag.name = newTagName
 		newTagName = ""
-		persistenceController?.saveContext()
+		persistenceController.saveContext()
 	}
 
 	private func deleteTags(offsets: IndexSet) {
 		withAnimation {
 			offsets.lazy.map { tags[$0] }.forEach {
 				selectedTags.remove($0)
-				viewContext.delete($0)
+				persistenceController.context.delete($0)
 			}
-			persistenceController?.saveContext()
+			persistenceController.saveContext()
 		}
 	}
 }
 
 struct TagListView_Previews: PreviewProvider {
+	static let preview = PreviewEnvironment()
+	
 	static var previews: some View {
 		TagListView(selectedTags: .constant([])) { }
-			.environment(\.managedObjectContext, PreviewEnvironment().context)
+			.environment(\.managedObjectContext, preview.context)
+			.environmentObject(preview.controller)
+			.environmentObject(UserSettings())
 	}
 }

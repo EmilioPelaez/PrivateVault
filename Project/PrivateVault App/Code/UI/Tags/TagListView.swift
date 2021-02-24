@@ -82,16 +82,15 @@ struct TagListView: View {
 		let tag = Tag(context: persistenceController.context)
 		tag.name = newTagName
 		newTagName = ""
-		persistenceController.saveContext()
+		persistenceController.save()
 	}
 
 	private func deleteTags(offsets: IndexSet) {
 		withAnimation {
 			offsets.lazy.map { tags[$0] }.forEach {
 				selectedTags.remove($0)
-				persistenceController.context.delete($0)
+				persistenceController.delete($0)
 			}
-			persistenceController.saveContext()
 		}
 	}
 }

@@ -121,8 +121,7 @@ struct GalleryView: View {
 	}
 	
 	func delete(_ item: StoredItem) {
-		persistenceController.context.delete(item)
-		persistenceController.saveContext()
+		persistenceController.delete(item)
 	}
 	
 	func quickLookView(_ item: StoredItem) -> some View {
@@ -177,7 +176,7 @@ struct GalleryView: View {
 	
 	func selectItem(_ item: ItemType) {
 		_ = StoredItem(context: persistenceController.context, item: item)
-		persistenceController.saveContext()
+		persistenceController.save()
 	}
 }
 

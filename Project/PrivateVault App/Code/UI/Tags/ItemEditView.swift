@@ -62,7 +62,7 @@ struct ItemEditView: View {
 				item.addToTags(tag)
 			}
 		}
-		persistenceController.saveContext()
+		persistenceController.save()
 	}
 }
 

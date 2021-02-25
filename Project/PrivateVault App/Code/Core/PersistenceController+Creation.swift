@@ -12,11 +12,16 @@ import VisionKit
 extension PersistenceController {
 	
 	func receiveCapturedImage(_ image: UIImage) {
-		receiveImage(image, name: "New Photo.jpg")
+		receiveImage(image, name: "New Photo", fileExtension: "jpg")
 	}
 	
-	func receiveImage(_ image: UIImage, name: String) {
-		
+	func receiveImage(_ image: UIImage, name: String, fileExtension: String) {
+		creatingFiles = true
+		print(#function)
+		storeImage(image: image, name: name, fileExtension: fileExtension) { _ in
+			self.creatingFiles = false
+			print("Done!")
+		}
 	}
 	
 	func receiveScan(_ scan: VNDocumentCameraScan) {
@@ -31,8 +36,24 @@ extension PersistenceController {
 		
 	}
 	
-	func receiveItem(_ item: NSItemProvider) {
-		receiveItems([item])
+	private func storeImage(image: UIImage, name: String, fileExtension: String, completion: @escaping (Bool) -> Void) {
+		DispatchQueue.global(qos: .userInitiated).async {
+			let image = image.fixOrientation()
+			let data: Data?
+			if fileExtension == "png" {
+				data = image.pngData()
+			} else {
+				data = image.jpegData(compressionQuality: 0.85)
+			}
+			let placeholderData = image.square(200)?.jpegData(compressionQuality: 0.85)
+			guard let data = data, let placeholderData = placeholderData else {
+				return DispatchQueue.main.async { completion(false) }
+			}
+			DispatchQueue.main.async { [self] in
+				_ = StoredItem(context: context, data: data, placeholderData: placeholderData, name: name, fileExtension: fileExtension)
+				save()
+			}
+		}
 	}
 	
 	private enum ItemType {
@@ -51,11 +72,14 @@ extension PersistenceController {
 			items.forEach {
 				switch $0 {
 				case let .capture(image):
-					_ = StoredItem(context: context, image: image, filename: "New photo")
+					break
+//					_ = StoredItem(context: context, image: image, filename: "New photo")
 				case let .photo(image, filename):
-					_ = StoredItem(context: context, image: image, filename: filename)
+					break
+//					_ = StoredItem(context: context, image: image, filename: filename)
 				case let .file(url):
-					_ = StoredItem(context: context, url: url)
+					break
+//					_ = StoredItem(context: context, url: url)
 				}
 			}
 			DispatchQueue.main.async { [self] in

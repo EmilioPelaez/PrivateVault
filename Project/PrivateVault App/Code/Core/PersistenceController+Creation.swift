@@ -125,11 +125,12 @@ extension PersistenceController {
 	}
 	
 	private func storeItem(at url: URL, type: UTType, completion: @escaping (Bool) -> Void) {
-		//	TODO: Handle Video
 		if type.conforms(to: .image) {
 			storeImage(at: url, completion: completion)
-		} else if type.conforms(to: .pdf) {
-			storeFile(at: url, completion: completion)
+		} else if type.conforms(to: .video) || type.conforms(to: .movie) {
+			storeFile(at: url, type: .video, completion: completion)
+		} else {
+			storeFile(at: url, type: .file, completion: completion)
 		}
 	}
 	
@@ -142,7 +143,7 @@ extension PersistenceController {
 		storeImage(image: image, name: name, fileExtension: fileExtension, completion: completion)
 	}
 	
-	private func storeFile(at url: URL, completion: @escaping (Bool) -> Void) {
+	private func storeFile(at url: URL, type: StoredItem.DataType, completion: @escaping (Bool) -> Void) {
 		guard let data = try? Data(contentsOf: url) else {
 			return completion(false)
 		}
@@ -152,8 +153,10 @@ extension PersistenceController {
 		let request = QLThumbnailGenerator.Request(fileAt: url, size: CGSize(side: 200), scale: 2, representationTypes: [.thumbnail])
 		QLThumbnailGenerator.shared.generateBestRepresentation(for: request) { [self] representation, _ in
 			let previewData = representation?.uiImage.pngData()
-			_ = StoredItem(context: context, data: data, previewData: previewData, type: .file, name: name, fileExtension: fileExtension)
-			completion(true)
+			DispatchQueue.main.async {
+				_ = StoredItem(context: context, data: data, previewData: previewData, type: type, name: name, fileExtension: fileExtension)
+				completion(true)
+			}
 		}
 	}
 }

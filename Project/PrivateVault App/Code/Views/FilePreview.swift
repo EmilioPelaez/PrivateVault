@@ -1,5 +1,5 @@
 //
-//  FilePreviewView.swift
+//  FilePreview.swift
 //  PrivateVault
 //
 //  Created by Emilio Peláez on 25/2/21.
@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-struct FilePreviewView: View {
-	
+struct FilePreview: View {
 	let image: Image
 	
 	var body: some View {
@@ -85,12 +84,12 @@ struct FilePreviewView: View {
 
 struct FilePreviewView_Previews: PreviewProvider {
 	static var previews: some View {
-		FilePreviewView(image: Image("file1"))
+		FilePreview(image: Image("file1"))
 			.frame(maxWidth: 300, maxHeight: 300)
 			.padding()
 			.previewLayout(.sizeThatFits)
 		
-		FilePreviewView(image: Image("file1"))
+		FilePreview(image: Image("file1"))
 			.frame(maxWidth: 300, maxHeight: 300)
 			.padding()
 			.previewLayout(.sizeThatFits)

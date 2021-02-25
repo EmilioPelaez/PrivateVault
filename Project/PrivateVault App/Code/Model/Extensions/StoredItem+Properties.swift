@@ -17,11 +17,11 @@ extension StoredItem {
 				appropriateFor: nil,
 				create: false
 			)
-				.appendingPathComponent("data")
+			.appendingPathComponent("data")
 			let url = folder
 				.appendingPathComponent("temp")
 				.appendingPathExtension(fileExtension)
-
+			
 			try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
 			
 			try data.write(to: url)
@@ -30,49 +30,11 @@ extension StoredItem {
 			return URL(fileURLWithPath: "")
 		}
 	}
-
-	var systemName: String {
-		switch url.pathExtension {
-		case "pdf", "doc":
-			return "doc.richtext"
-		case "txt":
-			return "doc.text"
-		case "mp4":
-			return "video"
-		case "usdz":
-			return "arkit"
-		case "zip":
-			return "doc.zipper"
-		default:
-			return "xmark.octagon.fill"
-		}
+	
+	func generatePreview() -> Image? {
+		previewData.flatMap(UIImage.init).map(Image.init)
 	}
-
-	@ViewBuilder
-	var preview: some View {
-		switch dataType {
-		case .image:
-			if let previewData = previewData {
-				UIImage(data: previewData)
-					.map { Image(uiImage: $0) }?
-					.resizable()
-			} else {
-				Image(systemName: "photo")
-					.font(.largeTitle)
-			}
-		case .file:
-			if let previewData = previewData,
-				 let image = UIImage(data: previewData).map({ Image(uiImage: $0) })?.resizable() {
-				FilePreviewView(image: image)
-			} else {
-				Image(systemName: "doc")
-					.font(.largeTitle)
-			}
-		case _:
-			Color.red
-		}
-	}
-
+	
 	var searchText: String {
 		let tags = self.tags as? Set<Tag>
 		let tagSearch = tags?.compactMap(\.name).joined(separator: " ")

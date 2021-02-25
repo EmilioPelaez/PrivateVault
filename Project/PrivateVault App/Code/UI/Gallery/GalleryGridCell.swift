@@ -22,8 +22,7 @@ struct GalleryGridCell: View {
 		VStack(alignment: .leading) {
 			Color.clear.aspectRatio(1, contentMode: .fill)
 				.overlay(
-					item.preview
-						.aspectRatio(contentMode: settings.contentMode)
+					ItemPreview(item: item)
 				)
 				.clipped()
 			if settings.showDetails {

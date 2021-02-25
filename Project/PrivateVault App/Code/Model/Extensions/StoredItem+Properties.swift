@@ -49,21 +49,27 @@ extension StoredItem {
 	}
 
 	@ViewBuilder
-	var placeholder: some View {
-		if let placeholderImage = placeholderData.flatMap({ UIImage(data: $0) }) {
-			Image(uiImage: placeholderImage)
-				.resizable()
-		} else {
-			VStack {
-				Spacer()
-				HStack {
-					Spacer()
-					Image(systemName: systemName)
-						.font(.largeTitle)
-					Spacer()
-				}
-				Spacer()
+	var preview: some View {
+		switch dataType {
+		case .image:
+			if let previewData = previewData {
+				UIImage(data: previewData)
+					.map { Image(uiImage: $0) }?
+					.resizable()
+			} else {
+				Image(systemName: "photo")
+					.font(.largeTitle)
 			}
+		case .file:
+			if let previewData = previewData,
+				 let image = UIImage(data: previewData).map({ Image(uiImage: $0) })?.resizable() {
+				FilePreviewView(image: image)
+			} else {
+				Image(systemName: "doc")
+					.font(.largeTitle)
+			}
+		case _:
+			Color.red
 		}
 	}
 

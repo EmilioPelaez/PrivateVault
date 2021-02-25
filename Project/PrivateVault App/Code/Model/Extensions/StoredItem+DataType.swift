@@ -7,12 +7,13 @@
 
 extension StoredItem {
 	enum DataType: Int16 {
-		case unknown
+		case file
 		case image
+		case video
 	}
 
 	var dataType: DataType {
-		get { DataType(rawValue: dataTypeValue) ?? .unknown }
+		get { DataType(rawValue: dataTypeValue) ?? .file }
 		set { dataTypeValue = newValue.rawValue }
 	}
 }

@@ -75,12 +75,12 @@ extension PersistenceController {
 			} else {
 				data = image.jpegData(compressionQuality: 0.85)
 			}
-			let placeholderData = image.square(200)?.jpegData(compressionQuality: 0.85)
-			guard let data = data, let placeholderData = placeholderData else {
+			let previewData = image.square(200)?.jpegData(compressionQuality: 0.85)
+			guard let data = data, let previewData = previewData else {
 				return DispatchQueue.main.async { completion(false) }
 			}
 			DispatchQueue.main.async { [self] in
-				_ = StoredItem(context: context, data: data, placeholderData: placeholderData, name: name, fileExtension: fileExtension)
+				_ = StoredItem(context: context, data: data, previewData: previewData, type: .image, name: name, fileExtension: fileExtension)
 				save()
 				completion(true)
 			}
@@ -90,14 +90,14 @@ extension PersistenceController {
 	private func storeScan(_ scan: VNDocumentCameraScan, name: String, fileExtension: String, completion: @escaping (Bool) -> Void) {
 		DispatchQueue.global(qos: .userInitiated).async {
 			let pdf = scan.generatePDF()
-			let placeholder = scan.imageOfPage(at: 0).fixOrientation()
-			let placeholderData = placeholder.resized(toFit: CGSize(side: 200))?.jpegData(compressionQuality: 0.85)
+			let preview = scan.imageOfPage(at: 0).fixOrientation()
+			let previewData = preview.resized(toFit: CGSize(side: 200))?.jpegData(compressionQuality: 0.85)
 			let data = pdf.dataRepresentation()
-			guard let data = data, let placeholderData = placeholderData else {
+			guard let data = data, let previewData = previewData else {
 				return DispatchQueue.main.async { completion(false) }
 			}
 			DispatchQueue.main.async { [self] in
-				_ = StoredItem(context: context, data: data, placeholderData: placeholderData, name: name, fileExtension: fileExtension)
+				_ = StoredItem(context: context, data: data, previewData: previewData, type: .file, name: name, fileExtension: fileExtension)
 				save()
 				completion(true)
 			}
@@ -125,7 +125,7 @@ extension PersistenceController {
 	}
 	
 	private func storeItem(at url: URL, type: UTType, completion: @escaping (Bool) -> Void) {
-		//	TODO: Handle PDF, Video
+		//	TODO: Handle Video
 		if type.conforms(to: .image) {
 			storeImage(at: url, completion: completion)
 		} else if type.conforms(to: .pdf) {
@@ -151,8 +151,8 @@ extension PersistenceController {
 		
 		let request = QLThumbnailGenerator.Request(fileAt: url, size: CGSize(side: 200), scale: 2, representationTypes: [.thumbnail])
 		QLThumbnailGenerator.shared.generateBestRepresentation(for: request) { [self] representation, _ in
-			let placeholderData = representation?.uiImage.pngData()
-			_ = StoredItem(context: context, data: data, placeholderData: placeholderData, name: name, fileExtension: fileExtension)
+			let previewData = representation?.uiImage.pngData()
+			_ = StoredItem(context: context, data: data, previewData: previewData, type: .file, name: name, fileExtension: fileExtension)
 			completion(true)
 		}
 	}

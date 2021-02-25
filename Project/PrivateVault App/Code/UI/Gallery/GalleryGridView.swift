@@ -68,7 +68,7 @@ struct GalleryGridView: View {
 									tagEditingItem = item
 								} label: {
 									Text("Edit")
-									Image(systemName: "edit")
+									Image(systemName: "pencil")
 								}
 								Button {
 									delete(item)

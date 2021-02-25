@@ -18,7 +18,7 @@ struct FileTypePickerView: View {
 			switch self {
 			case .camera: return "camera"
 			case .album: return "photo.on.rectangle"
-			case .document: return "doc"
+			case .document: return "folder"
 			case .scan: return "doc.text.viewfinder"
 			}
 		}

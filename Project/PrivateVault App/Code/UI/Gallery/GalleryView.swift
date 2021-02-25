@@ -131,12 +131,12 @@ struct GalleryView: View {
 	func filePicker(_ item: SheetItem) -> some View {
 		Group {
 			switch item {
-			case .tags: TagListView(selectedTags: $selectedTags) { currentSheet = nil }
-			case .imagePicker: PhotosPicker(selectedMedia: persistenceController.receiveItems) { currentSheet = nil }
+			case .tags: TagListView(selectedTags: $selectedTags)
+			case .imagePicker: PhotosPicker(selectedMedia: persistenceController.receiveItems)
 			case .cameraPicker: CameraPicker(selectImage: persistenceController.receiveCapturedImage)
 			case .documentPicker: DocumentPicker(selectDocuments: persistenceController.receiveURLs)
 			case .documentScanner: DocumentScanner(didScan: persistenceController.receiveScan)
-			case .settings: SettingsView { currentSheet = nil }
+			case .settings: SettingsView()
 			}
 		}
 		.ignoresSafeArea()
@@ -161,24 +161,17 @@ struct GalleryView: View {
 	
 	func requestCameraAuthorization() {
 		switch AVCaptureDevice.authorizationStatus(for: .video) {
-		case .authorized:
-			currentSheet = .cameraPicker
-		case .notDetermined:
-			AVCaptureDevice.requestAccess(for: .video) { _ in }
-		default:
-			showPermissionAlert = true
+		case .authorized: currentSheet = .cameraPicker
+		case .notDetermined: AVCaptureDevice.requestAccess(for: .video) { _ in }
+		default: showPermissionAlert = true
 		}
 	}
 }
 
 extension GalleryView: DropDelegate {
-	func dropEntered(info: DropInfo) {
-		dragOver = true
-	}
+	func dropEntered(info: DropInfo) { dragOver = true }
 	
-	func dropExited(info: DropInfo) {
-		dragOver = false
-	}
+	func dropExited(info: DropInfo) { dragOver = false }
 	
 	func performDrop(info: DropInfo) -> Bool {
 		persistenceController.receiveItems(info.itemProviders(for: [.image, .video, .pdf]))

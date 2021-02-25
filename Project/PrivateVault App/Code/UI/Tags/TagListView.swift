@@ -9,13 +9,13 @@ import SwiftUI
 
 struct TagListView: View {
 	@EnvironmentObject private var persistenceController: PersistenceController
+	@Environment(\.presentationMode) var presentationMode
 
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Tag.name, ascending: true)], animation: .default)
 	var tags: FetchedResults<Tag>
 
 	@Binding var selectedTags: Set<Tag>
 	@State var newTagName: String = ""
-	let close: () -> Void
 
 	var body: some View {
 		NavigationView {
@@ -50,7 +50,10 @@ struct TagListView: View {
 			.navigationTitle("Tags")
 			.toolbar {
 				ToolbarItem(placement: .navigationBarLeading) {
-					Button(action: close) {
+					Button {
+						presentationMode.wrappedValue.dismiss()
+					}
+					label: {
 						Image(systemName: "xmark.circle.fill")
 					}
 				}
@@ -99,7 +102,7 @@ struct TagListView_Previews: PreviewProvider {
 	static let preview = PreviewEnvironment()
 	
 	static var previews: some View {
-		TagListView(selectedTags: .constant([])) { }
+		TagListView(selectedTags: .constant([]))
 			.environment(\.managedObjectContext, preview.context)
 			.environmentObject(preview.controller)
 			.environmentObject(UserSettings())

@@ -11,6 +11,8 @@ class PersistenceController: ObservableObject {
 	let container: NSPersistentCloudKitContainer
 	var context: NSManagedObjectContext { container.viewContext }
 	
+	@Published var creatingFiles = false
+	
 	init(inMemory: Bool = false) {
 		container = NSPersistentCloudKitContainer(name: "Model")
 		if inMemory {
@@ -20,20 +22,6 @@ class PersistenceController: ObservableObject {
 			if let error = error as NSError? {
 				print("Unresolved error \(error), \(error.userInfo)")
 			}
-		}
-	}
-
-	func delete(_ object: NSManagedObject) {
-		context.delete(object)
-		save()
-	}
-	
-	func save() {
-		guard context.hasChanges else { return }
-		do {
-			try context.save()
-		} catch {
-			print(error)
 		}
 	}
 }

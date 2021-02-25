@@ -132,10 +132,10 @@ struct GalleryView: View {
 		Group {
 			switch item {
 			case .tags: TagListView(selectedTags: $selectedTags) { currentSheet = nil }
-			case .imagePicker: PhotosPicker(closeSheet: { currentSheet = nil }, loadData: loadData)
-			case .cameraPicker: CameraPicker(selectImage: { selectItem(.capture($0)) })
-			case .documentPicker: DocumentPicker(selectDocuments: { selectItems($0.map({ .file($0) })) })
-			case .documentScanner: DocumentScanner(selectScan: { selectItem(.capture($0)) })
+			case .imagePicker: PhotosPicker(selectedMedia: persistenceController.receiveItems) { currentSheet = nil }
+			case .cameraPicker: CameraPicker(selectImage: persistenceController.receiveCapturedImage)
+			case .documentPicker: DocumentPicker(selectDocuments: persistenceController.receiveURLs)
+			case .documentScanner: DocumentScanner(didScan: persistenceController.receiveScan)
 			case .settings: SettingsView { currentSheet = nil }
 			}
 		}
@@ -169,15 +169,6 @@ struct GalleryView: View {
 			showPermissionAlert = true
 		}
 	}
-	
-	func selectItems(_ items: [ItemType]) {
-		items.forEach(selectItem)
-	}
-	
-	func selectItem(_ item: ItemType) {
-		_ = StoredItem(context: persistenceController.context, item: item)
-		persistenceController.save()
-	}
 }
 
 extension GalleryView: DropDelegate {
@@ -190,87 +181,8 @@ extension GalleryView: DropDelegate {
 	}
 	
 	func performDrop(info: DropInfo) -> Bool {
-		loadData(from: info.itemProviders(for: [.jpeg, .png]))
+		persistenceController.receiveItems(info.itemProviders(for: [.image, .video, .pdf]))
 		return true
-	}
-}
-
-enum ItemType {
-	case photo(UIImage, String)
-	case capture(UIImage)
-	case file(URL)
-}
-
-extension GalleryView {
-	func loadData(from itemProviders: [NSItemProvider]) {
-		itemProviders.forEach(loadData)
-	}
-	
-	func loadData(from itemProvider: NSItemProvider) {
-		guard let typeIdentifier = itemProvider.registeredTypeIdentifiers.first,
-					let utType = UTType(typeIdentifier)
-		else { return }
-		
-		itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { url, error in
-			if let error = error {
-				print(error.localizedDescription)
-			}
-			
-			guard let url = url else {
-				print("Failed to get url")
-				return
-			}
-			
-			if utType.conforms(to: .image) {
-				getPhoto(from: itemProvider, url: url)
-			} else if utType.conforms(to: .movie) {
-				getVideo(from: url)
-			} else if utType.conforms(to: .livePhoto) {
-				getPhoto(from: itemProvider, url: url, isLivePhoto: true)
-			}
-		}
-	}
-	
-	private func getPhoto(from itemProvider: NSItemProvider, url: URL, isLivePhoto: Bool = false) {
-		let objectType: NSItemProviderReading.Type = !isLivePhoto ? UIImage.self : PHLivePhoto.self
-		
-		if itemProvider.canLoadObject(ofClass: objectType) {
-			itemProvider.loadObject(ofClass: objectType) { object, error in
-				if let error = error {
-					print(error.localizedDescription)
-				}
-				
-				if !isLivePhoto {
-					if let image = object as? UIImage {
-						selectItem(.photo(image.fixOrientation(), url.lastPathComponent))
-						// self.photoPicker.mediaItems.append(item: PhotoPickerModel(with: image))
-					}
-				} else {
-					if let livePhoto = object as? PHLivePhoto {
-						print(livePhoto)
-						// self.parent.selectImage(livePhoto, "filename")
-						// self.photoPicker.mediaItems.append(item: PhotoPickerModel(with: livePhoto))
-					}
-				}
-			}
-		}
-	}
-	
-	private func getVideo(from url: URL) {
-		let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-		guard let targetURL = documentsDirectory?.appendingPathComponent(url.lastPathComponent) else { return }
-		
-		do {
-			if FileManager.default.fileExists(atPath: targetURL.path) {
-				try FileManager.default.removeItem(at: targetURL)
-			}
-			
-			try FileManager.default.copyItem(at: url, to: targetURL)
-			
-			selectItem(.file(targetURL))
-		} catch {
-			print(error.localizedDescription)
-		}
 	}
 }
 

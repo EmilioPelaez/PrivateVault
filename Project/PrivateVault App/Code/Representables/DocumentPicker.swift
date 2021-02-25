@@ -19,30 +19,18 @@ final class DocumentPicker: NSObject, UIViewControllerRepresentable {
 
 	lazy var viewController: UIDocumentPickerViewController = {
 		// For picked only folder
-		let viewController = UIDocumentPickerViewController(
-			forOpeningContentTypes: [.image, .audio, .text, .usdz, .pdf],
-			asCopy: true
-		)
+		let viewController = UIDocumentPickerViewController(forOpeningContentTypes: [.image, .audio, .text, .usdz, .pdf], asCopy: true)
 		viewController.allowsMultipleSelection = false
-		//        vc.accessibilityElements = [kFolderActionCode]
-		//        vc.shouldShowFileExtensions = true
 		viewController.delegate = self
 		return viewController
 	}()
 
-	func makeUIViewController(
-		context: UIViewControllerRepresentableContext<DocumentPicker>
-	) -> UIDocumentPickerViewController {
+	func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
 		viewController.delegate = self
 		return viewController
 	}
 
-	func updateUIViewController(
-		_ uiViewController: UIDocumentPickerViewController,
-		context: UIViewControllerRepresentableContext<DocumentPicker>
-	) {
-
-	}
+	func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: UIViewControllerRepresentableContext<DocumentPicker>) { }
 }
 
 extension DocumentPicker: UIDocumentPickerDelegate {

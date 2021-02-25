@@ -34,15 +34,4 @@ extension StoredItem {
 		self.fileExtension = url.pathExtension
 		self.timestamp = Date()
 	}
-
-	convenience init(context: NSManagedObjectContext, item: ItemType) {
-		switch item {
-		case let .capture(image):
-			self.init(context: context, image: image, filename: "New photo")
-		case let .photo(image, filename):
-			self.init(context: context, image: image, filename: filename)
-		case let .file(url):
-			self.init(context: context, url: url)
-		}
-	}
 }

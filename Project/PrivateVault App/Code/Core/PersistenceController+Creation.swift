@@ -25,7 +25,12 @@ extension PersistenceController {
 	}
 	
 	func receiveScan(_ scan: VNDocumentCameraScan) {
-		
+		creatingFiles = true
+		print(#function)
+		storeScan(scan, name: "Scanned Document", fileExtension: "pdf") { _ in
+			self.creatingFiles = false
+			print("Done!")
+		}
 	}
 	
 	func receiveURLs(_ url: [URL]) {
@@ -46,6 +51,22 @@ extension PersistenceController {
 				data = image.jpegData(compressionQuality: 0.85)
 			}
 			let placeholderData = image.square(200)?.jpegData(compressionQuality: 0.85)
+			guard let data = data, let placeholderData = placeholderData else {
+				return DispatchQueue.main.async { completion(false) }
+			}
+			DispatchQueue.main.async { [self] in
+				_ = StoredItem(context: context, data: data, placeholderData: placeholderData, name: name, fileExtension: fileExtension)
+				save()
+			}
+		}
+	}
+	
+	private func storeScan(_ scan: VNDocumentCameraScan, name: String, fileExtension: String, completion: @escaping (Bool) -> Void) {
+		DispatchQueue.global(qos: .userInitiated).async {
+			let pdf = scan.generatePDF()
+			let placeholder = scan.imageOfPage(at: 0).fixOrientation()
+			let placeholderData = placeholder.resized(toFit: CGSize(side: 200))?.jpegData(compressionQuality: 0.85)
+			let data = pdf.dataRepresentation()
 			guard let data = data, let placeholderData = placeholderData else {
 				return DispatchQueue.main.async { completion(false) }
 			}

@@ -6,6 +6,7 @@
 //
 
 import Photos
+import QuickLook
 import UIKit
 import VisionKit
 
@@ -127,6 +128,8 @@ extension PersistenceController {
 		//	TODO: Handle PDF, Video
 		if type.conforms(to: .image) {
 			storeImage(at: url, completion: completion)
+		} else if type.conforms(to: .pdf) {
+			storeFile(at: url, completion: completion)
 		}
 	}
 	
@@ -134,8 +137,23 @@ extension PersistenceController {
 		guard let data = try? Data(contentsOf: url), let image = UIImage(data: data) else {
 			return completion(false)
 		}
-		let name = url.deletingPathExtension().lastPathComponent
+		let name = url.filename
 		let fileExtension = url.pathExtension
 		storeImage(image: image, name: name, fileExtension: fileExtension, completion: completion)
+	}
+	
+	private func storeFile(at url: URL, completion: @escaping (Bool) -> Void) {
+		guard let data = try? Data(contentsOf: url) else {
+			return completion(false)
+		}
+		let name = url.filename
+		let fileExtension = url.pathExtension
+		
+		let request = QLThumbnailGenerator.Request(fileAt: url, size: CGSize(side: 200), scale: 2, representationTypes: [.thumbnail])
+		QLThumbnailGenerator.shared.generateBestRepresentation(for: request) { [self] representation, _ in
+			let placeholderData = representation?.uiImage.pngData()
+			_ = StoredItem(context: context, data: data, placeholderData: placeholderData, name: name, fileExtension: fileExtension)
+			completion(true)
+		}
 	}
 }

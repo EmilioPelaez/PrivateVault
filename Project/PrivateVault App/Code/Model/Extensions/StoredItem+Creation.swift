@@ -10,7 +10,7 @@ import UIKit
 
 extension StoredItem {
 	
-	convenience init(context: NSManagedObjectContext, data: Data, placeholderData: Data, name: String, fileExtension: String) {
+	convenience init(context: NSManagedObjectContext, data: Data, placeholderData: Data? = nil, name: String, fileExtension: String) {
 		self.init(context: context)
 		self.id = UUID().uuidString
 		self.data = data

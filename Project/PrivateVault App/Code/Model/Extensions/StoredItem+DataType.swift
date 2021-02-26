@@ -6,10 +6,12 @@
 //
 
 extension StoredItem {
-	enum DataType: Int16 {
+	enum DataType: Int16, Identifiable {
 		case file
 		case image
 		case video
+		
+		var id: Int16 { rawValue }
 	}
 
 	var dataType: DataType {
@@ -21,9 +23,19 @@ extension StoredItem {
 extension StoredItem.DataType {
 	var systemImageName: String {
 		switch self {
-		case .file: return "doc.fill"
-		case .image: return "photo.fill"
-		case .video: return "video.fill"
+		case .file: return "doc"
+		case .image: return "photo"
+		case .video: return "video"
 		}
 	}
+	
+	var name: String {
+		switch self {
+		case .file: return "Files"
+		case .image: return "Images"
+		case .video: return "Videos"
+		}
+	}
+	
+	static var all: [StoredItem.DataType] = [.file, .image, .video]
 }

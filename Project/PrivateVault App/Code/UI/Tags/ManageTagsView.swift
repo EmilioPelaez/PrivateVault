@@ -1,5 +1,5 @@
 //
-//  TagListView.swift
+//  ManageTagsView.swift
 //  PrivateVault
 //
 //  Created by Emilio Peláez on 20/2/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TagListView: View {
+struct ManageTagsView: View {
 	@EnvironmentObject private var persistenceController: PersistenceController
 	@Environment(\.presentationMode) var presentationMode
 
@@ -102,7 +102,7 @@ struct TagListView_Previews: PreviewProvider {
 	static let preview = PreviewEnvironment()
 	
 	static var previews: some View {
-		TagListView(selectedTags: .constant([]))
+		ManageTagsView(selectedTags: .constant([]))
 			.environment(\.managedObjectContext, preview.context)
 			.environmentObject(preview.controller)
 			.environmentObject(UserSettings())

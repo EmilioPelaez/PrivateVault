@@ -36,10 +36,12 @@ struct GalleryView: View {
 	
 	@EnvironmentObject private var persistenceController: PersistenceController
 	@EnvironmentObject private var settings: UserSettings
+	@ObservedObject private var filter = ItemFilter()
 	@State var dragOver = false
 	@State var showLayoutMenu = false
 	@State var showImageActionSheet = false
 	@State var showPermissionAlert = false
+	@State var showTags = false
 	@State var showProcessing = false
 	@State var currentSheet: SheetItem?
 	@State var currentAlert: AlertItem?
@@ -62,11 +64,55 @@ struct GalleryView: View {
 			}
 			ZStack(alignment: .bottomLeading) {
 				Color.clear
-				FileTypePickerView(action: selectType)
-					.sheet(item: $currentSheet, content: filePicker)
+				if showTags {
+					Color(white: 0, opacity: 0.001)
+						.onTapGesture {
+							withAnimation {
+								showTags = false
+							}
+						}
+				}
+				HStack(alignment: .bottom) {
+					FileTypePickerView(action: selectType)
+						.sheet(item: $currentSheet, content: filePicker)
+					VStack(alignment: .leading) {
+						if showTags {
+							FiltersView(filter: filter) {
+								withAnimation {
+									showTags = false
+									currentSheet = .tags
+								}
+							}
+							.transition(.scale(scale: 0, anchor: .bottomLeading))
+						}
+						Button {
+							withAnimation {
+								showTags.toggle()
+							}
+						}
+						label: {
+							ZStack {
+								Circle()
+									.fill(Color.green)
+									.shadow(color: Color(white: 0, opacity: 0.2), radius: 4, x: 0, y: 2)
+								Group {
+									if showTags {
+										Image(systemName: "tag.fill")
+									} else {
+										Image(systemName: "tag")
+									}
+								}
+								.font(.system(size: 30))
+								.foregroundColor(.white)
+								.transition(.opacity)
+							}
+							.frame(width: 60, height: 60)
+						}
+					}
+				}
+				.padding(.horizontal)
+				.padding(.bottom, 10)
 			}
-			.padding(.horizontal)
-			.padding(.bottom, 10)
 			ZStack(alignment: .bottom) {
 				Color.clear
 				if showProcessing {
@@ -182,7 +228,7 @@ struct GalleryView: View {
 	func filePicker(_ item: SheetItem) -> some View {
 		Group {
 			switch item {
-			case .tags: TagListView(selectedTags: $selectedTags)
+			case .tags: ManageTagsView(selectedTags: $selectedTags)
 			case .imagePicker: PhotosPicker(selectedMedia: persistenceController.receiveItems)
 			case .cameraPicker: CameraPicker(selectImage: persistenceController.receiveCapturedImage)
 			case .documentPicker: DocumentPicker(selectDocuments: persistenceController.receiveURLs)

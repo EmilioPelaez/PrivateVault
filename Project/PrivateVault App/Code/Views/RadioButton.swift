@@ -18,7 +18,7 @@ struct RadioButton: View {
 				.stroke(color, lineWidth: 2)
 				.frame(width: size, height: size)
 			Circle()
-				.fill(Color.blue)
+				.fill(color)
 				.frame(width: size - 4, height: size - 4)
 				.scaleEffect(selected ? 1 : 0)
 		}

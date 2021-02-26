@@ -44,6 +44,12 @@
 		C83959B125E8FD6700521F83 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959B025E8FD6700521F83 /* Spinner.swift */; };
 		C83959B325E9AE6900521F83 /* ItemFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959B225E9AE6900521F83 /* ItemFilter.swift */; };
 		C83959B825E9B17C00521F83 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959B725E9B17C00521F83 /* FiltersView.swift */; };
+		C83959BA25E9BFA700521F83 /* GalleryView+NavigationButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959B925E9BFA700521F83 /* GalleryView+NavigationButtons.swift */; };
+		C83959BC25E9BFE700521F83 /* GalleryView+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959BB25E9BFE700521F83 /* GalleryView+Alerts.swift */; };
+		C83959BE25E9C00E00521F83 /* GalleryView+DropDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959BD25E9C00E00521F83 /* GalleryView+DropDelegate.swift */; };
+		C83959C025E9C05F00521F83 /* GalleryView+Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959BF25E9C05F00521F83 /* GalleryView+Sheet.swift */; };
+		C83959C225E9C07D00521F83 /* GalleryView+Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959C125E9C07D00521F83 /* GalleryView+Items.swift */; };
+		C83959C425E9C0E900521F83 /* GalleryView+BottomOverlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959C325E9C0E900521F83 /* GalleryView+BottomOverlays.swift */; };
 		C868FD6125E2AFA5005A3EA9 /* SetPasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */; };
 		C868FD6325E2D458005A3EA9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6225E2D458005A3EA9 /* AboutView.swift */; };
 		C868FD6625E30619005A3EA9 /* BiometricAuthenticationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6525E30619005A3EA9 /* BiometricAuthenticationButton.swift */; };
@@ -132,6 +138,12 @@
 		C83959B025E8FD6700521F83 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		C83959B225E9AE6900521F83 /* ItemFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemFilter.swift; sourceTree = "<group>"; };
 		C83959B725E9B17C00521F83 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
+		C83959B925E9BFA700521F83 /* GalleryView+NavigationButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+NavigationButtons.swift"; sourceTree = "<group>"; };
+		C83959BB25E9BFE700521F83 /* GalleryView+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+Alerts.swift"; sourceTree = "<group>"; };
+		C83959BD25E9C00E00521F83 /* GalleryView+DropDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+DropDelegate.swift"; sourceTree = "<group>"; };
+		C83959BF25E9C05F00521F83 /* GalleryView+Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+Sheet.swift"; sourceTree = "<group>"; };
+		C83959C125E9C07D00521F83 /* GalleryView+Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+Items.swift"; sourceTree = "<group>"; };
+		C83959C325E9C0E900521F83 /* GalleryView+BottomOverlays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+BottomOverlays.swift"; sourceTree = "<group>"; };
 		C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasscodeView.swift; sourceTree = "<group>"; };
 		C868FD6225E2D458005A3EA9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		C868FD6525E30619005A3EA9 /* BiometricAuthenticationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationButton.swift; sourceTree = "<group>"; };
@@ -289,6 +301,12 @@
 			isa = PBXGroup;
 			children = (
 				C8A792EC25E06D75009B862D /* GalleryView.swift */,
+				C83959BB25E9BFE700521F83 /* GalleryView+Alerts.swift */,
+				C83959C325E9C0E900521F83 /* GalleryView+BottomOverlays.swift */,
+				C83959BD25E9C00E00521F83 /* GalleryView+DropDelegate.swift */,
+				C83959C125E9C07D00521F83 /* GalleryView+Items.swift */,
+				C83959B925E9BFA700521F83 /* GalleryView+NavigationButtons.swift */,
+				C83959BF25E9C05F00521F83 /* GalleryView+Sheet.swift */,
 				C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */,
 				C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */,
 				C89C9DD725E1773E003505B9 /* EmptyGalleryView.swift */,
@@ -564,10 +582,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C83959C025E9C05F00521F83 /* GalleryView+Sheet.swift in Sources */,
 				C839599125E7A6AF00521F83 /* PersistenceController+Creation.swift in Sources */,
 				C88ACB1925E10B450064C160 /* UIDevice+iPad.swift in Sources */,
 				468A75E125E15B9300B87597 /* SoundEffect.swift in Sources */,
 				C8EFD20225E1374F00CB4141 /* CGSize+Utilities.swift in Sources */,
+				C83959C425E9C0E900521F83 /* GalleryView+BottomOverlays.swift in Sources */,
 				2B39CE1125E32CA200E63EDD /* LinkType.swift in Sources */,
 				C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */,
 				C88ACB1B25E112A70064C160 /* View+Shake.swift in Sources */,
@@ -579,6 +599,7 @@
 				C8A792D825E06642009B862D /* ContentView.swift in Sources */,
 				C89C9DE725E197C5003505B9 /* Tag+Creation.swift in Sources */,
 				C868FD6825E30B23005A3EA9 /* LAContext+Shared.swift in Sources */,
+				C83959BE25E9C00E00521F83 /* GalleryView+DropDelegate.swift in Sources */,
 				2B6C742C25E08BBF00EAF6FD /* PhotosPicker.swift in Sources */,
 				2B39CE0825E32B9500E63EDD /* LinkButton.swift in Sources */,
 				C8EFD22B25E159EA00CB4141 /* StoredItem+Properties.swift in Sources */,
@@ -595,8 +616,10 @@
 				C89C9DEF25E1D804003505B9 /* Binding+Optional.swift in Sources */,
 				C89C9DE125E19671003505B9 /* Tag+Examples.swift in Sources */,
 				C839599525E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift in Sources */,
+				C83959BC25E9BFE700521F83 /* GalleryView+Alerts.swift in Sources */,
 				C83959B825E9B17C00521F83 /* FiltersView.swift in Sources */,
 				C83959B125E8FD6700521F83 /* Spinner.swift in Sources */,
+				C83959BA25E9BFA700521F83 /* GalleryView+NavigationButtons.swift in Sources */,
 				C89C9DE925E19935003505B9 /* RadioButton.swift in Sources */,
 				2B39CD9525E1913A00E63EDD /* CameraPicker.swift in Sources */,
 				C8A792ED25E06D75009B862D /* GalleryView.swift in Sources */,
@@ -612,6 +635,7 @@
 				C839598F25E7A69300521F83 /* PersistenceController+ContextOperations.swift in Sources */,
 				C8A792D625E06642009B862D /* PrivateVaultApp.swift in Sources */,
 				C839599325E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift in Sources */,
+				C83959C225E9C07D00521F83 /* GalleryView+Items.swift in Sources */,
 				2B39CD8725E18B6900E63EDD /* UserSettings.swift in Sources */,
 				C8EFD22F25E15D1D00CB4141 /* StoredItem+DataType.swift in Sources */,
 				C89C9DEB25E19C30003505B9 /* VisualEffectView.swift in Sources */,

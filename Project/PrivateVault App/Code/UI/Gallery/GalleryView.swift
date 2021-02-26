@@ -35,7 +35,9 @@ struct GalleryView: View {
 	}
 	
 	@EnvironmentObject private var persistenceController: PersistenceController
+	@EnvironmentObject private var settings: UserSettings
 	@State var dragOver = false
+	@State var showLayoutMenu = false
 	@State var showImageActionSheet = false
 	@State var showPermissionAlert = false
 	@State var showProcessing = false
@@ -55,27 +57,8 @@ struct GalleryView: View {
 			.fullScreenCover(item: $selectedItem, content: quickLookView)
 			.navigationTitle("Gallery")
 			.toolbar {
-				ToolbarItemGroup(placement: .navigationBarLeading) {
-					Button {
-						currentSheet = .settings
-					} label: {
-						Image(systemName: "gearshape.fill")
-					}
-					Button {
-						withAnimation {
-							isLocked = true
-						}
-					} label: {
-						Image(systemName: "lock.fill")
-					}
-				}
-				ToolbarItemGroup(placement: .navigationBarTrailing) {
-					Button {
-						currentSheet = .tags
-					} label: {
-						Image(systemName: "tag.fill")
-					}
-				}
+				leadingButtons
+				trailingButton
 			}
 			ZStack(alignment: .bottomLeading) {
 				Color.clear
@@ -104,6 +87,59 @@ struct GalleryView: View {
 			currentSheet = nil
 			selectedItem = nil
 			itemBeingDeleted = nil
+		}
+	}
+	
+	var leadingButtons: some ToolbarContent {
+		ToolbarItemGroup(placement: .navigationBarLeading) {
+			Button {
+				currentSheet = .settings
+			} label: {
+				Image(systemName: "gearshape.fill")
+			}
+			Button {
+				withAnimation { isLocked = true }
+			} label: {
+				Image(systemName: "lock.fill")
+			}
+		}
+	}
+	
+	var trailingButton: some ToolbarContent {
+		ToolbarItemGroup(placement: .navigationBarTrailing) {
+			Menu {
+				Button {
+					withAnimation { settings.showDetails.toggle() }
+				}
+				label: {
+					if settings.showDetails {
+						Text("Hide File Details")
+					} else {
+						Text("Show File Details")
+					}
+					Image(systemName: "info.circle")
+				}
+				Menu {
+					ForEach(1..<6) { columns in
+						Button {
+							withAnimation { settings.columns = columns }
+						}
+						label: {
+							if columns == 1 {
+								Text("\(columns) Column")
+							} else {
+								Text("\(columns) Columns")
+							}
+							Image(systemName: "\(columns).circle")
+						}
+					}
+				} label: {
+					Text("Columns")
+					Image(systemName: "rectangle.split.3x1")
+				}
+			} label: {
+				Image(systemName: "slider.horizontal.3")
+			}
 		}
 	}
 	

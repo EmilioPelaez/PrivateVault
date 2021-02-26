@@ -38,6 +38,7 @@ struct GalleryView: View {
 	@State var dragOver = false
 	@State var showImageActionSheet = false
 	@State var showPermissionAlert = false
+	@State var showProcessing = false
 	@State var currentSheet: SheetItem?
 	@State var currentAlert: AlertItem?
 	@State var selectedItem: StoredItem?
@@ -46,7 +47,7 @@ struct GalleryView: View {
 	@Binding var isLocked: Bool
 	
 	var body: some View {
-		ZStack(alignment: .bottomLeading) {
+		ZStack {
 			GalleryGridView(selectedTags: $selectedTags, selection: select) {
 				currentAlert = .deleteItemConfirmation($0)
 			}
@@ -76,10 +77,24 @@ struct GalleryView: View {
 					}
 				}
 			}
-			FileTypePickerView(action: selectType)
-				.sheet(item: $currentSheet, content: filePicker)
-				.padding(.horizontal)
-				.padding(.bottom, 10)
+			ZStack(alignment: .bottomLeading) {
+				Color.clear
+				FileTypePickerView(action: selectType)
+					.sheet(item: $currentSheet, content: filePicker)
+			}
+			.padding(.horizontal)
+			.padding(.bottom, 10)
+			ZStack(alignment: .bottom) {
+				Color.clear
+				if showProcessing {
+					ImportProcessView()
+						.transition(.opacity.combined(with: .move(edge: .bottom)))
+				}
+			}
+			.padding()
+			.onChange(of: persistenceController.creatingFiles) { creating in
+				withAnimation { showProcessing = creating }
+			}
 		}
 		.alert(item: $currentAlert, content: alert)
 		.onChange(of: isLocked) {

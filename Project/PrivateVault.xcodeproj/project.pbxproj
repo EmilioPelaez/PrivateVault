@@ -40,6 +40,8 @@
 		C83959A725E8621600521F83 /* VideoPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959A625E8621600521F83 /* VideoPreview.swift */; };
 		C83959A925E8F31500521F83 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959A825E8F31500521F83 /* AsynchronousOperation.swift */; };
 		C83959AB25E8F5A200521F83 /* ObservableOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959AA25E8F5A200521F83 /* ObservableOperationQueue.swift */; };
+		C83959AF25E8F9B300521F83 /* ImportProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959AE25E8F9B300521F83 /* ImportProcessView.swift */; };
+		C83959B125E8FD6700521F83 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959B025E8FD6700521F83 /* Spinner.swift */; };
 		C868FD6125E2AFA5005A3EA9 /* SetPasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */; };
 		C868FD6325E2D458005A3EA9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6225E2D458005A3EA9 /* AboutView.swift */; };
 		C868FD6625E30619005A3EA9 /* BiometricAuthenticationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6525E30619005A3EA9 /* BiometricAuthenticationButton.swift */; };
@@ -124,6 +126,8 @@
 		C83959A625E8621600521F83 /* VideoPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreview.swift; sourceTree = "<group>"; };
 		C83959A825E8F31500521F83 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
 		C83959AA25E8F5A200521F83 /* ObservableOperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableOperationQueue.swift; sourceTree = "<group>"; };
+		C83959AE25E8F9B300521F83 /* ImportProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportProcessView.swift; sourceTree = "<group>"; };
+		C83959B025E8FD6700521F83 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasscodeView.swift; sourceTree = "<group>"; };
 		C868FD6225E2D458005A3EA9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		C868FD6525E30619005A3EA9 /* BiometricAuthenticationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationButton.swift; sourceTree = "<group>"; };
@@ -392,13 +396,15 @@
 		C8EFD20325E13D0E00CB4141 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C839599A25E8332700521F83 /* FilePreview.swift */,
 				468A75DB25E0976E00B87597 /* FileTypePickerView.swift */,
+				C839599E25E8573600521F83 /* GenericPreview.swift */,
+				C83959AE25E8F9B300521F83 /* ImportProcessView.swift */,
+				C83959A425E85FFA00521F83 /* ItemPreview.swift */,
 				C89C9DE825E19935003505B9 /* RadioButton.swift */,
 				2B39CD7425E17AFB00E63EDD /* SearchBarView.swift */,
-				C83959A425E85FFA00521F83 /* ItemPreview.swift */,
-				C839599E25E8573600521F83 /* GenericPreview.swift */,
-				C839599A25E8332700521F83 /* FilePreview.swift */,
 				C83959A625E8621600521F83 /* VideoPreview.swift */,
+				C83959B025E8FD6700521F83 /* Spinner.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -575,6 +581,7 @@
 				C89C9DEF25E1D804003505B9 /* Binding+Optional.swift in Sources */,
 				C89C9DE125E19671003505B9 /* Tag+Examples.swift in Sources */,
 				C839599525E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift in Sources */,
+				C83959B125E8FD6700521F83 /* Spinner.swift in Sources */,
 				C89C9DE925E19935003505B9 /* RadioButton.swift in Sources */,
 				2B39CD9525E1913A00E63EDD /* CameraPicker.swift in Sources */,
 				C8A792ED25E06D75009B862D /* GalleryView.swift in Sources */,
@@ -601,6 +608,7 @@
 				C89C9DD825E1773E003505B9 /* EmptyGalleryView.swift in Sources */,
 				2B081A7425E085FA00F9D522 /* View+Navigation.swift in Sources */,
 				C83959A725E8621600521F83 /* VideoPreview.swift in Sources */,
+				C83959AF25E8F9B300521F83 /* ImportProcessView.swift in Sources */,
 				C89C9DED25E19E44003505B9 /* Tag+Comparable.swift in Sources */,
 				C868FD6325E2D458005A3EA9 /* AboutView.swift in Sources */,
 				2B39CD7525E17AFB00E63EDD /* SearchBarView.swift in Sources */,

@@ -38,6 +38,8 @@
 		C83959A125E85DAB00521F83 /* PreviewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959A025E85DAB00521F83 /* PreviewCache.swift */; };
 		C83959A525E85FFA00521F83 /* ItemPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959A425E85FFA00521F83 /* ItemPreview.swift */; };
 		C83959A725E8621600521F83 /* VideoPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959A625E8621600521F83 /* VideoPreview.swift */; };
+		C83959A925E8F31500521F83 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959A825E8F31500521F83 /* AsynchronousOperation.swift */; };
+		C83959AB25E8F5A200521F83 /* ObservableOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959AA25E8F5A200521F83 /* ObservableOperationQueue.swift */; };
 		C868FD6125E2AFA5005A3EA9 /* SetPasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */; };
 		C868FD6325E2D458005A3EA9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6225E2D458005A3EA9 /* AboutView.swift */; };
 		C868FD6625E30619005A3EA9 /* BiometricAuthenticationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6525E30619005A3EA9 /* BiometricAuthenticationButton.swift */; };
@@ -120,6 +122,8 @@
 		C83959A025E85DAB00521F83 /* PreviewCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCache.swift; sourceTree = "<group>"; };
 		C83959A425E85FFA00521F83 /* ItemPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPreview.swift; sourceTree = "<group>"; };
 		C83959A625E8621600521F83 /* VideoPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreview.swift; sourceTree = "<group>"; };
+		C83959A825E8F31500521F83 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
+		C83959AA25E8F5A200521F83 /* ObservableOperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableOperationQueue.swift; sourceTree = "<group>"; };
 		C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasscodeView.swift; sourceTree = "<group>"; };
 		C868FD6225E2D458005A3EA9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		C868FD6525E30619005A3EA9 /* BiometricAuthenticationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationButton.swift; sourceTree = "<group>"; };
@@ -210,7 +214,9 @@
 		C88ACB1425E10A6C0064C160 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C83959A825E8F31500521F83 /* AsynchronousOperation.swift */,
 				C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */,
+				C83959AA25E8F5A200521F83 /* ObservableOperationQueue.swift */,
 				468A75E025E15B9300B87597 /* SoundEffect.swift */,
 			);
 			path = Utilities;
@@ -579,6 +585,7 @@
 				C839599725E82D9200521F83 /* URL+Filename.swift in Sources */,
 				C839599F25E8573600521F83 /* GenericPreview.swift in Sources */,
 				2B39CDBC25E1BEAB00E63EDD /* ContentMode+description.swift in Sources */,
+				C83959AB25E8F5A200521F83 /* ObservableOperationQueue.swift in Sources */,
 				C89C9DDB25E17B98003505B9 /* TagListView.swift in Sources */,
 				C839598F25E7A69300521F83 /* PersistenceController+ContextOperations.swift in Sources */,
 				C8A792D625E06642009B862D /* PrivateVaultApp.swift in Sources */,
@@ -589,6 +596,7 @@
 				C8EFD1FC25E128C400CB4141 /* DocumentPicker.swift in Sources */,
 				C839599B25E8332700521F83 /* FilePreview.swift in Sources */,
 				2B39CD8A25E18B8100E63EDD /* SettingsView.swift in Sources */,
+				C83959A925E8F31500521F83 /* AsynchronousOperation.swift in Sources */,
 				2B39CDC225E1C6C500E63EDD /* String+Capping.swift in Sources */,
 				C89C9DD825E1773E003505B9 /* EmptyGalleryView.swift in Sources */,
 				2B081A7425E085FA00F9D522 /* View+Navigation.swift in Sources */,

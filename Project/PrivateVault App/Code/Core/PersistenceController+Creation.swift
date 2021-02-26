@@ -22,90 +22,72 @@ extension PersistenceController {
 	}
 	
 	func receiveImage(_ image: UIImage, name: String, fileExtension: String) {
-		creatingFiles = true
-		storeImage(image: image, name: name, fileExtension: fileExtension) { [self] _ in
-			creatingFiles = false
-			save()
+		addOperation { [self] complete in
+			storeImage(image: image, name: name, fileExtension: fileExtension) { _ in
+				complete()
+			}
 		}
 	}
 	
 	func receiveScan(_ scan: VNDocumentCameraScan) {
-		creatingFiles = true
-		storeScan(scan, name: "Scanned Document", fileExtension: "pdf") { [self] _ in
-			creatingFiles = false
-			save()
+		addOperation { [self] complete in
+			storeScan(scan, name: "Scanned Document", fileExtension: "pdf") { _ in
+				complete()
+			}
 		}
 	}
 	
 	func receiveURLs(_ urls: [URL]) {
-		let group = DispatchGroup()
-		creatingFiles = true
-		
-		urls.forEach {
-			group.enter()
-			storeItem(at: $0) { _ in
-				group.leave()
+		urls.forEach { [self] url in
+			addOperation { complete in
+				storeItem(at: url) { _ in
+					complete()
+				}
 			}
-		}
-		
-		group.notify(queue: .main) { [self] in
-			creatingFiles = false
-			save()
 		}
 	}
 	
 	func receiveItems(_ items: [NSItemProvider]) {
-		let group = DispatchGroup()
-		creatingFiles = true
-		
-		items.forEach {
-			group.enter()
-			storeItem($0) { _ in
-				group.leave()
+		items.forEach { [self] item in
+			addOperation { complete in
+				storeItem(item) { _ in
+					complete()
+				}
 			}
-		}
-		
-		group.notify(queue: .main) { [self] in
-			creatingFiles = false
-			save()
 		}
 	}
 	
 	private func storeImage(image: UIImage, name: String, fileExtension: String, completion: @escaping (Bool) -> Void) {
-		DispatchQueue.global(qos: .userInitiated).async { [self] in
-			let image = image.fixOrientation()
-			let data: Data?
-			if fileExtension == "png" {
-				data = image.pngData()
-			} else {
-				data = image.jpegData(compressionQuality: 0.85)
-			}
-			let previewData = image.square(previewSize)?.jpegData(compressionQuality: 0.85)
-			guard let data = data, let previewData = previewData else {
-				return DispatchQueue.main.async { completion(false) }
-			}
-			DispatchQueue.main.async { [self] in
-				_ = StoredItem(context: context, data: data, previewData: previewData, type: .image, name: name, fileExtension: fileExtension)
-				save()
-				completion(true)
-			}
+		let image = image.fixOrientation()
+		let data: Data?
+		if fileExtension == "png" {
+			data = image.pngData()
+		} else {
+			data = image.jpegData(compressionQuality: 0.85)
+		}
+		let previewData = image.square(previewSize)?.jpegData(compressionQuality: 0.85)
+		guard let data = data, let previewData = previewData else {
+			return DispatchQueue.main.async { completion(false) }
+		}
+		DispatchQueue.main.async { [self] in
+			_ = StoredItem(context: context, data: data, previewData: previewData, type: .image, name: name, fileExtension: fileExtension)
+			save()
+			completion(true)
 		}
 	}
 	
 	private func storeScan(_ scan: VNDocumentCameraScan, name: String, fileExtension: String, completion: @escaping (Bool) -> Void) {
-		DispatchQueue.global(qos: .userInitiated).async { [self] in
-			let pdf = scan.generatePDF()
-			let preview = scan.imageOfPage(at: 0).fixOrientation()
-			let previewData = preview.resized(toFit: CGSize(side: previewSize))?.jpegData(compressionQuality: 0.85)
-			let data = pdf.dataRepresentation()
-			guard let data = data, let previewData = previewData else {
-				return DispatchQueue.main.async { completion(false) }
-			}
-			DispatchQueue.main.async { [self] in
-				_ = StoredItem(context: context, data: data, previewData: previewData, type: .file, name: name, fileExtension: fileExtension)
-				save()
-				completion(true)
-			}
+		let pdf = scan.generatePDF()
+		let preview = scan.imageOfPage(at: 0).fixOrientation()
+		let previewData = preview.resized(toFit: CGSize(side: previewSize))?.jpegData(compressionQuality: 0.85)
+		let data = pdf.dataRepresentation()
+		guard let data = data, let previewData = previewData else {
+			return DispatchQueue.main.async { completion(false) }
+		}
+		DispatchQueue.main.async { [self] in
+			_ = StoredItem(context: context, data: data, previewData: previewData, type: .file, name: name, fileExtension: fileExtension)
+			save()
+			completion(true)
 		}
 	}
 	

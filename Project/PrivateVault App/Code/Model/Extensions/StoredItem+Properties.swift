@@ -11,13 +11,7 @@ extension StoredItem {
 	var url: URL {
 		guard let data = data, let fileExtension = fileExtension else { return URL(fileURLWithPath: "") }
 		do {
-			let folder = try FileManager.default.url(
-				for: .cachesDirectory,
-				in: .userDomainMask,
-				appropriateFor: nil,
-				create: false
-			)
-			.appendingPathComponent("data")
+			let folder = FileManager.default.temporaryDirectory.appendingPathComponent("data")
 			let url = folder
 				.appendingPathComponent("temp")
 				.appendingPathExtension(fileExtension)

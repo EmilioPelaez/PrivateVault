@@ -99,15 +99,41 @@ extension PersistenceController {
 	}
 	
 	private func storeItem(_ item: NSItemProvider, completion: @escaping (Bool) -> Void) {
-		guard let typeIdentifier = item.registeredTypeIdentifiers.first, let utType = UTType(typeIdentifier) else {
+		guard let typeIdentifier = item.registeredTypeIdentifiers.first, let type = UTType(typeIdentifier) else {
 			return completion(false)
 		}
 		item.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { [self] url, error in
 			guard let url = url else {
-				print(error?.localizedDescription ?? "Unknown error")
+				print(error?.localizedDescription ?? "Unkown error")
 				return completion(false)
 			}
-			storeItem(at: url, type: utType, completion: completion)
+			guard FileManager.default.fileExists(atPath: url.absoluteString) else {
+				return storeItemFallback(item, url: url, type: type, completion: completion)
+			}
+			storeItem(at: url, type: type, completion: completion)
+		}
+	}
+	
+	//	If NSItemProvider fails to provide a file at the given URL, but can provide the data, 
+	private func storeItemFallback(_ item: NSItemProvider, url: URL, type: UTType, completion: @escaping (Bool) -> Void) {
+		item.loadDataRepresentation(forTypeIdentifier: type.identifier) { [self] data, error in
+			guard let data = data else {
+				print(error?.localizedDescription ?? "Unkown error")
+				return completion(false)
+			}
+			do {
+				
+				let folder = FileManager.default.temporaryDirectory.appendingPathComponent("temp")
+				let newURL = folder
+					.appendingPathComponent(url.lastPathComponent)
+				try FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
+				try data.write(to: newURL)
+				
+				storeItem(at: newURL, type: type, completion: completion)
+			} catch {
+				print("Error", error)
+				completion(false)
+			}
 		}
 	}
 	

@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct ItemEditView: View {
-	@Environment(\.managedObjectContext) private var viewContext
-	@Environment(\.persistenceController) private var persistenceController
-
+	@EnvironmentObject private var persistenceController: PersistenceController
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Tag.name, ascending: true)], animation: .default)
 	var tags: FetchedResults<Tag>
 
@@ -64,7 +62,7 @@ struct ItemEditView: View {
 				item.addToTags(tag)
 			}
 		}
-		persistenceController?.saveContext()
+		persistenceController.save()
 	}
 }
 
@@ -73,7 +71,8 @@ struct ItemTagsView_Previews: PreviewProvider {
 
 	static var previews: some View {
 		ItemEditView(item: preview.item) { }
-			.environment(\.managedObjectContext, PreviewEnvironment().context)
+			.environment(\.managedObjectContext, preview.context)
+			.environmentObject(preview.controller)
 			.previewLayout(.sizeThatFits)
 	}
 }

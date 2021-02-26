@@ -22,8 +22,7 @@ struct GalleryGridCell: View {
 		VStack(alignment: .leading) {
 			Color.clear.aspectRatio(1, contentMode: .fill)
 				.overlay(
-					item.placeholder
-						.aspectRatio(contentMode: settings.contentMode)
+					ItemPreview(item: item)
 				)
 				.clipped()
 			if settings.showDetails {
@@ -55,10 +54,15 @@ struct GalleryGridCell: View {
 }
 
 struct GalleryGridCell_Previews: PreviewProvider {
+	static let preview = PreviewEnvironment()
+	
 	static var previews: some View {
-		GalleryGridCell(item: .example)
+		GalleryGridCell(item: preview.item)
 			.previewLayout(.fixed(width: 200, height: 300))
-		GalleryGridCell(item: .example)
+			.environmentObject(UserSettings())
+		
+		GalleryGridCell(item: preview.item)
 			.previewLayout(.fixed(width: 200, height: 200))
+			.environmentObject(UserSettings())
 	}
 }

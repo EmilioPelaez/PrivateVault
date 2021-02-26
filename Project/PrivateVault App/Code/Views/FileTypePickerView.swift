@@ -18,7 +18,7 @@ struct FileTypePickerView: View {
 			switch self {
 			case .camera: return "camera"
 			case .album: return "photo.on.rectangle"
-			case .document: return "doc"
+			case .document: return "folder"
 			case .scan: return "doc.text.viewfinder"
 			}
 		}
@@ -41,7 +41,16 @@ struct FileTypePickerView: View {
 	var action: (FileType) -> Void
 
 	var body: some View {
-		HStack {
+		VStack {
+			if isExpanded {
+				VStack(spacing: margin) {
+					ForEach(FileType.allCases) {
+						OptionIcon(fileType: $0, height: height - margin * 2, action: buttonAction)
+					}
+				}
+				.padding(.top, margin)
+				.transition(.scale(scale: 0, anchor: .bottom))
+			}
 			Button {
 				withAnimation {
 					isExpanded.toggle()
@@ -53,15 +62,7 @@ struct FileTypePickerView: View {
 					.foregroundColor(.white)
 				.rotationEffect(.degrees(isExpanded ? 225 : 0))
 			}
-			if isExpanded {
-				HStack(spacing: margin) {
-					ForEach(FileType.allCases) {
-						OptionIcon(fileType: $0, height: height - margin * 2, action: buttonAction)
-					}
-				}
-				.padding(.trailing, margin)
-				.transition(.scale(scale: 0, anchor: .leading))
-			}
+			
 		}
 		.background(
 			RoundedRectangle(cornerRadius: 30, style: .circular)

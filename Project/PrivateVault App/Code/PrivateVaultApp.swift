@@ -10,14 +10,14 @@ import SwiftUI
 @main
 struct PrivateVaultApp: App {
 	@ObservedObject var settings = UserSettings()
-	let persistenceController = PersistenceController()
+	@ObservedObject var persistenceController = PersistenceController()
 
 	var body: some Scene {
 		WindowGroup {
 			ContentView()
 				.environment(\.managedObjectContext, persistenceController.container.viewContext)
-				.environment(\.persistenceController, persistenceController)
 				.environmentObject(settings)
+				.environmentObject(persistenceController)
 		}
 	}
 }

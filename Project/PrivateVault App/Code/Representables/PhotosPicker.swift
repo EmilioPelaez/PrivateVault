@@ -9,9 +9,8 @@ import SwiftUI
 import PhotosUI
 
 struct PhotosPicker: UIViewControllerRepresentable {
-	@Environment(\.presentationMode) private var presentationMode
-	var closeSheet: () -> Void
-	var loadData: (NSItemProvider) -> Void
+	@Environment(\.presentationMode) var presentationMode
+	var selectedMedia: ([NSItemProvider]) -> Void
 
 	func makeUIViewController(context: UIViewControllerRepresentableContext<PhotosPicker>) -> PHPickerViewController {
 		var configuration = PHPickerConfiguration()
@@ -22,11 +21,9 @@ struct PhotosPicker: UIViewControllerRepresentable {
 		return imagePicker
 	}
 
-	func updateUIViewController(_ uiViewController: PHPickerViewController, context: UIViewControllerRepresentableContext<PhotosPicker>) {}
+	func updateUIViewController(_ uiViewController: PHPickerViewController, context: UIViewControllerRepresentableContext<PhotosPicker>) { }
 
-	func makeCoordinator() -> Coordinator {
-		Coordinator(self)
-	}
+	func makeCoordinator() -> Coordinator { Coordinator(self) }
 
 	final class Coordinator: NSObject, PHPickerViewControllerDelegate, UINavigationControllerDelegate {
 		var parent: PhotosPicker
@@ -36,8 +33,8 @@ struct PhotosPicker: UIViewControllerRepresentable {
 		}
 
 		func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-			parent.closeSheet()
-			results.map(\.itemProvider).forEach(parent.loadData)
+			parent.selectedMedia(results.map(\.itemProvider))
+			parent.presentationMode.wrappedValue.dismiss()
 		}
 	}
 }

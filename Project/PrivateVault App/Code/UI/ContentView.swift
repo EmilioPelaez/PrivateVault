@@ -46,7 +46,12 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+	static let preview = PreviewEnvironment()
+	
 	static var previews: some View {
 		ContentView()
+			.environment(\.managedObjectContext, preview.context)
+			.environmentObject(preview.controller)
+			.environmentObject(UserSettings())
 	}
 }

@@ -10,11 +10,11 @@ import LocalAuthentication
 
 struct SettingsView: View {
 	@EnvironmentObject private var settings: UserSettings
+	@Environment(\.presentationMode) var presentationMode
 
 	let biometricsContext = LAContext()
 
 	@State var resetPasscode: Bool = false
-	let close: () -> Void
 	let version = "0.0.1"
 	let license = """
 	MIT License
@@ -130,7 +130,10 @@ struct SettingsView: View {
 			.navigationTitle("Settings")
 			.toolbar {
 				ToolbarItem(placement: .navigationBarLeading) {
-					Button(action: close) {
+					Button {
+						presentationMode.wrappedValue.dismiss()
+					}
+					label: {
 						Image(systemName: "xmark.circle.fill")
 					}
 				}
@@ -168,7 +171,7 @@ struct SettingsView: View {
 
 struct SettingsView_Previews: PreviewProvider {
 	static var previews: some View {
-		SettingsView { }
+		SettingsView()
 			.environmentObject(UserSettings())
 	}
 }

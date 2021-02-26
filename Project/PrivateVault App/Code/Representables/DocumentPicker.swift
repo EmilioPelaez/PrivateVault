@@ -8,49 +8,34 @@
 import UIKit
 import SwiftUI
 
-final class DocumentPicker: NSObject, UIViewControllerRepresentable {
+struct DocumentPicker: UIViewControllerRepresentable {
+	@Environment(\.presentationMode) var presentationMode
 	var selectDocuments: ([URL]) -> Void
 
-	init(selectDocuments: @escaping ([URL]) -> Void) {
-		self.selectDocuments = selectDocuments
-	}
-
-	typealias UIViewControllerType = UIDocumentPickerViewController
-
-	lazy var viewController: UIDocumentPickerViewController = {
-		// For picked only folder
-		let viewController = UIDocumentPickerViewController(
-			forOpeningContentTypes: [.image, .audio, .text, .usdz, .pdf],
-			asCopy: true
-		)
-		viewController.allowsMultipleSelection = false
-		//        vc.accessibilityElements = [kFolderActionCode]
-		//        vc.shouldShowFileExtensions = true
-		viewController.delegate = self
-		return viewController
-	}()
-
-	func makeUIViewController(
-		context: UIViewControllerRepresentableContext<DocumentPicker>
-	) -> UIDocumentPickerViewController {
-		viewController.delegate = self
+	func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
+		let viewController = UIDocumentPickerViewController(forOpeningContentTypes: [.image, .audio, .text, .usdz, .pdf], asCopy: true)
+		viewController.allowsMultipleSelection = true
+		viewController.delegate = context.coordinator
 		return viewController
 	}
 
-	func updateUIViewController(
-		_ uiViewController: UIDocumentPickerViewController,
-		context: UIViewControllerRepresentableContext<DocumentPicker>
-	) {
+	func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: UIViewControllerRepresentableContext<DocumentPicker>) { }
+	
+	func makeCoordinator() -> Coordinator { Coordinator(self) }
 
-	}
-}
+	final class Coordinator: NSObject, UIDocumentPickerDelegate {
+		var parent: DocumentPicker
 
-extension DocumentPicker: UIDocumentPickerDelegate {
-	func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-		selectDocuments(urls)
-	}
+		init(_ parent: DocumentPicker) {
+			self.parent = parent
+		}
 
-	func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-		controller.dismiss(animated: true)
+		func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+			parent.selectDocuments(urls)
+		}
+
+		func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+			parent.presentationMode.wrappedValue.dismiss()
+		}
 	}
 }

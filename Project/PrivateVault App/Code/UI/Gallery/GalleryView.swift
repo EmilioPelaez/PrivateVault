@@ -34,11 +34,11 @@ struct GalleryView: View {
 		}
 	}
 	
-	@Environment(\.managedObjectContext) private var viewContext
-	@Environment(\.persistenceController) private var persistenceController
+	@EnvironmentObject private var persistenceController: PersistenceController
 	@State var dragOver = false
 	@State var showImageActionSheet = false
 	@State var showPermissionAlert = false
+	@State var showProcessing = false
 	@State var currentSheet: SheetItem?
 	@State var currentAlert: AlertItem?
 	@State var selectedItem: StoredItem?
@@ -47,7 +47,7 @@ struct GalleryView: View {
 	@Binding var isLocked: Bool
 	
 	var body: some View {
-		ZStack(alignment: .bottomLeading) {
+		ZStack {
 			GalleryGridView(selectedTags: $selectedTags, selection: select) {
 				currentAlert = .deleteItemConfirmation($0)
 			}
@@ -77,10 +77,24 @@ struct GalleryView: View {
 					}
 				}
 			}
-			FileTypePickerView(action: selectType)
-				.sheet(item: $currentSheet, content: filePicker)
-				.padding(.horizontal)
-				.padding(.bottom, 10)
+			ZStack(alignment: .bottomLeading) {
+				Color.clear
+				FileTypePickerView(action: selectType)
+					.sheet(item: $currentSheet, content: filePicker)
+			}
+			.padding(.horizontal)
+			.padding(.bottom, 10)
+			ZStack(alignment: .bottom) {
+				Color.clear
+				if showProcessing {
+					ImportProcessView()
+						.transition(.opacity.combined(with: .move(edge: .bottom)))
+				}
+			}
+			.padding()
+			.onChange(of: persistenceController.creatingFiles) { creating in
+				withAnimation { showProcessing = creating }
+			}
 		}
 		.alert(item: $currentAlert, content: alert)
 		.onChange(of: isLocked) {
@@ -122,8 +136,7 @@ struct GalleryView: View {
 	}
 	
 	func delete(_ item: StoredItem) {
-		viewContext.delete(item)
-		persistenceController?.saveContext()
+		persistenceController.delete(item)
 	}
 	
 	func quickLookView(_ item: StoredItem) -> some View {
@@ -133,12 +146,12 @@ struct GalleryView: View {
 	func filePicker(_ item: SheetItem) -> some View {
 		Group {
 			switch item {
-			case .tags: TagListView(selectedTags: $selectedTags) { currentSheet = nil }
-			case .imagePicker: PhotosPicker(closeSheet: { currentSheet = nil }, loadData: loadData)
-			case .cameraPicker: CameraPicker(selectImage: { selectItem(.capture($0)) })
-			case .documentPicker: DocumentPicker(selectDocuments: { selectItems($0.map({ .file($0) })) })
-			case .documentScanner: DocumentScanner(selectScan: { selectItem(.capture($0)) })
-			case .settings: SettingsView { currentSheet = nil }
+			case .tags: TagListView(selectedTags: $selectedTags)
+			case .imagePicker: PhotosPicker(selectedMedia: persistenceController.receiveItems)
+			case .cameraPicker: CameraPicker(selectImage: persistenceController.receiveCapturedImage)
+			case .documentPicker: DocumentPicker(selectDocuments: persistenceController.receiveURLs)
+			case .documentScanner: DocumentScanner(didScan: persistenceController.receiveScan)
+			case .settings: SettingsView()
 			}
 		}
 		.ignoresSafeArea()
@@ -163,121 +176,31 @@ struct GalleryView: View {
 	
 	func requestCameraAuthorization() {
 		switch AVCaptureDevice.authorizationStatus(for: .video) {
-		case .authorized:
-			currentSheet = .cameraPicker
-		case .notDetermined:
-			AVCaptureDevice.requestAccess(for: .video) { _ in }
-		default:
-			showPermissionAlert = true
+		case .authorized: currentSheet = .cameraPicker
+		case .notDetermined: AVCaptureDevice.requestAccess(for: .video) { _ in }
+		default: showPermissionAlert = true
 		}
-	}
-	
-	func selectItems(_ items: [ItemType]) {
-		items.forEach(selectItem)
-	}
-	
-	func selectItem(_ item: ItemType) {
-		_ = StoredItem(context: viewContext, item: item)
-		persistenceController?.saveContext()
 	}
 }
 
 extension GalleryView: DropDelegate {
-	func dropEntered(info: DropInfo) {
-		dragOver = true
-	}
+	func dropEntered(info: DropInfo) { dragOver = true }
 	
-	func dropExited(info: DropInfo) {
-		dragOver = false
-	}
+	func dropExited(info: DropInfo) { dragOver = false }
 	
 	func performDrop(info: DropInfo) -> Bool {
-		loadData(from: info.itemProviders(for: [.jpeg, .png]))
+		persistenceController.receiveItems(info.itemProviders(for: [.image, .video, .movie, .pdf]))
 		return true
 	}
 }
 
-enum ItemType {
-	case photo(UIImage, String)
-	case capture(UIImage)
-	case file(URL)
-}
-
-extension GalleryView {
-	func loadData(from itemProviders: [NSItemProvider]) {
-		itemProviders.forEach(loadData)
-	}
-	
-	func loadData(from itemProvider: NSItemProvider) {
-		guard let typeIdentifier = itemProvider.registeredTypeIdentifiers.first,
-					let utType = UTType(typeIdentifier)
-		else { return }
-		
-		itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { url, error in
-			if let error = error {
-				print(error.localizedDescription)
-			}
-			
-			guard let url = url else {
-				print("Failed to get url")
-				return
-			}
-			
-			if utType.conforms(to: .image) {
-				getPhoto(from: itemProvider, url: url)
-			} else if utType.conforms(to: .movie) {
-				getVideo(from: url)
-			} else if utType.conforms(to: .livePhoto) {
-				getPhoto(from: itemProvider, url: url, isLivePhoto: true)
-			}
-		}
-	}
-	
-	private func getPhoto(from itemProvider: NSItemProvider, url: URL, isLivePhoto: Bool = false) {
-		let objectType: NSItemProviderReading.Type = !isLivePhoto ? UIImage.self : PHLivePhoto.self
-		
-		if itemProvider.canLoadObject(ofClass: objectType) {
-			itemProvider.loadObject(ofClass: objectType) { object, error in
-				if let error = error {
-					print(error.localizedDescription)
-				}
-				
-				if !isLivePhoto {
-					if let image = object as? UIImage {
-						selectItem(.photo(image.fixOrientation(), url.lastPathComponent))
-						// self.photoPicker.mediaItems.append(item: PhotoPickerModel(with: image))
-					}
-				} else {
-					if let livePhoto = object as? PHLivePhoto {
-						print(livePhoto)
-						// self.parent.selectImage(livePhoto, "filename")
-						// self.photoPicker.mediaItems.append(item: PhotoPickerModel(with: livePhoto))
-					}
-				}
-			}
-		}
-	}
-	
-	private func getVideo(from url: URL) {
-		let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-		guard let targetURL = documentsDirectory?.appendingPathComponent(url.lastPathComponent) else { return }
-		
-		do {
-			if FileManager.default.fileExists(atPath: targetURL.path) {
-				try FileManager.default.removeItem(at: targetURL)
-			}
-			
-			try FileManager.default.copyItem(at: url, to: targetURL)
-			
-			selectItem(.file(targetURL))
-		} catch {
-			print(error.localizedDescription)
-		}
-	}
-}
-
 struct GalleryView_Previews: PreviewProvider {
+	static let preview = PreviewEnvironment()
+	
 	static var previews: some View {
 		GalleryView(isLocked: .constant(false))
+			.environment(\.managedObjectContext, preview.context)
+			.environmentObject(preview.controller)
+			.environmentObject(UserSettings())
 	}
 }

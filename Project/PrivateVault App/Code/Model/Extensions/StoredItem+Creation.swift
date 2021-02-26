@@ -9,40 +9,28 @@ import CoreData
 import UIKit
 
 extension StoredItem {
-	convenience init(context: NSManagedObjectContext, image: UIImage, filename: String) {
+	
+	convenience init(context: NSManagedObjectContext, data: Data, previewData: Data? = nil, type: DataType, name: String, fileExtension: String) {
+		self.init(context: context)
+		self.id = UUID().uuidString
+		self.data = data
+		self.previewData = previewData
+		self.dataType = type
+		self.name = name
+		self.fileExtension = fileExtension
+		self.timestamp = Date()
+	}
+	
+	convenience init(context: NSManagedObjectContext, image: UIImage, name: String, extension: String) {
 		let data = image.pngData()
-		//		let resizedImage = image.resized(toFit: CGSize(side: 200))?.jpegData(compressionQuality: 0.85)
 		let resizedImage = image.square(200)?.jpegData(compressionQuality: 0.85)
 		self.init(context: context)
-		self.placeholderData = resizedImage
 		self.id = UUID().uuidString
-		self.name = filename
 		self.data = data
+		self.previewData = resizedImage
 		self.dataType = .image
+		self.name = name
 		self.fileExtension = "png"
 		self.timestamp = Date()
-	}
-
-	convenience init(context: NSManagedObjectContext, url: URL) {
-		let data = try? Data(contentsOf: url)
-		self.init(context: context)
-		self.placeholderData = nil
-		self.id = UUID().uuidString
-		self.name = url.lastPathComponent
-		self.data = data
-		self.dataType = .unknown
-		self.fileExtension = url.pathExtension
-		self.timestamp = Date()
-	}
-
-	convenience init(context: NSManagedObjectContext, item: ItemType) {
-		switch item {
-		case let .capture(image):
-			self.init(context: context, image: image, filename: "New photo")
-		case let .photo(image, filename):
-			self.init(context: context, image: image, filename: filename)
-		case let .file(url):
-			self.init(context: context, url: url)
-		}
 	}
 }

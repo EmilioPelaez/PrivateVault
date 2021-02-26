@@ -34,7 +34,7 @@ final class UserSettings: ObservableObject {
 	}
 
 	//	Ignored for now
-	@Published var contentMode: ContentMode = .fill
+	@Published var contentMode: ContentMode = .fit
 }
 
 fileprivate extension String {

@@ -64,10 +64,12 @@ struct SettingsView: View {
 						}
 					}
 					HStack {
-						Text("Attempt Limit").layoutPriority(1)
-						Color.clear
-						Text("\(settings.maxAttempts)")
-						Stepper("", value: $settings.maxAttempts)
+						Stepper(value: $settings.maxAttempts) {
+							HStack {
+								Text("Attempt Limit")
+								Text("\(settings.maxAttempts)")
+							}
+						}
 					}
 					Button {
 						resetPasscode = true
@@ -76,15 +78,11 @@ struct SettingsView: View {
 					}
 				}
 				Section(header: Text("General")) {
-					HStack {
-						Text("Haptic Feedback")
-						Spacer()
-						Toggle("", isOn: $settings.hapticFeedback)
-					}
-					HStack {
+					Toggle(isOn: $settings.sound) {
 						Text("Sound")
-						Spacer()
-						Toggle("", isOn: $settings.sound)
+					}
+					Toggle(isOn: $settings.hapticFeedback) {
+						Text("Haptic Feedback")
 					}
 				}
 				Section(header: Text("Legal"), footer: footer) {

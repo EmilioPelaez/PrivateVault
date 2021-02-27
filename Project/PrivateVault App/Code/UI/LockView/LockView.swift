@@ -90,6 +90,7 @@ struct LockView: View {
 
 	func allowEntry() {
 		codeState = .correct
+		code = Array(repeating: "●", count: settings.codeLength).joined()
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
 			withAnimation {
 				isLocked = false

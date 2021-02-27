@@ -61,6 +61,7 @@
 		C86F9CBF25EA604400210F64 /* Open.wav in Resources */ = {isa = PBXBuildFile; fileRef = C86F9CBD25EA604400210F64 /* Open.wav */; };
 		C86F9CC225EA60C100210F64 /* OpenLong.wav in Resources */ = {isa = PBXBuildFile; fileRef = C86F9CC025EA60C100210F64 /* OpenLong.wav */; };
 		C86F9CC325EA60C100210F64 /* CloseLong.wav in Resources */ = {isa = PBXBuildFile; fileRef = C86F9CC125EA60C100210F64 /* CloseLong.wav */; };
+		C86F9CC925EA667F00210F64 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C86F9CC825EA667F00210F64 /* CloudKit.framework */; };
 		C88ACB1125E106D00064C160 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1025E106D00064C160 /* LockView.swift */; };
 		C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1225E109FD0064C160 /* InputDisplay.swift */; };
 		C88ACB1625E10A790064C160 /* FeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */; };
@@ -151,6 +152,7 @@
 		C83959BF25E9C05F00521F83 /* GalleryView+Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+Sheet.swift"; sourceTree = "<group>"; };
 		C83959C125E9C07D00521F83 /* GalleryView+Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+Items.swift"; sourceTree = "<group>"; };
 		C83959C325E9C0E900521F83 /* GalleryView+BottomOverlays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+BottomOverlays.swift"; sourceTree = "<group>"; };
+		C83959C525E9D88C00521F83 /* PrivateVault.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PrivateVault.entitlements; sourceTree = "<group>"; };
 		C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasscodeView.swift; sourceTree = "<group>"; };
 		C868FD6225E2D458005A3EA9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		C868FD6525E30619005A3EA9 /* BiometricAuthenticationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationButton.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		C86F9CBD25EA604400210F64 /* Open.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Open.wav; sourceTree = "<group>"; };
 		C86F9CC025EA60C100210F64 /* OpenLong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = OpenLong.wav; sourceTree = "<group>"; };
 		C86F9CC125EA60C100210F64 /* CloseLong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CloseLong.wav; sourceTree = "<group>"; };
+		C86F9CC825EA667F00210F64 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C88ACB1025E106D00064C160 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		C88ACB1225E109FD0064C160 /* InputDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDisplay.swift; sourceTree = "<group>"; };
 		C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerator.swift; sourceTree = "<group>"; };
@@ -210,6 +213,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C86F9CC925EA667F00210F64 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +269,14 @@
 				C86F9CB825EA59BA00210F64 /* Tap.wav */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		C86F9CC625EA666000210F64 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C86F9CC825EA667F00210F64 /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C88ACB1425E10A6C0064C160 /* Utilities */ = {
@@ -369,10 +381,12 @@
 		C8A792C925E06642009B862D = {
 			isa = PBXGroup;
 			children = (
+				C83959C525E9D88C00521F83 /* PrivateVault.entitlements */,
 				2B39CDFD25E3290500E63EDD /* .swiftlint.yml */,
 				C8A792D425E06642009B862D /* PrivateVault App */,
 				2B39CE2425E33B5200E63EDD /* PrivateVaultTests */,
 				C8A792D325E06642009B862D /* Products */,
+				C86F9CC625EA666000210F64 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -868,6 +882,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PrivateVault.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PrivateVault App/Preview Content\"";
 				DEVELOPMENT_TEAM = FS696NSBK7;
@@ -878,7 +893,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.PrivateVault;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.emiliopelaez.Private-Vault";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -890,6 +905,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PrivateVault.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PrivateVault App/Preview Content\"";
 				DEVELOPMENT_TEAM = FS696NSBK7;
@@ -900,7 +916,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.PrivateVault;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.emiliopelaez.Private-Vault";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

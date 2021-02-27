@@ -70,7 +70,7 @@ extension GalleryView {
 	}
 	
 	var processingView: some View {
-		ZStack(alignment: .bottom) {
+		ZStack(alignment: .bottomTrailing) {
 			Color.clear
 			if showProcessing {
 				ImportProcessView()

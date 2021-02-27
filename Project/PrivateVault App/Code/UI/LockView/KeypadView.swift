@@ -17,22 +17,27 @@ struct KeypadView<Button: View>: View {
 		LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), alignment: .center) {
 			ForEach(1..<10) { index in
 				KeyButton(title: Text("\(index)"), color: Color(.tertiarySystemFill), textColor: .primary) {
-					if settings.hapticFeedback { FeedbackGenerator.impact(.rigid) }
+					feedback()
 					input("\(index)")
 				}
 			}
 			bottomLeftInput()
 			KeyButton(title: Text("0"), color: Color(.tertiarySystemFill), textColor: .primary) {
-				if settings.hapticFeedback { FeedbackGenerator.impact(.rigid) }
+				feedback()
 				input("0")
 			}
 			.aspectRatio(1, contentMode: .fill)
 			.clipShape(Circle())
 			KeyButton(title: Image(systemName: "delete.left"), color: .red, textColor: .white) {
-				if settings.hapticFeedback { FeedbackGenerator.impact(.rigid) }
+				feedback()
 				delete()
 			}
 		}
+	}
+	
+	func feedback() {
+		if settings.hapticFeedback { FeedbackGenerator.impact(.medium) }
+		if settings.sound { SoundEffect.tap.play() }
 	}
 }
 

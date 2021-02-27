@@ -22,10 +22,30 @@ class PersistenceController: ObservableObject {
 		if inMemory {
 			container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")
 		}
+		
+		guard let description = container.persistentStoreDescriptions.first else {
+			assertionFailure("Container has no description")
+			return
+		}
+		
+		description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.emiliopelaez.Private-Vault")
+		
+		description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+		description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+		
 		container.loadPersistentStores { _, error in
 			if let error = error as NSError? {
 				print("Unresolved error \(error), \(error.userInfo)")
 			}
+		}
+		
+		container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+		container.viewContext.transactionAuthor = "App"
+		container.viewContext.automaticallyMergesChangesFromParent = true
+		do {
+			try container.viewContext.setQueryGenerationFrom(.current)
+		} catch {
+			assertionFailure("Failed to pin viewContext to the current generation: \(error)")
 		}
 		
 		combine()

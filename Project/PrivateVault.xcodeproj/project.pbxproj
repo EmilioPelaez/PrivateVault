@@ -50,6 +50,7 @@
 		C83959C025E9C05F00521F83 /* GalleryView+Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959BF25E9C05F00521F83 /* GalleryView+Sheet.swift */; };
 		C83959C225E9C07D00521F83 /* GalleryView+Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959C125E9C07D00521F83 /* GalleryView+Items.swift */; };
 		C83959C425E9C0E900521F83 /* GalleryView+BottomOverlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959C325E9C0E900521F83 /* GalleryView+BottomOverlays.swift */; };
+		C83959C825E9D89500521F83 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83959C725E9D89500521F83 /* CloudKit.framework */; };
 		C868FD6125E2AFA5005A3EA9 /* SetPasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */; };
 		C868FD6325E2D458005A3EA9 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6225E2D458005A3EA9 /* AboutView.swift */; };
 		C868FD6625E30619005A3EA9 /* BiometricAuthenticationButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C868FD6525E30619005A3EA9 /* BiometricAuthenticationButton.swift */; };
@@ -144,6 +145,8 @@
 		C83959BF25E9C05F00521F83 /* GalleryView+Sheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+Sheet.swift"; sourceTree = "<group>"; };
 		C83959C125E9C07D00521F83 /* GalleryView+Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+Items.swift"; sourceTree = "<group>"; };
 		C83959C325E9C0E900521F83 /* GalleryView+BottomOverlays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+BottomOverlays.swift"; sourceTree = "<group>"; };
+		C83959C525E9D88C00521F83 /* PrivateVault.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PrivateVault.entitlements; sourceTree = "<group>"; };
+		C83959C725E9D89500521F83 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		C868FD6025E2AFA5005A3EA9 /* SetPasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasscodeView.swift; sourceTree = "<group>"; };
 		C868FD6225E2D458005A3EA9 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		C868FD6525E30619005A3EA9 /* BiometricAuthenticationButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthenticationButton.swift; sourceTree = "<group>"; };
@@ -196,6 +199,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C83959C825E9D89500521F83 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +241,14 @@
 				C89C9DDE25E19598003505B9 /* ItemEditView.swift */,
 			);
 			path = Edit;
+			sourceTree = "<group>";
+		};
+		C83959C625E9D89500521F83 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C83959C725E9D89500521F83 /* CloudKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		C88ACB1425E10A6C0064C160 /* Utilities */ = {
@@ -341,10 +353,12 @@
 		C8A792C925E06642009B862D = {
 			isa = PBXGroup;
 			children = (
+				C83959C525E9D88C00521F83 /* PrivateVault.entitlements */,
 				2B39CDFD25E3290500E63EDD /* .swiftlint.yml */,
 				C8A792D425E06642009B862D /* PrivateVault App */,
 				2B39CE2425E33B5200E63EDD /* PrivateVaultTests */,
 				C8A792D325E06642009B862D /* Products */,
+				C83959C625E9D89500521F83 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -832,6 +846,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PrivateVault.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PrivateVault App/Preview Content\"";
 				DEVELOPMENT_TEAM = FS696NSBK7;
@@ -842,7 +857,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.PrivateVault;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.emiliopelaez.Private-Vault";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -854,6 +869,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PrivateVault.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PrivateVault App/Preview Content\"";
 				DEVELOPMENT_TEAM = FS696NSBK7;
@@ -864,7 +880,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.PrivateVault;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.emiliopelaez.Private-Vault";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

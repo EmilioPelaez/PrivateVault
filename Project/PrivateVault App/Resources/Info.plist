@@ -22,6 +22,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>This apps lets you take pictures to store in your private vault</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>FaceID will be used to unlock your private vault</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app lets you store your images in the private vault</string>
 	<key>UIApplicationSceneManifest</key>
@@ -43,8 +45,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSFaceIDUsageDescription</key>
-	<string>FaceID will be used to unlock your private vault</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

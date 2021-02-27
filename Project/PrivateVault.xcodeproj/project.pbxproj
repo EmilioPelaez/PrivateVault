@@ -328,12 +328,12 @@
 			isa = PBXGroup;
 			children = (
 				C8EFD22C25E15BDF00CB4141 /* StoredItem+Creation.swift */,
-				C89C9DE625E197C5003505B9 /* Tag+Creation.swift */,
-				C8EFD22A25E159EA00CB4141 /* StoredItem+Properties.swift */,
 				C8EFD22E25E15D1D00CB4141 /* StoredItem+DataType.swift */,
 				C89C9DD525E16640003505B9 /* StoredItem+Example.swift */,
-				C89C9DE025E19671003505B9 /* Tag+Examples.swift */,
+				C8EFD22A25E159EA00CB4141 /* StoredItem+Properties.swift */,
 				C89C9DEC25E19E44003505B9 /* Tag+Comparable.swift */,
+				C89C9DE625E197C5003505B9 /* Tag+Creation.swift */,
+				C89C9DE025E19671003505B9 /* Tag+Examples.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";

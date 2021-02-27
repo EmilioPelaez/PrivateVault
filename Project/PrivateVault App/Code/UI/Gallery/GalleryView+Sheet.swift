@@ -11,7 +11,7 @@ extension GalleryView {
 	func sheetFor(_ item: SheetItem) -> some View {
 		Group {
 			switch item {
-			case .tags: ManageTagsView(selectedTags: $selectedTags)
+			case .tags: ManageTagsView(filter: filter)
 			case .imagePicker: PhotosPicker(selectedMedia: persistenceController.receiveItems)
 			case .cameraPicker: CameraPicker(selectImage: persistenceController.receiveCapturedImage)
 			case .documentPicker: DocumentPicker(selectDocuments: persistenceController.receiveURLs)

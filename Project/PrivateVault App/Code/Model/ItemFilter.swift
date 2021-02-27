@@ -35,10 +35,27 @@ class ItemFilter: ObservableObject {
 		}
 	}
 	
+	func deleted(_ tags: [Tag]) {
+		tags.forEach { selectedTags.remove($0) }
+	}
+	
 	func clear() {
 		disabledTypes = []
 		selectedTags = []
 		searchText = ""
+	}
+	
+	func apply(_ item: StoredItem) -> Bool {
+		if !disabledTypes.isEmpty, disabledTypes.contains(item.dataType) {
+				return false
+		}
+		if !selectedTags.isEmpty, !selectedTags.allSatisfy({ item.tags?.contains($0) ?? false }) {
+			return false
+		}
+		if !searchText.isEmpty, !(item.name?.localizedCaseInsensitiveContains(searchText) ?? false) {
+			return false
+		}
+		return true
 	}
 	
 }

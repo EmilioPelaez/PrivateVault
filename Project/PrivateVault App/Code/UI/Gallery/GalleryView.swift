@@ -46,23 +46,24 @@ struct GalleryView: View {
 	@State var currentAlert: AlertItem?
 	@State var selectedItem: StoredItem?
 	@State var itemBeingDeleted: StoredItem?
-	@State var selectedTags: Set<Tag> = []
 	@Binding var isLocked: Bool
+	
+	@FetchRequest(sortDescriptors: [], animation: .default)
+	var tags: FetchedResults<Tag>
 	
 	var body: some View {
 		ZStack {
-			GalleryGridView(selectedTags: $selectedTags, selection: select) {
+			GalleryGridView(filter: filter, selection: select) {
 				currentAlert = .deleteItemConfirmation($0)
 			}
-			.onDrop(of: [.fileURL], delegate: self)
 			.fullScreenCover(item: $selectedItem, content: quickLookView)
-			.navigationTitle("Gallery")
-			.toolbar {
-				leadingButtons
-				trailingButton
-			}
 			actionButtons
 			processingView
+		}
+		.navigationTitle("Gallery")
+		.toolbar {
+			leadingButtons
+			trailingButton
 		}
 		.alert(item: $currentAlert, content: alert)
 		.onChange(of: isLocked) {
@@ -73,6 +74,7 @@ struct GalleryView: View {
 			selectedItem = nil
 			itemBeingDeleted = nil
 		}
+		.onDrop(of: [.fileURL], delegate: self)
 	}
 }
 

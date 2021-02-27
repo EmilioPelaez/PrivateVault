@@ -34,7 +34,8 @@ struct FileTypePickerView: View {
 
 		var id: Int { FileType.allCases.firstIndex(of: self) ?? 0 }
 	}
-
+	
+	@EnvironmentObject var settings: UserSettings
 	@State var isExpanded: Bool = false
 	let height: CGFloat = 60
 	let margin: CGFloat = 5
@@ -45,17 +46,13 @@ struct FileTypePickerView: View {
 			if isExpanded {
 				VStack(spacing: margin) {
 					ForEach(FileType.allCases) {
-						OptionIcon(fileType: $0, height: height - margin * 2, action: buttonAction)
+						OptionIcon(fileType: $0, height: height - margin * 2, action: pickerButtonAction)
 					}
 				}
 				.padding(.top, margin)
 				.transition(.scale(scale: 0, anchor: .bottom))
 			}
-			Button {
-				withAnimation {
-					isExpanded.toggle()
-				}
-			} label: {
+			Button(action: addButtonAction) {
 				Image(systemName: "plus")
 					.font(.system(size: height / 2))
 					.frame(width: height, height: height)
@@ -70,12 +67,26 @@ struct FileTypePickerView: View {
 				.shadow(color: Color(white: 0, opacity: 0.2), radius: 4, x: 0, y: 2)
 		)
 	}
-
-	func buttonAction(_ type: FileType) {
+	
+	func addButtonAction() {
+		withAnimation {
+			isExpanded.toggle()
+		}
+		guard settings.sound else { return }
+		if isExpanded {
+			SoundEffect.openLong.play()
+		} else {
+			SoundEffect.closeLong.play()
+		}
+	}
+	
+	func pickerButtonAction(_ type: FileType) {
 		withAnimation {
 			isExpanded = false
 		}
 		action(type)
+		guard settings.sound else { return }
+		SoundEffect.open.play()
 	}
 }
 
@@ -106,8 +117,10 @@ struct FileTypePickerView_Previews: PreviewProvider {
 		FileTypePickerView(isExpanded: true) { _ in }
 			.padding()
 			.previewLayout(.sizeThatFits)
+			.environmentObject(UserSettings())
 		FileTypePickerView { _ in }
 			.padding()
 			.previewLayout(.sizeThatFits)
+			.environmentObject(UserSettings())
 	}
 }

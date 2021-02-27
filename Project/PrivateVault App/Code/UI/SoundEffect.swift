@@ -11,16 +11,42 @@ import AVFoundation
 enum SoundEffect {
 	case success
 	case failure
+	case tap
+	case open
+	case close
+	case openLong
+	case closeLong
 	case none
-
-	func play() {
+	
+	var fileName: String? {
 		switch self {
-		case .success:
-			AudioServicesPlaySystemSound(1115)
-		case .failure:
-			AudioServicesPlaySystemSound(1109)
-		case .none:
-			break
+		case .success: return "Success.wav"
+		case .failure: return "Denied.wav"
+		case .tap: return "Tap.wav"
+		case .open: return "Open.wav"
+		case .close: return "Close.wav"
+		case .openLong: return "OpenLong.wav"
+		case .closeLong: return "CloseLong.wav"
+		case _: return nil
+		}
+	}
+	
+	static var player: AVAudioPlayer?
+	
+	func play() {
+		guard let fileName = fileName else { return }
+		guard let url = Bundle.main.url(forResource: fileName, withExtension: nil) else {
+			return
+		}
+		do {
+			try AVAudioSession.sharedInstance().setCategory(.ambient)
+			try AVAudioSession.sharedInstance().setActive(true)
+			
+			let player = try AVAudioPlayer(contentsOf: url)
+			player.play()
+			SoundEffect.player = player
+		} catch {
+			print(error)
 		}
 	}
 }

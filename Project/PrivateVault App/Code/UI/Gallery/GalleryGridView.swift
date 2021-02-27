@@ -23,8 +23,11 @@ struct GalleryGridView: View {
 	}
 	
 	var searchText: Binding<String> {
-		.init { filter.searchText }
-			set: { filter.searchText = $0 }
+		Binding(get: {
+			filter.searchText
+		}, set: {
+			filter.searchText = $0
+		})
 	}
 
 	var body: some View {

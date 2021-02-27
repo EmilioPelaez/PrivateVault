@@ -45,14 +45,11 @@ extension GalleryView {
 				}
 				.transition(.scale(scale: 0, anchor: .bottomLeading))
 			}
-			Button {
-				withAnimation { showTags.toggle() }
-			}
-			label: {
-				ZStack {
-					Circle()
-						.fill(Color.green)
-						.shadow(color: Color(white: 0, opacity: 0.2), radius: 4, x: 0, y: 2)
+			ZStack {
+				Circle()
+					.fill(Color.green)
+					.shadow(color: Color(white: 0, opacity: 0.2), radius: 4, x: 0, y: 2)
+				Button(action: tagButtonAction) {
 					Group {
 						if showTags {
 							Image(systemName: "tag.fill")
@@ -66,6 +63,7 @@ extension GalleryView {
 				}
 				.frame(width: 60, height: 60)
 			}
+			.frame(width: 60, height: 60)
 		}
 	}
 	
@@ -80,6 +78,16 @@ extension GalleryView {
 		.padding()
 		.onChange(of: persistenceController.creatingFiles) { creating in
 			withAnimation { showProcessing = creating }
+		}
+	}
+	
+	func tagButtonAction() {
+		withAnimation { showTags.toggle() }
+		guard settings.sound else { return }
+		if showTags {
+			SoundEffect.open.play()
+		} else {
+			SoundEffect.close.play()
 		}
 	}
 	

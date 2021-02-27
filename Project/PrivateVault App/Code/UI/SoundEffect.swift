@@ -12,6 +12,10 @@ enum SoundEffect {
 	case success
 	case failure
 	case tap
+	case open
+	case close
+	case openLong
+	case closeLong
 	case none
 	
 	var fileName: String? {
@@ -19,6 +23,10 @@ enum SoundEffect {
 		case .success: return "Success.wav"
 		case .failure: return "Denied.wav"
 		case .tap: return "Tap.wav"
+		case .open: return "Open.wav"
+		case .close: return "Close.wav"
+		case .openLong: return "OpenLong.wav"
+		case .closeLong: return "CloseLong.wav"
 		case _: return nil
 		}
 	}

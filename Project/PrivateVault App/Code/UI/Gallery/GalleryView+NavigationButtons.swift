@@ -13,12 +13,12 @@ extension GalleryView {
 			Button {
 				currentSheet = .settings
 			} label: {
-				Image(systemName: "gearshape.fill")
+				Image(systemName: "gearshape")
 			}
 			Button {
 				withAnimation { isLocked = true }
 			} label: {
-				Image(systemName: "lock.fill")
+				Image(systemName: "lock.circle")
 			}
 		}
 	}
@@ -56,7 +56,8 @@ extension GalleryView {
 					Image(systemName: "rectangle.split.3x1")
 				}
 			} label: {
-				Image(systemName: "slider.horizontal.3")
+				Image(systemName: "ellipsis.circle")
+					.font(.system(size: 22))
 			}
 		}
 	}

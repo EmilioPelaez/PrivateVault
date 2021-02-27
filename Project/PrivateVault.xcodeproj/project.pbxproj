@@ -253,19 +253,19 @@
 		C88ACB1725E10B370064C160 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				C88ACB1A25E112A70064C160 /* View+Shake.swift */,
-				2B081A7325E085FA00F9D522 /* View+Navigation.swift */,
+				2B39CDB725E1BB5700E63EDD /* Binding+Map.swift */,
+				C89C9DEE25E1D804003505B9 /* Binding+Optional.swift */,
+				C8EFD20125E1374F00CB4141 /* CGSize+Utilities.swift */,
+				2B39CDBB25E1BEAB00E63EDD /* ContentMode+description.swift */,
+				C868FD6725E30B23005A3EA9 /* LAContext+Shared.swift */,
+				C839599425E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift */,
+				2B39CDC125E1C6C500E63EDD /* String+Capping.swift */,
 				C88ACB1825E10B450064C160 /* UIDevice+iPad.swift */,
 				C8EFD1FF25E1373F00CB4141 /* UIImage+Resize.swift */,
-				C8EFD20125E1374F00CB4141 /* CGSize+Utilities.swift */,
-				C89C9DEE25E1D804003505B9 /* Binding+Optional.swift */,
-				2B39CDB725E1BB5700E63EDD /* Binding+Map.swift */,
-				2B39CDBB25E1BEAB00E63EDD /* ContentMode+description.swift */,
-				2B39CDC125E1C6C500E63EDD /* String+Capping.swift */,
-				C868FD6725E30B23005A3EA9 /* LAContext+Shared.swift */,
-				C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */,
-				C839599425E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift */,
 				C839599625E82D9200521F83 /* URL+Filename.swift */,
+				2B081A7325E085FA00F9D522 /* View+Navigation.swift */,
+				C88ACB1A25E112A70064C160 /* View+Shake.swift */,
+				C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -273,12 +273,12 @@
 		C88ACB1C25E114850064C160 /* Representables */ = {
 			isa = PBXGroup;
 			children = (
-				2B081A7025E0847600F9D522 /* QuickLookView.swift */,
-				2B6C742B25E08BBF00EAF6FD /* PhotosPicker.swift */,
-				C8EFD1FB25E128C400CB4141 /* DocumentPicker.swift */,
 				2B39CD9425E1913A00E63EDD /* CameraPicker.swift */,
-				C89C9DEA25E19C30003505B9 /* VisualEffectView.swift */,
+				C8EFD1FB25E128C400CB4141 /* DocumentPicker.swift */,
 				2B39CDAB25E1A05500E63EDD /* DocumentScanner.swift */,
+				2B6C742B25E08BBF00EAF6FD /* PhotosPicker.swift */,
+				2B081A7025E0847600F9D522 /* QuickLookView.swift */,
+				C89C9DEA25E19C30003505B9 /* VisualEffectView.swift */,
 			);
 			path = Representables;
 			sourceTree = "<group>";
@@ -435,8 +435,8 @@
 				C83959A425E85FFA00521F83 /* ItemPreview.swift */,
 				C89C9DE825E19935003505B9 /* RadioButton.swift */,
 				2B39CD7425E17AFB00E63EDD /* SearchBarView.swift */,
-				C83959A625E8621600521F83 /* VideoPreview.swift */,
 				C83959B025E8FD6700521F83 /* Spinner.swift */,
+				C83959A625E8621600521F83 /* VideoPreview.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

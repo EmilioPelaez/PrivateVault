@@ -55,23 +55,6 @@ struct SettingsView: View {
 	var body: some View {
 		NavigationView {
 			Form {
-				Section(header: Text("Gallery view")) {
-					HStack {
-						Text("Columns").layoutPriority(1)
-						Color.clear
-						Text("\(settings.columns)")
-						Stepper("") {
-							settings.columns = min(8, settings.columns + 1)
-						} onDecrement: {
-							settings.columns = max(1, settings.columns - 1)
-						}
-					}
-					HStack {
-						Text("Show file details")
-						Spacer()
-						Toggle("", isOn: $settings.showDetails)
-					}
-				}
 				Section(header: Text("Vault")) {
 					if biometricSupported {
 						HStack {

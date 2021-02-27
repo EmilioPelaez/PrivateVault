@@ -1,5 +1,5 @@
 //
-//  TagListView.swift
+//  ManageTagsView.swift
 //  PrivateVault
 //
 //  Created by Emilio Peláez on 20/2/21.
@@ -7,34 +7,21 @@
 
 import SwiftUI
 
-struct TagListView: View {
+struct ManageTagsView: View {
 	@EnvironmentObject private var persistenceController: PersistenceController
 	@Environment(\.presentationMode) var presentationMode
 
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Tag.name, ascending: true)], animation: .default)
 	var tags: FetchedResults<Tag>
 
-	@Binding var selectedTags: Set<Tag>
+	@ObservedObject var filter: ItemFilter
+	
 	@State var newTagName: String = ""
+	@State var duplicateNameAlert = false
 
 	var body: some View {
 		NavigationView {
 			List {
-				Section(header: tagsHeader) {
-					ForEach(tags) { tag in
-						Button {
-							toggleTag(tag)
-						} label: {
-							HStack {
-								Text(tag.name ?? "??")
-									.foregroundColor(.primary)
-								Spacer()
-								RadioButton(selected: selectedTags.contains(tag), size: 24, color: .blue)
-							}
-						}
-					}
-					.onDelete(perform: deleteTags)
-				}
 				Section(header: Text("Create Tag")) {
 					HStack {
 						TextField("Enter Name", text: $newTagName)
@@ -42,8 +29,17 @@ struct TagListView: View {
 							Image(systemName: "plus.circle.fill")
 								.font(.system(size: 25))
 						}
-						.disabled(tags.contains { $0.name == newTagName })
 					}
+				}
+				Section(header: Text("All Tags")) {
+					ForEach(tags) { tag in
+						HStack {
+							Text(tag.name ?? "??")
+								.foregroundColor(.primary)
+							Spacer()
+						}
+					}
+					.onDelete(perform: deleteTags)
 				}
 			}
 			.listStyle(InsetGroupedListStyle())
@@ -58,40 +54,30 @@ struct TagListView: View {
 					}
 				}
 			}
-		}
-	}
-
-	var tagsHeader: some View {
-		HStack {
-			Text("All Tags")
-			Spacer()
-			Text("Filter")
-				.padding(.trailing, 15)
-		}
-	}
-
-	func toggleTag(_ tag: Tag) {
-		withAnimation {
-			if selectedTags.contains(tag) {
-				selectedTags.remove(tag)
-			} else {
-				selectedTags.insert(tag)
+			.alert(isPresented: $duplicateNameAlert) {
+				Alert(title: Text("Tag Already Exists"), message: Text("Choose a unique name for your tag."), dismissButton: .default(Text("Ok!")))
 			}
 		}
 	}
 
 	func createTag() {
+		let newTagName = newTagName.trimmingCharacters(in: .whitespaces)
 		guard !newTagName.isEmpty else { return }
+		guard !tags.contains(where: { $0.name == newTagName }) else {
+			duplicateNameAlert = true
+			return
+		}
 		let tag = Tag(context: persistenceController.context)
 		tag.name = newTagName
-		newTagName = ""
+		self.newTagName = ""
 		persistenceController.save()
 	}
 
 	private func deleteTags(offsets: IndexSet) {
+		let deletedTags = offsets.map { tags[$0] }
+		filter.deleted(deletedTags)
 		withAnimation {
-			offsets.lazy.map { tags[$0] }.forEach {
-				selectedTags.remove($0)
+			deletedTags.forEach {
 				persistenceController.delete($0)
 			}
 		}
@@ -102,7 +88,7 @@ struct TagListView_Previews: PreviewProvider {
 	static let preview = PreviewEnvironment()
 	
 	static var previews: some View {
-		TagListView(selectedTags: .constant([]))
+		ManageTagsView(filter: .preview(with: preview))
 			.environment(\.managedObjectContext, preview.context)
 			.environmentObject(preview.controller)
 			.environmentObject(UserSettings())

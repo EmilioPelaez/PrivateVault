@@ -5,7 +5,6 @@
 //  Created by Emilio Peláez on 19/2/21.
 //
 
-import Photos
 import SwiftUI
 
 struct GalleryView: View {
@@ -34,67 +33,37 @@ struct GalleryView: View {
 		}
 	}
 	
-	@EnvironmentObject private var persistenceController: PersistenceController
+	@EnvironmentObject var persistenceController: PersistenceController
+	@EnvironmentObject var settings: UserSettings
+	@ObservedObject var filter = ItemFilter()
 	@State var dragOver = false
+	@State var showLayoutMenu = false
 	@State var showImageActionSheet = false
 	@State var showPermissionAlert = false
+	@State var showTags = false
 	@State var showProcessing = false
 	@State var currentSheet: SheetItem?
 	@State var currentAlert: AlertItem?
 	@State var selectedItem: StoredItem?
 	@State var itemBeingDeleted: StoredItem?
-	@State var selectedTags: Set<Tag> = []
 	@Binding var isLocked: Bool
+	
+	@FetchRequest(sortDescriptors: [], animation: .default)
+	var tags: FetchedResults<Tag>
 	
 	var body: some View {
 		ZStack {
-			GalleryGridView(selectedTags: $selectedTags, selection: select) {
+			GalleryGridView(filter: filter, selection: select) {
 				currentAlert = .deleteItemConfirmation($0)
 			}
-			.onDrop(of: [.fileURL], delegate: self)
 			.fullScreenCover(item: $selectedItem, content: quickLookView)
-			.navigationTitle("Gallery")
-			.toolbar {
-				ToolbarItemGroup(placement: .navigationBarLeading) {
-					Button {
-						currentSheet = .settings
-					} label: {
-						Image(systemName: "gearshape.fill")
-					}
-					Button {
-						withAnimation {
-							isLocked = true
-						}
-					} label: {
-						Image(systemName: "lock.fill")
-					}
-				}
-				ToolbarItemGroup(placement: .navigationBarTrailing) {
-					Button {
-						currentSheet = .tags
-					} label: {
-						Image(systemName: "tag.fill")
-					}
-				}
-			}
-			ZStack(alignment: .bottomLeading) {
-				Color.clear
-				FileTypePickerView(action: selectType)
-					.sheet(item: $currentSheet, content: filePicker)
-			}
-			.padding(.horizontal)
-			.padding(.bottom, 10)
-			ZStack(alignment: .bottom) {
-				Color.clear
-				if showProcessing {
-					ImportProcessView()
-						.transition(.opacity.combined(with: .move(edge: .bottom)))
-				}
-			}
-			.padding()
-			.onChange(of: persistenceController.creatingFiles) { creating in
-				withAnimation { showProcessing = creating }
-			}
+			actionButtons
+			processingView
+		}
+		.navigationTitle("Gallery")
+		.toolbar {
+			leadingButtons
+			trailingButton
 		}
 		.alert(item: $currentAlert, content: alert)
 		.onChange(of: isLocked) {
@@ -105,92 +74,7 @@ struct GalleryView: View {
 			selectedItem = nil
 			itemBeingDeleted = nil
 		}
-	}
-	
-	func alert(currentAlert: AlertItem) -> Alert {
-		switch currentAlert {
-		case .showPermissionAlert:
-			return Alert(
-				title: Text("Camera Access"),
-				message: Text("PrivateVault doesn't have access to use your camera, please update your privacy settings."),
-				primaryButton: .default(
-					Text("Settings"),
-					action: {
-						URL(string: UIApplication.openSettingsURLString).map { UIApplication.shared.open($0) }
-					}
-				),
-				secondaryButton: .cancel()
-			)
-		case let .deleteItemConfirmation(item):
-			return Alert(
-				title: Text("Delete File"),
-				message: Text("Are you sure you want to delete this item? This action can't be undone."),
-				primaryButton: .destructive(Text("Delete"), action: { delete(item) }),
-				secondaryButton: .cancel()
-			)
-		}
-	}
-	
-	func select(_ item: StoredItem) {
-		selectedItem = item
-	}
-	
-	func delete(_ item: StoredItem) {
-		persistenceController.delete(item)
-	}
-	
-	func quickLookView(_ item: StoredItem) -> some View {
-		QuickLookView(title: item.name, url: item.url).ignoresSafeArea()
-	}
-	
-	func filePicker(_ item: SheetItem) -> some View {
-		Group {
-			switch item {
-			case .tags: TagListView(selectedTags: $selectedTags)
-			case .imagePicker: PhotosPicker(selectedMedia: persistenceController.receiveItems)
-			case .cameraPicker: CameraPicker(selectImage: persistenceController.receiveCapturedImage)
-			case .documentPicker: DocumentPicker(selectDocuments: persistenceController.receiveURLs)
-			case .documentScanner: DocumentScanner(didScan: persistenceController.receiveScan)
-			case .settings: SettingsView()
-			}
-		}
-		.ignoresSafeArea()
-	}
-	
-	func selectType(_ type: FileTypePickerView.FileType) {
-		switch type {
-		case .camera: requestCameraAuthorization()
-		case .album: requestImageAuthorization()
-		case .document: currentSheet = .documentPicker
-		case .scan: currentSheet = .documentScanner
-		}
-	}
-	
-	func requestImageAuthorization() {
-		if PHPhotoLibrary.authorizationStatus() == .authorized {
-			currentSheet = .imagePicker
-		} else {
-			PHPhotoLibrary.requestAuthorization(for: .readWrite) { _ in }
-		}
-	}
-	
-	func requestCameraAuthorization() {
-		switch AVCaptureDevice.authorizationStatus(for: .video) {
-		case .authorized: currentSheet = .cameraPicker
-		case .notDetermined: AVCaptureDevice.requestAccess(for: .video) { _ in }
-		default: showPermissionAlert = true
-		}
-	}
-}
-
-extension GalleryView: DropDelegate {
-	func dropEntered(info: DropInfo) { dragOver = true }
-	
-	func dropExited(info: DropInfo) { dragOver = false }
-	
-	func performDrop(info: DropInfo) -> Bool {
-		persistenceController.receiveItems(info.itemProviders(for: [.image, .video, .movie, .pdf]))
-		return true
+		.onDrop(of: [.fileURL], delegate: self)
 	}
 }
 

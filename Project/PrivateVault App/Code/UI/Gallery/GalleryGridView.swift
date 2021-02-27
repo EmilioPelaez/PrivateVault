@@ -11,29 +11,26 @@ struct GalleryGridView: View {
 	@EnvironmentObject private var settings: UserSettings
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \StoredItem.timestamp, ascending: false)], animation: .default)
 	var data: FetchedResults<StoredItem>
-
-	@State var searchText = ""
+	
+	@ObservedObject var filter: ItemFilter
+	
 	@State var tagEditingItem: StoredItem?
-	@Binding var selectedTags: Set<Tag>
 	let selection: (StoredItem) -> Void
 	let delete: (StoredItem) -> Void
 
 	var filteredData: [StoredItem] {
-		data.filter { item in
-			selectedTags.allSatisfy {
-				item.tags?.contains($0) ?? false
-			}
-		}
-		.filter { item in
-			if searchText.isEmpty { return true }
-			return item.searchText.localizedStandardContains(searchText)
-		}
+		data.filter(filter.apply)
+	}
+	
+	var searchText: Binding<String> {
+		.init { filter.searchText }
+			set: { filter.searchText = $0 }
 	}
 
 	var body: some View {
 		if data.isEmpty {
 			VStack {
-				SearchBarView(text: $searchText, placeholder: "Search files...")
+				SearchBarView(text: searchText, placeholder: "Search files...")
 				ZStack {
 					Color.clear
 					EmptyGalleryView()
@@ -43,14 +40,11 @@ struct GalleryGridView: View {
 			}
 		} else if filteredData.isEmpty {
 			VStack {
-				SearchBarView(text: $searchText, placeholder: "Search files...")
+				SearchBarView(text: searchText, placeholder: "Search files...")
 				ZStack {
 					Color.clear
 					FilteredGalleryView {
-						withAnimation {
-							selectedTags = []
-							searchText = ""
-						}
+						withAnimation { filter.clear() }
 					}
 					.frame(maxWidth: 280)
 					.transition(.opacity)
@@ -58,7 +52,7 @@ struct GalleryGridView: View {
 			}
 		} else {
 			ScrollView {
-				SearchBarView(text: $searchText, placeholder: "Search files...")
+				SearchBarView(text: searchText, placeholder: "Search files...")
 				LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: settings.columns), spacing: 4) {
 					ForEach(filteredData) { item in
 						GalleryGridCell(item: item)
@@ -94,7 +88,7 @@ struct GalleryGridView_Previews: PreviewProvider {
 	
 	static var previews: some View {
 		EmptyView()
-		GalleryGridView(selectedTags: .constant([])) { _ in } delete: { _ in }
+		GalleryGridView(filter: ItemFilter()) { _ in } delete: { _ in }
 			.environment(\.managedObjectContext, preview.context)
 			.environmentObject(preview.controller)
 			.environmentObject(UserSettings())

@@ -17,7 +17,7 @@ final class UserSettings: ObservableObject {
 	@Published var maxAttempts = UserDefaults.standard.object(forKey: .maxAttempts) as? Int ?? 5 {
 		didSet { UserDefaults.standard.set(maxAttempts, forKey: .maxAttempts) }
 	}
-	@Published var biometrics = UserDefaults.standard.bool(forKey: .biometrics) {
+	@Published var biometrics = UserDefaults.standard.object(forKey: .biometrics) as? Bool ?? true {
 		didSet { UserDefaults.standard.set(biometrics, forKey: .biometrics) }
 	}
 	@Published var columns = UserDefaults.standard.object(forKey: .columns) as? Int ?? 3 {

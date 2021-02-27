@@ -24,17 +24,9 @@ extension GalleryView {
 	func selectType(_ type: FileTypePickerView.FileType) {
 		switch type {
 		case .camera: requestCameraAuthorization()
-		case .album: requestImageAuthorization()
+		case .album: currentSheet = .imagePicker
 		case .document: currentSheet = .documentPicker
 		case .scan: currentSheet = .documentScanner
-		}
-	}
-	
-	func requestImageAuthorization() {
-		if PHPhotoLibrary.authorizationStatus() == .authorized {
-			currentSheet = .imagePicker
-		} else {
-			PHPhotoLibrary.requestAuthorization(for: .readWrite) { _ in }
 		}
 	}
 	

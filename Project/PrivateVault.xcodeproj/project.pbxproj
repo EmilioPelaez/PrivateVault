@@ -62,6 +62,9 @@
 		C86F9CC225EA60C100210F64 /* OpenLong.wav in Resources */ = {isa = PBXBuildFile; fileRef = C86F9CC025EA60C100210F64 /* OpenLong.wav */; };
 		C86F9CC325EA60C100210F64 /* CloseLong.wav in Resources */ = {isa = PBXBuildFile; fileRef = C86F9CC125EA60C100210F64 /* CloseLong.wav */; };
 		C86F9CC925EA667F00210F64 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C86F9CC825EA667F00210F64 /* CloudKit.framework */; };
+		C86F9CCD25ED8BAB00210F64 /* ItemSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F9CCC25ED8BAB00210F64 /* ItemSelectionView.swift */; };
+		C86F9CCF25ED910C00210F64 /* GalleryView+Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F9CCE25ED910C00210F64 /* GalleryView+Enums.swift */; };
+		C86F9CD125ED99C100210F64 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F9CD025ED99C100210F64 /* ColorButton.swift */; };
 		C88ACB1125E106D00064C160 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1025E106D00064C160 /* LockView.swift */; };
 		C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1225E109FD0064C160 /* InputDisplay.swift */; };
 		C88ACB1625E10A790064C160 /* FeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */; };
@@ -165,6 +168,9 @@
 		C86F9CC025EA60C100210F64 /* OpenLong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = OpenLong.wav; sourceTree = "<group>"; };
 		C86F9CC125EA60C100210F64 /* CloseLong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CloseLong.wav; sourceTree = "<group>"; };
 		C86F9CC825EA667F00210F64 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		C86F9CCC25ED8BAB00210F64 /* ItemSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSelectionView.swift; sourceTree = "<group>"; };
+		C86F9CCE25ED910C00210F64 /* GalleryView+Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+Enums.swift"; sourceTree = "<group>"; };
+		C86F9CD025ED99C100210F64 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 		C88ACB1025E106D00064C160 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		C88ACB1225E109FD0064C160 /* InputDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDisplay.swift; sourceTree = "<group>"; };
 		C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerator.swift; sourceTree = "<group>"; };
@@ -344,6 +350,7 @@
 				C83959BB25E9BFE700521F83 /* GalleryView+Alerts.swift */,
 				C83959C325E9C0E900521F83 /* GalleryView+BottomOverlays.swift */,
 				C83959BD25E9C00E00521F83 /* GalleryView+DropDelegate.swift */,
+				C86F9CCE25ED910C00210F64 /* GalleryView+Enums.swift */,
 				C83959C125E9C07D00521F83 /* GalleryView+Items.swift */,
 				C83959B925E9BFA700521F83 /* GalleryView+NavigationButtons.swift */,
 				C83959BF25E9C05F00521F83 /* GalleryView+Sheet.swift */,
@@ -476,10 +483,12 @@
 				C839599E25E8573600521F83 /* GenericPreview.swift */,
 				C83959AE25E8F9B300521F83 /* ImportProcessView.swift */,
 				C83959A425E85FFA00521F83 /* ItemPreview.swift */,
+				C86F9CCC25ED8BAB00210F64 /* ItemSelectionView.swift */,
 				C89C9DE825E19935003505B9 /* RadioButton.swift */,
 				2B39CD7425E17AFB00E63EDD /* SearchBarView.swift */,
 				C83959B025E8FD6700521F83 /* Spinner.swift */,
 				C83959A625E8621600521F83 /* VideoPreview.swift */,
+				C86F9CD025ED99C100210F64 /* ColorButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -653,6 +662,7 @@
 				2B6C742C25E08BBF00EAF6FD /* PhotosPicker.swift in Sources */,
 				2B39CE0825E32B9500E63EDD /* LinkButton.swift in Sources */,
 				C8EFD22B25E159EA00CB4141 /* StoredItem+Properties.swift in Sources */,
+				C86F9CD125ED99C100210F64 /* ColorButton.swift in Sources */,
 				C89C9DE525E196A5003505B9 /* PreviewEnvironment.swift in Sources */,
 				2B39CE0425E32B8100E63EDD /* CreatorRow.swift in Sources */,
 				C868FD6125E2AFA5005A3EA9 /* SetPasscodeView.swift in Sources */,
@@ -666,6 +676,7 @@
 				C89C9DEF25E1D804003505B9 /* Binding+Optional.swift in Sources */,
 				C89C9DE125E19671003505B9 /* Tag+Examples.swift in Sources */,
 				C839599525E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift in Sources */,
+				C86F9CCD25ED8BAB00210F64 /* ItemSelectionView.swift in Sources */,
 				C83959BC25E9BFE700521F83 /* GalleryView+Alerts.swift in Sources */,
 				C83959B825E9B17C00521F83 /* FiltersView.swift in Sources */,
 				C83959B125E8FD6700521F83 /* Spinner.swift in Sources */,
@@ -706,6 +717,7 @@
 				468A75DC25E0976E00B87597 /* FileTypePickerView.swift in Sources */,
 				46F26BEC25E19C6700070858 /* AttemptsRemainingView.swift in Sources */,
 				46F26BEF25E19C8600070858 /* BlurringView.swift in Sources */,
+				C86F9CCF25ED910C00210F64 /* GalleryView+Enums.swift in Sources */,
 				460E096225E077C4001343C2 /* KeypadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -55,6 +55,30 @@ extension GalleryView {
 					Text("Columns")
 					Image(systemName: "rectangle.split.3x1")
 				}
+				Divider()
+				if multipleSelection {
+					Button {
+						withAnimation {
+							selectedItems = []
+							multipleSelection = false
+						}
+					}
+					label: {
+						Text("Cancel")
+						Image(systemName: "xmark.circle.fill")
+					}
+				} else {
+					Button {
+						withAnimation {
+							selectedItems = []
+							multipleSelection = true
+						}
+					}
+					label: {
+						Text("Multiple Selection")
+						Image(systemName: "circle.circle")
+					}
+				}
 			} label: {
 				Image(systemName: "ellipsis.circle")
 					.font(.system(size: 22))

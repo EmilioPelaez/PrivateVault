@@ -29,6 +29,13 @@ extension GalleryView {
 				primaryButton: .destructive(Text("Delete"), action: { delete(item) }),
 				secondaryButton: .cancel()
 			)
+		case let .deleteItemsConfirmation(items):
+			return Alert(
+				title: Text("Delete Files"),
+				message: Text("Are you sure you want to delete \(items.count) item? This action can't be undone."),
+				primaryButton: .destructive(Text("Delete"), action: { delete(items) }),
+				secondaryButton: .cancel()
+			)
 		}
 	}
 }

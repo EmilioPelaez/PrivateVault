@@ -25,6 +25,28 @@ extension GalleryView {
 		}
 	}
 	
+	var editButtons: some View {
+		ZStack(alignment: .bottomLeading) {
+			Color.clear
+			ColorButton(color: .red, imageName: "trash") {
+				switch selectedItems.count {
+				case 1:
+					currentAlert = .deleteItemConfirmation(selectedItems.map { $0 }[0])
+				case 2...:
+					currentAlert = .deleteItemsConfirmation(selectedItems)
+				case _:
+					withAnimation {
+						multipleSelection = false
+						selectedItems = []
+					}
+				}
+				SoundEffect.close.play()
+			}
+			.padding(.horizontal)
+			.padding(.bottom, 10)
+		}
+	}
+	
 	var tagCloseView: some View {
 		Color(white: 0, opacity: 0.001)
 			.onTapGesture {
@@ -45,25 +67,7 @@ extension GalleryView {
 				}
 				.transition(.scale(scale: 0, anchor: .bottomLeading))
 			}
-			ZStack {
-				Circle()
-					.fill(Color.green)
-					.shadow(color: Color(white: 0, opacity: 0.2), radius: 4, x: 0, y: 2)
-				Button(action: tagButtonAction) {
-					Group {
-						if showTags {
-							Image(systemName: "tag.fill")
-						} else {
-							Image(systemName: "tag")
-						}
-					}
-					.font(.system(size: 30))
-					.foregroundColor(.white)
-					.transition(.opacity)
-				}
-				.frame(width: 60, height: 60)
-			}
-			.frame(width: 60, height: 60)
+			ColorButton(color: .green, imageName: showTags ? "tag.fill" : "tag", action: tagButtonAction)
 		}
 	}
 	

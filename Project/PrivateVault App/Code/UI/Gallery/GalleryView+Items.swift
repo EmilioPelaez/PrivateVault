@@ -10,11 +10,29 @@ import SwiftUI
 
 extension GalleryView {
 	func select(_ item: StoredItem) {
-		selectedItem = item
+		withAnimation {
+			if multipleSelection {
+				if selectedItems.contains(item) {
+					selectedItems.remove(item)
+				} else {
+					selectedItems.insert(item)
+				}
+			} else {
+				displayedItem = item
+			}
+		}
 	}
 	
 	func delete(_ item: StoredItem) {
-		persistenceController.delete(item)
+		delete([item])
+	}
+	
+	func delete(_ items: Set<StoredItem>) {
+		persistenceController.delete(items.map { $0 })
+		withAnimation {
+			multipleSelection = false
+			selectedItems = []
+		}
 	}
 	
 	func quickLookView(_ item: StoredItem) -> some View {

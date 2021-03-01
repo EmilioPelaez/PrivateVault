@@ -13,8 +13,10 @@ struct GalleryGridView: View {
 	var data: FetchedResults<StoredItem>
 	
 	@ObservedObject var filter: ItemFilter
-	
+	@Binding var multipleSelection: Bool
+	@Binding var selectedItems: Set<StoredItem>
 	@State var tagEditingItem: StoredItem?
+	
 	let selection: (StoredItem) -> Void
 	let delete: (StoredItem) -> Void
 
@@ -58,7 +60,7 @@ struct GalleryGridView: View {
 				SearchBarView(text: searchText, placeholder: "Search files...")
 				LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: settings.columns), spacing: 4) {
 					ForEach(filteredData) { item in
-						GalleryGridCell(item: item)
+						GalleryGridCell(item: item, selection: selection(for: item))
 							.onTapGesture { selection(item) }
 							.contextMenu {
 								Button {
@@ -84,6 +86,13 @@ struct GalleryGridView: View {
 			}
 		}
 	}
+	
+	func selection(for item: StoredItem) -> GalleryGridCell.Selection {
+		guard multipleSelection else {
+			return .disabled
+		}
+		return selectedItems.contains(item) ? .selected: .unselected
+	}
 }
 
 struct GalleryGridView_Previews: PreviewProvider {
@@ -91,7 +100,7 @@ struct GalleryGridView_Previews: PreviewProvider {
 	
 	static var previews: some View {
 		EmptyView()
-		GalleryGridView(filter: ItemFilter()) { _ in } delete: { _ in }
+		GalleryGridView(filter: ItemFilter(), multipleSelection: .constant(false), selectedItems: .constant([]), selection: { _ in }, delete: { _ in })
 			.environment(\.managedObjectContext, preview.context)
 			.environmentObject(preview.controller)
 			.environmentObject(UserSettings())

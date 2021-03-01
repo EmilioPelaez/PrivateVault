@@ -8,9 +8,14 @@
 import CoreData
 
 extension PersistenceController {
-	func delete(_ object: NSManagedObject) {
-		context.delete(object)
+	
+	func delete(_ objects: [NSManagedObject]) {
+		objects.forEach(context.delete)
 		save()
+	}
+	
+	func delete(_ object: NSManagedObject) {
+		delete([object])
 	}
 	
 	func save() {

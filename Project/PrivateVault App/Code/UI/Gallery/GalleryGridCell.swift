@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct GalleryGridCell: View {
+	enum Selection {
+		case disabled
+		case unselected
+		case selected
+	}
+	
 	@ObservedObject var item: StoredItem
 	@EnvironmentObject private var settings: UserSettings
 
@@ -17,17 +23,25 @@ struct GalleryGridCell: View {
 		formatter.timeStyle = .short
 		return formatter
 	}()
-
+	
+	let selection: Selection
+	
 	var body: some View {
 		VStack(alignment: .leading) {
-			Color.clear.aspectRatio(1, contentMode: .fill)
-				.overlay(
-					ItemPreview(item: item)
-				)
-				.clipped()
+			ZStack(alignment: .topTrailing) {
+				Color.clear.aspectRatio(1, contentMode: .fill)
+					.overlay(
+						ItemPreview(item: item)
+					)
+					.clipped()
+				if selection != .disabled {
+					ItemSelectionView(selected: selection == .selected)
+						.padding(6)
+				}
+			}
 			if settings.showDetails {
 				VStack(alignment: .leading, spacing: 4) {
-					Text(item.name?.capping(30) ?? "Untitled")
+					Text(item.name ?? "Untitled")
 						.font(.headline)
 						.lineLimit(1)
 						.foregroundColor(.primary)
@@ -57,11 +71,11 @@ struct GalleryGridCell_Previews: PreviewProvider {
 	static let preview = PreviewEnvironment()
 	
 	static var previews: some View {
-		GalleryGridCell(item: preview.item)
+		GalleryGridCell(item: preview.item, selection: .disabled)
 			.previewLayout(.fixed(width: 200, height: 300))
 			.environmentObject(UserSettings())
 		
-		GalleryGridCell(item: preview.item)
+		GalleryGridCell(item: preview.item, selection: .disabled)
 			.previewLayout(.fixed(width: 200, height: 200))
 			.environmentObject(UserSettings())
 	}

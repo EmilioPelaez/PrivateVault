@@ -8,31 +8,7 @@
 import SwiftUI
 
 struct GalleryView: View {
-	enum SheetItem: Int, Identifiable {
-		case tags
-		case settings
-		case imagePicker
-		case cameraPicker
-		case documentPicker
-		case documentScanner
 		
-		var id: Int { rawValue }
-	}
-	
-	enum AlertItem: Identifiable {
-		case showPermissionAlert
-		case deleteItemConfirmation(StoredItem)
-		
-		var id: Int {
-			switch self {
-			case .showPermissionAlert:
-				return 0
-			case .deleteItemConfirmation:
-				return 1
-			}
-		}
-	}
-	
 	@EnvironmentObject var persistenceController: PersistenceController
 	@EnvironmentObject var settings: UserSettings
 	@ObservedObject var filter = ItemFilter()
@@ -42,9 +18,11 @@ struct GalleryView: View {
 	@State var showPermissionAlert = false
 	@State var showTags = false
 	@State var showProcessing = false
+	@State var multipleSelection = false
+	@State var selectedItems: Set<StoredItem> = []
 	@State var currentSheet: SheetItem?
 	@State var currentAlert: AlertItem?
-	@State var selectedItem: StoredItem?
+	@State var displayedItem: StoredItem?
 	@State var itemBeingDeleted: StoredItem?
 	@Binding var isLocked: Bool
 	
@@ -53,11 +31,17 @@ struct GalleryView: View {
 	
 	var body: some View {
 		ZStack {
-			GalleryGridView(filter: filter, selection: select) {
+			GalleryGridView(filter: filter, multipleSelection: $multipleSelection, selectedItems: $selectedItems, selection: select) {
 				currentAlert = .deleteItemConfirmation($0)
 			}
-			.fullScreenCover(item: $selectedItem, content: quickLookView)
-			actionButtons
+			.fullScreenCover(item: $displayedItem, content: quickLookView)
+			if multipleSelection {
+				editButtons
+					.transition(.move(edge: .leading))
+			} else {
+				actionButtons
+					.transition(.move(edge: .leading))
+			}
 			processingView
 		}
 		.navigationTitle("Gallery")
@@ -71,7 +55,7 @@ struct GalleryView: View {
 			showImageActionSheet = false
 			showPermissionAlert = false
 			currentSheet = nil
-			selectedItem = nil
+			displayedItem = nil
 			itemBeingDeleted = nil
 		}
 		.onDrop(of: [.fileURL], delegate: self)

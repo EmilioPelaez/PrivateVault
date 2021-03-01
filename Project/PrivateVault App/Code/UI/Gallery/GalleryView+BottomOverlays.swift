@@ -35,11 +35,10 @@ extension GalleryView {
 				case 2...:
 					currentAlert = .deleteItemsConfirmation(selectedItems)
 				case _:
-					break
-				}
-				withAnimation {
-					multipleSelection = false
-					selectedItems = []
+					withAnimation {
+						multipleSelection = false
+						selectedItems = []
+					}
 				}
 				SoundEffect.close.play()
 			}

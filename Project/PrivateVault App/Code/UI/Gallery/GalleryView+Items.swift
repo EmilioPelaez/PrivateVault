@@ -24,11 +24,15 @@ extension GalleryView {
 	}
 	
 	func delete(_ item: StoredItem) {
-		persistenceController.delete(item)
+		delete([item])
 	}
 	
 	func delete(_ items: Set<StoredItem>) {
 		persistenceController.delete(items.map { $0 })
+		withAnimation {
+			multipleSelection = false
+			selectedItems = []
+		}
 	}
 	
 	func quickLookView(_ item: StoredItem) -> some View {

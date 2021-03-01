@@ -37,8 +37,11 @@ extension GalleryView {
 				case _:
 					break
 				}
-				multipleSelection = false
-				selectedItems = []
+				withAnimation {
+					multipleSelection = false
+					selectedItems = []
+				}
+				SoundEffect.close.play()
 			}
 			.padding(.horizontal)
 			.padding(.bottom, 10)

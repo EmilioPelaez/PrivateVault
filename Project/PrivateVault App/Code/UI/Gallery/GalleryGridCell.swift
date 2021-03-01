@@ -34,10 +34,9 @@ struct GalleryGridCell: View {
 						ItemPreview(item: item)
 					)
 					.clipped()
-				if selection != .disabled {
-					ItemSelectionView(selected: selection == .selected)
-						.padding(6)
-				}
+				ItemSelectionView(selected: selection == .selected)
+					.padding(6)
+					.opacity(selection == .disabled ? 0 : 1)
 			}
 			if settings.showDetails {
 				VStack(alignment: .leading, spacing: 4) {

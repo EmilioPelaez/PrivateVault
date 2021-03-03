@@ -25,15 +25,39 @@ extension GalleryView {
 	
 	var trailingButton: some ToolbarContent {
 		ToolbarItemGroup(placement: .navigationBarTrailing) {
+			if multipleSelection {
+				Button {
+					withAnimation {
+						selectedItems = []
+						multipleSelection = false
+					}
+				}
+				label: {
+					Text("Done")
+				}
+			}
 			Menu {
+				if !multipleSelection {
+					Button {
+						withAnimation {
+							selectedItems = []
+							multipleSelection = true
+						}
+					}
+					label: {
+						Text("Select")
+						Image(systemName: "checkmark.circle")
+					}
+					Divider()
+				}
 				Button {
 					withAnimation { settings.showDetails.toggle() }
 				}
 				label: {
 					if settings.showDetails {
-						Text("Hide File Details")
+						Text("Hide Details")
 					} else {
-						Text("Show File Details")
+						Text("Show Details")
 					}
 					Image(systemName: "info.circle")
 				}
@@ -53,31 +77,7 @@ extension GalleryView {
 					}
 				} label: {
 					Text("Columns")
-					Image(systemName: "rectangle.split.3x1")
-				}
-				Divider()
-				if multipleSelection {
-					Button {
-						withAnimation {
-							selectedItems = []
-							multipleSelection = false
-						}
-					}
-					label: {
-						Text("Cancel")
-						Image(systemName: "xmark.circle.fill")
-					}
-				} else {
-					Button {
-						withAnimation {
-							selectedItems = []
-							multipleSelection = true
-						}
-					}
-					label: {
-						Text("Multiple Selection")
-						Image(systemName: "circle.circle")
-					}
+					Image(systemName: "chevron.right")
 				}
 			} label: {
 				Image(systemName: "ellipsis.circle")

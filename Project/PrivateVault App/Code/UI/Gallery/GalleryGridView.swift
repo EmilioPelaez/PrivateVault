@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GalleryGridView: View {
+struct GalleryGridView<M: View>: View {
 	@EnvironmentObject private var settings: UserSettings
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \StoredItem.timestamp, ascending: false)], animation: .default)
 	var data: FetchedResults<StoredItem>
@@ -15,10 +15,9 @@ struct GalleryGridView: View {
 	@ObservedObject var filter: ItemFilter
 	@Binding var multipleSelection: Bool
 	@Binding var selectedItems: Set<StoredItem>
-	@State var tagEditingItem: StoredItem?
 	
 	let selection: (StoredItem) -> Void
-	let delete: (StoredItem) -> Void
+	let contextMenu: (StoredItem) -> M
 
 	var filteredData: [StoredItem] {
 		data.filter(filter.apply)
@@ -62,27 +61,11 @@ struct GalleryGridView: View {
 					ForEach(filteredData) { item in
 						GalleryGridCell(item: item, selection: selection(for: item))
 							.onTapGesture { selection(item) }
-							.contextMenu {
-								Button {
-									tagEditingItem = item
-								} label: {
-									Text("Edit")
-									Image(systemName: "pencil")
-								}
-								Button {
-									delete(item)
-								} label: {
-									Text("Delete")
-									Image(systemName: "trash")
-								}
-							}
+							.contextMenu { contextMenu(item) }
 					}
 				}
 				.padding(4)
 				.padding(.bottom, 55)
-			}
-			.popover(item: $tagEditingItem) { item in
-				ItemEditView(item: item) { tagEditingItem = nil }
 			}
 		}
 	}
@@ -99,8 +82,7 @@ struct GalleryGridView_Previews: PreviewProvider {
 	static let preview = PreviewEnvironment()
 	
 	static var previews: some View {
-		EmptyView()
-		GalleryGridView(filter: ItemFilter(), multipleSelection: .constant(false), selectedItems: .constant([]), selection: { _ in }, delete: { _ in })
+		GalleryGridView(filter: ItemFilter(), multipleSelection: .constant(false), selectedItems: .constant([]), selection: { _ in }, contextMenu: { _ in EmptyView() })
 			.environment(\.managedObjectContext, preview.context)
 			.environmentObject(preview.controller)
 			.environmentObject(UserSettings())

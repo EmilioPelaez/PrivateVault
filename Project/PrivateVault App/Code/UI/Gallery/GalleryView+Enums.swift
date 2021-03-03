@@ -16,6 +16,7 @@ extension GalleryView {
 		case documentPicker
 		case documentScanner
 		case share([URL])
+		case itemEdit(StoredItem)
 		
 		var id: Int {
 			switch self {
@@ -26,6 +27,7 @@ extension GalleryView {
 			case .documentPicker: return 4
 			case .documentScanner: return 5
 			case .share: return 6
+			case .itemEdit: return 7
 			}
 		}
 	}

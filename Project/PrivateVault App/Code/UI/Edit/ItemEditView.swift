@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ItemEditView: View {
 	@EnvironmentObject private var persistenceController: PersistenceController
+	@Environment(\.presentationMode) var presentationMode
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Tag.name, ascending: true)], animation: .default)
 	var tags: FetchedResults<Tag>
 
 	@ObservedObject var item: StoredItem
-	let close: () -> Void
 
 	var body: some View {
 		NavigationView {
@@ -42,7 +42,10 @@ struct ItemEditView: View {
 			.navigationTitle("Edit")
 			.toolbar {
 				ToolbarItem(placement: .navigationBarLeading) {
-					Button(action: close) {
+					Button {
+						presentationMode.wrappedValue.dismiss()
+					}
+					label: {
 						Image(systemName: "xmark.circle.fill")
 					}
 				}
@@ -70,7 +73,7 @@ struct ItemTagsView_Previews: PreviewProvider {
 	static let preview = PreviewEnvironment()
 
 	static var previews: some View {
-		ItemEditView(item: preview.item) { }
+		ItemEditView(item: preview.item)
 			.environment(\.managedObjectContext, preview.context)
 			.environmentObject(preview.controller)
 			.previewLayout(.sizeThatFits)

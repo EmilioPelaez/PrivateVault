@@ -9,6 +9,31 @@ import Photos
 import SwiftUI
 
 extension GalleryView {
+	
+	func contextMenu(for item: StoredItem) -> some View {
+		Group {
+			Button {
+				currentSheet = .itemEdit(item)
+			} label: {
+				Text("Edit")
+				Image(systemName: "square.and.pencil")
+			}
+			Button {
+				share(item)
+			} label: {
+				Text("Share")
+				Image(systemName: "square.and.arrow.up")
+			}
+			Divider()
+			Button {
+				currentAlert = .deleteItemConfirmation(item)
+			} label: {
+				Text("Delete")
+				Image(systemName: "trash")
+			}
+		}
+	}
+	
 	func select(_ item: StoredItem) {
 		withAnimation {
 			if multipleSelection {
@@ -25,6 +50,16 @@ extension GalleryView {
 					case .failure(let error): print(error)
 					}
 				}
+			}
+		}
+	}
+	
+	func share(_ item: StoredItem) {
+		diskStore.add(item) { result in
+			switch result {
+			case .success(let item):
+				self.currentSheet = .share([item.url])
+			case .failure: break
 			}
 		}
 	}

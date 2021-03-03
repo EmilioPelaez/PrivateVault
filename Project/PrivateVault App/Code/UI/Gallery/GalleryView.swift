@@ -32,9 +32,7 @@ struct GalleryView: View {
 	
 	var body: some View {
 		ZStack {
-			GalleryGridView(filter: filter, multipleSelection: $multipleSelection, selectedItems: $selectedItems, selection: select) {
-				currentAlert = .deleteItemConfirmation($0)
-			}
+			GalleryGridView(filter: filter, multipleSelection: $multipleSelection, selectedItems: $selectedItems, selection: select, contextMenu: contextMenu)
 			.fullScreenCover(item: $displayedItem, content: quickLookView)
 			
 			Group {

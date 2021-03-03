@@ -99,6 +99,7 @@
 		C8EFD22F25E15D1D00CB4141 /* StoredItem+DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22E25E15D1D00CB4141 /* StoredItem+DataType.swift */; };
 		C8FCB7B325EE59D80002D386 /* DiskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FCB7B225EE59D80002D386 /* DiskStore.swift */; };
 		C8FCB7B525EED5B50002D386 /* Publisher+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FCB7B425EED5B50002D386 /* Publisher+Actions.swift */; };
+		C8FCB7B725EF9BD80002D386 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FCB7B625EF9BD80002D386 /* ShareSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,6 +210,7 @@
 		C8EFD22E25E15D1D00CB4141 /* StoredItem+DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredItem+DataType.swift"; sourceTree = "<group>"; };
 		C8FCB7B225EE59D80002D386 /* DiskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskStore.swift; sourceTree = "<group>"; };
 		C8FCB7B425EED5B50002D386 /* Publisher+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Actions.swift"; sourceTree = "<group>"; };
+		C8FCB7B625EF9BD80002D386 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +332,7 @@
 				2B6C742B25E08BBF00EAF6FD /* PhotosPicker.swift */,
 				2B081A7025E0847600F9D522 /* QuickLookView.swift */,
 				C89C9DEA25E19C30003505B9 /* VisualEffectView.swift */,
+				C8FCB7B625EF9BD80002D386 /* ShareSheet.swift */,
 			);
 			path = Representables;
 			sourceTree = "<group>";
@@ -690,6 +693,7 @@
 				C89C9DE925E19935003505B9 /* RadioButton.swift in Sources */,
 				2B39CD9525E1913A00E63EDD /* CameraPicker.swift in Sources */,
 				C8A792ED25E06D75009B862D /* GalleryView.swift in Sources */,
+				C8FCB7B725EF9BD80002D386 /* ShareSheet.swift in Sources */,
 				2B39CDAC25E1A05500E63EDD /* DocumentScanner.swift in Sources */,
 				C83959A125E85DAB00521F83 /* PreviewCache.swift in Sources */,
 				C8EFD22925E14BDA00CB4141 /* PersistenceController.swift in Sources */,

@@ -17,7 +17,6 @@ extension GalleryView {
 			}
 			HStack(alignment: .bottom) {
 				FileTypePickerView(action: selectType)
-					.sheet(item: $currentSheet, content: sheetFor)
 				tagOverlay
 			}
 			.padding(.horizontal)
@@ -25,22 +24,38 @@ extension GalleryView {
 		}
 	}
 	
-	var editButtons: some View {
+	var selectionButtons: some View {
 		ZStack(alignment: .bottomLeading) {
 			Color.clear
-			ColorButton(color: .red, imageName: "trash") {
-				switch selectedItems.count {
-				case 1:
-					currentAlert = .deleteItemConfirmation(selectedItems.map { $0 }[0])
-				case 2...:
-					currentAlert = .deleteItemsConfirmation(selectedItems)
-				case _:
-					withAnimation {
-						multipleSelection = false
-						selectedItems = []
+			HStack {
+				ColorButton(color: .red, imageName: "trash") {
+					switch selectedItems.count {
+					case 1:
+						currentAlert = .deleteItemConfirmation(selectedItems.map { $0 }[0])
+					case 2...:
+						currentAlert = .deleteItemsConfirmation(selectedItems)
+					case _:
+						withAnimation {
+							multipleSelection = false
+							selectedItems = []
+						}
 					}
+					guard settings.sound else { return }
+					SoundEffect.close.play()
 				}
-				SoundEffect.close.play()
+				ColorButton(color: .orange, imageName: "square.and.arrow.up") {
+					guard !selectedItems.isEmpty else {
+						guard settings.sound else { return }
+						SoundEffect.failure.play()
+						return
+					}
+					diskStore.add(selectedItems.map { $0 }) { result in
+						let urls = result.compactMap { try? $0.get().url }
+						self.currentSheet = .share(urls)
+					}
+					guard settings.sound else { return }
+					SoundEffect.open.play()
+				}
 			}
 			.padding(.horizontal)
 			.padding(.bottom, 10)

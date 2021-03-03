@@ -30,7 +30,25 @@ class DiskStore: ObservableObject {
 	}
 	
 	func add(_ items: [StoredItem], completion: @escaping ([Result<Item, Error>]) -> Void) {
+		var results: [Result<Item, Error>] = []
 		
+		let group = DispatchGroup()
+		let queue = DispatchQueue(label: "ArrayAppend", attributes: .concurrent)
+		
+		items.map(_addItem).forEach {
+			group.enter()
+			$0.result { result in
+				queue.async(flags: .barrier) {
+					results.append(result)
+				}
+				group.leave()
+			}
+				.store(in: &bag)
+		}
+		
+		group.notify(queue: .main) {
+			completion(results)
+		}
 	}
 	
 	func remove(_ item: Item) {

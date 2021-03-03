@@ -36,13 +36,17 @@ struct GalleryView: View {
 				currentAlert = .deleteItemConfirmation($0)
 			}
 			.fullScreenCover(item: $displayedItem, content: quickLookView)
-			if multipleSelection {
-				editButtons
-					.transition(.move(edge: .leading))
-			} else {
-				actionButtons
-					.transition(.move(edge: .leading))
+			
+			Group {
+				if multipleSelection {
+					selectionButtons
+						.transition(.move(edge: .leading))
+				} else {
+					actionButtons
+						.transition(.move(edge: .leading))
+				}
 			}
+			.sheet(item: $currentSheet, content: sheetFor)
 			processingView
 		}
 		.navigationTitle("Gallery")

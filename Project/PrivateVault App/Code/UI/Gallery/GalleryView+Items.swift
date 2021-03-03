@@ -18,7 +18,13 @@ extension GalleryView {
 					selectedItems.insert(item)
 				}
 			} else {
-				displayedItem = item
+				diskStore.add(item) {
+					switch $0 {
+					case .success(let diskItem):
+						displayedItem = diskItem
+					case .failure(let error): print(error)
+					}
+				}
 			}
 		}
 	}
@@ -35,8 +41,8 @@ extension GalleryView {
 		}
 	}
 	
-	func quickLookView(_ item: StoredItem) -> some View {
-		QuickLookView(title: item.name, url: item.url).ignoresSafeArea()
+	func quickLookView(_ item: DiskStore.Item) -> some View {
+		QuickLookView(store: diskStore, item: item).ignoresSafeArea()
 	}
 	
 	func selectType(_ type: FileTypePickerView.FileType) {

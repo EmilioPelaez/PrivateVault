@@ -11,6 +11,7 @@ struct GalleryView: View {
 		
 	@EnvironmentObject var persistenceController: PersistenceController
 	@EnvironmentObject var settings: UserSettings
+	@EnvironmentObject var diskStore: DiskStore
 	@ObservedObject var filter = ItemFilter()
 	@State var dragOver = false
 	@State var showLayoutMenu = false
@@ -22,7 +23,7 @@ struct GalleryView: View {
 	@State var selectedItems: Set<StoredItem> = []
 	@State var currentSheet: SheetItem?
 	@State var currentAlert: AlertItem?
-	@State var displayedItem: StoredItem?
+	@State var displayedItem: DiskStore.Item?
 	@State var itemBeingDeleted: StoredItem?
 	@Binding var isLocked: Bool
 	
@@ -70,5 +71,6 @@ struct GalleryView_Previews: PreviewProvider {
 			.environment(\.managedObjectContext, preview.context)
 			.environmentObject(preview.controller)
 			.environmentObject(UserSettings())
+			.environmentObject(DiskStore())
 	}
 }

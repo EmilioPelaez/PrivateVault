@@ -9,11 +9,11 @@ import SwiftUI
 import QuickLook
 
 struct QuickLookView: UIViewControllerRepresentable {
-	let title: String?
-	let url: URL
+	let store: DiskStore
+	let item: DiskStore.Item
 
 	func makeUIViewController(context: Context) -> UINavigationController {
-		let previewController = FilePreviewController(url: url, title: title)
+		let previewController = FilePreviewController(store: store, item: item)
 		let action = UIAction { [weak previewController] _ in
 			previewController?.dismiss(animated: true)
 		}
@@ -22,16 +22,19 @@ struct QuickLookView: UIViewControllerRepresentable {
 	}
 
 	func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {}
+	
 }
 
 final class FilePreviewController: QLPreviewController, QLPreviewItem, QLPreviewControllerDataSource, QLPreviewControllerDelegate {
-	var previewItemURL: URL?
-	var previewItemTitle: String?
+	
+	let store: DiskStore
+	let item: DiskStore.Item
+	var previewItemURL: URL? { item.url }
 
-	init(url: URL, title: String?) {
+	init(store: DiskStore, item: DiskStore.Item) {
+		self.store = store
+		self.item = item
 		super.init(nibName: nil, bundle: nil)
-		previewItemURL = url
-		previewItemTitle = title
 	}
 
 	@available(*, unavailable)
@@ -45,6 +48,11 @@ final class FilePreviewController: QLPreviewController, QLPreviewItem, QLPreview
 		self.dataSource = self
 	}
 
+	override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+		super.dismiss(animated: flag, completion: completion)
+		store.remove(item)
+	}
+	
 	func numberOfPreviewItems(in controller: QLPreviewController) -> Int { 1 }
 
 	func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem { self }

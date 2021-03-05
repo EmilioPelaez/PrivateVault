@@ -28,7 +28,8 @@ struct FiltersView: View {
 				}
 			}
 			Color(.separator)
-				.frame(height: 4)
+				.opacity(0.5)
+				.frame(height: 6)
 				.padding(.top, 4)
 			if tags.isEmpty {
 				Text("No Tags")
@@ -52,7 +53,8 @@ struct FiltersView: View {
 				.frame(maxHeight: 200)
 			}
 			Color(.separator)
-				.frame(height: 4)
+				.opacity(0.5)
+				.frame(height: 6)
 				.padding(.bottom, 4)
 			Button {
 				manageTagsAction()
@@ -65,12 +67,13 @@ struct FiltersView: View {
 						.font(.callout)
 					Spacer()
 				}
+				.foregroundColor(.primary)
 				.padding(.horizontal)
 				.padding(.vertical, 4)
 			}
 		}
 		.padding(.vertical, 6)
-		.background(VisualEffectView(style: .systemThinMaterial))
+		.background(VisualEffectView(style: .systemThickMaterial))
 		.cornerRadius(10)
 		.frame(maxWidth: 220)
 		.shadow(color: Color(white: 0, opacity: 0.2), radius: 50, x: 0, y: 0)
@@ -92,8 +95,9 @@ struct FiltersView: View {
 					Text(title)
 						.font(.callout)
 					Spacer()
-					RadioButton(selected: selected, size: 20, color: .blue)
+					RadioButton(selected: selected, size: 20, color: .primary)
 				}
+				.foregroundColor(.primary)
 				.padding(.horizontal)
 				.padding(.vertical, 4)
 			}

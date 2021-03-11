@@ -54,10 +54,14 @@ struct GalleryGridCell: View {
 					.font(.caption)
 					.lineLimit(1)
 					.foregroundColor(Color(.secondaryLabel))
-					Text(String(format: "%.2f MB", Double(item.data?.count ?? 0) / 1_000_000))
-						.font(.caption2)
-						.lineLimit(1)
-						.foregroundColor(Color(.secondaryLabel))
+					HStack(spacing: 0) {
+						Image(systemName: "tag")
+							.padding(.trailing, 2)
+						Text(item.tagsText)
+							.lineLimit(1)
+					}
+					.font(.caption2)
+					.foregroundColor(Color(.secondaryLabel))
 				}
 				.padding([.horizontal, .bottom], 5)
 			}

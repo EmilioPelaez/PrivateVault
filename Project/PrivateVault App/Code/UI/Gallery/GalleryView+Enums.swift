@@ -36,12 +36,14 @@ extension GalleryView {
 		case showPermissionAlert
 		case deleteItemConfirmation(StoredItem)
 		case deleteItemsConfirmation(Set<StoredItem>)
+		case emptyClipboard
 		
 		var id: Int {
 			switch self {
 			case .showPermissionAlert: return 0
 			case .deleteItemConfirmation: return 1
 			case .deleteItemsConfirmation: return 2
+			case .emptyClipboard: return 3
 			}
 		}
 	}

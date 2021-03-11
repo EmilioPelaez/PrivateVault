@@ -7,6 +7,7 @@
 
 import Photos
 import SwiftUI
+import UIKit
 
 extension GalleryView {
 	
@@ -80,6 +81,7 @@ extension GalleryView {
 		case .album: currentSheet = .imagePicker
 		case .document: currentSheet = .documentPicker
 		case .scan: currentSheet = .documentScanner
+		case .clipboard: importFromClipboard()
 		}
 	}
 	
@@ -89,5 +91,14 @@ extension GalleryView {
 		case .notDetermined: AVCaptureDevice.requestAccess(for: .video) { _ in }
 		default: showPermissionAlert = true
 		}
+	}
+	
+	func importFromClipboard() {
+		let clipboard = UIPasteboard.general
+		guard clipboard.numberOfItems > 0 else {
+			currentAlert = .emptyClipboard
+			return
+		}
+		persistenceController.receiveItems(clipboard.itemProviders)
 	}
 }

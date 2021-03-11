@@ -13,6 +13,7 @@ struct FileTypePickerView: View {
 		case album
 		case document
 		case scan
+		case clipboard
 
 		var systemName: String {
 			switch self {
@@ -20,6 +21,7 @@ struct FileTypePickerView: View {
 			case .album: return "photo.on.rectangle"
 			case .document: return "folder"
 			case .scan: return "doc.text.viewfinder"
+			case .clipboard: return "doc.on.clipboard"
 			}
 		}
 
@@ -29,6 +31,7 @@ struct FileTypePickerView: View {
 			case .album: return "Album"
 			case .document: return "Document"
 			case .scan: return "Document Scan"
+			case .clipboard: return "Clipboard"
 			}
 		}
 

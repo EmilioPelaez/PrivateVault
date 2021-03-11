@@ -36,6 +36,12 @@ extension GalleryView {
 				primaryButton: .destructive(Text("Delete"), action: { delete(items) }),
 				secondaryButton: .cancel()
 			)
+		case .emptyClipboard:
+			return Alert(
+				title: Text("Empty Clipboard"),
+				message: Text("There are not items in your clipboard."),
+				dismissButton: .default(Text("Ok"))
+			)
 		}
 	}
 }

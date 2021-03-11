@@ -8,12 +8,6 @@
 import SwiftUI
 
 final class UserSettings: ObservableObject {
-	@Published var passcode = UserDefaults.standard.object(forKey: .passcode) as? String ?? "" {
-		didSet { UserDefaults.standard.set(passcode, forKey: .passcode) }
-	}
-	@Published var codeLength = UserDefaults.standard.object(forKey: .codeLength) as? Int ?? 4 {
-		didSet { UserDefaults.standard.set(codeLength, forKey: .codeLength) }
-	}
 	@Published var maxAttempts = UserDefaults.standard.object(forKey: .maxAttempts) as? Int ?? 5 {
 		didSet { UserDefaults.standard.set(maxAttempts, forKey: .maxAttempts) }
 	}
@@ -38,7 +32,6 @@ final class UserSettings: ObservableObject {
 }
 
 fileprivate extension String {
-	static let passcode = "passcode"
 	static let codeLength = "codeLength"
 	static let biometrics = "biometrics"
 	static let maxAttempts = "maxAttempts"

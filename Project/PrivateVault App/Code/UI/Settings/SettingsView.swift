@@ -10,6 +10,7 @@ import LocalAuthentication
 
 struct SettingsView: View {
 	@EnvironmentObject private var settings: UserSettings
+	@EnvironmentObject private var passcodeManager: PasscodeManager
 	@Environment(\.presentationMode) var presentationMode
 
 	let biometricsContext = LAContext()
@@ -121,8 +122,8 @@ struct SettingsView: View {
 			}
 			.sheet(isPresented: $resetPasscode) {
 				SetPasscodeView { newCode, newLength in
-					settings.codeLength = newLength
-					settings.passcode = newCode
+					passcodeManager.passcodeLength = newLength
+					passcodeManager.passcode = newCode
 					resetPasscode = false
 				}
 			}
@@ -154,6 +155,7 @@ struct SettingsView_Previews: PreviewProvider {
 	static var previews: some View {
 		SettingsView()
 			.environmentObject(UserSettings())
+			.environmentObject(PasscodeManager())
 	}
 }
 

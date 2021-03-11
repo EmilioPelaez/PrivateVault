@@ -10,14 +10,15 @@ import SwiftUI
 struct ContentView: View {
 	@Environment(\.scenePhase) private var scenePhase
 	@EnvironmentObject private var settings: UserSettings
+	@EnvironmentObject private var passcodeManager: PasscodeManager
 	@State var isLocked = true
 
 	var body: some View {
-		if settings.codeLength != settings.passcode.count {
+		if !passcodeManager.passcodeSet {
 			SetPasscodeView { newCode, newLength in
 				withAnimation {
-					settings.codeLength = newLength
-					settings.passcode = newCode
+					passcodeManager.passcodeLength = newLength
+					passcodeManager.passcode = newCode
 					isLocked = false
 				}
 			}
@@ -53,5 +54,6 @@ struct ContentView_Previews: PreviewProvider {
 			.environment(\.managedObjectContext, preview.context)
 			.environmentObject(preview.controller)
 			.environmentObject(UserSettings())
+			.environmentObject(PasscodeManager())
 	}
 }

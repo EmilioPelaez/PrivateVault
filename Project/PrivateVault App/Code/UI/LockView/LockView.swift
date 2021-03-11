@@ -15,6 +15,7 @@ struct LockView: View {
 	}
 
 	@EnvironmentObject private var settings: UserSettings
+	@EnvironmentObject private var passcodeManager: PasscodeManager
 	@Binding var isLocked: Bool
 	@State var code = ""
 	@State var attempts = 0
@@ -22,9 +23,9 @@ struct LockView: View {
 	@State var incorrectAnimation = false
 	@State var isLockedOut = false
 
-	var maxDigits: Int { settings.passcode.count }
+	var maxDigits: Int { passcodeManager.passcode.count }
 	var codeIsFullyEntered: Bool { code.count == maxDigits }
-	var codeIsCorrect: Bool { code == settings.passcode }
+	var codeIsCorrect: Bool { code == passcodeManager.passcode }
 
 	var body: some View {
 		ZStack {
@@ -32,7 +33,7 @@ struct LockView: View {
 			VStack(spacing: 25) {
 				AttemptsRemainingView(attemptsRemaining: settings.maxAttempts - attempts)
 					.opacity(attempts > 0 ? 1.0 : 0.0)
-				InputDisplay(input: $code, codeLength: settings.codeLength, textColor: textColor, displayColor: displayColor)
+				InputDisplay(input: $code, codeLength: passcodeManager.passcodeLength, textColor: textColor, displayColor: displayColor)
 					.shake(incorrectAnimation, distance: 10, count: 4)
 				BlurringView(isBlurred: $isLockedOut ) {
 					KeypadView(input: input, delete: delete) {
@@ -90,7 +91,7 @@ struct LockView: View {
 
 	func allowEntry() {
 		codeState = .correct
-		code = Array(repeating: "●", count: settings.codeLength).joined()
+		code = Array(repeating: "●", count: passcodeManager.passcodeLength).joined()
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
 			withAnimation {
 				isLocked = false
@@ -116,5 +117,6 @@ struct LockView_Previews: PreviewProvider {
 	static var previews: some View {
 		LockView(isLocked: .constant(true))
 			.environmentObject(UserSettings())
+			.environmentObject(PasscodeManager())
 	}
 }

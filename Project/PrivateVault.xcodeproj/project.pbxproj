@@ -34,10 +34,10 @@
 		C839599525E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599425E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift */; };
 		C839599725E82D9200521F83 /* URL+Filename.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599625E82D9200521F83 /* URL+Filename.swift */; };
 		C839599B25E8332700521F83 /* FilePreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599A25E8332700521F83 /* FilePreview.swift */; };
-		C839599F25E8573600521F83 /* GenericPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599E25E8573600521F83 /* GenericPreview.swift */; };
+		C839599F25E8573600521F83 /* BlankPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599E25E8573600521F83 /* BlankPreview.swift */; };
 		C83959A125E85DAB00521F83 /* PreviewCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959A025E85DAB00521F83 /* PreviewCache.swift */; };
 		C83959A525E85FFA00521F83 /* ItemPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959A425E85FFA00521F83 /* ItemPreview.swift */; };
-		C83959A725E8621600521F83 /* VideoPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959A625E8621600521F83 /* VideoPreview.swift */; };
+		C83959A725E8621600521F83 /* ItemIconPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959A625E8621600521F83 /* ItemIconPreview.swift */; };
 		C83959A925E8F31500521F83 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959A825E8F31500521F83 /* AsynchronousOperation.swift */; };
 		C83959AB25E8F5A200521F83 /* ObservableOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959AA25E8F5A200521F83 /* ObservableOperationQueue.swift */; };
 		C83959AF25E8F9B300521F83 /* ImportProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959AE25E8F9B300521F83 /* ImportProcessView.swift */; };
@@ -144,10 +144,10 @@
 		C839599425E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+LoadPhoto.swift"; sourceTree = "<group>"; };
 		C839599625E82D9200521F83 /* URL+Filename.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Filename.swift"; sourceTree = "<group>"; };
 		C839599A25E8332700521F83 /* FilePreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePreview.swift; sourceTree = "<group>"; };
-		C839599E25E8573600521F83 /* GenericPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericPreview.swift; sourceTree = "<group>"; };
+		C839599E25E8573600521F83 /* BlankPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankPreview.swift; sourceTree = "<group>"; };
 		C83959A025E85DAB00521F83 /* PreviewCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCache.swift; sourceTree = "<group>"; };
 		C83959A425E85FFA00521F83 /* ItemPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPreview.swift; sourceTree = "<group>"; };
-		C83959A625E8621600521F83 /* VideoPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreview.swift; sourceTree = "<group>"; };
+		C83959A625E8621600521F83 /* ItemIconPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemIconPreview.swift; sourceTree = "<group>"; };
 		C83959A825E8F31500521F83 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
 		C83959AA25E8F5A200521F83 /* ObservableOperationQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableOperationQueue.swift; sourceTree = "<group>"; };
 		C83959AE25E8F9B300521F83 /* ImportProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportProcessView.swift; sourceTree = "<group>"; };
@@ -490,17 +490,17 @@
 		C8EFD20325E13D0E00CB4141 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C839599E25E8573600521F83 /* BlankPreview.swift */,
+				C86F9CD025ED99C100210F64 /* ColorButton.swift */,
 				C839599A25E8332700521F83 /* FilePreview.swift */,
 				468A75DB25E0976E00B87597 /* FileTypePickerView.swift */,
-				C839599E25E8573600521F83 /* GenericPreview.swift */,
 				C83959AE25E8F9B300521F83 /* ImportProcessView.swift */,
+				C83959A625E8621600521F83 /* ItemIconPreview.swift */,
 				C83959A425E85FFA00521F83 /* ItemPreview.swift */,
 				C86F9CCC25ED8BAB00210F64 /* ItemSelectionView.swift */,
 				C89C9DE825E19935003505B9 /* RadioButton.swift */,
 				2B39CD7425E17AFB00E63EDD /* SearchBarView.swift */,
 				C83959B025E8FD6700521F83 /* Spinner.swift */,
-				C83959A625E8621600521F83 /* VideoPreview.swift */,
-				C86F9CD025ED99C100210F64 /* ColorButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -710,7 +710,7 @@
 				C8EFD22925E14BDA00CB4141 /* PersistenceController.swift in Sources */,
 				C89C9DDD25E190C4003505B9 /* FilteredGalleryView.swift in Sources */,
 				C839599725E82D9200521F83 /* URL+Filename.swift in Sources */,
-				C839599F25E8573600521F83 /* GenericPreview.swift in Sources */,
+				C839599F25E8573600521F83 /* BlankPreview.swift in Sources */,
 				2B39CDBC25E1BEAB00E63EDD /* ContentMode+description.swift in Sources */,
 				C83959AB25E8F5A200521F83 /* ObservableOperationQueue.swift in Sources */,
 				C89C9DDB25E17B98003505B9 /* ManageTagsView.swift in Sources */,
@@ -730,7 +730,7 @@
 				C83959B325E9AE6900521F83 /* ItemFilter.swift in Sources */,
 				C8FCB7B325EE59D80002D386 /* DiskStore.swift in Sources */,
 				2B081A7425E085FA00F9D522 /* View+Navigation.swift in Sources */,
-				C83959A725E8621600521F83 /* VideoPreview.swift in Sources */,
+				C83959A725E8621600521F83 /* ItemIconPreview.swift in Sources */,
 				C83959AF25E8F9B300521F83 /* ImportProcessView.swift in Sources */,
 				C89C9DED25E19E44003505B9 /* Tag+Comparable.swift in Sources */,
 				C868FD6325E2D458005A3EA9 /* AboutView.swift in Sources */,

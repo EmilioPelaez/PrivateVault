@@ -1,5 +1,5 @@
 //
-//  GenericPreview.swift
+//  BlankPreview.swift
 //  PrivateVault
 //
 //  Created by Emilio Peláez on 25/2/21.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct GenericPreview: View {
-	let imageName: String
+struct BlankPreview: View {
+	let type: StoredItem.DataType
 	
 	var body: some View {
 		ZStack {
 			Color(.secondarySystemBackground)
-			Image(systemName: imageName)
+			Image(systemName: type.systemImageName)
 				.font(.largeTitle)
 		}
 	}
@@ -21,6 +21,8 @@ struct GenericPreview: View {
 
 struct GenericPreviewView_Previews: PreviewProvider {
 	static var previews: some View {
-		GenericPreview(imageName: "doc")
+		BlankPreview(type: .file)
+			.padding()
+			.previewLayout(.sizeThatFits)
 	}
 }

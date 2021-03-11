@@ -31,6 +31,15 @@ extension StoredItem.DataType {
 		}
 	}
 	
+	var overlaySystemImageName: String {
+		switch self {
+		case .file: return "doc"
+		case .image: return "photo"
+		case .video: return "play.fill"
+		case .url: return "link"
+		}
+	}
+	
 	var name: String {
 		switch self {
 		case .file: return "Files"

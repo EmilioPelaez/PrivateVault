@@ -23,7 +23,7 @@ struct InputDisplay: View {
 				}
 				.font(.largeTitle)
 				.foregroundColor(textColor)
-				.transition(.scale(scale: 0, anchor: .trailing))
+				.transition(.scale(scale: .ulpOfOne, anchor: .trailing))
 			}
 		}
 		.padding(.vertical, 20)

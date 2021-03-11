@@ -80,7 +80,7 @@ extension GalleryView {
 						currentSheet = .tags
 					}
 				}
-				.transition(.scale(scale: 0, anchor: .bottomLeading))
+				.transition(.scale(scale: .ulpOfOne, anchor: .bottomLeading))
 			}
 			ColorButton(color: .green, imageName: showTags ? "tag.fill" : "tag", action: tagButtonAction)
 		}

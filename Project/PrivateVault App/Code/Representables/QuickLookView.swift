@@ -9,11 +9,17 @@ import SwiftUI
 import QuickLook
 
 struct QuickLookView: UIViewControllerRepresentable {
-	let title: String?
-	let url: URL
+	struct Selection: Identifiable {
+		let id = UUID()
+		let items: [StoredItem]
+		let selectedIndex: Int
+	}
+	
+	let store: DiskStore
+	let selection: Selection
 
 	func makeUIViewController(context: Context) -> UINavigationController {
-		let previewController = FilePreviewController(url: url, title: title)
+		let previewController = FilePreviewController(store: store, selection: selection)
 		let action = UIAction { [weak previewController] _ in
 			previewController?.dismiss(animated: true)
 		}
@@ -22,16 +28,47 @@ struct QuickLookView: UIViewControllerRepresentable {
 	}
 
 	func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {}
+	
 }
 
-final class FilePreviewController: QLPreviewController, QLPreviewItem, QLPreviewControllerDataSource, QLPreviewControllerDelegate {
-	var previewItemURL: URL?
-	var previewItemTitle: String?
+final class FilePreviewController: QLPreviewController, QLPreviewControllerDataSource, QLPreviewControllerDelegate {
+	
+	class PreviewItem: NSObject, QLPreviewItem {
+		let index: Int
+		let storedItem: StoredItem
+		var diskItem: DiskStore.Item?
+		
+		var previewItemURL: URL?
+		var previewItemTitle: String? { storedItem.name }
+		
+		init(index: Int, item: StoredItem, url: URL?) {
+			self.index = index
+			self.storedItem = item
+			self.previewItemURL = url
+		}
+	}
+	
+	let store: DiskStore
+	let items: [PreviewItem]
+	
+	private let initialIndex: Int
+	private var indicesLoaded = IndexSet()
+	private var observer: Any?
 
-	init(url: URL, title: String?) {
+	init(store: DiskStore, selection: QuickLookView.Selection) {
+		self.store = store
+		self.items = selection.items
+			.enumerated()
+			.map {
+				PreviewItem(index: $0, item: $1, url: try? store.url(for: $1))
+			}
+		self.initialIndex = selection.selectedIndex
 		super.init(nibName: nil, bundle: nil)
-		previewItemURL = url
-		previewItemTitle = title
+		
+		observer = observe(\.currentPreviewItemIndex, options: [.old, .new]) { [weak self] _, change in
+			guard let newValue = change.newValue else { return }
+			self?.currentPreviewItemIndexDidChange(newValue)
+		}
 	}
 
 	@available(*, unavailable)
@@ -41,11 +78,41 @@ final class FilePreviewController: QLPreviewController, QLPreviewItem, QLPreview
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.delegate = self
-		self.dataSource = self
+		delegate = self
+		dataSource = self
+		currentPreviewItemIndex = initialIndex
 	}
 
-	func numberOfPreviewItems(in controller: QLPreviewController) -> Int { 1 }
+	override func viewDidDisappear(_ animated: Bool) {
+		super.viewDidDisappear(animated)
+		
+		items.map(\.storedItem).forEach(store.remove)
+	}
+	
+	func numberOfPreviewItems(in controller: QLPreviewController) -> Int { items.count }
 
-	func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem { self }
+	func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+		items[index]
+	}
+	
+	private func currentPreviewItemIndexDidChange(_ index: Int) {
+		guard (0..<items.count).contains(index) else { return }
+		guard !indicesLoaded.contains(index) else { return }
+		indicesLoaded.insert(index)
+		loadItem(items[index]) { _ in
+			self.refreshCurrentPreviewItem()
+		}
+	}
+	
+	private func loadItem(_ item: PreviewItem, completion: @escaping (Result<Void, Error>) -> Void = { _ in }) {
+		store.add(item.storedItem) { result in
+			switch result {
+			case .success(let diskItem):
+				item.diskItem = diskItem
+				completion(.success(()))
+			case .failure(let error):
+				completion(.failure(error))
+			}
+		}
+	}
 }

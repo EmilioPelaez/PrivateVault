@@ -9,7 +9,32 @@ import Photos
 import SwiftUI
 
 extension GalleryView {
-	func select(_ item: StoredItem) {
+	
+	func contextMenu(for item: StoredItem) -> some View {
+		Group {
+			Button {
+				currentSheet = .itemEdit(item)
+			} label: {
+				Text("Edit")
+				Image(systemName: "square.and.pencil")
+			}
+			Button {
+				share(item)
+			} label: {
+				Text("Share")
+				Image(systemName: "square.and.arrow.up")
+			}
+			Divider()
+			Button {
+				currentAlert = .deleteItemConfirmation(item)
+			} label: {
+				Text("Delete")
+				Image(systemName: "trash")
+			}
+		}
+	}
+	
+	func select(_ item: StoredItem, list: [StoredItem]) {
 		withAnimation {
 			if multipleSelection {
 				if selectedItems.contains(item) {
@@ -18,7 +43,17 @@ extension GalleryView {
 					selectedItems.insert(item)
 				}
 			} else {
-				displayedItem = item
+				previewSelection = .init(items: list, selectedIndex: list.firstIndex(of: item) ?? 0)
+			}
+		}
+	}
+	
+	func share(_ item: StoredItem) {
+		diskStore.add(item) { result in
+			switch result {
+			case .success(let item):
+				self.currentSheet = .share([item.url])
+			case .failure: break
 			}
 		}
 	}
@@ -35,8 +70,8 @@ extension GalleryView {
 		}
 	}
 	
-	func quickLookView(_ item: StoredItem) -> some View {
-		QuickLookView(title: item.name, url: item.url).ignoresSafeArea()
+	func quickLookView(_ selection: QuickLookView.Selection) -> some View {
+		QuickLookView(store: diskStore, selection: selection).ignoresSafeArea()
 	}
 	
 	func selectType(_ type: FileTypePickerView.FileType) {

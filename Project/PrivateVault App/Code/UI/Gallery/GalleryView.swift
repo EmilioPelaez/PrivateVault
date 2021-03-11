@@ -11,6 +11,7 @@ struct GalleryView: View {
 		
 	@EnvironmentObject var persistenceController: PersistenceController
 	@EnvironmentObject var settings: UserSettings
+	@EnvironmentObject var diskStore: DiskStore
 	@ObservedObject var filter = ItemFilter()
 	@State var dragOver = false
 	@State var showLayoutMenu = false
@@ -22,7 +23,7 @@ struct GalleryView: View {
 	@State var selectedItems: Set<StoredItem> = []
 	@State var currentSheet: SheetItem?
 	@State var currentAlert: AlertItem?
-	@State var displayedItem: StoredItem?
+	@State var previewSelection: QuickLookView.Selection?
 	@State var itemBeingDeleted: StoredItem?
 	@Binding var isLocked: Bool
 	
@@ -31,17 +32,19 @@ struct GalleryView: View {
 	
 	var body: some View {
 		ZStack {
-			GalleryGridView(filter: filter, multipleSelection: $multipleSelection, selectedItems: $selectedItems, selection: select) {
-				currentAlert = .deleteItemConfirmation($0)
+			GalleryGridView(filter: filter, multipleSelection: $multipleSelection, selectedItems: $selectedItems, selection: select, contextMenu: contextMenu)
+			.fullScreenCover(item: $previewSelection, content: quickLookView)
+			
+			Group {
+				if multipleSelection {
+					selectionButtons
+						.transition(.move(edge: .leading))
+				} else {
+					actionButtons
+						.transition(.move(edge: .leading))
+				}
 			}
-			.fullScreenCover(item: $displayedItem, content: quickLookView)
-			if multipleSelection {
-				editButtons
-					.transition(.move(edge: .leading))
-			} else {
-				actionButtons
-					.transition(.move(edge: .leading))
-			}
+			.sheet(item: $currentSheet, content: sheetFor)
 			processingView
 		}
 		.navigationTitle("Gallery")
@@ -55,7 +58,7 @@ struct GalleryView: View {
 			showImageActionSheet = false
 			showPermissionAlert = false
 			currentSheet = nil
-			displayedItem = nil
+			previewSelection = nil
 			itemBeingDeleted = nil
 		}
 		.onDrop(of: [.fileURL], delegate: self)
@@ -70,5 +73,6 @@ struct GalleryView_Previews: PreviewProvider {
 			.environment(\.managedObjectContext, preview.context)
 			.environmentObject(preview.controller)
 			.environmentObject(UserSettings())
+			.environmentObject(DiskStore())
 	}
 }

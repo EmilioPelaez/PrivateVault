@@ -25,8 +25,19 @@ class DiskStore: ObservableObject {
 		var id: String? { stored.id }
 	}
 	
+	func url(for item: StoredItem, in folder: URL = FileManager.default.temporaryDirectory) throws -> URL {
+		guard let id = item.id else { throw StoreError.missingId }
+		guard let fileExtension = item.fileExtension else { throw StoreError.missingExtension }
+		var url = folder.appendingPathComponent(id)
+		if let name = item.name {
+			url = url.appendingPathComponent(name)
+		}
+		url = url.appendingPathExtension(fileExtension)
+		return url
+	}
+	
 	func add(_ item: StoredItem, completion: @escaping (Result<Item, Error>) -> Void) {
-		_addItem(item).result(handler: completion).store(in: &bag)
+		_addItem(item).receive(on: RunLoop.main).result(handler: completion).store(in: &bag)
 	}
 	
 	func add(_ items: [StoredItem], completion: @escaping ([Result<Item, Error>]) -> Void) {
@@ -105,17 +116,12 @@ class DiskStore: ObservableObject {
 	
 	private func createDiskItem(for item: StoredItem) throws -> DiskItem {
 		guard let id = item.id else { throw StoreError.missingId }
-		guard let name = item.name else { throw StoreError.missingName }
-		guard let fileExtension = item.fileExtension else { throw StoreError.missingExtension }
 		if let diskItem = stored[id] { return diskItem }
 		let task = Future<URL, Error> { [self] promise in
 			queue.async {
 				do {
-					let folderUrl = FileManager.default.temporaryDirectory
-					let fileUrl = folderUrl
-						.appendingPathComponent(name)
-						.appendingPathExtension(fileExtension)
-					try FileManager.default.createDirectory(at: folderUrl, withIntermediateDirectories: true, attributes: nil)
+					let fileUrl = try url(for: item)
+					try FileManager.default.createDirectory(at: fileUrl.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
 					try? FileManager.default.removeItem(at: fileUrl)
 					guard let data = item.data else {
 						throw StoreError.missingData

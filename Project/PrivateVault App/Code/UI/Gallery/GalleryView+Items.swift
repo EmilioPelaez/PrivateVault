@@ -34,7 +34,7 @@ extension GalleryView {
 		}
 	}
 	
-	func select(_ item: StoredItem) {
+	func select(_ item: StoredItem, list: [StoredItem]) {
 		withAnimation {
 			if multipleSelection {
 				if selectedItems.contains(item) {
@@ -43,13 +43,7 @@ extension GalleryView {
 					selectedItems.insert(item)
 				}
 			} else {
-				diskStore.add(item) {
-					switch $0 {
-					case .success(let diskItem):
-						displayedItem = diskItem
-					case .failure(let error): print(error)
-					}
-				}
+				previewSelection = .init(items: list, selectedIndex: list.firstIndex(of: item) ?? 0)
 			}
 		}
 	}
@@ -76,8 +70,8 @@ extension GalleryView {
 		}
 	}
 	
-	func quickLookView(_ item: DiskStore.Item) -> some View {
-		QuickLookView(store: diskStore, item: item).ignoresSafeArea()
+	func quickLookView(_ selection: QuickLookView.Selection) -> some View {
+		QuickLookView(store: diskStore, selection: selection).ignoresSafeArea()
 	}
 	
 	func selectType(_ type: FileTypePickerView.FileType) {

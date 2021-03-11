@@ -23,7 +23,7 @@ struct GalleryView: View {
 	@State var selectedItems: Set<StoredItem> = []
 	@State var currentSheet: SheetItem?
 	@State var currentAlert: AlertItem?
-	@State var displayedItem: DiskStore.Item?
+	@State var previewSelection: QuickLookView.Selection?
 	@State var itemBeingDeleted: StoredItem?
 	@Binding var isLocked: Bool
 	
@@ -33,7 +33,7 @@ struct GalleryView: View {
 	var body: some View {
 		ZStack {
 			GalleryGridView(filter: filter, multipleSelection: $multipleSelection, selectedItems: $selectedItems, selection: select, contextMenu: contextMenu)
-			.fullScreenCover(item: $displayedItem, content: quickLookView)
+			.fullScreenCover(item: $previewSelection, content: quickLookView)
 			
 			Group {
 				if multipleSelection {
@@ -58,7 +58,7 @@ struct GalleryView: View {
 			showImageActionSheet = false
 			showPermissionAlert = false
 			currentSheet = nil
-			displayedItem = nil
+			previewSelection = nil
 			itemBeingDeleted = nil
 		}
 		.onDrop(of: [.fileURL], delegate: self)

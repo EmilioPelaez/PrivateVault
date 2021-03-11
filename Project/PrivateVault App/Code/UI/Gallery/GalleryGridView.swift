@@ -10,17 +10,17 @@ import SwiftUI
 struct GalleryGridView<M: View>: View {
 	@EnvironmentObject private var settings: UserSettings
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \StoredItem.timestamp, ascending: false)], animation: .default)
-	var data: FetchedResults<StoredItem>
+	var items: FetchedResults<StoredItem>
 	
 	@ObservedObject var filter: ItemFilter
 	@Binding var multipleSelection: Bool
 	@Binding var selectedItems: Set<StoredItem>
 	
-	let selection: (StoredItem) -> Void
+	let selection: (StoredItem, [StoredItem]) -> Void
 	let contextMenu: (StoredItem) -> M
 
-	var filteredData: [StoredItem] {
-		data.filter(filter.apply)
+	var filteredItems: [StoredItem] {
+		items.filter(filter.apply)
 	}
 	
 	var searchText: Binding<String> {
@@ -32,7 +32,7 @@ struct GalleryGridView<M: View>: View {
 	}
 
 	var body: some View {
-		if data.isEmpty {
+		if items.isEmpty {
 			VStack {
 				SearchBarView(text: searchText, placeholder: "Search files...")
 				ZStack {
@@ -42,7 +42,7 @@ struct GalleryGridView<M: View>: View {
 						.transition(.opacity)
 				}
 			}
-		} else if filteredData.isEmpty {
+		} else if filteredItems.isEmpty {
 			VStack {
 				SearchBarView(text: searchText, placeholder: "Search files...")
 				ZStack {
@@ -58,9 +58,9 @@ struct GalleryGridView<M: View>: View {
 			ScrollView {
 				SearchBarView(text: searchText, placeholder: "Search files...")
 				LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: settings.columns), spacing: 4) {
-					ForEach(filteredData) { item in
+					ForEach(filteredItems) { item in
 						GalleryGridCell(item: item, selection: selection(for: item))
-							.onTapGesture { selection(item) }
+							.onTapGesture { selection(item, filteredItems) }
 							.contextMenu { contextMenu(item) }
 					}
 				}
@@ -82,7 +82,7 @@ struct GalleryGridView_Previews: PreviewProvider {
 	static let preview = PreviewEnvironment()
 	
 	static var previews: some View {
-		GalleryGridView(filter: ItemFilter(), multipleSelection: .constant(false), selectedItems: .constant([]), selection: { _ in }, contextMenu: { _ in EmptyView() })
+		GalleryGridView(filter: ItemFilter(), multipleSelection: .constant(false), selectedItems: .constant([]), selection: { _, _ in }, contextMenu: { _ in EmptyView() })
 			.environment(\.managedObjectContext, preview.context)
 			.environmentObject(preview.controller)
 			.environmentObject(UserSettings())

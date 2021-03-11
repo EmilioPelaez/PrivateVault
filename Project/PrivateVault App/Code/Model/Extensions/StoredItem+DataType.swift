@@ -10,6 +10,7 @@ extension StoredItem {
 		case file
 		case image
 		case video
+		case url
 		
 		var id: Int16 { rawValue }
 	}
@@ -26,6 +27,7 @@ extension StoredItem.DataType {
 		case .file: return "doc"
 		case .image: return "photo"
 		case .video: return "video"
+		case .url: return "link"
 		}
 	}
 	
@@ -34,6 +36,7 @@ extension StoredItem.DataType {
 		case .file: return "Files"
 		case .image: return "Images"
 		case .video: return "Videos"
+		case .url: return "Websites"
 		}
 	}
 	

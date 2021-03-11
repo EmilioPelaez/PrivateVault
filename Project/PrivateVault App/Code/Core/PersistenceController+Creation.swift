@@ -6,6 +6,7 @@
 //
 
 import AVFoundation
+import LinkPresentation
 import Photos
 import QuickLook
 import UIKit
@@ -102,10 +103,20 @@ extension PersistenceController {
 		guard let typeIdentifier = item.registeredTypeIdentifiers.first, let type = UTType(typeIdentifier) else {
 			return completion(false)
 		}
+		guard !type.conforms(to: .url) else {
+			_ = item.loadObject(ofClass: URL.self) { [self] url, error in
+				guard let url = url else { return print(error?.localizedDescription ?? "Unknown error") }
+				storeRemoteUrl(url, completion: completion)
+			}
+			return
+		}
 		item.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { [self] url, error in
 			guard let url = url else {
 				print(error?.localizedDescription ?? "Unkown error")
 				return completion(false)
+			}
+			guard !url.isFileURL else {
+				return storeRemoteUrl(url, completion: completion)
 			}
 			guard FileManager.default.fileExists(atPath: url.absoluteString) else {
 				return storeItemFallback(item, url: url, type: type, completion: completion)
@@ -122,7 +133,6 @@ extension PersistenceController {
 				return completion(false)
 			}
 			do {
-				
 				let folder = FileManager.default.temporaryDirectory.appendingPathComponent("temp")
 				let newURL = folder
 					.appendingPathComponent(url.lastPathComponent)
@@ -142,8 +152,10 @@ extension PersistenceController {
 			storeImage(at: url, completion: completion)
 		} else if type.conforms(to: .video) || type.conforms(to: .movie) {
 			storeVideo(at: url, completion: completion)
-		} else {
+		} else if type.conforms(to: .fileURL) {
 			storeFile(at: url, completion: completion)
+		} else {
+			completion(false)
 		}
 	}
 	
@@ -179,6 +191,36 @@ extension PersistenceController {
 			DispatchQueue.main.async {
 				_ = StoredItem(context: context, data: data, previewData: previewData, type: .file, name: url.filename, fileExtension: url.pathExtension)
 				completion(true)
+			}
+		}
+	}
+	
+	private func storeRemoteUrl(_ url: URL, completion: @escaping (Bool) -> Void) {
+		DispatchQueue.main.async {
+			let provider = LPMetadataProvider()
+			provider.startFetchingMetadata(for: url) { [self] metadata, error in
+				guard let metadata = metadata else {
+					print(error?.localizedDescription ?? "Unknown error")
+					return completion(false)
+				}
+				let title = metadata.title ?? "Unknown Website"
+				func fallback() {
+					DispatchQueue.main.async {
+						_ = StoredItem(context: context, url: url, name: title)
+						completion(true)
+					}
+				}
+				guard let imageProvider = metadata.imageProvider else { return fallback() }
+				imageProvider.loadObject(ofClass: UIImage.self) { image, error in
+					guard let image = image as? UIImage, let previewData = image.resized(toFit: CGSize(side: previewSize))?.jpegData(compressionQuality: 0.85) else {
+						print(error?.localizedDescription ?? "Unknown error")
+						return fallback()
+					}
+					DispatchQueue.main.async {
+						_ = StoredItem(context: context, url: url, previewData: previewData, name: title)
+						completion(true)
+					}
+				}
 			}
 		}
 	}

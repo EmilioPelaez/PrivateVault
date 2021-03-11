@@ -14,7 +14,7 @@ struct ItemPreview: View {
 		if let image = PreviewCache.shared.cachedImage(for: item) {
 			switch item.dataType {
 			case .file: FilePreview(image: image)
-			case .image:
+			case .image, .url:
 				image
 					.resizable()
 					.aspectRatio(contentMode: .fit)

@@ -7,6 +7,7 @@
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="previewData" optional="YES" attributeType="Binary"/>
+        <attribute name="remoteUrl" optional="YES" attributeType="URI"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="items" inverseEntity="Tag"/>
     </entity>
@@ -15,7 +16,7 @@
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StoredItem" inverseName="tags" inverseEntity="StoredItem"/>
     </entity>
     <elements>
-        <element name="StoredItem" positionX="-63" positionY="-18" width="128" height="149"/>
+        <element name="StoredItem" positionX="-63" positionY="-18" width="128" height="164"/>
         <element name="Tag" positionX="-63" positionY="36" width="128" height="59"/>
     </elements>
 </model>

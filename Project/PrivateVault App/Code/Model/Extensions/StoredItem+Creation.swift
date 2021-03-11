@@ -21,6 +21,16 @@ extension StoredItem {
 		self.timestamp = Date()
 	}
 	
+	convenience init(context: NSManagedObjectContext, url: URL, previewData: Data? = nil, name: String) {
+		self.init(context: context)
+		self.id = UUID().uuidString
+		self.remoteUrl = url
+		self.previewData = previewData
+		self.dataType = .url
+		self.name = name
+		self.timestamp = Date()
+	}
+	
 	convenience init(context: NSManagedObjectContext, image: UIImage, name: String, extension: String) {
 		let data = image.pngData()
 		let resizedImage = image.square(200)?.jpegData(compressionQuality: 0.85)

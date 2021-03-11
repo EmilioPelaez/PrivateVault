@@ -44,7 +44,7 @@ extension GalleryView {
 					selectedItems.insert(item)
 				}
 			} else {
-				previewSelection = .init(items: list, selectedIndex: list.firstIndex(of: item) ?? 0)
+				previewSelection = PreviewSelection(item: item, list: list)
 			}
 		}
 	}
@@ -71,8 +71,14 @@ extension GalleryView {
 		}
 	}
 	
-	func quickLookView(_ selection: QuickLookView.Selection) -> some View {
-		QuickLookView(store: diskStore, selection: selection).ignoresSafeArea()
+	func quickLookView(_ selection: PreviewSelection) -> some View {
+		Group {
+			switch selection {
+			case let .url(url): SafariView(url: url)
+			case let .quickLook(selection): QuickLookView(store: diskStore, selection: selection)
+			}
+		}
+		.ignoresSafeArea()
 	}
 	
 	func selectType(_ type: FileTypePickerView.FileType) {

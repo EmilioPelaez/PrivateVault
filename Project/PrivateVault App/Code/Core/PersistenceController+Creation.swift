@@ -115,9 +115,6 @@ extension PersistenceController {
 				print(error?.localizedDescription ?? "Unkown error")
 				return completion(false)
 			}
-			guard !url.isFileURL else {
-				return storeRemoteUrl(url, completion: completion)
-			}
 			guard FileManager.default.fileExists(atPath: url.absoluteString) else {
 				return storeItemFallback(item, url: url, type: type, completion: completion)
 			}

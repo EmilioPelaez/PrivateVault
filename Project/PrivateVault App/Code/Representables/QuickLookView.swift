@@ -9,8 +9,7 @@ import SwiftUI
 import QuickLook
 
 struct QuickLookView: UIViewControllerRepresentable {
-	struct Selection: Identifiable {
-		let id = UUID()
+	struct Selection {
 		let items: [StoredItem]
 		let selectedIndex: Int
 	}

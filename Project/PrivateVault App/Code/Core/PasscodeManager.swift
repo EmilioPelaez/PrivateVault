@@ -10,8 +10,7 @@ import SwiftUI
 
 class PasscodeManager: ObservableObject {
 	
-	private let keychain = Keychain(service: Bundle.main.bundleIdentifier ?? "Private Vault")
-//		.synchronizable(true) // this might be causing a crash
+	private let keychain = Keychain().synchronizable(true)
 	
 	@Published
 	var passcodeSet: Bool = false

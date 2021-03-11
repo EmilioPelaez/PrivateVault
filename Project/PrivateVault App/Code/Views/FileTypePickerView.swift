@@ -50,7 +50,7 @@ struct FileTypePickerView: View {
 					}
 				}
 				.padding(.top, margin)
-				.transition(.scale(scale: 0, anchor: .bottom))
+				.transition(.scale(scale: .ulpOfOne, anchor: .bottom))
 			}
 			Button(action: addButtonAction) {
 				Image(systemName: "plus")

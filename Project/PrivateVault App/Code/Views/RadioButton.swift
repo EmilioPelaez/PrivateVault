@@ -20,7 +20,7 @@ struct RadioButton: View {
 			Circle()
 				.fill(color)
 				.frame(width: size - 4, height: size - 4)
-				.scaleEffect(selected ? 1 : 0)
+				.scaleEffect(selected ? 1 : .ulpOfOne)
 		}
 	}
 }

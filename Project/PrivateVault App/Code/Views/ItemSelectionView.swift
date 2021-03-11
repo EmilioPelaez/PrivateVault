@@ -18,7 +18,7 @@ struct ItemSelectionView: View {
 			Circle()
 				.fill(Color(.systemBlue))
 				.padding(3)
-				.scaleEffect(selected ? 1 : 0)
+				.scaleEffect(selected ? 1 : .ulpOfOne)
 		}
 		.frame(width: 25, height: 25)
 	}

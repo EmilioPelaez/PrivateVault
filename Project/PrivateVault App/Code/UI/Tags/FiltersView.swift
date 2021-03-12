@@ -19,7 +19,7 @@ struct FiltersView: View {
 		VStack(alignment: .center, spacing: 0) {
 			LazyVStack(spacing: 0) {
 				ForEach(StoredItem.DataType.allCases) { type in
-					Row(imageName: type.systemImageName, title: type.name, selected: !filter.disabledTypes.contains(type)) {
+					Row(imageName: type.systemImageName, title: type.name, selected: filter.selectedTypes.contains(type)) {
 						filter.toggle(type)
 					}
 					if type != StoredItem.DataType.allCases.last {

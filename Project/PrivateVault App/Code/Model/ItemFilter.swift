@@ -9,7 +9,7 @@ import Foundation
 
 class ItemFilter: ObservableObject {
 	
-	@Published var disabledTypes: Set<StoredItem.DataType> = []
+	@Published var selectedTypes: Set<StoredItem.DataType> = []
 	@Published var selectedTags: Set<Tag> = []
 	@Published var searchText: String = ""
 	
@@ -28,10 +28,10 @@ class ItemFilter: ObservableObject {
 	}
 	
 	func toggle(_ type: StoredItem.DataType) {
-		if disabledTypes.contains(type) {
-			disabledTypes.remove(type)
+		if selectedTypes.contains(type) {
+			selectedTypes.remove(type)
 		} else {
-			disabledTypes.insert(type)
+			selectedTypes.insert(type)
 		}
 	}
 	
@@ -40,13 +40,13 @@ class ItemFilter: ObservableObject {
 	}
 	
 	func clear() {
-		disabledTypes = []
+		selectedTypes = []
 		selectedTags = []
 		searchText = ""
 	}
 	
 	func apply(_ item: StoredItem) -> Bool {
-		if !disabledTypes.isEmpty, disabledTypes.contains(item.dataType) {
+		if !selectedTypes.isEmpty, !selectedTypes.contains(item.dataType) {
 				return false
 		}
 		if !selectedTags.isEmpty, !selectedTags.allSatisfy({ item.tags?.contains($0) ?? false }) {

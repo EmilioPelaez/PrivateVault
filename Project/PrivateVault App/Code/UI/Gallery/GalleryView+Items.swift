@@ -50,12 +50,16 @@ extension GalleryView {
 	}
 	
 	func share(_ item: StoredItem) {
-		diskStore.add(item) { result in
-			switch result {
-			case .success(let item):
-				self.currentSheet = .share([item.url])
-			case .failure: break
+		if item.dataType != .url {
+			diskStore.add(item) { result in
+				switch result {
+				case .success(let item):
+					self.currentSheet = .share([item.url])
+				case .failure: break
+				}
 			}
+		} else if let url = item.remoteUrl {
+			currentSheet = .share([url])
 		}
 	}
 	

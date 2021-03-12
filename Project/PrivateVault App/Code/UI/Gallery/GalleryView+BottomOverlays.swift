@@ -49,10 +49,17 @@ extension GalleryView {
 						SoundEffect.failure.play()
 						return
 					}
-					diskStore.add(selectedItems.map { $0 }) { result in
-						let urls = result.compactMap { try? $0.get().url }
+					let items = selectedItems.filter { $0.dataType != .url }
+					let urls = selectedItems.filter { $0.dataType == .url }.compactMap { $0.remoteUrl }
+					if items.isEmpty, !urls.isEmpty {
 						self.currentSheet = .share(urls)
+					} else {
+						diskStore.add(items.map { $0 }) { result in
+							let localUrls = result.compactMap { try? $0.get().url }
+							self.currentSheet = .share(localUrls + urls)
+						}
 					}
+					
 					guard settings.sound else { return }
 					SoundEffect.open.play()
 				}

@@ -16,6 +16,7 @@ class DiskStore: ObservableObject {
 		case missingName
 		case missingExtension
 		case writingFailed
+		case remoteURLItem
 	}
 	
 	struct Item: Identifiable {
@@ -77,6 +78,9 @@ class DiskStore: ObservableObject {
 	}
 	
 	private func _addItem(_ item: StoredItem) -> AnyPublisher<Item, Error> {
+		guard item.dataType != .url else {
+			return Fail<Item, Error>(error: StoreError.remoteURLItem).eraseToAnyPublisher()
+		}
 		guard let id = item.id else {
 			return Fail<Item, Error>(error: StoreError.missingId).eraseToAnyPublisher()
 		}

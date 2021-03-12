@@ -196,27 +196,21 @@ extension PersistenceController {
 		DispatchQueue.main.async {
 			let provider = LPMetadataProvider()
 			provider.startFetchingMetadata(for: url) { [self] metadata, error in
-				guard let metadata = metadata else {
-					print(error?.localizedDescription ?? "Unknown error")
-					return completion(false)
-				}
-				let title = metadata.title ?? "Unknown Website"
-				func fallback() {
+				func createItem(name: String? = nil, preview: Data? = nil) {
 					DispatchQueue.main.async {
-						_ = StoredItem(context: context, url: url, name: title)
+						_ = StoredItem(context: context, url: url, previewData: preview, name: name ?? url.absoluteString)
 						completion(true)
 					}
 				}
-				guard let imageProvider = metadata.imageProvider else { return fallback() }
+				guard let metadata = metadata else { return createItem() }
+				let name = metadata.title
+				guard let imageProvider = metadata.imageProvider else { return createItem(name: name) }
 				imageProvider.loadObject(ofClass: UIImage.self) { image, error in
-					guard let image = image as? UIImage, let previewData = image.resized(toFit: CGSize(side: previewSize))?.jpegData(compressionQuality: 0.85) else {
+					guard let image = image as? UIImage, let previewData = image.square(previewSize)?.jpegData(compressionQuality: 0.85) else {
 						print(error?.localizedDescription ?? "Unknown error")
-						return fallback()
+						return createItem(name: name)
 					}
-					DispatchQueue.main.async {
-						_ = StoredItem(context: context, url: url, previewData: previewData, name: title)
-						completion(true)
-					}
+					createItem(name: name, preview: previewData)
 				}
 			}
 		}

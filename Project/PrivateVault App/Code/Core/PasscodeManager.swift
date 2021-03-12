@@ -24,7 +24,7 @@ class PasscodeManager: ObservableObject {
 		get { keychain[passcodeKey] ?? "" }
 		set {
 			keychain[passcodeKey] = newValue
-			passcodeSet = passcode.count == passcodeLength
+			updatePasscodeSet()
 		}
 	}
 	

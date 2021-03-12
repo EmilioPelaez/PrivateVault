@@ -21,7 +21,7 @@ enum PreviewSelection: Identifiable {
 			var newList: [StoredItem] = []
 			list.enumerated().forEach { index, element in
 				if element.dataType == .url {
-					if itemIndex > index {
+					if itemIndex >= index {
 						itemIndex -= 1
 					}
 				} else {

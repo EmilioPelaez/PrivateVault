@@ -17,8 +17,11 @@ final class UserSettings: ObservableObject {
 	@Published var columns = UserDefaults.standard.object(forKey: .columns) as? Int ?? 3 {
 		didSet { UserDefaults.standard.set(columns, forKey: .columns) }
 	}
-	@Published var showDetails = UserDefaults.standard.bool(forKey: .showDetailsKey) {
-		didSet { UserDefaults.standard.set(showDetails, forKey: .showDetailsKey) }
+	@Published var sort = SortMethod(rawValue: UserDefaults.standard.integer(forKey: .sort)) ?? .chronologicalDescending {
+		didSet { UserDefaults.standard.set(sort.rawValue, forKey: .sort) }
+	}
+	@Published var showDetails = UserDefaults.standard.bool(forKey: .showDetails) {
+		didSet { UserDefaults.standard.set(showDetails, forKey: .showDetails) }
 	}
 	@Published var sound = UserDefaults.standard.object(forKey: .sound) as? Bool ?? true {
 		didSet { UserDefaults.standard.set(sound, forKey: .sound) }
@@ -32,11 +35,11 @@ final class UserSettings: ObservableObject {
 }
 
 fileprivate extension String {
-	static let codeLength = "codeLength"
 	static let biometrics = "biometrics"
 	static let maxAttempts = "maxAttempts"
 	static let columns = "columns"
-	static let showDetailsKey = "showDetailsKey"
+	static let sort = "sort"
+	static let showDetails = "showDetails"
 	static let sound = "sound"
 	static let hapticFeedback = "hapticFeedback"
 }

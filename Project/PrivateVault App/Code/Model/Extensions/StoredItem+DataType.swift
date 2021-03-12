@@ -13,6 +13,10 @@ extension StoredItem {
 		case url
 		
 		var id: Int16 { rawValue }
+		
+		var index: Int {
+			DataType.allCases.firstIndex(of: self) ?? DataType.allCases.count
+		}
 	}
 
 	var dataType: DataType {

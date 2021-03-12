@@ -13,15 +13,17 @@ struct ItemPreview: View {
 	var body: some View {
 		if let image = PreviewCache.shared.cachedImage(for: item) {
 			switch item.dataType {
-			case .file: FilePreview(image: image)
+			case .file:
+				FilePreview(image: image)
 			case .image:
 				image
 					.resizable()
 					.aspectRatio(contentMode: .fit)
-			case .video: VideoPreview(image: image)
+			case .video, .url:
+				ItemIconPreview(image: image, type: item.dataType)
 			}
 		} else {
-			GenericPreview(imageName: item.dataType.systemImageName)
+			BlankPreview(type: item.dataType)
 		}
 	}
 }

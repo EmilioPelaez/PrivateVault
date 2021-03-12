@@ -7,6 +7,7 @@
 
 import Photos
 import SwiftUI
+import UIKit
 
 extension GalleryView {
 	
@@ -43,7 +44,7 @@ extension GalleryView {
 					selectedItems.insert(item)
 				}
 			} else {
-				previewSelection = .init(items: list, selectedIndex: list.firstIndex(of: item) ?? 0)
+				previewSelection = PreviewSelection(item: item, list: list)
 			}
 		}
 	}
@@ -70,8 +71,14 @@ extension GalleryView {
 		}
 	}
 	
-	func quickLookView(_ selection: QuickLookView.Selection) -> some View {
-		QuickLookView(store: diskStore, selection: selection).ignoresSafeArea()
+	func quickLookView(_ selection: PreviewSelection) -> some View {
+		Group {
+			switch selection {
+			case let .url(url): SafariView(url: url)
+			case let .quickLook(selection): QuickLookView(store: diskStore, selection: selection)
+			}
+		}
+		.ignoresSafeArea()
 	}
 	
 	func selectType(_ type: FileTypePickerView.FileType) {
@@ -80,6 +87,7 @@ extension GalleryView {
 		case .album: currentSheet = .imagePicker
 		case .document: currentSheet = .documentPicker
 		case .scan: currentSheet = .documentScanner
+		case .clipboard: importFromClipboard()
 		}
 	}
 	
@@ -89,5 +97,14 @@ extension GalleryView {
 		case .notDetermined: AVCaptureDevice.requestAccess(for: .video) { _ in }
 		default: showPermissionAlert = true
 		}
+	}
+	
+	func importFromClipboard() {
+		let clipboard = UIPasteboard.general
+		guard clipboard.numberOfItems > 0 else {
+			currentAlert = .emptyClipboard
+			return
+		}
+		persistenceController.receiveItems(clipboard.itemProviders)
 	}
 }

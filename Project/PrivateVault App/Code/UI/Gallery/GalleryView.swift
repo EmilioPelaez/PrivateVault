@@ -23,7 +23,7 @@ struct GalleryView: View {
 	@State var selectedItems: Set<StoredItem> = []
 	@State var currentSheet: SheetItem?
 	@State var currentAlert: AlertItem?
-	@State var previewSelection: QuickLookView.Selection?
+	@State var previewSelection: PreviewSelection?
 	@State var itemBeingDeleted: StoredItem?
 	@Binding var isLocked: Bool
 	

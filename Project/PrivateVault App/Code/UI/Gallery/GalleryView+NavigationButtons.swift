@@ -79,6 +79,20 @@ extension GalleryView {
 					Text("Columns")
 					Image(systemName: "chevron.right")
 				}
+				Menu {
+					ForEach(SortMethod.allCases) { method in
+						Button {
+							withAnimation { settings.sort = method }
+						}
+						label: {
+							Text(method.description)
+							Image(systemName: method.systemImageName)
+						}
+					}
+				} label: {
+					Text("Sort By")
+					Image(systemName: "chevron.right")
+				}
 			} label: {
 				Image(systemName: "ellipsis.circle")
 					.font(.system(size: 22))

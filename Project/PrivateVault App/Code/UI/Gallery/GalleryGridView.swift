@@ -20,7 +20,7 @@ struct GalleryGridView<M: View>: View {
 	let contextMenu: (StoredItem) -> M
 
 	var filteredItems: [StoredItem] {
-		items.filter(filter.apply)
+		items.filter(filter.apply).sorted(by: settings.sort.apply)
 	}
 	
 	var searchText: Binding<String> {

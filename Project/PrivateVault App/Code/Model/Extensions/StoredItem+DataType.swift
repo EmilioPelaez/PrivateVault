@@ -6,7 +6,7 @@
 //
 
 extension StoredItem {
-	enum DataType: Int16, Identifiable {
+	enum DataType: Int16, Identifiable, CaseIterable {
 		case file
 		case image
 		case video
@@ -48,6 +48,4 @@ extension StoredItem.DataType {
 		case .url: return "Websites"
 		}
 	}
-	
-	static var all: [StoredItem.DataType] = [.file, .image, .video]
 }

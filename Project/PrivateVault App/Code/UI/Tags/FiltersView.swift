@@ -18,11 +18,11 @@ struct FiltersView: View {
 	var body: some View {
 		VStack(alignment: .center, spacing: 0) {
 			LazyVStack(spacing: 0) {
-				ForEach(StoredItem.DataType.all) { type in
+				ForEach(StoredItem.DataType.allCases) { type in
 					Row(imageName: type.systemImageName, title: type.name, selected: !filter.disabledTypes.contains(type)) {
 						filter.toggle(type)
 					}
-					if type != StoredItem.DataType.all.last {
+					if type != StoredItem.DataType.allCases.last {
 						Divider()
 					}
 				}

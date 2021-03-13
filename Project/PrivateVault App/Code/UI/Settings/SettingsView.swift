@@ -158,28 +158,3 @@ struct SettingsView_Previews: PreviewProvider {
 			.environmentObject(PasscodeManager())
 	}
 }
-
-struct SettingsDetailRow<Content: View>: View {
-	var label: String
-	var content: () -> (Content)
-
-	var body: some View {
-		NavigationLink(destination: destination) {
-			HStack {
-				Text(label)
-				Spacer()
-			}
-		}
-	}
-
-	var destination: some View {
-		ScrollView {
-			ZStack(alignment: .topLeading) {
-				Color.clear
-				content()
-			}
-			.padding()
-		}
-		.navigationBarTitle(label, displayMode: .inline)
-	}
-}

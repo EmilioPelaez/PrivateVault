@@ -72,9 +72,7 @@ struct SettingsView: View {
 							}
 						}
 					}
-					Button {
-						resetPasscode = true
-					} label: {
+					NavigationLink(destination: resetView, isActive: $resetPasscode) {
 						Text("Reset Passcode")
 					}
 				}
@@ -120,14 +118,16 @@ struct SettingsView: View {
 					}
 				}
 			}
-			.sheet(isPresented: $resetPasscode) {
-				SetPasscodeView { newCode, newLength in
-					passcodeManager.passcodeLength = newLength
-					passcodeManager.passcode = newCode
-					resetPasscode = false
-				}
-			}
 		}
+	}
+	
+	var resetView: some View {
+		SetPasscodeView { newCode, newLength in
+			passcodeManager.passcodeLength = newLength
+			passcodeManager.passcode = newCode
+			resetPasscode = false
+		}
+		.navigationBarTitle(Text("Reset"), displayMode: .inline)
 	}
 
 	var footer: some View {

@@ -71,7 +71,7 @@
 		C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1225E109FD0064C160 /* InputDisplay.swift */; };
 		C88ACB1625E10A790064C160 /* FeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */; };
 		C88ACB1925E10B450064C160 /* UIDevice+iPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1825E10B450064C160 /* UIDevice+iPad.swift */; };
-		C88ACB1B25E112A70064C160 /* View+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1A25E112A70064C160 /* View+Shake.swift */; };
+		C88ACB1B25E112A70064C160 /* Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1A25E112A70064C160 /* Shake.swift */; };
 		C89A5D6A25FA29A0007F8E8B /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = C89A5D6925FA29A0007F8E8B /* KeychainAccess */; };
 		C89A5D6C25FA29AD007F8E8B /* PasscodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89A5D6B25FA29AD007F8E8B /* PasscodeManager.swift */; };
 		C89A5D6E25FADCCC007F8E8B /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89A5D6D25FADCCC007F8E8B /* SafariView.swift */; };
@@ -186,7 +186,7 @@
 		C88ACB1225E109FD0064C160 /* InputDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDisplay.swift; sourceTree = "<group>"; };
 		C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerator.swift; sourceTree = "<group>"; };
 		C88ACB1825E10B450064C160 /* UIDevice+iPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+iPad.swift"; sourceTree = "<group>"; };
-		C88ACB1A25E112A70064C160 /* View+Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shake.swift"; sourceTree = "<group>"; };
+		C88ACB1A25E112A70064C160 /* Shake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shake.swift; sourceTree = "<group>"; };
 		C89A5D6B25FA29AD007F8E8B /* PasscodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeManager.swift; sourceTree = "<group>"; };
 		C89A5D6D25FADCCC007F8E8B /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		C89A5D6F25FAE220007F8E8B /* PreviewSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSelection.swift; sourceTree = "<group>"; };
@@ -304,6 +304,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C87C772025FD6D8200EE6362 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				C88ACB1A25E112A70064C160 /* Shake.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 		C88ACB1425E10A6C0064C160 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,7 +337,6 @@
 				C8EFD1FF25E1373F00CB4141 /* UIImage+Resize.swift */,
 				C839599625E82D9200521F83 /* URL+Filename.swift */,
 				2B081A7325E085FA00F9D522 /* View+Navigation.swift */,
-				C88ACB1A25E112A70064C160 /* View+Shake.swift */,
 				C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */,
 				C8FCB7B425EED5B50002D386 /* Publisher+Actions.swift */,
 			);
@@ -455,6 +462,7 @@
 				C8A792EA25E066B2009B862D /* Model */,
 				C8A792E925E066AD009B862D /* UI */,
 				C8EFD20325E13D0E00CB4141 /* Views */,
+				C87C772025FD6D8200EE6362 /* Modifiers */,
 				C88ACB1425E10A6C0064C160 /* Utilities */,
 				C88ACB1C25E114850064C160 /* Representables */,
 				C88ACB1725E10B370064C160 /* Extensions */,
@@ -681,7 +689,7 @@
 				C83959C425E9C0E900521F83 /* GalleryView+BottomOverlays.swift in Sources */,
 				2B39CE1125E32CA200E63EDD /* LinkType.swift in Sources */,
 				C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */,
-				C88ACB1B25E112A70064C160 /* View+Shake.swift in Sources */,
+				C88ACB1B25E112A70064C160 /* Shake.swift in Sources */,
 				C89A5D7025FAE220007F8E8B /* PreviewSelection.swift in Sources */,
 				C8EFD1FA25E1281600CB4141 /* GalleryGridView.swift in Sources */,
 				C8EFD22D25E15BDF00CB4141 /* StoredItem+Creation.swift in Sources */,

@@ -420,7 +420,6 @@
 		C8A792C925E06642009B862D = {
 			isa = PBXGroup;
 			children = (
-				C83959C525E9D88C00521F83 /* PrivateVault.entitlements */,
 				2B39CDFD25E3290500E63EDD /* .swiftlint.yml */,
 				C8A792D425E06642009B862D /* PrivateVault App */,
 				2B39CE2425E33B5200E63EDD /* PrivateVaultTests */,
@@ -478,6 +477,7 @@
 			children = (
 				C86F9CB525EA570600210F64 /* Sounds */,
 				C8A792D925E06642009B862D /* Assets.xcassets */,
+				C83959C525E9D88C00521F83 /* PrivateVault.entitlements */,
 				C8A792DE25E06642009B862D /* Info.plist */,
 				C8EFD22425E14B2B00CB4141 /* Model.xcdatamodeld */,
 			);
@@ -946,7 +946,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = PrivateVault.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "PrivateVault App/Resources/PrivateVault.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PrivateVault App/Preview Content\"";
 				DEVELOPMENT_TEAM = FS696NSBK7;
@@ -969,7 +969,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = PrivateVault.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "PrivateVault App/Resources/PrivateVault.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"PrivateVault App/Preview Content\"";
 				DEVELOPMENT_TEAM = FS696NSBK7;

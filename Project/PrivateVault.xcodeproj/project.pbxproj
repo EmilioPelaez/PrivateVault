@@ -315,6 +315,14 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
+		C87C772325FE013700EE6362 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				2B39CDFD25E3290500E63EDD /* .swiftlint.yml */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
 		C88ACB1425E10A6C0064C160 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,9 +428,9 @@
 		C8A792C925E06642009B862D = {
 			isa = PBXGroup;
 			children = (
-				2B39CDFD25E3290500E63EDD /* .swiftlint.yml */,
 				C8A792D425E06642009B862D /* PrivateVault App */,
 				2B39CE2425E33B5200E63EDD /* PrivateVaultTests */,
+				C87C772325FE013700EE6362 /* Config */,
 				C8A792D325E06642009B862D /* Products */,
 				C86F9CC625EA666000210F64 /* Frameworks */,
 			);

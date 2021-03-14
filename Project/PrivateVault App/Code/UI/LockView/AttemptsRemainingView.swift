@@ -9,30 +9,22 @@ import SwiftUI
 
 struct AttemptsRemainingView: View {
 	var attemptsRemaining: Int
-
-	private var attemptsRemainingText: String {
-		if attemptsRemaining > 1 {
-			return "Attempts Remaining"
-		} else {
-			return "Attempt Remaining"
+	
+	private var attemptsRemainingText: Text {
+		switch attemptsRemaining {
+		case 0: return Text("No Attempts Remaining")
+		case 1: return Text("1 Attempt Remaining")
+		case _: return Text("\(attemptsRemaining) Attempt Remaining")
 		}
 	}
-
+	
 	var body: some View {
 		ZStack {
-			Text(
-				attemptsRemaining > 0
-					? "\(attemptsRemaining) \(attemptsRemainingText) "
-					: "No Attempts Remaining"
-			)
-				.bold()
-				.padding(10)
-				.background(
-					RoundedRectangle(cornerRadius: 25.0)
-						.fill(Color.red)
-						.opacity(0.3)
-						.shadow(radius: 10 )
-				)
+			attemptsRemainingText
+			.bold()
+			.padding(10)
+			.background(Color.red.opacity(0.2))
+			.clipShape(Capsule())
 		}
 	}
 }
@@ -40,5 +32,7 @@ struct AttemptsRemainingView: View {
 struct AttemptsRemainingView_Previews: PreviewProvider {
 	static var previews: some View {
 		AttemptsRemainingView(attemptsRemaining: 4)
+			.padding()
+			.previewLayout(.sizeThatFits)
 	}
 }

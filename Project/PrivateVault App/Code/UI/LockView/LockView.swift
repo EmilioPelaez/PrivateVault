@@ -35,13 +35,12 @@ struct LockView: View {
 					.opacity(attempts > 0 ? 1.0 : 0.0)
 				InputDisplay(input: $code, codeLength: passcodeManager.passcodeLength, textColor: textColor, displayColor: displayColor)
 					.shake(incorrectAnimation, distance: 10, count: 4)
-				BlurringView(isBlurred: $isLockedOut ) {
-					KeypadView(input: input, delete: delete) {
-						BiometricAuthenticationButton {
-							allowEntry()
-						}
+				KeypadView(input: input, delete: delete) {
+					BiometricAuthenticationButton {
+						allowEntry()
 					}
 				}
+				.lockedOut(isLockedOut)
 			}
 			.frame(maxWidth: 280)
 			.scaledForSmallScreen(cutoff: 640, scale: 0.9)

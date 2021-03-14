@@ -44,6 +44,7 @@ struct LockView: View {
 				}
 			}
 			.frame(maxWidth: 280)
+			.scaledForSmallScreen(cutoff: 640, scale: 0.9)
 		}
 	}
 

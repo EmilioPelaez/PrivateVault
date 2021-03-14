@@ -53,6 +53,8 @@ struct SetPasscodeView: View {
 					.disabled(waitingForAnimation)
 			}
 			.frame(maxWidth: 280)
+			.scaledForSmallScreen(cutoff: 667, scale: 0.9)
+			.scaledForSmallScreen(cutoff: 640, scale: 0.8)
 		}
 		.alert(isPresented: $showMismatchAlert) {
 			Alert(title: Text("Try Again!"),

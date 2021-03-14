@@ -68,18 +68,8 @@ struct SettingsView: View {
 					NavigationLink(destination: SettingsLicenseView()) {
 						Text("License")
 					}
-					SettingsDetailRow(label: "Privacy") {
-						VStack(spacing: 25) {
-							Text("With Private Vault, your data is safe and is not uploaded anywhere other than your own personal iCloud (when available). You can see the source code or Private Vault here:")
-								.multilineTextAlignment(.leading)
-							Button {
-								guard let url = URL(string: "https://github.com/EmilioPelaez/PrivateVault") else { return }
-								UIApplication.shared.open(url)
-							}
-							label: {
-								Text("View Source Code")
-							}
-						}
+					NavigationLink(destination: SettingsPrivacyView()) {
+						Text("Privacy")
 					}
 				}
 			}

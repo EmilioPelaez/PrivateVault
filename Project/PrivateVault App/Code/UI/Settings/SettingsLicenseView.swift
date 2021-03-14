@@ -34,10 +34,8 @@ struct SettingsLicenseView: View {
 	
 	var body: some View {
 		ScrollView {
-			ZStack(alignment: .topLeading) {
-				Color.clear
-				Text(license)
-			}
+			Text(license)
+			.frame(maxWidth: .infinity)
 			.padding()
 		}
 		.navigationBarTitle("License", displayMode: .inline)

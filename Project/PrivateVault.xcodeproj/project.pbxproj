@@ -66,9 +66,9 @@
 		C86F9CCF25ED910C00210F64 /* GalleryView+Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F9CCE25ED910C00210F64 /* GalleryView+Enums.swift */; };
 		C86F9CD125ED99C100210F64 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F9CD025ED99C100210F64 /* ColorButton.swift */; };
 		C87C771D25FB8A2C00EE6362 /* SortMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87C771C25FB8A2C00EE6362 /* SortMethod.swift */; };
-		C87C771F25FD569700EE6362 /* SettingsDetailRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87C771E25FD569700EE6362 /* SettingsDetailRow.swift */; };
 		C87C772225FDF9F900EE6362 /* ScaledForSmallScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87C772125FDF9F900EE6362 /* ScaledForSmallScreen.swift */; };
 		C87C772525FE01B000EE6362 /* SettingsLicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87C772425FE01B000EE6362 /* SettingsLicenseView.swift */; };
+		C87C772725FE024900EE6362 /* SettingsPrivacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87C772625FE024900EE6362 /* SettingsPrivacyView.swift */; };
 		C88ACB1125E106D00064C160 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1025E106D00064C160 /* LockView.swift */; };
 		C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1225E109FD0064C160 /* InputDisplay.swift */; };
 		C88ACB1625E10A790064C160 /* FeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */; };
@@ -183,9 +183,9 @@
 		C86F9CCE25ED910C00210F64 /* GalleryView+Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+Enums.swift"; sourceTree = "<group>"; };
 		C86F9CD025ED99C100210F64 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
 		C87C771C25FB8A2C00EE6362 /* SortMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMethod.swift; sourceTree = "<group>"; };
-		C87C771E25FD569700EE6362 /* SettingsDetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailRow.swift; sourceTree = "<group>"; };
 		C87C772125FDF9F900EE6362 /* ScaledForSmallScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledForSmallScreen.swift; sourceTree = "<group>"; };
 		C87C772425FE01B000EE6362 /* SettingsLicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLicenseView.swift; sourceTree = "<group>"; };
+		C87C772625FE024900EE6362 /* SettingsPrivacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPrivacyView.swift; sourceTree = "<group>"; };
 		C88ACB1025E106D00064C160 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		C88ACB1225E109FD0064C160 /* InputDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDisplay.swift; sourceTree = "<group>"; };
 		C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerator.swift; sourceTree = "<group>"; };
@@ -252,9 +252,9 @@
 			isa = PBXGroup;
 			children = (
 				2B39CD8925E18B8100E63EDD /* SettingsView.swift */,
-				C87C771E25FD569700EE6362 /* SettingsDetailRow.swift */,
-				2B39CE0225E32B7300E63EDD /* About */,
 				C87C772425FE01B000EE6362 /* SettingsLicenseView.swift */,
+				C87C772625FE024900EE6362 /* SettingsPrivacyView.swift */,
+				2B39CE0225E32B7300E63EDD /* About */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -733,6 +733,7 @@
 				C89C9DEF25E1D804003505B9 /* Binding+Optional.swift in Sources */,
 				C89C9DE125E19671003505B9 /* Tag+Examples.swift in Sources */,
 				C839599525E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift in Sources */,
+				C87C772725FE024900EE6362 /* SettingsPrivacyView.swift in Sources */,
 				C89A5D6E25FADCCC007F8E8B /* SafariView.swift in Sources */,
 				C86F9CCD25ED8BAB00210F64 /* ItemSelectionView.swift in Sources */,
 				C83959BC25E9BFE700521F83 /* GalleryView+Alerts.swift in Sources */,
@@ -767,7 +768,6 @@
 				2B39CDC225E1C6C500E63EDD /* String+Capping.swift in Sources */,
 				C89C9DD825E1773E003505B9 /* EmptyGalleryView.swift in Sources */,
 				C83959B325E9AE6900521F83 /* ItemFilter.swift in Sources */,
-				C87C771F25FD569700EE6362 /* SettingsDetailRow.swift in Sources */,
 				C8FCB7B325EE59D80002D386 /* DiskStore.swift in Sources */,
 				2B081A7425E085FA00F9D522 /* View+Navigation.swift in Sources */,
 				C83959A725E8621600521F83 /* ItemIconPreview.swift in Sources */,

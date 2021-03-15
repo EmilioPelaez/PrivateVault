@@ -1157,6 +1157,7 @@
 		C8EFC33C260010FA008E8CFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = ExtensionIcon;
 				CODE_SIGN_ENTITLEMENTS = "PrivateVault Import Action/Resources/PrivateVault Import Action.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FS696NSBK7;
@@ -1177,6 +1178,7 @@
 		C8EFC33D260010FA008E8CFA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = ExtensionIcon;
 				CODE_SIGN_ENTITLEMENTS = "PrivateVault Import Action/Resources/PrivateVault Import Action.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FS696NSBK7;

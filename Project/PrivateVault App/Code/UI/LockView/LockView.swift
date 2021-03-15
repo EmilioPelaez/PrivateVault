@@ -16,28 +16,22 @@ struct LockView: View {
 
 	@EnvironmentObject private var settings: UserSettings
 	@EnvironmentObject private var passcodeManager: PasscodeManager
+	@ObservedObject var lockoutManager = LockoutManager()
 	@Binding var isLocked: Bool
 	@State var code = ""
 	@State var attempts = 0
 	@State var codeState: CodeState = .undefined
 	@State var incorrectAnimation = false
-	@State var lockedOutDate: Date?
-	var isLockedOut: Bool {
-		lockedOutDate != nil
-	}
 
 	var maxDigits: Int { passcodeManager.passcode.count }
 	var codeIsFullyEntered: Bool { code.count == maxDigits }
 	var codeIsCorrect: Bool { code == passcodeManager.passcode }
 
-	let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-	@State var update = true
-	
 	var body: some View {
 		ZStack {
 			Color(.systemBackground).ignoresSafeArea()
 			VStack(spacing: 25) {
-				AttemptsRemainingView(attemptsRemaining: settings.maxAttempts - attempts, unlockDate: lockedOutDate)
+				AttemptsRemainingView(attemptsRemaining: settings.maxAttempts - attempts, unlockDate: lockoutManager.unlockDate)
 					.opacity(attempts > 0 ? 1.0 : 0.0)
 				InputDisplay(input: $code, codeLength: passcodeManager.passcodeLength, textColor: textColor, displayColor: displayColor)
 					.shake(incorrectAnimation, distance: 10, count: 4)
@@ -46,23 +40,15 @@ struct LockView: View {
 						allowEntry()
 					}
 				}
-				.lockedOut(isLockedOut)
+				.lockedOut(lockoutManager.isLockedOut)
 			}
 			.frame(maxWidth: 280)
 			.scaledForSmallScreen(cutoff: 640, scale: 0.9)
-			.onReceive(timer) { _ in
-				guard let lockedOutDate = lockedOutDate else {
-					return
-				}
-				if lockedOutDate < Date() {
-					withAnimation {
-						self.lockedOutDate = nil
-						attempts = 0
-						codeState = .undefined
-					}
-				} else {
-					update.toggle()
-				}
+			.onChange(of: lockoutManager.isLockedOut) { value in
+				guard !value else { return }
+				attempts = 0
+				code = ""
+				codeState = .undefined
 			}
 		}
 	}
@@ -84,7 +70,7 @@ struct LockView: View {
 	}
 
 	func input(_ string: String) {
-		guard code.count < maxDigits else { return }
+		guard !codeIsFullyEntered else { return }
 		code.append(string)
 
 		if codeIsFullyEntered {
@@ -124,13 +110,14 @@ struct LockView: View {
 	}
 
 	func rejectEntry() {
-		code = ""
 		attempts += 1
 		codeState = .incorrect
 		incorrectAnimation.toggle()
 		if settings.sound { SoundEffect.failure.play() }
 		if attempts == settings.maxAttempts {
-			lockedOutDate = Date().addingTimeInterval(10)
+			lockoutManager.lockout()
+		} else {
+			code = ""
 		}
 	}
 }

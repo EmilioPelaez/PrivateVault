@@ -16,7 +16,7 @@ struct AttemptsRemainingView: View {
 			if let unlockDate = unlockDate {
 				HStack(spacing: 3) {
 					Text("Try again in")
-					Text(unlockDate, style: .relative)
+					Text(unlockDate.addingTimeInterval(1), style: .relative)
 				}
 			} else {
 				switch attemptsRemaining {

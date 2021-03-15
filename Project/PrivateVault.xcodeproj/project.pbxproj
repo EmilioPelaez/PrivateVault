@@ -69,6 +69,7 @@
 		C87C772225FDF9F900EE6362 /* ScaledForSmallScreenModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87C772125FDF9F900EE6362 /* ScaledForSmallScreenModifier.swift */; };
 		C87C772525FE01B000EE6362 /* SettingsLicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87C772425FE01B000EE6362 /* SettingsLicenseView.swift */; };
 		C87C772725FE024900EE6362 /* SettingsPrivacyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87C772625FE024900EE6362 /* SettingsPrivacyView.swift */; };
+		C87C772925FF51A200EE6362 /* LockoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87C772825FF51A200EE6362 /* LockoutManager.swift */; };
 		C88ACB1125E106D00064C160 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1025E106D00064C160 /* LockView.swift */; };
 		C88ACB1325E109FD0064C160 /* InputDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1225E109FD0064C160 /* InputDisplay.swift */; };
 		C88ACB1625E10A790064C160 /* FeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */; };
@@ -186,6 +187,7 @@
 		C87C772125FDF9F900EE6362 /* ScaledForSmallScreenModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledForSmallScreenModifier.swift; sourceTree = "<group>"; };
 		C87C772425FE01B000EE6362 /* SettingsLicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLicenseView.swift; sourceTree = "<group>"; };
 		C87C772625FE024900EE6362 /* SettingsPrivacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPrivacyView.swift; sourceTree = "<group>"; };
+		C87C772825FF51A200EE6362 /* LockoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockoutManager.swift; sourceTree = "<group>"; };
 		C88ACB1025E106D00064C160 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		C88ACB1225E109FD0064C160 /* InputDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDisplay.swift; sourceTree = "<group>"; };
 		C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerator.swift; sourceTree = "<group>"; };
@@ -543,6 +545,7 @@
 			isa = PBXGroup;
 			children = (
 				C8FCB7B225EE59D80002D386 /* DiskStore.swift */,
+				C87C772825FF51A200EE6362 /* LockoutManager.swift */,
 				C89A5D6B25FA29AD007F8E8B /* PasscodeManager.swift */,
 				C8EFD22825E14BDA00CB4141 /* PersistenceController.swift */,
 				C839598E25E7A69300521F83 /* PersistenceController+ContextOperations.swift */,
@@ -764,6 +767,7 @@
 				C839599B25E8332700521F83 /* FilePreview.swift in Sources */,
 				2B39CD8A25E18B8100E63EDD /* SettingsView.swift in Sources */,
 				C87C772225FDF9F900EE6362 /* ScaledForSmallScreenModifier.swift in Sources */,
+				C87C772925FF51A200EE6362 /* LockoutManager.swift in Sources */,
 				C83959A925E8F31500521F83 /* AsynchronousOperation.swift in Sources */,
 				2B39CDC225E1C6C500E63EDD /* String+Capping.swift in Sources */,
 				C89C9DD825E1773E003505B9 /* EmptyGalleryView.swift in Sources */,

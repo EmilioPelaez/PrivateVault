@@ -23,7 +23,7 @@ extension PersistenceController {
 		do {
 			try context.save()
 		} catch {
-			print(error)
+			self.errorString = error.localizedDescription
 		}
 	}
 }

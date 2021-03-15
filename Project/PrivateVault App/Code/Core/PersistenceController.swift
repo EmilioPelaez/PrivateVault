@@ -14,6 +14,7 @@ class PersistenceController: ObservableObject {
 	private let operationQueue = ObservableOperationQueue()
 	
 	@Published var creatingFiles = false
+	@Published var errorString: String?
 	
 	var bag: Set<AnyCancellable> = []
 	

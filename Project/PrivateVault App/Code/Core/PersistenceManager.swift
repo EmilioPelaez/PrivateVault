@@ -58,7 +58,9 @@ class PersistenceManager: ObservableObject {
 		description.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
 		
 		container.loadPersistentStores { _, error in
-			if let error = error { assertionFailure("Unresolved error \(error)") }
+			if let error = error as NSError? {
+				self.fatalErrorString = error.localizedDescription
+			}
 			self.ready = true
 		}
 		

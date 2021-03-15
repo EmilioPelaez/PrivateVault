@@ -602,10 +602,10 @@
 		C8EFC340260014AB008E8CFA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C8EFC341260014E5008E8CFA /* PrivateVault Import Action.entitlements */,
 				C8EFC337260010FA008E8CFA /* Info.plist */,
-				C8EFC330260010FA008E8CFA /* Media.xcassets */,
 				C8EFC36026001BAF008E8CFA /* Main.storyboard */,
+				C8EFC330260010FA008E8CFA /* Media.xcassets */,
+				C8EFC341260014E5008E8CFA /* PrivateVault Import Action.entitlements */,
 			);
 			path = Resources;
 			sourceTree = "<group>";

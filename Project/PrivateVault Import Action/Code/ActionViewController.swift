@@ -15,8 +15,13 @@ class ActionViewController: UIViewController {
 		case failure
 	}
 	
-	@IBOutlet private weak var label: UILabel!
-	@IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+	@IBOutlet private var importingContainer: UIView!
+	@IBOutlet private var importingLabel: UILabel!
+	@IBOutlet private var activityIndicator: UIActivityIndicatorView!
+	
+	@IBOutlet private var failureContainer: UIView!
+	
+	@IBOutlet private var closeButton: UIButton!
 	
 	private var persistence: PersistenceManager?
 	private var providers: [NSItemProvider] = []
@@ -26,23 +31,29 @@ class ActionViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		guard let context = extensionContext else { return }
+		guard let context = extensionContext else {
+			importingContainer.isHidden = true
+			failureContainer.isHidden = false
+			closeButton.isHidden = false
+			return
+		}
+		
+		importingContainer.isHidden = false
+		failureContainer.isHidden = true
+		closeButton.isHidden = true
 		
 		let items = context.inputItems.compactMap { $0 as? NSExtensionItem }
 		let providers = items.flatMap { $0.attachments ?? [] }
 		self.providers = providers
 		
-		label.text = "Importing \(providers.count) file(s)"
+		importingLabel.text = "Importing \(providers.count) file(s)"
 		activityIndicator.startAnimating()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
-		guard !providers.isEmpty else {
-			extensionContext?.cancelRequest(withError: ActionError.failure)
-			return
-		}
+		guard !providers.isEmpty else { return }
 		let persistence = PersistenceManager(iCloud: false)
 		persistence.receiveItems(providers)
 		persistence.$creatingFiles
@@ -56,6 +67,14 @@ class ActionViewController: UIViewController {
 	}
 	
 	private func didComplete() {
+		UIView.animate(withDuration: 0.25) {
+			self.activityIndicator.stopAnimating()
+			self.importingLabel.text = "Import Complete!"
+			self.closeButton.isHidden = false
+		}
+	}
+	
+	@IBAction func close() {
 		extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
 	}
 }

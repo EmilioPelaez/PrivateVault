@@ -11,7 +11,7 @@ import MobileCoreServices
 class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
 	
 	func beginRequest(with context: NSExtensionContext) {
-		print(context)
+		
 	}
 	
 //    @IBOutlet weak var imageView: UIImageView!

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ManageTagsView: View {
-	@EnvironmentObject private var persistenceController: PersistenceController
+	@EnvironmentObject private var persistenceController: PersistenceManager
 	@Environment(\.presentationMode) var presentationMode
 
 	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \Tag.name, ascending: true)], animation: .default)

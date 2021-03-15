@@ -1,5 +1,5 @@
 //
-//  PersistenceController+Creation.swift
+//  PersistenceManager+Creation.swift
 //  PrivateVault
 //
 //  Created by Emilio Peláez on 25/2/21.
@@ -12,8 +12,7 @@ import QuickLook
 import UIKit
 import VisionKit
 
-extension PersistenceController {
-	
+extension PersistenceManager {
 	var previewSize: CGFloat {
 		min(UIScreen.main.bounds.width / 2, 500)
 	}

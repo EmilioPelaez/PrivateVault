@@ -1,5 +1,5 @@
 //
-//  PersistenceController+ContextOperations.swift
+//  PersistenceManager+ContextOperations.swift
 //  PrivateVault
 //
 //  Created by Emilio Peláez on 25/2/21.
@@ -7,8 +7,7 @@
 
 import CoreData
 
-extension PersistenceController {
-	
+extension PersistenceManager {
 	func delete(_ objects: [NSManagedObject]) {
 		objects.forEach(context.delete)
 		save()

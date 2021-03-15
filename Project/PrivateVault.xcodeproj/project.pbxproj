@@ -28,8 +28,8 @@
 		468A75E125E15B9300B87597 /* SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75E025E15B9300B87597 /* SoundEffect.swift */; };
 		46F26BEC25E19C6700070858 /* AttemptsRemainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */; };
 		46F26BEF25E19C8600070858 /* LockedOutModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F26BEE25E19C8600070858 /* LockedOutModifier.swift */; };
-		C839598F25E7A69300521F83 /* PersistenceController+ContextOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839598E25E7A69300521F83 /* PersistenceController+ContextOperations.swift */; };
-		C839599125E7A6AF00521F83 /* PersistenceController+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599025E7A6AF00521F83 /* PersistenceController+Creation.swift */; };
+		C839598F25E7A69300521F83 /* PersistenceManager+ContextOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839598E25E7A69300521F83 /* PersistenceManager+ContextOperations.swift */; };
+		C839599125E7A6AF00521F83 /* PersistenceManager+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599025E7A6AF00521F83 /* PersistenceManager+Creation.swift */; };
 		C839599325E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */; };
 		C839599525E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599425E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift */; };
 		C839599725E82D9200521F83 /* URL+Filename.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599625E82D9200521F83 /* URL+Filename.swift */; };
@@ -99,13 +99,14 @@
 		C8EFC331260010FA008E8CFA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8EFC330260010FA008E8CFA /* Media.xcassets */; };
 		C8EFC333260010FA008E8CFA /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFC332260010FA008E8CFA /* ActionViewController.swift */; };
 		C8EFC33A260010FA008E8CFA /* PrivateVault Import Action.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C8EFC32E260010FA008E8CFA /* PrivateVault Import Action.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C8EFC3472600169F008E8CFA /* URL+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFC3462600169F008E8CFA /* URL+Container.swift */; };
 		C8EFD1FA25E1281600CB4141 /* GalleryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */; };
 		C8EFD1FC25E128C400CB4141 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1FB25E128C400CB4141 /* DocumentPicker.swift */; };
 		C8EFD1FE25E12F6100CB4141 /* GalleryGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */; };
 		C8EFD20025E1373F00CB4141 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1FF25E1373F00CB4141 /* UIImage+Resize.swift */; };
 		C8EFD20225E1374F00CB4141 /* CGSize+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD20125E1374F00CB4141 /* CGSize+Utilities.swift */; };
 		C8EFD22625E14B2B00CB4141 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22425E14B2B00CB4141 /* Model.xcdatamodeld */; };
-		C8EFD22925E14BDA00CB4141 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22825E14BDA00CB4141 /* PersistenceController.swift */; };
+		C8EFD22925E14BDA00CB4141 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22825E14BDA00CB4141 /* PersistenceManager.swift */; };
 		C8EFD22B25E159EA00CB4141 /* StoredItem+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22A25E159EA00CB4141 /* StoredItem+Properties.swift */; };
 		C8EFD22D25E15BDF00CB4141 /* StoredItem+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22C25E15BDF00CB4141 /* StoredItem+Creation.swift */; };
 		C8EFD22F25E15D1D00CB4141 /* StoredItem+DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22E25E15D1D00CB4141 /* StoredItem+DataType.swift */; };
@@ -169,8 +170,8 @@
 		468A75E025E15B9300B87597 /* SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SoundEffect.swift; path = "PrivateVault App/Code/UI/SoundEffect.swift"; sourceTree = SOURCE_ROOT; };
 		46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttemptsRemainingView.swift; sourceTree = "<group>"; };
 		46F26BEE25E19C8600070858 /* LockedOutModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockedOutModifier.swift; sourceTree = "<group>"; };
-		C839598E25E7A69300521F83 /* PersistenceController+ContextOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+ContextOperations.swift"; sourceTree = "<group>"; };
-		C839599025E7A6AF00521F83 /* PersistenceController+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Creation.swift"; sourceTree = "<group>"; };
+		C839598E25E7A69300521F83 /* PersistenceManager+ContextOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceManager+ContextOperations.swift"; sourceTree = "<group>"; };
+		C839599025E7A6AF00521F83 /* PersistenceManager+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceManager+Creation.swift"; sourceTree = "<group>"; };
 		C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VNDocumentCameraScan+PDF.swift"; sourceTree = "<group>"; };
 		C839599425E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+LoadPhoto.swift"; sourceTree = "<group>"; };
 		C839599625E82D9200521F83 /* URL+Filename.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Filename.swift"; sourceTree = "<group>"; };
@@ -243,13 +244,15 @@
 		C8EFC330260010FA008E8CFA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		C8EFC332260010FA008E8CFA /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
 		C8EFC337260010FA008E8CFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8EFC341260014E5008E8CFA /* PrivateVault Import Action.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PrivateVault Import Action.entitlements"; sourceTree = "<group>"; };
+		C8EFC3462600169F008E8CFA /* URL+Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Container.swift"; sourceTree = "<group>"; };
 		C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGridView.swift; sourceTree = "<group>"; };
 		C8EFD1FB25E128C400CB4141 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGridCell.swift; sourceTree = "<group>"; };
 		C8EFD1FF25E1373F00CB4141 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		C8EFD20125E1374F00CB4141 /* CGSize+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Utilities.swift"; sourceTree = "<group>"; };
 		C8EFD22525E14B2B00CB4141 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		C8EFD22825E14BDA00CB4141 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		C8EFD22825E14BDA00CB4141 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		C8EFD22A25E159EA00CB4141 /* StoredItem+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredItem+Properties.swift"; sourceTree = "<group>"; };
 		C8EFD22C25E15BDF00CB4141 /* StoredItem+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredItem+Creation.swift"; sourceTree = "<group>"; };
 		C8EFD22E25E15D1D00CB4141 /* StoredItem+DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredItem+DataType.swift"; sourceTree = "<group>"; };
@@ -384,13 +387,14 @@
 				2B39CDBB25E1BEAB00E63EDD /* ContentMode+description.swift */,
 				C868FD6725E30B23005A3EA9 /* LAContext+Shared.swift */,
 				C839599425E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift */,
+				C8FCB7B425EED5B50002D386 /* Publisher+Actions.swift */,
 				2B39CDC125E1C6C500E63EDD /* String+Capping.swift */,
 				C88ACB1825E10B450064C160 /* UIDevice+iPad.swift */,
 				C8EFD1FF25E1373F00CB4141 /* UIImage+Resize.swift */,
+				C8EFC3462600169F008E8CFA /* URL+Container.swift */,
 				C839599625E82D9200521F83 /* URL+Filename.swift */,
 				2B081A7325E085FA00F9D522 /* View+Navigation.swift */,
 				C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */,
-				C8FCB7B425EED5B50002D386 /* Publisher+Actions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -580,6 +584,7 @@
 		C8EFC340260014AB008E8CFA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C8EFC341260014E5008E8CFA /* PrivateVault Import Action.entitlements */,
 				C8EFC337260010FA008E8CFA /* Info.plist */,
 				C8EFC330260010FA008E8CFA /* Media.xcassets */,
 			);
@@ -610,9 +615,9 @@
 				C8FCB7B225EE59D80002D386 /* DiskStore.swift */,
 				C87C772825FF51A200EE6362 /* LockoutManager.swift */,
 				C89A5D6B25FA29AD007F8E8B /* PasscodeManager.swift */,
-				C8EFD22825E14BDA00CB4141 /* PersistenceController.swift */,
-				C839598E25E7A69300521F83 /* PersistenceController+ContextOperations.swift */,
-				C839599025E7A6AF00521F83 /* PersistenceController+Creation.swift */,
+				C8EFD22825E14BDA00CB4141 /* PersistenceManager.swift */,
+				C839598E25E7A69300521F83 /* PersistenceManager+ContextOperations.swift */,
+				C839599025E7A6AF00521F83 /* PersistenceManager+Creation.swift */,
 				C83959A025E85DAB00521F83 /* PreviewCache.swift */,
 			);
 			path = Core;
@@ -793,7 +798,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C83959C025E9C05F00521F83 /* GalleryView+Sheet.swift in Sources */,
-				C839599125E7A6AF00521F83 /* PersistenceController+Creation.swift in Sources */,
+				C839599125E7A6AF00521F83 /* PersistenceManager+Creation.swift in Sources */,
 				C88ACB1925E10B450064C160 /* UIDevice+iPad.swift in Sources */,
 				468A75E125E15B9300B87597 /* SoundEffect.swift in Sources */,
 				C8EFD20225E1374F00CB4141 /* CGSize+Utilities.swift in Sources */,
@@ -843,14 +848,14 @@
 				C8FCB7B725EF9BD80002D386 /* ShareSheet.swift in Sources */,
 				2B39CDAC25E1A05500E63EDD /* DocumentScanner.swift in Sources */,
 				C83959A125E85DAB00521F83 /* PreviewCache.swift in Sources */,
-				C8EFD22925E14BDA00CB4141 /* PersistenceController.swift in Sources */,
+				C8EFD22925E14BDA00CB4141 /* PersistenceManager.swift in Sources */,
 				C89C9DDD25E190C4003505B9 /* FilteredGalleryView.swift in Sources */,
 				C839599725E82D9200521F83 /* URL+Filename.swift in Sources */,
 				C839599F25E8573600521F83 /* BlankPreview.swift in Sources */,
 				2B39CDBC25E1BEAB00E63EDD /* ContentMode+description.swift in Sources */,
 				C83959AB25E8F5A200521F83 /* ObservableOperationQueue.swift in Sources */,
 				C89C9DDB25E17B98003505B9 /* ManageTagsView.swift in Sources */,
-				C839598F25E7A69300521F83 /* PersistenceController+ContextOperations.swift in Sources */,
+				C839598F25E7A69300521F83 /* PersistenceManager+ContextOperations.swift in Sources */,
 				C8A792D625E06642009B862D /* PrivateVaultApp.swift in Sources */,
 				C839599325E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift in Sources */,
 				C83959C225E9C07D00521F83 /* GalleryView+Items.swift in Sources */,
@@ -864,6 +869,7 @@
 				C87C772925FF51A200EE6362 /* LockoutManager.swift in Sources */,
 				C83959A925E8F31500521F83 /* AsynchronousOperation.swift in Sources */,
 				2B39CDC225E1C6C500E63EDD /* String+Capping.swift in Sources */,
+				C8EFC3472600169F008E8CFA /* URL+Container.swift in Sources */,
 				C89C9DD825E1773E003505B9 /* EmptyGalleryView.swift in Sources */,
 				C83959B325E9AE6900521F83 /* ItemFilter.swift in Sources */,
 				C8FCB7B325EE59D80002D386 /* DiskStore.swift in Sources */,
@@ -1115,6 +1121,7 @@
 		C8EFC33C260010FA008E8CFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "PrivateVault Import Action/Resources/PrivateVault Import Action.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FS696NSBK7;
 				INFOPLIST_FILE = "PrivateVault Import Action/Resources/Info.plist";
@@ -1134,6 +1141,7 @@
 		C8EFC33D260010FA008E8CFA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "PrivateVault Import Action/Resources/PrivateVault Import Action.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = FS696NSBK7;
 				INFOPLIST_FILE = "PrivateVault Import Action/Resources/Info.plist";

@@ -63,6 +63,9 @@ struct GalleryView: View {
 		.onChange(of: persistenceController.errorString) {
 			$0.map { currentAlert = .persistenceError($0) }
 		}
+		.onAppear {
+			persistenceController.fatalErrorString.map { currentAlert = .persistenceFatalError($0) }
+		}
 		.onDrop(of: [.fileURL], delegate: self)
 	}
 }

@@ -38,6 +38,7 @@ extension GalleryView {
 		case deleteItemsConfirmation(Set<StoredItem>)
 		case emptyClipboard
 		case persistenceError(String)
+		case persistenceFatalError(String)
 		
 		var id: Int {
 			switch self {
@@ -46,6 +47,7 @@ extension GalleryView {
 			case .deleteItemsConfirmation: return 2
 			case .emptyClipboard: return 3
 			case .persistenceError: return 4
+			case .persistenceFatalError: return 5
 			}
 		}
 	}

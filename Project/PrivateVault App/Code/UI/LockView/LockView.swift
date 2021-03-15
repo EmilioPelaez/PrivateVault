@@ -16,34 +16,44 @@ struct LockView: View {
 
 	@EnvironmentObject private var settings: UserSettings
 	@EnvironmentObject private var passcodeManager: PasscodeManager
+	@ObservedObject var lockoutManager = LockoutManager()
 	@Binding var isLocked: Bool
 	@State var code = ""
 	@State var attempts = 0
 	@State var codeState: CodeState = .undefined
 	@State var incorrectAnimation = false
-	@State var isLockedOut = false
 
 	var maxDigits: Int { passcodeManager.passcode.count }
 	var codeIsFullyEntered: Bool { code.count == maxDigits }
 	var codeIsCorrect: Bool { code == passcodeManager.passcode }
+	var remainingAttempts: Int {
+		if lockoutManager.isLockedOut { return 0 }
+		return settings.maxAttempts - attempts
+	}
 
 	var body: some View {
 		ZStack {
 			Color(.systemBackground).ignoresSafeArea()
 			VStack(spacing: 25) {
-				AttemptsRemainingView(attemptsRemaining: settings.maxAttempts - attempts)
-					.opacity(attempts > 0 ? 1.0 : 0.0)
+				AttemptsRemainingView(attemptsRemaining: remainingAttempts, unlockDate: lockoutManager.unlockDate)
+					.opacity(attempts > 0 || lockoutManager.isLockedOut ? 1.0 : 0.0)
 				InputDisplay(input: $code, codeLength: passcodeManager.passcodeLength, textColor: textColor, displayColor: displayColor)
 					.shake(incorrectAnimation, distance: 10, count: 4)
-				BlurringView(isBlurred: $isLockedOut ) {
-					KeypadView(input: input, delete: delete) {
-						BiometricAuthenticationButton {
-							allowEntry()
-						}
+				KeypadView(input: input, delete: delete) {
+					BiometricAuthenticationButton {
+						allowEntry()
 					}
 				}
+				.lockedOut(lockoutManager.isLockedOut)
 			}
 			.frame(maxWidth: 280)
+			.scaledForSmallScreen(cutoff: 640, scale: 0.9)
+			.onChange(of: lockoutManager.isLockedOut) { value in
+				guard !value else { return }
+				attempts = 0
+				code = ""
+				codeState = .undefined
+			}
 		}
 	}
 
@@ -51,6 +61,7 @@ struct LockView: View {
 		switch codeState {
 		case .correct: return .green
 		case .incorrect: return .red
+		case _ where remainingAttempts == 0: return .red
 		case _: return .primary
 		}
 	}
@@ -59,12 +70,13 @@ struct LockView: View {
 		switch codeState {
 		case .correct: return .green
 		case .incorrect: return .red
+		case _ where remainingAttempts == 0: return .red
 		case _: return nil
 		}
 	}
 
 	func input(_ string: String) {
-		guard code.count < maxDigits else { return }
+		guard !codeIsFullyEntered else { return }
 		code.append(string)
 
 		if codeIsFullyEntered {
@@ -104,12 +116,15 @@ struct LockView: View {
 	}
 
 	func rejectEntry() {
-		code = ""
 		attempts += 1
 		codeState = .incorrect
 		incorrectAnimation.toggle()
 		if settings.sound { SoundEffect.failure.play() }
-		if attempts == settings.maxAttempts { isLockedOut = true }
+		if attempts == settings.maxAttempts {
+			lockoutManager.lockout()
+		} else {
+			code = ""
+		}
 	}
 }
 

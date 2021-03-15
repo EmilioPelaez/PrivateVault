@@ -1,5 +1,5 @@
 //
-//  View+Shake.swift
+//  ShakeModifier.swift
 //  PrivateVault
 //
 //  Created by Emilio Peláez on 20/2/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Shake: GeometryEffect {
+struct ShakeModifier: GeometryEffect {
 	var distance: CGFloat = 10
 	var shakeCount = 3
 	var animatableData: CGFloat
@@ -23,6 +23,6 @@ struct Shake: GeometryEffect {
 
 extension View {
 	func shake(_ shake: Bool, distance: CGFloat = 10, count: Int = 3) -> some View {
-		modifier(Shake(distance: distance, shakeCount: count, animatableData: shake ? 1 : 0))
+		modifier(ShakeModifier(distance: distance, shakeCount: count, animatableData: shake ? 1 : 0))
 	}
 }

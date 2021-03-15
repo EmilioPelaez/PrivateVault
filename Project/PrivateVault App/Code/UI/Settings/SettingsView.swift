@@ -17,30 +17,7 @@ struct SettingsView: View {
 
 	@State var resetPasscode: Bool = false
 	let version = "0.0.1"
-	let license = """
-	MIT License
-
-	Copyright (c) 2021 Emilio Peláez
-
-	Permission is hereby granted, free of charge, to any person obtaining a copy
-	of this software and associated documentation files (the "Software"), to deal
-	in the Software without restriction, including without limitation the rights
-	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	copies of the Software, and to permit persons to whom the Software is
-	furnished to do so, subject to the following conditions:
-
-	The above copyright notice and this permission notice shall be included in all
-	copies or substantial portions of the Software.
-
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-	SOFTWARE.
-	"""
-
+	
 	var biometricSupported: Bool {
 		biometricsContext.availableType != .none
 	}
@@ -65,16 +42,14 @@ struct SettingsView: View {
 						}
 					}
 					HStack {
-						Stepper(value: $settings.maxAttempts) {
+						Stepper(value: $settings.maxAttempts, in: 1...10) {
 							HStack {
 								Text("Attempt Limit")
 								Text("\(settings.maxAttempts)")
 							}
 						}
 					}
-					Button {
-						resetPasscode = true
-					} label: {
+					NavigationLink(destination: resetView, isActive: $resetPasscode) {
 						Text("Reset Passcode")
 					}
 				}
@@ -90,21 +65,11 @@ struct SettingsView: View {
 					NavigationLink(destination: AboutView()) {
 						Text("About")
 					}
-					SettingsDetailRow(label: "License") {
-						Text(license).multilineTextAlignment(.leading)
+					NavigationLink(destination: SettingsLicenseView()) {
+						Text("License")
 					}
-					SettingsDetailRow(label: "Privacy") {
-						VStack(spacing: 25) {
-							Text("With Private Vault, your data is safe and is not uploaded anywhere other than your own personal iCloud (when available). You can see the source code or Private Vault here:")
-								.multilineTextAlignment(.leading)
-							Button {
-								guard let url = URL(string: "https://github.com/EmilioPelaez/PrivateVault") else { return }
-								UIApplication.shared.open(url)
-							}
-							label: {
-								Text("View Source Code")
-							}
-						}
+					NavigationLink(destination: SettingsPrivacyView()) {
+						Text("Privacy")
 					}
 				}
 			}
@@ -120,14 +85,16 @@ struct SettingsView: View {
 					}
 				}
 			}
-			.sheet(isPresented: $resetPasscode) {
-				SetPasscodeView { newCode, newLength in
-					passcodeManager.passcodeLength = newLength
-					passcodeManager.passcode = newCode
-					resetPasscode = false
-				}
-			}
 		}
+	}
+	
+	var resetView: some View {
+		SetPasscodeView { newCode, newLength in
+			passcodeManager.passcodeLength = newLength
+			passcodeManager.passcode = newCode
+			resetPasscode = false
+		}
+		.navigationBarTitle(Text("Reset"), displayMode: .inline)
 	}
 
 	var footer: some View {
@@ -156,30 +123,5 @@ struct SettingsView_Previews: PreviewProvider {
 		SettingsView()
 			.environmentObject(UserSettings())
 			.environmentObject(PasscodeManager())
-	}
-}
-
-struct SettingsDetailRow<Content: View>: View {
-	var label: String
-	var content: () -> (Content)
-
-	var body: some View {
-		NavigationLink(destination: destination) {
-			HStack {
-				Text(label)
-				Spacer()
-			}
-		}
-	}
-
-	var destination: some View {
-		ScrollView {
-			ZStack(alignment: .topLeading) {
-				Color.clear
-				content()
-			}
-			.padding()
-		}
-		.navigationBarTitle(label, displayMode: .inline)
 	}
 }

@@ -14,6 +14,8 @@ class PersistenceController: ObservableObject {
 	private let operationQueue = ObservableOperationQueue()
 	
 	@Published var creatingFiles = false
+	@Published var errorString: String?
+	@Published var fatalErrorString: String?
 	
 	var bag: Set<AnyCancellable> = []
 	
@@ -35,7 +37,7 @@ class PersistenceController: ObservableObject {
 		
 		container.loadPersistentStores { _, error in
 			if let error = error as NSError? {
-				print("Unresolved error \(error), \(error.userInfo)")
+				self.fatalErrorString = error.localizedDescription
 			}
 		}
 		

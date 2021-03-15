@@ -42,6 +42,18 @@ extension GalleryView {
 				message: Text("There are not items in your clipboard."),
 				dismissButton: .default(Text("Ok"))
 			)
+		case .persistenceError(let string):
+			return Alert(
+				title: Text("Unable to Save Changes"),
+				message: Text(string),
+				dismissButton: .default(Text("Ok"))
+			)
+		case .persistenceFatalError(let string):
+			return Alert(
+				title: Text("Fatal Error"),
+				message: Text("Unable to load database, the app might function correctly.\n" + string),
+				dismissButton: .default(Text("Ok"))
+			)
 		}
 	}
 }

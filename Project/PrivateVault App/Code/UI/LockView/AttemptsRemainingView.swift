@@ -8,37 +8,47 @@
 import SwiftUI
 
 struct AttemptsRemainingView: View {
-	var attemptsRemaining: Int
-
-	private var attemptsRemainingText: String {
-		if attemptsRemaining > 1 {
-			return "Attempts Remaining"
-		} else {
-			return "Attempt Remaining"
-		}
-	}
-
+	let attemptsRemaining: Int
+	let unlockDate: Date?
+	
 	var body: some View {
-		ZStack {
-			Text(
-				attemptsRemaining > 0
-					? "\(attemptsRemaining) \(attemptsRemainingText) "
-					: "No Attempts Remaining"
-			)
-				.bold()
-				.padding(10)
-				.background(
-					RoundedRectangle(cornerRadius: 25.0)
-						.fill(Color.red)
-						.opacity(0.3)
-						.shadow(radius: 10 )
-				)
+		Group {
+			if let unlockDate = unlockDate {
+				HStack(spacing: 3) {
+					Text("Try again in")
+					Text(unlockDate.addingTimeInterval(1), style: .relative)
+				}
+			} else {
+				switch attemptsRemaining {
+				case 0: Text("No Attempts Remaining")
+				case 1: Text("1 Attempt Remaining")
+				case _: Text("\(attemptsRemaining) Attempts Remaining")
+				}
+			}
 		}
+		.font(.headline)
+		.padding(10)
+		.background(Color.red.opacity(0.2))
+		.clipShape(Capsule())
 	}
 }
 
 struct AttemptsRemainingView_Previews: PreviewProvider {
 	static var previews: some View {
-		AttemptsRemainingView(attemptsRemaining: 4)
+		AttemptsRemainingView(attemptsRemaining: 4, unlockDate: nil)
+			.padding()
+			.previewLayout(.sizeThatFits)
+		
+		AttemptsRemainingView(attemptsRemaining: 1, unlockDate: nil)
+			.padding()
+			.previewLayout(.sizeThatFits)
+		
+		AttemptsRemainingView(attemptsRemaining: 0, unlockDate: nil)
+			.padding()
+			.previewLayout(.sizeThatFits)
+		
+		AttemptsRemainingView(attemptsRemaining: 4, unlockDate: Date().addingTimeInterval(100))
+			.padding()
+			.previewLayout(.sizeThatFits)
 	}
 }

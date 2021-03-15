@@ -42,7 +42,7 @@ struct SettingsView: View {
 						}
 					}
 					HStack {
-						Stepper(value: $settings.maxAttempts) {
+						Stepper(value: $settings.maxAttempts, in: 1...10) {
 							HStack {
 								Text("Attempt Limit")
 								Text("\(settings.maxAttempts)")

@@ -96,6 +96,9 @@
 		C8A792DA25E06642009B862D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A792D925E06642009B862D /* Assets.xcassets */; };
 		C8A792DD25E06642009B862D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A792DC25E06642009B862D /* Preview Assets.xcassets */; };
 		C8A792ED25E06D75009B862D /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A792EC25E06D75009B862D /* GalleryView.swift */; };
+		C8EFC331260010FA008E8CFA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8EFC330260010FA008E8CFA /* Media.xcassets */; };
+		C8EFC333260010FA008E8CFA /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFC332260010FA008E8CFA /* ActionViewController.swift */; };
+		C8EFC33A260010FA008E8CFA /* PrivateVault Import Action.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C8EFC32E260010FA008E8CFA /* PrivateVault Import Action.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C8EFD1FA25E1281600CB4141 /* GalleryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */; };
 		C8EFD1FC25E128C400CB4141 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1FB25E128C400CB4141 /* DocumentPicker.swift */; };
 		C8EFD1FE25E12F6100CB4141 /* GalleryGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */; };
@@ -119,7 +122,28 @@
 			remoteGlobalIDString = C8A792D125E06642009B862D;
 			remoteInfo = PrivateVault;
 		};
+		C8EFC338260010FA008E8CFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8A792CA25E06642009B862D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C8EFC32D260010FA008E8CFA;
+			remoteInfo = "PrivateVault Import Action";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C8EFC33B260010FA008E8CFA /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C8EFC33A260010FA008E8CFA /* PrivateVault Import Action.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2B081A7025E0847600F9D522 /* QuickLookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLookView.swift; sourceTree = "<group>"; };
@@ -215,6 +239,10 @@
 		C8A792DC25E06642009B862D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C8A792DE25E06642009B862D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8A792EC25E06D75009B862D /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
+		C8EFC32E260010FA008E8CFA /* PrivateVault Import Action.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PrivateVault Import Action.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8EFC330260010FA008E8CFA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		C8EFC332260010FA008E8CFA /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
+		C8EFC337260010FA008E8CFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGridView.swift; sourceTree = "<group>"; };
 		C8EFD1FB25E128C400CB4141 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGridCell.swift; sourceTree = "<group>"; };
@@ -244,6 +272,13 @@
 			files = (
 				C89A5D6A25FA29A0007F8E8B /* KeychainAccess in Frameworks */,
 				C86F9CC925EA667F00210F64 /* CloudKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8EFC32B260010FA008E8CFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +469,7 @@
 			isa = PBXGroup;
 			children = (
 				C8A792D425E06642009B862D /* PrivateVault App */,
+				C8EFC32F260010FA008E8CFA /* PrivateVault Import Action */,
 				2B39CE2425E33B5200E63EDD /* PrivateVaultTests */,
 				C87C772325FE013700EE6362 /* Config */,
 				C8A792D325E06642009B862D /* Products */,
@@ -447,6 +483,7 @@
 			children = (
 				C8A792D225E06642009B862D /* PrivateVault.app */,
 				2B39CE2325E33B5200E63EDD /* PrivateVaultTests.xctest */,
+				C8EFC32E260010FA008E8CFA /* PrivateVault Import Action.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -523,6 +560,32 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		C8EFC32F260010FA008E8CFA /* PrivateVault Import Action */ = {
+			isa = PBXGroup;
+			children = (
+				C8EFC33F260014A5008E8CFA /* Code */,
+				C8EFC340260014AB008E8CFA /* Resources */,
+			);
+			path = "PrivateVault Import Action";
+			sourceTree = "<group>";
+		};
+		C8EFC33F260014A5008E8CFA /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				C8EFC332260010FA008E8CFA /* ActionViewController.swift */,
+			);
+			path = Code;
+			sourceTree = "<group>";
+		};
+		C8EFC340260014AB008E8CFA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C8EFC337260010FA008E8CFA /* Info.plist */,
+				C8EFC330260010FA008E8CFA /* Media.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		C8EFD20325E13D0E00CB4141 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,10 +647,12 @@
 				2B39CDFA25E327EF00E63EDD /* SwiftLint */,
 				C8A792CF25E06642009B862D /* Frameworks */,
 				C8A792D025E06642009B862D /* Resources */,
+				C8EFC33B260010FA008E8CFA /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C8EFC339260010FA008E8CFA /* PBXTargetDependency */,
 			);
 			name = PrivateVault;
 			packageProductDependencies = (
@@ -597,13 +662,30 @@
 			productReference = C8A792D225E06642009B862D /* PrivateVault.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C8EFC32D260010FA008E8CFA /* PrivateVault Import Action */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C8EFC33E260010FA008E8CFA /* Build configuration list for PBXNativeTarget "PrivateVault Import Action" */;
+			buildPhases = (
+				C8EFC32A260010FA008E8CFA /* Sources */,
+				C8EFC32B260010FA008E8CFA /* Frameworks */,
+				C8EFC32C260010FA008E8CFA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PrivateVault Import Action";
+			productName = "PrivateVault Import Action";
+			productReference = C8EFC32E260010FA008E8CFA /* PrivateVault Import Action.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		C8A792CA25E06642009B862D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					2B39CE2225E33B5200E63EDD = {
@@ -611,6 +693,9 @@
 						TestTargetID = C8A792D125E06642009B862D;
 					};
 					C8A792D125E06642009B862D = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					C8EFC32D260010FA008E8CFA = {
 						CreatedOnToolsVersion = 12.5;
 					};
 				};
@@ -632,6 +717,7 @@
 			projectRoot = "";
 			targets = (
 				C8A792D125E06642009B862D /* PrivateVault */,
+				C8EFC32D260010FA008E8CFA /* PrivateVault Import Action */,
 				2B39CE2225E33B5200E63EDD /* PrivateVaultTests */,
 			);
 		};
@@ -659,6 +745,14 @@
 				C86F9CBF25EA604400210F64 /* Open.wav in Resources */,
 				C86F9CBB25EA5AE900210F64 /* Denied.wav in Resources */,
 				C86F9CC225EA60C100210F64 /* OpenLong.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8EFC32C260010FA008E8CFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8EFC331260010FA008E8CFA /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,6 +884,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C8EFC32A260010FA008E8CFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8EFC333260010FA008E8CFA /* ActionViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -797,6 +899,11 @@
 			isa = PBXTargetDependency;
 			target = C8A792D125E06642009B862D /* PrivateVault */;
 			targetProxy = 2B39CE2825E33B5200E63EDD /* PBXContainerItemProxy */;
+		};
+		C8EFC339260010FA008E8CFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C8EFC32D260010FA008E8CFA /* PrivateVault Import Action */;
+			targetProxy = C8EFC338260010FA008E8CFA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -960,6 +1067,7 @@
 		C8A792E225E06642009B862D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PrivateVault App/Resources/PrivateVault.entitlements";
@@ -983,6 +1091,7 @@
 		C8A792E325E06642009B862D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PrivateVault App/Resources/PrivateVault.entitlements";
@@ -998,6 +1107,44 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.emiliopelaez.Private-Vault";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C8EFC33C260010FA008E8CFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FS696NSBK7;
+				INFOPLIST_FILE = "PrivateVault Import Action/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.emiliopelaez.Private-Vault.PrivateVault-Import-Action";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C8EFC33D260010FA008E8CFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FS696NSBK7;
+				INFOPLIST_FILE = "PrivateVault Import Action/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.emiliopelaez.Private-Vault.PrivateVault-Import-Action";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1029,6 +1176,15 @@
 			buildConfigurations = (
 				C8A792E225E06642009B862D /* Debug */,
 				C8A792E325E06642009B862D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C8EFC33E260010FA008E8CFA /* Build configuration list for PBXNativeTarget "PrivateVault Import Action" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8EFC33C260010FA008E8CFA /* Debug */,
+				C8EFC33D260010FA008E8CFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

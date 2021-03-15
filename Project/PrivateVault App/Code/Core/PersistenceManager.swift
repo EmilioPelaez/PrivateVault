@@ -20,12 +20,12 @@ class PersistenceManager: ObservableObject {
 	
 	var bag: Set<AnyCancellable> = []
 	
-	convenience init(inMemory: Bool = false) {
-		self.init(modelName: "Model", cloudKitIdentifier: "iCloud.com.emiliopelaez.Private-Vault", baseUrl: .container, inMemory: inMemory)
+	convenience init(iCloud: Bool = true, inMemory: Bool = false) {
+		self.init(modelName: "Model", cloudKitIdentifier: iCloud ? "iCloud.com.emiliopelaez.Private-Vault" : nil, baseUrl: .container, inMemory: inMemory)
 		combine()
 	}
 	
-	init(modelName: String, model: NSManagedObjectModel? = nil, storeName: String? = nil, cloudKitIdentifier: String? = nil, baseUrl: URL? = nil, readOnly: Bool = false, inMemory: Bool = false) {
+	private init(modelName: String, model: NSManagedObjectModel? = nil, storeName: String? = nil, cloudKitIdentifier: String? = nil, baseUrl: URL? = nil, readOnly: Bool = false, inMemory: Bool = false) {
 		
 		if let model = model, cloudKitIdentifier != nil {
 			self.container = NSPersistentCloudKitContainer(name: modelName, managedObjectModel: model)

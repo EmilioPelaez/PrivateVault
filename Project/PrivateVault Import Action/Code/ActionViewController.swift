@@ -5,56 +5,57 @@
 //  Created by Emilio Peláez on 15/3/21.
 //
 
-import UIKit
+import Combine
 import MobileCoreServices
+import UIKit
 
-class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
+class ActionViewController: UIViewController {
 	
-	func beginRequest(with context: NSExtensionContext) {
-		
+	enum ActionError: Error {
+		case failure
 	}
 	
-//    @IBOutlet weak var imageView: UIImageView!
-
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        // Get the item[s] we're handling from the extension context.
-//
-//        // For example, look for an image and place it into an image view.
-//        // Replace this with something appropriate for the type[s] your extension supports.
-//        var imageFound = false
-//        for item in self.extensionContext!.inputItems as! [NSExtensionItem] {
-//            for provider in item.attachments! {
-//                if provider.hasItemConformingToTypeIdentifier(kUTTypeImage as String) {
-//                    // This is an image. We'll load it, then place it in our image view.
-//                    weak var weakImageView = self.imageView
-//                    provider.loadItem(forTypeIdentifier: kUTTypeImage as String, options: nil, completionHandler: { (imageURL, error) in
-//                        OperationQueue.main.addOperation {
-//                            if let strongImageView = weakImageView {
-//                                if let imageURL = imageURL as? URL {
-//                                    strongImageView.image = UIImage(data: try! Data(contentsOf: imageURL))
-//                                }
-//                            }
-//                        }
-//                    })
-//
-//                    imageFound = true
-//                    break
-//                }
-//            }
-//
-//            if (imageFound) {
-//                // We only handle one image, so stop looking for more.
-//                break
-//            }
-//        }
-//    }
-//
-//    @IBAction func done() {
-//        // Return any edited content to the host app.
-//        // This template doesn't do anything, so we just echo the passed in items.
-//        self.extensionContext!.completeRequest(returningItems: self.extensionContext!.inputItems, completionHandler: nil)
-//    }
-
+	@IBOutlet private weak var label: UILabel!
+	@IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+	
+	private var persistence: PersistenceManager?
+	private var providers: [NSItemProvider] = []
+	
+	private var bag: Set<AnyCancellable> = []
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		guard let context = extensionContext else { return }
+		
+		let items = context.inputItems.compactMap { $0 as? NSExtensionItem }
+		let providers = items.flatMap { $0.attachments ?? [] }
+		self.providers = providers
+		
+		label.text = "Importing \(providers.count) file(s)"
+		activityIndicator.startAnimating()
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		guard !providers.isEmpty else {
+			extensionContext?.cancelRequest(withError: ActionError.failure)
+			return
+		}
+		let persistence = PersistenceManager(iCloud: false)
+		persistence.receiveItems(providers)
+		persistence.$creatingFiles
+			.filter { !$0 }
+			.dropFirst()
+			.map { _ in }
+			.sink { [weak self] in self?.didComplete() }
+			.store(in: &bag)
+		
+		self.persistence = persistence
+	}
+	
+	private func didComplete() {
+		extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+	}
 }

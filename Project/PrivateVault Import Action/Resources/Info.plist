@@ -37,8 +37,8 @@
 			<key>NSExtensionServiceTouchBarIconName</key>
 			<string>NSActionTemplate</string>
 		</dict>
-		<key>NSExtensionPrincipalClass</key>
-		<string>$(PRODUCT_MODULE_NAME).ActionRequestHandler</string>
+		<key>NSExtensionMainStoryboard</key>
+		<string>Main</string>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.ui-services</string>
 	</dict>

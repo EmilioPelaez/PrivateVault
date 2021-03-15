@@ -116,6 +116,7 @@
 		C8EFC35D26001A61008E8CFA /* VNDocumentCameraScan+PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */; };
 		C8EFC35E26001A6C008E8CFA /* URL+Filename.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599625E82D9200521F83 /* URL+Filename.swift */; };
 		C8EFC35F26001A7A008E8CFA /* CGSize+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD20125E1374F00CB4141 /* CGSize+Utilities.swift */; };
+		C8EFC36126001BAF008E8CFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8EFC36026001BAF008E8CFA /* Main.storyboard */; };
 		C8EFD1FA25E1281600CB4141 /* GalleryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */; };
 		C8EFD1FC25E128C400CB4141 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1FB25E128C400CB4141 /* DocumentPicker.swift */; };
 		C8EFD1FE25E12F6100CB4141 /* GalleryGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */; };
@@ -262,6 +263,7 @@
 		C8EFC337260010FA008E8CFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8EFC341260014E5008E8CFA /* PrivateVault Import Action.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PrivateVault Import Action.entitlements"; sourceTree = "<group>"; };
 		C8EFC3462600169F008E8CFA /* URL+Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Container.swift"; sourceTree = "<group>"; };
+		C8EFC36026001BAF008E8CFA /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGridView.swift; sourceTree = "<group>"; };
 		C8EFD1FB25E128C400CB4141 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGridCell.swift; sourceTree = "<group>"; };
@@ -603,6 +605,7 @@
 				C8EFC341260014E5008E8CFA /* PrivateVault Import Action.entitlements */,
 				C8EFC337260010FA008E8CFA /* Info.plist */,
 				C8EFC330260010FA008E8CFA /* Media.xcassets */,
+				C8EFC36026001BAF008E8CFA /* Main.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -774,6 +777,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8EFC331260010FA008E8CFA /* Media.xcassets in Resources */,
+				C8EFC36126001BAF008E8CFA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

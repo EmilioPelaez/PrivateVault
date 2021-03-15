@@ -30,7 +30,7 @@ class LockoutManager: ObservableObject {
 	}
 	
 	func lockout() {
-		let unlockDate = Date().addingTimeInterval(60 * 60 * 6)
+		let unlockDate = Date().addingTimeInterval(60 * 60 * 6 - 1)
 		var interval = unlockDate.timeIntervalSinceReferenceDate
 		withUnsafeBytes(of: &interval) { keychain[data: unlockDateKey] = Data($0) }
 		self.unlockDate = unlockDate

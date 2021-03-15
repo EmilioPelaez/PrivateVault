@@ -6,6 +6,7 @@
 //
 
 import Combine
+import KeychainAccess
 import SwiftUI
 
 class LockoutManager: ObservableObject {
@@ -18,12 +19,21 @@ class LockoutManager: ObservableObject {
 		unlockDate ?? .distantPast > Date()
 	}
 	
+	private let unlockDateKey = "unlockDateKey"
+	private let keychain = Keychain()
+	
 	init() {
-		
+		let interval = keychain[data: unlockDateKey]?.withUnsafeBytes { $0.load(as: Double.self) } as TimeInterval?
+		self.unlockDate = interval.map { Date(timeIntervalSinceReferenceDate: $0) }
+		guard self.unlockDate ?? .distantPast > Date() else { return }
+		createTimer()
 	}
 	
 	func lockout() {
-		unlockDate = Date().addingTimeInterval(60 * 60 * 6)
+		let unlockDate = Date().addingTimeInterval(60 * 60 * 6)
+		var interval = unlockDate.timeIntervalSinceReferenceDate
+		withUnsafeBytes(of: &interval) { keychain[data: unlockDateKey] = Data($0) }
+		self.unlockDate = unlockDate
 		createTimer()
 	}
 	

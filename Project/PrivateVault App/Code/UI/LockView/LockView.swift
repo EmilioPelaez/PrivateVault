@@ -26,13 +26,17 @@ struct LockView: View {
 	var maxDigits: Int { passcodeManager.passcode.count }
 	var codeIsFullyEntered: Bool { code.count == maxDigits }
 	var codeIsCorrect: Bool { code == passcodeManager.passcode }
+	var remainingAttempts: Int {
+		if lockoutManager.isLockedOut { return 0 }
+		return settings.maxAttempts - attempts
+	}
 
 	var body: some View {
 		ZStack {
 			Color(.systemBackground).ignoresSafeArea()
 			VStack(spacing: 25) {
-				AttemptsRemainingView(attemptsRemaining: settings.maxAttempts - attempts, unlockDate: lockoutManager.unlockDate)
-					.opacity(attempts > 0 ? 1.0 : 0.0)
+				AttemptsRemainingView(attemptsRemaining: remainingAttempts, unlockDate: lockoutManager.unlockDate)
+					.opacity(attempts > 0 || lockoutManager.isLockedOut ? 1.0 : 0.0)
 				InputDisplay(input: $code, codeLength: passcodeManager.passcodeLength, textColor: textColor, displayColor: displayColor)
 					.shake(incorrectAnimation, distance: 10, count: 4)
 				KeypadView(input: input, delete: delete) {
@@ -57,6 +61,7 @@ struct LockView: View {
 		switch codeState {
 		case .correct: return .green
 		case .incorrect: return .red
+		case _ where remainingAttempts == 0: return .red
 		case _: return .primary
 		}
 	}
@@ -65,6 +70,7 @@ struct LockView: View {
 		switch codeState {
 		case .correct: return .green
 		case .incorrect: return .red
+		case _ where remainingAttempts == 0: return .red
 		case _: return nil
 		}
 	}

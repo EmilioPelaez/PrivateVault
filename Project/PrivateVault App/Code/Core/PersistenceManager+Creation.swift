@@ -104,7 +104,10 @@ extension PersistenceManager {
 		}
 		guard !type.conforms(to: .url) else {
 			_ = item.loadObject(ofClass: URL.self) { [self] url, error in
-				guard let url = url else { return print(error?.localizedDescription ?? "Unknown error") }
+				guard let url = url else {
+					print(error?.localizedDescription ?? "Unknown error")
+					return completion(false)
+				}
 				storeRemoteUrl(url, completion: completion)
 			}
 			return
@@ -146,9 +149,9 @@ extension PersistenceManager {
 	private func storeItem(at url: URL, type: UTType, completion: @escaping (Bool) -> Void) {
 		if type.conforms(to: .image) {
 			storeImage(at: url, completion: completion)
-		} else if type.conforms(to: .video) || type.conforms(to: .movie) {
+		} else if type.conforms(to: .audiovisualContent) {
 			storeVideo(at: url, completion: completion)
-		} else if type.conforms(to: .fileURL) {
+		} else if type.isSupported {
 			storeFile(at: url, completion: completion)
 		} else {
 			completion(false)

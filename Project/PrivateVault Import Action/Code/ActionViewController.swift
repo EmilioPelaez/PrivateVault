@@ -6,8 +6,8 @@
 //
 
 import Combine
-import MobileCoreServices
 import UIKit
+import UniformTypeIdentifiers
 
 class ActionViewController: UIViewController {
 	
@@ -42,8 +42,14 @@ class ActionViewController: UIViewController {
 		failureContainer.isHidden = true
 		closeButton.isHidden = true
 		
-		let items = context.inputItems.compactMap { $0 as? NSExtensionItem }
-		let providers = items.flatMap { $0.attachments ?? [] }
+		let providers = context.inputItems
+			.compactMap { $0 as? NSExtensionItem }
+			.flatMap { $0.attachments ?? [] }
+			.filter {
+				$0.registeredTypeIdentifiers.compactMap(UTType.init).contains {
+					$0.isSupported
+				}
+			}
 		self.providers = providers
 		
 		importingLabel.text = "Importing \(providers.count) file(s)"
@@ -54,7 +60,7 @@ class ActionViewController: UIViewController {
 		super.viewDidAppear(animated)
 		
 		guard !providers.isEmpty else { return }
-		let persistence = PersistenceManager(iCloud: false)
+		let persistence = PersistenceManager(iCloud: false, operationLimit: 1)
 		persistence.receiveItems(providers)
 		persistence.$creatingFiles
 			.filter { !$0 }

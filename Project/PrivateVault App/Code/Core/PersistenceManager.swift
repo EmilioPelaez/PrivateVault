@@ -20,8 +20,9 @@ class PersistenceManager: ObservableObject {
 	
 	var bag: Set<AnyCancellable> = []
 	
-	convenience init(iCloud: Bool = true, inMemory: Bool = false) {
+	convenience init(iCloud: Bool = true, inMemory: Bool = false, operationLimit: Int = 4) {
 		self.init(modelName: "Model", cloudKitIdentifier: iCloud ? "iCloud.com.emiliopelaez.Private-Vault" : nil, baseUrl: .container, inMemory: inMemory)
+		operationQueue.maxConcurrentOperationCount = max(1, operationLimit)
 		combine()
 	}
 	

@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Store Securely</string>
+	<string>Store in Vault</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -25,11 +25,18 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>NSExtensionActivationRule</key>
-			<string>TRUEPREDICATE</string>
+			<string>SUBQUERY (extensionItems, $extensionItem,
+								SUBQUERY ($extensionItem.attachments, $attachment,
+									ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.audiovisual-content&quot; ||
+									ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.image&quot; ||
+									ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;public.url&quot; ||
+									ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO &quot;com.adobe.pdf&quot;
+								).@count &gt; 0
+							).@count &gt; 0</string>
 			<key>NSExtensionServiceAllowsFinderPreviewItem</key>
-			<true/>
+			<false/>
 			<key>NSExtensionServiceAllowsTouchBarItem</key>
-			<true/>
+			<false/>
 			<key>NSExtensionServiceFinderPreviewIconName</key>
 			<string>NSActionTemplate</string>
 			<key>NSExtensionServiceTouchBarBezelColorName</key>

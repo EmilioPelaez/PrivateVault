@@ -1,5 +1,5 @@
 //
-//  PersistenceController+Creation.swift
+//  PersistenceManager+Creation.swift
 //  PrivateVault
 //
 //  Created by Emilio Peláez on 25/2/21.
@@ -12,8 +12,7 @@ import QuickLook
 import UIKit
 import VisionKit
 
-extension PersistenceController {
-	
+extension PersistenceManager {
 	var previewSize: CGFloat {
 		min(UIScreen.main.bounds.width / 2, 500)
 	}
@@ -24,7 +23,8 @@ extension PersistenceController {
 	
 	func receiveImage(_ image: UIImage, name: String, fileExtension: String) {
 		addOperation { [self] complete in
-			storeImage(image: image, name: name, fileExtension: fileExtension) { _ in
+			storeImage(image: image, name: name, fileExtension: fileExtension) {
+				processResult($0)
 				complete()
 			}
 		}
@@ -32,7 +32,8 @@ extension PersistenceController {
 	
 	func receiveScan(_ scan: VNDocumentCameraScan) {
 		addOperation { [self] complete in
-			storeScan(scan, name: "Scanned Document", fileExtension: "pdf") { _ in
+			storeScan(scan, name: "Scanned Document", fileExtension: "pdf") {
+				processResult($0)
 				complete()
 			}
 		}
@@ -41,7 +42,8 @@ extension PersistenceController {
 	func receiveURLs(_ urls: [URL]) {
 		urls.forEach { [self] url in
 			addOperation { complete in
-				storeItem(at: url) { _ in
+				storeItem(at: url) {
+					processResult($0)
 					complete()
 				}
 			}
@@ -51,14 +53,15 @@ extension PersistenceController {
 	func receiveItems(_ items: [NSItemProvider]) {
 		items.forEach { [self] item in
 			addOperation { complete in
-				storeItem(item) { _ in
+				storeItem(item) {
+					processResult($0)
 					complete()
 				}
 			}
 		}
 	}
 	
-	private func storeImage(image: UIImage, name: String, fileExtension: String, completion: @escaping (Bool) -> Void) {
+	private func storeImage(image: UIImage, name: String, fileExtension: String, completion: @escaping (Result<Void, ImportError>) -> Void) {
 		let image = image.fixOrientation()
 		let data: Data?
 		if fileExtension == "png" {
@@ -68,44 +71,51 @@ extension PersistenceController {
 		}
 		let previewData = image.square(previewSize)?.jpegData(compressionQuality: 0.85)
 		guard let data = data, let previewData = previewData else {
-			return DispatchQueue.main.async { completion(false) }
+			return DispatchQueue.main.async {
+				completion(.failure(.cantLoadPDF))
+			}
 		}
 		DispatchQueue.main.async { [self] in
 			_ = StoredItem(context: context, data: data, previewData: previewData, type: .image, name: name, fileExtension: fileExtension)
 			save()
-			completion(true)
+			completion(.success(()))
 		}
 	}
 	
-	private func storeScan(_ scan: VNDocumentCameraScan, name: String, fileExtension: String, completion: @escaping (Bool) -> Void) {
+	private func storeScan(_ scan: VNDocumentCameraScan, name: String, fileExtension: String, completion: @escaping (Result<Void, ImportError>) -> Void) {
 		let pdf = scan.generatePDF()
 		let preview = scan.imageOfPage(at: 0).fixOrientation()
 		let previewData = preview.resized(toFit: CGSize(side: previewSize))?.jpegData(compressionQuality: 0.85)
 		let data = pdf.dataRepresentation()
 		guard let data = data, let previewData = previewData else {
-			return DispatchQueue.main.async { completion(false) }
+			return DispatchQueue.main.async {
+				completion(.failure(.cantLoadImage))
+			}
 		}
 		DispatchQueue.main.async { [self] in
 			_ = StoredItem(context: context, data: data, previewData: previewData, type: .file, name: name, fileExtension: fileExtension)
 			save()
-			completion(true)
+			completion(.success(()))
 		}
 	}
 	
-	private func storeItem(at url: URL, completion: @escaping (Bool) -> Void) {
+	private func storeItem(at url: URL, completion: @escaping (Result<Void, ImportError>) -> Void) {
 		guard let type = (try? url.resourceValues(forKeys: [.typeIdentifierKey]).typeIdentifier).flatMap(UTType.init) else {
-			return completion(false)
+			return completion(.failure(.cantReadFile))
 		}
 		storeItem(at: url, type: type, completion: completion)
 	}
 	
-	private func storeItem(_ item: NSItemProvider, completion: @escaping (Bool) -> Void) {
+	private func storeItem(_ item: NSItemProvider, completion: @escaping (Result<Void, ImportError>) -> Void) {
 		guard let typeIdentifier = item.registeredTypeIdentifiers.first, let type = UTType(typeIdentifier) else {
-			return completion(false)
+			return completion(.failure(.cantReadFile))
 		}
 		guard !type.conforms(to: .url) else {
 			_ = item.loadObject(ofClass: URL.self) { [self] url, error in
-				guard let url = url else { return print(error?.localizedDescription ?? "Unknown error") }
+				guard let url = url else {
+					print(error?.localizedDescription ?? "Unknown error")
+					return completion(.failure(.cantLoadURL))
+				}
 				storeRemoteUrl(url, completion: completion)
 			}
 			return
@@ -113,7 +123,7 @@ extension PersistenceController {
 		item.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { [self] url, error in
 			guard let url = url else {
 				print(error?.localizedDescription ?? "Unkown error")
-				return completion(false)
+				return completion(.failure(.cantReadFile))
 			}
 			guard FileManager.default.fileExists(atPath: url.absoluteString) else {
 				return storeItemFallback(item, url: url, type: type, completion: completion)
@@ -123,11 +133,11 @@ extension PersistenceController {
 	}
 	
 	//	If NSItemProvider fails to provide a file at the given URL, but can provide the data, 
-	private func storeItemFallback(_ item: NSItemProvider, url: URL, type: UTType, completion: @escaping (Bool) -> Void) {
+	private func storeItemFallback(_ item: NSItemProvider, url: URL, type: UTType, completion: @escaping (Result<Void, ImportError>) -> Void) {
 		item.loadDataRepresentation(forTypeIdentifier: type.identifier) { [self] data, error in
 			guard let data = data else {
 				print(error?.localizedDescription ?? "Unkown error")
-				return completion(false)
+				return completion(.failure(.cantReadFile))
 			}
 			do {
 				let folder = FileManager.default.temporaryDirectory.appendingPathComponent("temp")
@@ -139,33 +149,35 @@ extension PersistenceController {
 				storeItem(at: newURL, type: type, completion: completion)
 			} catch {
 				print("Error", error)
-				completion(false)
+				completion(.failure(.cantReadFile))
 			}
 		}
 	}
 	
-	private func storeItem(at url: URL, type: UTType, completion: @escaping (Bool) -> Void) {
+	private func storeItem(at url: URL, type: UTType, completion: @escaping (Result<Void, ImportError>) -> Void) {
 		if type.conforms(to: .image) {
 			storeImage(at: url, completion: completion)
-		} else if type.conforms(to: .video) || type.conforms(to: .movie) {
+		} else if type.conforms(to: .audiovisualContent) {
 			storeVideo(at: url, completion: completion)
-		} else if type.conforms(to: .fileURL) {
+		} else if type.isSupported {
 			storeFile(at: url, completion: completion)
+		} else if type.identifier == "com.apple.live-photo-bundle" {
+			completion(.failure(.livePhotoUnsupported))
 		} else {
-			completion(false)
+			completion(.failure(.unsupportedFile))
 		}
 	}
 	
-	private func storeImage(at url: URL, completion: @escaping (Bool) -> Void) {
+	private func storeImage(at url: URL, completion: @escaping (Result<Void, ImportError>) -> Void) {
 		guard let data = try? Data(contentsOf: url), let image = UIImage(data: data) else {
-			return completion(false)
+			return completion(.failure(.cantLoadImage))
 		}
 		storeImage(image: image, name: url.filename, fileExtension: url.pathExtension, completion: completion)
 	}
 	
-	private func storeVideo(at url: URL, completion: @escaping (Bool) -> Void) {
+	private func storeVideo(at url: URL, completion: @escaping (Result<Void, ImportError>) -> Void) {
 		guard let data = try? Data(contentsOf: url) else {
-			return completion(false)
+			return completion(.failure(.cantLoadVideo))
 		}
 		let previewGenerator = AVAssetImageGenerator(asset: AVAsset(url: url))
 		previewGenerator.appliesPreferredTrackTransform = true
@@ -174,32 +186,32 @@ extension PersistenceController {
 		let previewData = image?.pngData()
 		DispatchQueue.main.async { [self] in
 			_ = StoredItem(context: context, data: data, previewData: previewData, type: .video, name: url.filename, fileExtension: url.pathExtension)
-			completion(true)
+			completion(.success(()))
 		}
 	}
 	
-	private func storeFile(at url: URL, completion: @escaping (Bool) -> Void) {
+	private func storeFile(at url: URL, completion: @escaping (Result<Void, ImportError>) -> Void) {
 		guard let data = try? Data(contentsOf: url) else {
-			return completion(false)
+			return completion(.failure(.cantReadFile))
 		}
 		let request = QLThumbnailGenerator.Request(fileAt: url, size: CGSize(side: previewSize), scale: 2, representationTypes: [.thumbnail])
 		QLThumbnailGenerator.shared.generateBestRepresentation(for: request) { [self] representation, _ in
 			let previewData = representation?.uiImage.pngData()
 			DispatchQueue.main.async {
 				_ = StoredItem(context: context, data: data, previewData: previewData, type: .file, name: url.filename, fileExtension: url.pathExtension)
-				completion(true)
+				completion(.success(()))
 			}
 		}
 	}
 	
-	private func storeRemoteUrl(_ url: URL, completion: @escaping (Bool) -> Void) {
+	private func storeRemoteUrl(_ url: URL, completion: @escaping (Result<Void, ImportError>) -> Void) {
 		DispatchQueue.main.async {
 			let provider = LPMetadataProvider()
 			provider.startFetchingMetadata(for: url) { [self] metadata, error in
 				func createItem(name: String? = nil, preview: Data? = nil) {
 					DispatchQueue.main.async {
 						_ = StoredItem(context: context, url: url, previewData: preview, name: name ?? url.absoluteString)
-						completion(true)
+						completion(.success(()))
 					}
 				}
 				guard let metadata = metadata else { return createItem() }
@@ -213,6 +225,12 @@ extension PersistenceController {
 					createItem(name: name, preview: previewData)
 				}
 			}
+		}
+	}
+	
+	private func processResult(_ result: Result<Void, ImportError>) {
+		if case .failure(let error) = result {
+			self.importErrors.append(error)
 		}
 	}
 }

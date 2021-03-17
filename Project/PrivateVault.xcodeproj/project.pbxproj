@@ -28,8 +28,8 @@
 		468A75E125E15B9300B87597 /* SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75E025E15B9300B87597 /* SoundEffect.swift */; };
 		46F26BEC25E19C6700070858 /* AttemptsRemainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */; };
 		46F26BEF25E19C8600070858 /* LockedOutModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F26BEE25E19C8600070858 /* LockedOutModifier.swift */; };
-		C839598F25E7A69300521F83 /* PersistenceController+ContextOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839598E25E7A69300521F83 /* PersistenceController+ContextOperations.swift */; };
-		C839599125E7A6AF00521F83 /* PersistenceController+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599025E7A6AF00521F83 /* PersistenceController+Creation.swift */; };
+		C839598F25E7A69300521F83 /* PersistenceManager+ContextOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839598E25E7A69300521F83 /* PersistenceManager+ContextOperations.swift */; };
+		C839599125E7A6AF00521F83 /* PersistenceManager+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599025E7A6AF00521F83 /* PersistenceManager+Creation.swift */; };
 		C839599325E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */; };
 		C839599525E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599425E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift */; };
 		C839599725E82D9200521F83 /* URL+Filename.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599625E82D9200521F83 /* URL+Filename.swift */; };
@@ -96,13 +96,38 @@
 		C8A792DA25E06642009B862D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A792D925E06642009B862D /* Assets.xcassets */; };
 		C8A792DD25E06642009B862D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A792DC25E06642009B862D /* Preview Assets.xcassets */; };
 		C8A792ED25E06D75009B862D /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A792EC25E06D75009B862D /* GalleryView.swift */; };
+		C8EFC331260010FA008E8CFA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8EFC330260010FA008E8CFA /* Media.xcassets */; };
+		C8EFC333260010FA008E8CFA /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFC332260010FA008E8CFA /* ActionViewController.swift */; };
+		C8EFC33A260010FA008E8CFA /* PrivateVault Import Action.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C8EFC32E260010FA008E8CFA /* PrivateVault Import Action.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C8EFC3472600169F008E8CFA /* URL+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFC3462600169F008E8CFA /* URL+Container.swift */; };
+		C8EFC34E26001A11008E8CFA /* PersistenceManager+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599025E7A6AF00521F83 /* PersistenceManager+Creation.swift */; };
+		C8EFC34F26001A11008E8CFA /* PersistenceManager+ContextOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839598E25E7A69300521F83 /* PersistenceManager+ContextOperations.swift */; };
+		C8EFC35026001A11008E8CFA /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22825E14BDA00CB4141 /* PersistenceManager.swift */; };
+		C8EFC35126001A19008E8CFA /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959A825E8F31500521F83 /* AsynchronousOperation.swift */; };
+		C8EFC35226001A19008E8CFA /* ObservableOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83959AA25E8F5A200521F83 /* ObservableOperationQueue.swift */; };
+		C8EFC35326001A22008E8CFA /* URL+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFC3462600169F008E8CFA /* URL+Container.swift */; };
+		C8EFC35426001A2A008E8CFA /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1FF25E1373F00CB4141 /* UIImage+Resize.swift */; };
+		C8EFC35526001A37008E8CFA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22425E14B2B00CB4141 /* Model.xcdatamodeld */; };
+		C8EFC35726001A46008E8CFA /* StoredItem+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22C25E15BDF00CB4141 /* StoredItem+Creation.swift */; };
+		C8EFC35826001A46008E8CFA /* StoredItem+DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22E25E15D1D00CB4141 /* StoredItem+DataType.swift */; };
+		C8EFC35A26001A46008E8CFA /* StoredItem+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22A25E159EA00CB4141 /* StoredItem+Properties.swift */; };
+		C8EFC35B26001A46008E8CFA /* Tag+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89C9DEC25E19E44003505B9 /* Tag+Comparable.swift */; };
+		C8EFC35C26001A46008E8CFA /* Tag+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89C9DE625E197C5003505B9 /* Tag+Creation.swift */; };
+		C8EFC35D26001A61008E8CFA /* VNDocumentCameraScan+PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */; };
+		C8EFC35E26001A6C008E8CFA /* URL+Filename.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599625E82D9200521F83 /* URL+Filename.swift */; };
+		C8EFC35F26001A7A008E8CFA /* CGSize+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD20125E1374F00CB4141 /* CGSize+Utilities.swift */; };
+		C8EFC36126001BAF008E8CFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8EFC36026001BAF008E8CFA /* Main.storyboard */; };
+		C8EFC36326016D5A008E8CFA /* UTType+Supported.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFC36226016D5A008E8CFA /* UTType+Supported.swift */; };
+		C8EFC36426016E00008E8CFA /* UTType+Supported.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFC36226016D5A008E8CFA /* UTType+Supported.swift */; };
+		C8EFC3662602B967008E8CFA /* ImportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFC3652602B967008E8CFA /* ImportError.swift */; };
+		C8EFC3672602B976008E8CFA /* ImportError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFC3652602B967008E8CFA /* ImportError.swift */; };
 		C8EFD1FA25E1281600CB4141 /* GalleryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */; };
 		C8EFD1FC25E128C400CB4141 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1FB25E128C400CB4141 /* DocumentPicker.swift */; };
 		C8EFD1FE25E12F6100CB4141 /* GalleryGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */; };
 		C8EFD20025E1373F00CB4141 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD1FF25E1373F00CB4141 /* UIImage+Resize.swift */; };
 		C8EFD20225E1374F00CB4141 /* CGSize+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD20125E1374F00CB4141 /* CGSize+Utilities.swift */; };
 		C8EFD22625E14B2B00CB4141 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22425E14B2B00CB4141 /* Model.xcdatamodeld */; };
-		C8EFD22925E14BDA00CB4141 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22825E14BDA00CB4141 /* PersistenceController.swift */; };
+		C8EFD22925E14BDA00CB4141 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22825E14BDA00CB4141 /* PersistenceManager.swift */; };
 		C8EFD22B25E159EA00CB4141 /* StoredItem+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22A25E159EA00CB4141 /* StoredItem+Properties.swift */; };
 		C8EFD22D25E15BDF00CB4141 /* StoredItem+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22C25E15BDF00CB4141 /* StoredItem+Creation.swift */; };
 		C8EFD22F25E15D1D00CB4141 /* StoredItem+DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFD22E25E15D1D00CB4141 /* StoredItem+DataType.swift */; };
@@ -119,7 +144,28 @@
 			remoteGlobalIDString = C8A792D125E06642009B862D;
 			remoteInfo = PrivateVault;
 		};
+		C8EFC338260010FA008E8CFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8A792CA25E06642009B862D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C8EFC32D260010FA008E8CFA;
+			remoteInfo = "PrivateVault Import Action";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C8EFC33B260010FA008E8CFA /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C8EFC33A260010FA008E8CFA /* PrivateVault Import Action.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2B081A7025E0847600F9D522 /* QuickLookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickLookView.swift; sourceTree = "<group>"; };
@@ -145,8 +191,8 @@
 		468A75E025E15B9300B87597 /* SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SoundEffect.swift; path = "PrivateVault App/Code/UI/SoundEffect.swift"; sourceTree = SOURCE_ROOT; };
 		46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttemptsRemainingView.swift; sourceTree = "<group>"; };
 		46F26BEE25E19C8600070858 /* LockedOutModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockedOutModifier.swift; sourceTree = "<group>"; };
-		C839598E25E7A69300521F83 /* PersistenceController+ContextOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+ContextOperations.swift"; sourceTree = "<group>"; };
-		C839599025E7A6AF00521F83 /* PersistenceController+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Creation.swift"; sourceTree = "<group>"; };
+		C839598E25E7A69300521F83 /* PersistenceManager+ContextOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceManager+ContextOperations.swift"; sourceTree = "<group>"; };
+		C839599025E7A6AF00521F83 /* PersistenceManager+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceManager+Creation.swift"; sourceTree = "<group>"; };
 		C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VNDocumentCameraScan+PDF.swift"; sourceTree = "<group>"; };
 		C839599425E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSItemProvider+LoadPhoto.swift"; sourceTree = "<group>"; };
 		C839599625E82D9200521F83 /* URL+Filename.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Filename.swift"; sourceTree = "<group>"; };
@@ -215,13 +261,22 @@
 		C8A792DC25E06642009B862D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C8A792DE25E06642009B862D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8A792EC25E06D75009B862D /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
+		C8EFC32E260010FA008E8CFA /* PrivateVault Import Action.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PrivateVault Import Action.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8EFC330260010FA008E8CFA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		C8EFC332260010FA008E8CFA /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
+		C8EFC337260010FA008E8CFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C8EFC341260014E5008E8CFA /* PrivateVault Import Action.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "PrivateVault Import Action.entitlements"; sourceTree = "<group>"; };
+		C8EFC3462600169F008E8CFA /* URL+Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Container.swift"; sourceTree = "<group>"; };
+		C8EFC36026001BAF008E8CFA /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C8EFC36226016D5A008E8CFA /* UTType+Supported.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTType+Supported.swift"; sourceTree = "<group>"; };
+		C8EFC3652602B967008E8CFA /* ImportError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportError.swift; sourceTree = "<group>"; };
 		C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGridView.swift; sourceTree = "<group>"; };
 		C8EFD1FB25E128C400CB4141 /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
 		C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGridCell.swift; sourceTree = "<group>"; };
 		C8EFD1FF25E1373F00CB4141 /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		C8EFD20125E1374F00CB4141 /* CGSize+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Utilities.swift"; sourceTree = "<group>"; };
 		C8EFD22525E14B2B00CB4141 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		C8EFD22825E14BDA00CB4141 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		C8EFD22825E14BDA00CB4141 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		C8EFD22A25E159EA00CB4141 /* StoredItem+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredItem+Properties.swift"; sourceTree = "<group>"; };
 		C8EFD22C25E15BDF00CB4141 /* StoredItem+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredItem+Creation.swift"; sourceTree = "<group>"; };
 		C8EFD22E25E15D1D00CB4141 /* StoredItem+DataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredItem+DataType.swift"; sourceTree = "<group>"; };
@@ -244,6 +299,13 @@
 			files = (
 				C89A5D6A25FA29A0007F8E8B /* KeychainAccess in Frameworks */,
 				C86F9CC925EA667F00210F64 /* CloudKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8EFC32B260010FA008E8CFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,13 +411,15 @@
 				2B39CDBB25E1BEAB00E63EDD /* ContentMode+description.swift */,
 				C868FD6725E30B23005A3EA9 /* LAContext+Shared.swift */,
 				C839599425E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift */,
+				C8FCB7B425EED5B50002D386 /* Publisher+Actions.swift */,
 				2B39CDC125E1C6C500E63EDD /* String+Capping.swift */,
 				C88ACB1825E10B450064C160 /* UIDevice+iPad.swift */,
 				C8EFD1FF25E1373F00CB4141 /* UIImage+Resize.swift */,
+				C8EFC3462600169F008E8CFA /* URL+Container.swift */,
 				C839599625E82D9200521F83 /* URL+Filename.swift */,
+				C8EFC36226016D5A008E8CFA /* UTType+Supported.swift */,
 				2B081A7325E085FA00F9D522 /* View+Navigation.swift */,
 				C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */,
-				C8FCB7B425EED5B50002D386 /* Publisher+Actions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -434,6 +498,7 @@
 			isa = PBXGroup;
 			children = (
 				C8A792D425E06642009B862D /* PrivateVault App */,
+				C8EFC32F260010FA008E8CFA /* PrivateVault Import Action */,
 				2B39CE2425E33B5200E63EDD /* PrivateVaultTests */,
 				C87C772325FE013700EE6362 /* Config */,
 				C8A792D325E06642009B862D /* Products */,
@@ -447,6 +512,7 @@
 			children = (
 				C8A792D225E06642009B862D /* PrivateVault.app */,
 				2B39CE2325E33B5200E63EDD /* PrivateVaultTests.xctest */,
+				C8EFC32E260010FA008E8CFA /* PrivateVault Import Action.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -513,14 +579,43 @@
 		C8A792EA25E066B2009B862D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C89C9DE425E196A4003505B9 /* PreviewEnvironment.swift */,
-				2B39CD8625E18B6900E63EDD /* UserSettings.swift */,
+				C8EFC3652602B967008E8CFA /* ImportError.swift */,
 				C83959B225E9AE6900521F83 /* ItemFilter.swift */,
+				C89C9DE425E196A4003505B9 /* PreviewEnvironment.swift */,
 				C89A5D6F25FAE220007F8E8B /* PreviewSelection.swift */,
 				C87C771C25FB8A2C00EE6362 /* SortMethod.swift */,
+				2B39CD8625E18B6900E63EDD /* UserSettings.swift */,
 				C89C9DF225E1E6F9003505B9 /* Extensions */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C8EFC32F260010FA008E8CFA /* PrivateVault Import Action */ = {
+			isa = PBXGroup;
+			children = (
+				C8EFC33F260014A5008E8CFA /* Code */,
+				C8EFC340260014AB008E8CFA /* Resources */,
+			);
+			path = "PrivateVault Import Action";
+			sourceTree = "<group>";
+		};
+		C8EFC33F260014A5008E8CFA /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				C8EFC332260010FA008E8CFA /* ActionViewController.swift */,
+			);
+			path = Code;
+			sourceTree = "<group>";
+		};
+		C8EFC340260014AB008E8CFA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C8EFC337260010FA008E8CFA /* Info.plist */,
+				C8EFC36026001BAF008E8CFA /* Main.storyboard */,
+				C8EFC330260010FA008E8CFA /* Media.xcassets */,
+				C8EFC341260014E5008E8CFA /* PrivateVault Import Action.entitlements */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		C8EFD20325E13D0E00CB4141 /* Views */ = {
@@ -547,9 +642,9 @@
 				C8FCB7B225EE59D80002D386 /* DiskStore.swift */,
 				C87C772825FF51A200EE6362 /* LockoutManager.swift */,
 				C89A5D6B25FA29AD007F8E8B /* PasscodeManager.swift */,
-				C8EFD22825E14BDA00CB4141 /* PersistenceController.swift */,
-				C839598E25E7A69300521F83 /* PersistenceController+ContextOperations.swift */,
-				C839599025E7A6AF00521F83 /* PersistenceController+Creation.swift */,
+				C8EFD22825E14BDA00CB4141 /* PersistenceManager.swift */,
+				C839598E25E7A69300521F83 /* PersistenceManager+ContextOperations.swift */,
+				C839599025E7A6AF00521F83 /* PersistenceManager+Creation.swift */,
 				C83959A025E85DAB00521F83 /* PreviewCache.swift */,
 			);
 			path = Core;
@@ -584,10 +679,12 @@
 				2B39CDFA25E327EF00E63EDD /* SwiftLint */,
 				C8A792CF25E06642009B862D /* Frameworks */,
 				C8A792D025E06642009B862D /* Resources */,
+				C8EFC33B260010FA008E8CFA /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C8EFC339260010FA008E8CFA /* PBXTargetDependency */,
 			);
 			name = PrivateVault;
 			packageProductDependencies = (
@@ -597,13 +694,30 @@
 			productReference = C8A792D225E06642009B862D /* PrivateVault.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C8EFC32D260010FA008E8CFA /* PrivateVault Import Action */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C8EFC33E260010FA008E8CFA /* Build configuration list for PBXNativeTarget "PrivateVault Import Action" */;
+			buildPhases = (
+				C8EFC32A260010FA008E8CFA /* Sources */,
+				C8EFC32B260010FA008E8CFA /* Frameworks */,
+				C8EFC32C260010FA008E8CFA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "PrivateVault Import Action";
+			productName = "PrivateVault Import Action";
+			productReference = C8EFC32E260010FA008E8CFA /* PrivateVault Import Action.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		C8A792CA25E06642009B862D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					2B39CE2225E33B5200E63EDD = {
@@ -611,6 +725,9 @@
 						TestTargetID = C8A792D125E06642009B862D;
 					};
 					C8A792D125E06642009B862D = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					C8EFC32D260010FA008E8CFA = {
 						CreatedOnToolsVersion = 12.5;
 					};
 				};
@@ -632,6 +749,7 @@
 			projectRoot = "";
 			targets = (
 				C8A792D125E06642009B862D /* PrivateVault */,
+				C8EFC32D260010FA008E8CFA /* PrivateVault Import Action */,
 				2B39CE2225E33B5200E63EDD /* PrivateVaultTests */,
 			);
 		};
@@ -659,6 +777,15 @@
 				C86F9CBF25EA604400210F64 /* Open.wav in Resources */,
 				C86F9CBB25EA5AE900210F64 /* Denied.wav in Resources */,
 				C86F9CC225EA60C100210F64 /* OpenLong.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8EFC32C260010FA008E8CFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8EFC331260010FA008E8CFA /* Media.xcassets in Resources */,
+				C8EFC36126001BAF008E8CFA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,7 +826,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C83959C025E9C05F00521F83 /* GalleryView+Sheet.swift in Sources */,
-				C839599125E7A6AF00521F83 /* PersistenceController+Creation.swift in Sources */,
+				C839599125E7A6AF00521F83 /* PersistenceManager+Creation.swift in Sources */,
 				C88ACB1925E10B450064C160 /* UIDevice+iPad.swift in Sources */,
 				468A75E125E15B9300B87597 /* SoundEffect.swift in Sources */,
 				C8EFD20225E1374F00CB4141 /* CGSize+Utilities.swift in Sources */,
@@ -724,6 +851,7 @@
 				C8EFD22B25E159EA00CB4141 /* StoredItem+Properties.swift in Sources */,
 				C86F9CD125ED99C100210F64 /* ColorButton.swift in Sources */,
 				C89C9DE525E196A5003505B9 /* PreviewEnvironment.swift in Sources */,
+				C8EFC36426016E00008E8CFA /* UTType+Supported.swift in Sources */,
 				2B39CE0425E32B8100E63EDD /* CreatorRow.swift in Sources */,
 				C868FD6125E2AFA5005A3EA9 /* SetPasscodeView.swift in Sources */,
 				C83959A525E85FFA00521F83 /* ItemPreview.swift in Sources */,
@@ -738,6 +866,7 @@
 				C839599525E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift in Sources */,
 				C87C772725FE024900EE6362 /* SettingsPrivacyView.swift in Sources */,
 				C89A5D6E25FADCCC007F8E8B /* SafariView.swift in Sources */,
+				C8EFC3672602B976008E8CFA /* ImportError.swift in Sources */,
 				C86F9CCD25ED8BAB00210F64 /* ItemSelectionView.swift in Sources */,
 				C83959BC25E9BFE700521F83 /* GalleryView+Alerts.swift in Sources */,
 				C83959B825E9B17C00521F83 /* FiltersView.swift in Sources */,
@@ -749,14 +878,14 @@
 				C8FCB7B725EF9BD80002D386 /* ShareSheet.swift in Sources */,
 				2B39CDAC25E1A05500E63EDD /* DocumentScanner.swift in Sources */,
 				C83959A125E85DAB00521F83 /* PreviewCache.swift in Sources */,
-				C8EFD22925E14BDA00CB4141 /* PersistenceController.swift in Sources */,
+				C8EFD22925E14BDA00CB4141 /* PersistenceManager.swift in Sources */,
 				C89C9DDD25E190C4003505B9 /* FilteredGalleryView.swift in Sources */,
 				C839599725E82D9200521F83 /* URL+Filename.swift in Sources */,
 				C839599F25E8573600521F83 /* BlankPreview.swift in Sources */,
 				2B39CDBC25E1BEAB00E63EDD /* ContentMode+description.swift in Sources */,
 				C83959AB25E8F5A200521F83 /* ObservableOperationQueue.swift in Sources */,
 				C89C9DDB25E17B98003505B9 /* ManageTagsView.swift in Sources */,
-				C839598F25E7A69300521F83 /* PersistenceController+ContextOperations.swift in Sources */,
+				C839598F25E7A69300521F83 /* PersistenceManager+ContextOperations.swift in Sources */,
 				C8A792D625E06642009B862D /* PrivateVaultApp.swift in Sources */,
 				C839599325E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift in Sources */,
 				C83959C225E9C07D00521F83 /* GalleryView+Items.swift in Sources */,
@@ -770,6 +899,7 @@
 				C87C772925FF51A200EE6362 /* LockoutManager.swift in Sources */,
 				C83959A925E8F31500521F83 /* AsynchronousOperation.swift in Sources */,
 				2B39CDC225E1C6C500E63EDD /* String+Capping.swift in Sources */,
+				C8EFC3472600169F008E8CFA /* URL+Container.swift in Sources */,
 				C89C9DD825E1773E003505B9 /* EmptyGalleryView.swift in Sources */,
 				C83959B325E9AE6900521F83 /* ItemFilter.swift in Sources */,
 				C8FCB7B325EE59D80002D386 /* DiskStore.swift in Sources */,
@@ -790,6 +920,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C8EFC32A260010FA008E8CFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8EFC34F26001A11008E8CFA /* PersistenceManager+ContextOperations.swift in Sources */,
+				C8EFC34E26001A11008E8CFA /* PersistenceManager+Creation.swift in Sources */,
+				C8EFC3662602B967008E8CFA /* ImportError.swift in Sources */,
+				C8EFC35D26001A61008E8CFA /* VNDocumentCameraScan+PDF.swift in Sources */,
+				C8EFC35126001A19008E8CFA /* AsynchronousOperation.swift in Sources */,
+				C8EFC35B26001A46008E8CFA /* Tag+Comparable.swift in Sources */,
+				C8EFC36326016D5A008E8CFA /* UTType+Supported.swift in Sources */,
+				C8EFC35326001A22008E8CFA /* URL+Container.swift in Sources */,
+				C8EFC333260010FA008E8CFA /* ActionViewController.swift in Sources */,
+				C8EFC35526001A37008E8CFA /* Model.xcdatamodeld in Sources */,
+				C8EFC35826001A46008E8CFA /* StoredItem+DataType.swift in Sources */,
+				C8EFC35C26001A46008E8CFA /* Tag+Creation.swift in Sources */,
+				C8EFC35426001A2A008E8CFA /* UIImage+Resize.swift in Sources */,
+				C8EFC35A26001A46008E8CFA /* StoredItem+Properties.swift in Sources */,
+				C8EFC35E26001A6C008E8CFA /* URL+Filename.swift in Sources */,
+				C8EFC35226001A19008E8CFA /* ObservableOperationQueue.swift in Sources */,
+				C8EFC35026001A11008E8CFA /* PersistenceManager.swift in Sources */,
+				C8EFC35F26001A7A008E8CFA /* CGSize+Utilities.swift in Sources */,
+				C8EFC35726001A46008E8CFA /* StoredItem+Creation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -797,6 +953,11 @@
 			isa = PBXTargetDependency;
 			target = C8A792D125E06642009B862D /* PrivateVault */;
 			targetProxy = 2B39CE2825E33B5200E63EDD /* PBXContainerItemProxy */;
+		};
+		C8EFC339260010FA008E8CFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C8EFC32D260010FA008E8CFA /* PrivateVault Import Action */;
+			targetProxy = C8EFC338260010FA008E8CFA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -960,6 +1121,7 @@
 		C8A792E225E06642009B862D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PrivateVault App/Resources/PrivateVault.entitlements";
@@ -983,6 +1145,7 @@
 		C8A792E325E06642009B862D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "PrivateVault App/Resources/PrivateVault.entitlements";
@@ -998,6 +1161,50 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.emiliopelaez.Private-Vault";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C8EFC33C260010FA008E8CFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = ExtensionIcon;
+				CODE_SIGN_ENTITLEMENTS = "PrivateVault Import Action/Resources/PrivateVault Import Action.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FS696NSBK7;
+				INFOPLIST_FILE = "PrivateVault Import Action/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.emiliopelaez.Private-Vault.PrivateVault-Import-Action";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C8EFC33D260010FA008E8CFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = ExtensionIcon;
+				CODE_SIGN_ENTITLEMENTS = "PrivateVault Import Action/Resources/PrivateVault Import Action.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FS696NSBK7;
+				INFOPLIST_FILE = "PrivateVault Import Action/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.emiliopelaez.Private-Vault.PrivateVault-Import-Action";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1029,6 +1236,15 @@
 			buildConfigurations = (
 				C8A792E225E06642009B862D /* Debug */,
 				C8A792E325E06642009B862D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C8EFC33E260010FA008E8CFA /* Build configuration list for PBXNativeTarget "PrivateVault Import Action" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8EFC33C260010FA008E8CFA /* Debug */,
+				C8EFC33D260010FA008E8CFA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

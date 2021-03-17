@@ -9,14 +9,14 @@ import CoreData
 import UIKit
 
 struct PreviewEnvironment {
-	let controller: PersistenceController
+	let controller: PersistenceManager
 	let items: [StoredItem]
 	let item: StoredItem
 	let tags: [Tag]
 	var context: NSManagedObjectContext { controller.container.viewContext }
 
 	init() {
-		let controller = PersistenceController(inMemory: true)
+		let controller = PersistenceManager(inMemory: true)
 		let viewContext = controller.container.viewContext
 
 		let items = (1...6)

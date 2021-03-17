@@ -19,8 +19,10 @@ struct ItemPreview: View {
 				image
 					.resizable()
 					.aspectRatio(contentMode: .fit)
-			case .video, .url:
-				ItemIconPreview(image: image, type: item.dataType)
+			case .video:
+				VideoIconPreview(image: image)
+			case .url:
+				URLIconPreview(image: image)
 			}
 		} else {
 			BlankPreview(type: item.dataType)

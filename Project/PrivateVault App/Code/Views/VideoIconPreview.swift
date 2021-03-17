@@ -1,5 +1,5 @@
 //
-//  ItemIconPreview.swift
+//  VideoIconPreview.swift
 //  PrivateVault
 //
 //  Created by Emilio Peláez on 25/2/21.
@@ -7,15 +7,14 @@
 
 import SwiftUI
 
-struct ItemIconPreview: View {
+struct VideoIconPreview: View {
 	let image: Image
-	let type: StoredItem.DataType
 	var body: some View {
 		ZStack {
 			image
 				.resizable()
 				.aspectRatio(contentMode: .fit)
-			Image(systemName: type.overlaySystemImageName)
+			Image(systemName: "play.fill")
 				.font(.system(size: 25, weight: .medium))
 				.foregroundColor(.white)
 				.frame(width: 50, height: 50)
@@ -27,10 +26,10 @@ struct ItemIconPreview: View {
 
 struct VideoPreview_Previews: PreviewProvider {
 	static var previews: some View {
-		ItemIconPreview(image: Image("file1"), type: .video)
+		VideoIconPreview(image: Image("file1"))
 			.previewLayout(.fixed(width: 200, height: 200))
 		
-		ItemIconPreview(image: Image("file1"), type: .url)
+		VideoIconPreview(image: Image("file1"))
 			.previewLayout(.fixed(width: 200, height: 200))
 			.colorScheme(.dark)
 	}

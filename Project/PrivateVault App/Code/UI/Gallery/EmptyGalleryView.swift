@@ -20,6 +20,11 @@ struct EmptyGalleryView: View {
 					.multilineTextAlignment(.center)
 				Text("Add some documents to get started :)")
 					.multilineTextAlignment(.center)
+				Text("If you're reinstalling the app and have iCloud enabled, your items will appear shortly.")
+					.multilineTextAlignment(.center)
+					.font(.caption)
+					.foregroundColor(Color(.secondaryLabel))
+				
 			}
 		}
 		.frame(maxWidth: 300)

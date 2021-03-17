@@ -22,9 +22,11 @@ class ActionViewController: UIViewController {
 	@IBOutlet private var failureContainer: UIView!
 	
 	@IBOutlet private var closeButton: UIButton!
+	@IBOutlet private var errorButton: UIButton!
 	
 	private var persistence: PersistenceManager?
 	private var providers: [NSItemProvider] = []
+	private var errors: [ImportError] = []
 	
 	private var bag: Set<AnyCancellable> = []
 	
@@ -41,18 +43,20 @@ class ActionViewController: UIViewController {
 		importingContainer.isHidden = false
 		failureContainer.isHidden = true
 		closeButton.isHidden = true
+		errorButton.isHidden = true
 		
 		let providers = context.inputItems
 			.compactMap { $0 as? NSExtensionItem }
 			.flatMap { $0.attachments ?? [] }
-			.filter {
-				$0.registeredTypeIdentifiers.compactMap(UTType.init).contains {
-					$0.isSupported
-				}
-			}
 		self.providers = providers
 		
-		importingLabel.text = "Importing \(providers.count) file(s)"
+		guard !providers.isEmpty else { return }
+		
+		if providers.count == 1 {
+			importingLabel.text = "Importing 1 File"
+		} else {
+			importingLabel.text = "Importing \(providers.count) Files"
+		}
 		activityIndicator.startAnimating()
 	}
 	
@@ -73,14 +77,27 @@ class ActionViewController: UIViewController {
 	}
 	
 	private func didComplete() {
-		UIView.animate(withDuration: 0.25) {
-			self.activityIndicator.stopAnimating()
-			self.importingLabel.text = "Import Complete!"
-			self.closeButton.isHidden = false
+		UIView.animate(withDuration: 0.25) { [self] in
+			activityIndicator.stopAnimating()
+			let errorCount = persistence?.importErrors.count ?? 0
+			switch errorCount {
+			case 0: importingLabel.text = "Import Complete!"
+			case 0..<providers.count: importingLabel.text = "Import finished with \(errorCount) errors."
+			case _: importingLabel.text = "Import Failed..."
+			}
+			closeButton.isHidden = false
+			errorButton.isHidden = errorCount == 0
 		}
 	}
 	
 	@IBAction func close() {
 		extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+	}
+	
+	@IBAction func showErrors() {
+		guard let errors = persistence?.importErrors, !errors.isEmpty else { return }
+		let alert = UIAlertController(title: errors.count == 1 ? "Error" : "Errors", message: errors.displayMessage, preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "Ok", style: .default))
+		present(alert, animated: true)
 	}
 }

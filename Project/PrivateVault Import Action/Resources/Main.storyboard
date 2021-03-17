@@ -17,30 +17,50 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="qiS-k0-5QJ">
-                                <rect key="frame" x="97" y="212" width="220" height="482"/>
+                                <rect key="frame" x="97" y="207" width="220" height="492"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Safe" translatesAutoresizingMaskIntoConstraints="NO" id="trv-ac-jfM">
-                                        <rect key="frame" x="0.0" y="0.0" width="220" height="196"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="220" height="196.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="trv-ac-jfM" secondAttribute="height" multiplier="860:768" id="CZ2-SZ-P80"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="KH4-lg-R5C">
-                                        <rect key="frame" x="0.0" y="231" width="220" height="87"/>
+                                        <rect key="frame" x="0.0" y="231.5" width="220" height="96.5"/>
                                         <subviews>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="3Ow-wi-6yS">
                                                 <rect key="frame" x="0.0" y="0.0" width="220" height="37"/>
                                             </activityIndicatorView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Importing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKC-eR-mQS">
-                                                <rect key="frame" x="0.0" y="57" width="220" height="30"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="aTb-tc-zoi">
+                                                <rect key="frame" x="0.0" y="57" width="220" height="39.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Importing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKC-eR-mQS">
+                                                        <rect key="frame" x="0.0" y="4.5" width="180.5" height="30"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="crP-Af-aH1">
+                                                        <rect key="frame" x="180.5" y="0.0" width="39.5" height="39.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="crP-Af-aH1" secondAttribute="height" multiplier="1:1" id="aHg-YQ-y9f"/>
+                                                        </constraints>
+                                                        <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
+                                                        <state key="normal" image="exclamationmark.triangle" catalog="system">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                            </preferredSymbolConfiguration>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="showErrors" destination="Y6W-OH-hqX" eventType="touchUpInside" id="zXw-J7-u3c"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4m2-cP-MFh">
-                                        <rect key="frame" x="0.0" y="353" width="220" height="61"/>
+                                        <rect key="frame" x="0.0" y="363" width="220" height="61"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unable to import items" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="du7-VU-9od">
                                                 <rect key="frame" x="0.0" y="0.0" width="220" height="61"/>
@@ -51,7 +71,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKC-4D-nUp">
-                                        <rect key="frame" x="0.0" y="449" width="220" height="33"/>
+                                        <rect key="frame" x="0.0" y="459" width="220" height="33"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                         <state key="normal" title="Close"/>
                                         <connections>
@@ -74,6 +94,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="3Ow-wi-6yS" id="gcb-bW-ueQ"/>
                         <outlet property="closeButton" destination="OKC-4D-nUp" id="7V2-Tv-8f7"/>
+                        <outlet property="errorButton" destination="crP-Af-aH1" id="okH-HT-eTw"/>
                         <outlet property="failureContainer" destination="4m2-cP-MFh" id="Laf-j9-NmN"/>
                         <outlet property="importingContainer" destination="KH4-lg-R5C" id="HTF-9S-naJ"/>
                         <outlet property="importingLabel" destination="YKC-eR-mQS" id="cgD-HY-Rw5"/>
@@ -86,6 +107,7 @@
     </scenes>
     <resources>
         <image name="Safe" width="860" height="768"/>
+        <image name="exclamationmark.triangle" catalog="system" width="128" height="112"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

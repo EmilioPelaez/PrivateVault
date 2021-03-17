@@ -18,7 +18,7 @@ struct ItemSelectionView: View {
 				.opacity(0.5)
 			Circle()
 				.fill(Color(.systemBlue))
-				.padding(3)
+				.padding(2)
 				.scaleEffect(selected ? 1 : .ulpOfOne)
 			Image(systemName: "checkmark")
 				.font(.system(size: 10, weight: .bold))

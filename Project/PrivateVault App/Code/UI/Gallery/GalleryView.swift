@@ -63,6 +63,11 @@ struct GalleryView: View {
 		.onChange(of: persistenceController.errorString) {
 			$0.map { currentAlert = .persistenceError($0) }
 		}
+		.onChange(of: persistenceController.creatingFiles) { creating in
+			guard !creating, !persistenceController.importErrors.isEmpty else { return }
+			currentAlert = .importErrors(persistenceController.importErrors)
+			persistenceController.flushErrors()
+		}
 		.onAppear {
 			persistenceController.fatalErrorString.map { currentAlert = .persistenceFatalError($0) }
 		}

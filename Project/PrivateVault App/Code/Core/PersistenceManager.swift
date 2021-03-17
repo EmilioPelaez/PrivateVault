@@ -17,6 +17,7 @@ class PersistenceManager: ObservableObject {
 	@Published var creatingFiles = false
 	@Published var errorString: String?
 	@Published var fatalErrorString: String?
+	var importErrors: [ImportError] = []
 	
 	var bag: Set<AnyCancellable> = []
 	
@@ -75,7 +76,7 @@ class PersistenceManager: ObservableObject {
 		}
 	}
 	
-	func combine() {
+	private func combine() {
 		operationQueue.$isRunning.assign(to: &$creatingFiles)
 		operationQueue.$isRunning
 			.dropFirst()
@@ -88,5 +89,9 @@ class PersistenceManager: ObservableObject {
 	func addOperation(block: @escaping (@escaping () -> Void) -> Void) {
 		let operation = AsynchronousOperation(block: block)
 		operationQueue.addOperation(operation)
+	}
+	
+	func flushErrors() {
+		importErrors = []
 	}
 }

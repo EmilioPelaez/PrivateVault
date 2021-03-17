@@ -39,6 +39,7 @@ extension GalleryView {
 		case emptyClipboard
 		case persistenceError(String)
 		case persistenceFatalError(String)
+		case importErrors([ImportError])
 		
 		var id: Int {
 			switch self {
@@ -48,6 +49,7 @@ extension GalleryView {
 			case .emptyClipboard: return 3
 			case .persistenceError: return 4
 			case .persistenceFatalError: return 5
+			case .importErrors: return 6
 			}
 		}
 	}

@@ -65,7 +65,7 @@ struct GalleryGridView<M: View>: View {
 					}
 				}
 				.padding(4)
-				.padding(.bottom, 65)
+				.padding(.bottom, 69)
 			}
 		}
 	}

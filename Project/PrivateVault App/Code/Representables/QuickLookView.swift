@@ -86,6 +86,8 @@ final class FilePreviewController: QLPreviewController, QLPreviewControllerDataS
 		super.viewDidDisappear(animated)
 		
 		items.map(\.storedItem).forEach(store.remove)
+		// If we don't remove from the navigation controller this view controller doesn't get released
+		navigationController?.viewControllers = []
 	}
 	
 	func numberOfPreviewItems(in controller: QLPreviewController) -> Int { items.count }

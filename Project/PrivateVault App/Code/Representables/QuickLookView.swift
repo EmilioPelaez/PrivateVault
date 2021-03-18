@@ -33,7 +33,7 @@ struct QuickLookView: UIViewControllerRepresentable {
 		uiViewController.viewControllers = []
 	}
 	
-	final class Controller: QLPreviewController, QLPreviewControllerDataSource, QLPreviewControllerDelegate {
+	class Controller: QLPreviewController, QLPreviewControllerDataSource, QLPreviewControllerDelegate {
 		
 		class PreviewItem: NSObject, QLPreviewItem {
 			let index: Int

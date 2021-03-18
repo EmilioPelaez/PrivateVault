@@ -25,7 +25,7 @@ struct CameraPicker: UIViewControllerRepresentable {
 		Coordinator(self)
 	}
 
-	final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+	class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 		var parent: CameraPicker
 
 		init(_ parent: CameraPicker) {

@@ -5,9 +5,8 @@
 //  Created by Daniel Behar on 2/20/21.
 //
 
-import AVFoundation
+import AudioToolbox
 
-// swiftlint:disable number_separator
 enum SoundEffect {
 	case success
 	case failure
@@ -16,37 +15,33 @@ enum SoundEffect {
 	case close
 	case openLong
 	case closeLong
-	case none
 	
-	var fileName: String? {
+	var fileName: String {
 		switch self {
-		case .success: return "Success.wav"
-		case .failure: return "Denied.wav"
-		case .tap: return "Tap.wav"
-		case .open: return "Open.wav"
-		case .close: return "Close.wav"
-		case .openLong: return "OpenLong.wav"
-		case .closeLong: return "CloseLong.wav"
-		case _: return nil
+		case .success: return "Success"
+		case .failure: return "Denied"
+		case .tap: return "Tap"
+		case .open: return "Open"
+		case .close: return "Close"
+		case .openLong: return "OpenLong"
+		case .closeLong: return "CloseLong"
 		}
 	}
 	
-	static var player: AVAudioPlayer?
+	private static var soundIds: [SoundEffect: SystemSoundID] = [:]
 	
 	func play() {
-		guard let fileName = fileName else { return }
-		guard let url = Bundle.main.url(forResource: fileName, withExtension: nil) else {
-			return
+		AudioServicesPlaySystemSound(soundId())
+	}
+	
+	private func soundId() -> SystemSoundID {
+		if let id = SoundEffect.soundIds[self] {
+			return id
 		}
-		do {
-			try AVAudioSession.sharedInstance().setCategory(.ambient)
-			try AVAudioSession.sharedInstance().setActive(true)
-			
-			let player = try AVAudioPlayer(contentsOf: url)
-			player.play()
-			SoundEffect.player = player
-		} catch {
-			print(error)
-		}
+		var id: SystemSoundID = 0
+		defer { SoundEffect.soundIds[self] = id }
+		guard let url = CFBundleCopyResourceURL(CFBundleGetMainBundle(), fileName as CFString, "wav" as CFString, nil) else { return id }
+		AudioServicesCreateSystemSoundID(url, &id)
+		return id
 	}
 }

@@ -14,10 +14,15 @@ struct ItemSelectionView: View {
 		ZStack {
 			Circle()
 				.fill(Color(.systemBackground))
-				.shadow(color: Color(white: 0, opacity: 0.2), radius: 2, x: 0, y: 1)
+				.shadow(color: Color(white: 0, opacity: 0.4), radius: 2, x: 0, y: 1)
+				.opacity(0.5)
 			Circle()
 				.fill(Color(.systemBlue))
-				.padding(3)
+				.padding(2)
+				.scaleEffect(selected ? 1 : .ulpOfOne)
+			Image(systemName: "checkmark")
+				.font(.system(size: 10, weight: .bold))
+				.foregroundColor(Color(.systemBackground))
 				.scaleEffect(selected ? 1 : .ulpOfOne)
 		}
 		.frame(width: 25, height: 25)

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-final class UserSettings: ObservableObject {
+class UserSettings: ObservableObject {
 	@Published var maxAttempts = UserDefaults.standard.object(forKey: .maxAttempts) as? Int ?? 5 {
 		didSet { UserDefaults.standard.set(maxAttempts, forKey: .maxAttempts) }
 	}

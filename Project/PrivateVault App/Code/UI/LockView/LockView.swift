@@ -107,9 +107,6 @@ struct LockView: View {
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
 			withAnimation {
 				isLocked = false
-				codeState = .undefined
-				attempts = 0
-				code = ""
 				if settings.sound { SoundEffect.success.play() }
 			}
 		}

@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct PrivateVaultApp: App {
-	@ObservedObject var persistenceController = PersistenceManager()
+	@ObservedObject var persistenceController = PersistenceManager(usage: .main)
 	@ObservedObject var passcodeManager = PasscodeManager()
 	@ObservedObject var settings = UserSettings()
 	@ObservedObject var diskStore = DiskStore()

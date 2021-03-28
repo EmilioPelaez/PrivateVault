@@ -30,7 +30,7 @@ extension GalleryView {
 									 secondaryButton: .cancel())
 		case .emptyClipboard:
 			return Alert(title: Text("Empty Clipboard"),
-									 message: Text("There are not items in your clipboard."),
+									 message: Text("There are no items in your clipboard."),
 									 dismissButton: .default(Text("Ok")))
 		case .persistenceError(let string):
 			return Alert(title: Text("Unable to Save Changes"),

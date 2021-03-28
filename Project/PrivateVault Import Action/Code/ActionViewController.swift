@@ -64,7 +64,7 @@ class ActionViewController: UIViewController {
 		super.viewDidAppear(animated)
 		
 		guard !providers.isEmpty else { return }
-		let persistence = PersistenceManager(iCloud: false, operationLimit: 1)
+		let persistence = PersistenceManager(usage: .importExtension)
 		persistence.receiveItems(providers)
 		persistence.$creatingFiles
 			.filter { !$0 }

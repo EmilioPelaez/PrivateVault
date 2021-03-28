@@ -16,7 +16,7 @@ struct PreviewEnvironment {
 	var context: NSManagedObjectContext { controller.container.viewContext }
 
 	init() {
-		let controller = PersistenceManager(inMemory: true)
+		let controller = PersistenceManager(usage: .preview)
 		let viewContext = controller.container.viewContext
 
 		let items = (1...6)

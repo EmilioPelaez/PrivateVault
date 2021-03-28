@@ -65,6 +65,9 @@
 		C86F9CCD25ED8BAB00210F64 /* ItemSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F9CCC25ED8BAB00210F64 /* ItemSelectionView.swift */; };
 		C86F9CCF25ED910C00210F64 /* GalleryView+Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F9CCE25ED910C00210F64 /* GalleryView+Enums.swift */; };
 		C86F9CD125ED99C100210F64 /* ColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86F9CD025ED99C100210F64 /* ColorButton.swift */; };
+		C87A579D26037AD3002C6216 /* Model.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = C87A579A26037AD2002C6216 /* Model.sqlite-wal */; };
+		C87A579E26037AD3002C6216 /* Model.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = C87A579B26037AD2002C6216 /* Model.sqlite-shm */; };
+		C87A579F26037AD3002C6216 /* Model.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = C87A579C26037AD3002C6216 /* Model.sqlite */; };
 		C87C771D25FB8A2C00EE6362 /* SortMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87C771C25FB8A2C00EE6362 /* SortMethod.swift */; };
 		C87C772225FDF9F900EE6362 /* ScaledForSmallScreenModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87C772125FDF9F900EE6362 /* ScaledForSmallScreenModifier.swift */; };
 		C87C772525FE01B000EE6362 /* SettingsLicenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C87C772425FE01B000EE6362 /* SettingsLicenseView.swift */; };
@@ -230,6 +233,9 @@
 		C86F9CCC25ED8BAB00210F64 /* ItemSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSelectionView.swift; sourceTree = "<group>"; };
 		C86F9CCE25ED910C00210F64 /* GalleryView+Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+Enums.swift"; sourceTree = "<group>"; };
 		C86F9CD025ED99C100210F64 /* ColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorButton.swift; sourceTree = "<group>"; };
+		C87A579A26037AD2002C6216 /* Model.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Model.sqlite-wal"; sourceTree = "<group>"; };
+		C87A579B26037AD2002C6216 /* Model.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Model.sqlite-shm"; sourceTree = "<group>"; };
+		C87A579C26037AD3002C6216 /* Model.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Model.sqlite; sourceTree = "<group>"; };
 		C87C771C25FB8A2C00EE6362 /* SortMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortMethod.swift; sourceTree = "<group>"; };
 		C87C772125FDF9F900EE6362 /* ScaledForSmallScreenModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledForSmallScreenModifier.swift; sourceTree = "<group>"; };
 		C87C772425FE01B000EE6362 /* SettingsLicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLicenseView.swift; sourceTree = "<group>"; };
@@ -532,6 +538,9 @@
 		C8A792DB25E06642009B862D /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				C87A579C26037AD3002C6216 /* Model.sqlite */,
+				C87A579B26037AD2002C6216 /* Model.sqlite-shm */,
+				C87A579A26037AD2002C6216 /* Model.sqlite-wal */,
 				C8A792DC25E06642009B862D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -771,6 +780,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C86F9CB725EA571700210F64 /* Success.wav in Resources */,
+				C87A579D26037AD3002C6216 /* Model.sqlite-wal in Resources */,
+				C87A579F26037AD3002C6216 /* Model.sqlite in Resources */,
 				2B39CDFE25E3290500E63EDD /* .swiftlint.yml in Resources */,
 				C86F9CB925EA59BA00210F64 /* Tap.wav in Resources */,
 				C8A792DD25E06642009B862D /* Preview Assets.xcassets in Resources */,
@@ -779,6 +790,7 @@
 				C86F9CBE25EA604400210F64 /* Close.wav in Resources */,
 				C86F9CBF25EA604400210F64 /* Open.wav in Resources */,
 				C86F9CBB25EA5AE900210F64 /* Denied.wav in Resources */,
+				C87A579E26037AD3002C6216 /* Model.sqlite-shm in Resources */,
 				C86F9CC225EA60C100210F64 /* OpenLong.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

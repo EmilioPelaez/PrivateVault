@@ -33,6 +33,10 @@ struct AboutView: View {
 						.twitter("http://twitter.com/EmilioPelaez"),
 						.appStore("https://apps.apple.com/us/developer/emilio-pelaez/id408763858")
 					])
+					CreatorRow(name: "Michael Flarup", title: "Icon Creator", links: [
+						.website("http://www.pixelresort.com"),
+						.twitter("http://twitter.com/flarup")
+					])
 					CreatorRow(name: "Ian Manor", title: "Programmer", links: [
 						.website("https://www.ianmanor.com/portfolio"),
 						.twitter("https://twitter.com/ian_manor"),

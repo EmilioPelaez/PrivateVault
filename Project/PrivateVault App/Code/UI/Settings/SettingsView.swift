@@ -33,7 +33,7 @@ struct SettingsView: View {
 	var body: some View {
 		NavigationView {
 			Form {
-				Section(header: Text("Vault")) {
+				Section(header: Text("Security")) {
 					if biometricSupported {
 						HStack {
 							Text(biometricTitle)

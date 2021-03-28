@@ -17,7 +17,7 @@ struct AboutView: View {
 						.frame(width: 120, height: 120)
 						.clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
 					VStack(alignment: .leading, spacing: 8) {
-						Text("Private Vault")
+						Text("Capsule")
 							.bold()
 							.font(.title)
 						Text("Version 0.0.1")
@@ -28,8 +28,6 @@ struct AboutView: View {
 				}
 				.padding()
 				VStack(alignment: .leading, spacing: 8) {
-					Text("Created by")
-						.font(.headline)
 					CreatorRow(name: "Emilio Peláez", title: "Programmer", links: [
 						.website("http://emiliopelaez.me"),
 						.twitter("http://twitter.com/EmilioPelaez"),

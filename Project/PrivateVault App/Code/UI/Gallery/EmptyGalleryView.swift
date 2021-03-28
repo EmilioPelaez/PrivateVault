@@ -15,10 +15,10 @@ struct EmptyGalleryView: View {
 				.aspectRatio(CGSize(width: 765, height: 573), contentMode: .fit)
 				.padding(.horizontal, 45)
 			VStack(spacing: 8) {
-				Text("Your gallery is empty!")
+				Text("Your Capsule is empty!")
 					.font(.title2)
 					.multilineTextAlignment(.center)
-				Text("Add some documents to get started :)")
+				Text("Add some files to get started :)")
 					.multilineTextAlignment(.center)
 				Text("If you're reinstalling the app and have iCloud enabled, your items will appear shortly.")
 					.multilineTextAlignment(.center)

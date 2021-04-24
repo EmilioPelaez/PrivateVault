@@ -11,7 +11,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>$(MARKETING_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
@@ -26,11 +26,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>This apps lets you take pictures to store in your private vault</string>
+	<string>Take pictures to store them in Capsule</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>FaceID will be used to unlock your private vault</string>
+	<string>FaceID will be used to unlock your files</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app lets you store your images in the private vault</string>
+	<string>Store your images in Capsule</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

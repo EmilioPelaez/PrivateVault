@@ -37,7 +37,7 @@ struct BiometricAuthenticationButton: View {
 	}
 
 	func biometricAuthentication() {
-		let reason = "To unlock your private vault."
+		let reason = "To get access to your files."
 		biometricsContext.evaluatePolicy(
 			.deviceOwnerAuthenticationWithBiometrics,
 			localizedReason: reason

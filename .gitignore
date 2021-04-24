@@ -59,12 +59,15 @@ Carthage/Build
 # For more information about the recommended setup visit:
 # https://github.com/fastlane/fastlane/blob/master/docs/Gitignore.md
 
-fastlane/report.xml
-fastlane/screenshots/*/*.png
-fastlane/screenshots/screenshots.html
-.DS_Store
 UserInterfaceState.xcuserstate
-/fastlane/test_output
-/fastlane/screenshots/README.txt
-/fastlane/screenshots/README.md
+/Project/fastlane/report.xml
+/Project/fastlane/screenshots/*/*.png
+/Project/fastlane/screenshots/screenshots.html
+/Project/fastlane/test_output
+/Project/fastlane/screenshots/README.txt
+/Project/fastlane/screenshots/README.md
 /Project/fastlane/Appfile
+/Project/fastlane/screenshots
+/Project/fastlane/report.xml
+
+.DS_Store

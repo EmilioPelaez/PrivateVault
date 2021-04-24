@@ -18,7 +18,14 @@ default_platform(:ios)
 platform :ios do
   desc "Generate new localized screenshots"
   lane :screenshots do
-    capture_screenshots(scheme: "Screenshots")
+    capture_screenshots
+    frame_screenshots
+  end
+end
+
+platform :ios do
+  desc "Generate new localized screenshots"
+  lane :screenshots_upload do
     upload_to_app_store(skip_binary_upload: true, skip_metadata: true)
   end
 end

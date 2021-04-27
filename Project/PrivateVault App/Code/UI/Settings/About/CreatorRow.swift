@@ -17,7 +17,7 @@ struct CreatorRow: View {
 			VStack(alignment: .leading) {
 				Text(name)
 					.bold()
-					.font(.title2)
+					.font(.title3)
 				Text(title)
 					.font(.subheadline)
 			}

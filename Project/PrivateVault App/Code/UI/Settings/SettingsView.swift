@@ -16,7 +16,7 @@ struct SettingsView: View {
 	let biometricsContext = LAContext()
 
 	@State var resetPasscode: Bool = false
-	let version = "0.0.1"
+	let version = "1.0"
 	
 	var biometricSupported: Bool {
 		biometricsContext.availableType != .none
@@ -61,7 +61,7 @@ struct SettingsView: View {
 						Text("Haptic Feedback")
 					}
 				}
-				Section(header: Text("Legal"), footer: footer) {
+				Section(header: Text("Legal")) {
 					NavigationLink(destination: AboutView()) {
 						Text("About")
 					}

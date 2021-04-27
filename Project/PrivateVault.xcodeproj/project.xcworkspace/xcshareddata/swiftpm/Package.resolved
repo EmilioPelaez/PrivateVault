@@ -2,12 +2,30 @@
   "object": {
     "pins": [
       {
+        "package": "KernelDirectoryUI",
+        "repositoryURL": "https://github.com/EmilioPelaez/KernelDirectoryUI",
+        "state": {
+          "branch": null,
+          "revision": "90bb24e9b6ba117c0857a89c231b193b7b6ae2c2",
+          "version": "0.0.5"
+        }
+      },
+      {
         "package": "KeychainAccess",
         "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess",
         "state": {
           "branch": null,
           "revision": "84e546727d66f1adc5439debad16270d0fdd04e7",
           "version": "4.2.2"
+        }
+      },
+      {
+        "package": "RESTClient",
+        "repositoryURL": "https://github.com/EmilioPelaez/RESTClient",
+        "state": {
+          "branch": null,
+          "revision": "36d6cbe4bc0a780ae472ccc793612fac642ff6fb",
+          "version": "0.9.2"
         }
       }
     ]

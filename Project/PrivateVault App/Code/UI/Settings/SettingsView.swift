@@ -7,6 +7,7 @@
 
 import SwiftUI
 import LocalAuthentication
+import KernelDirectoryUI
 
 struct SettingsView: View {
 	@EnvironmentObject private var settings: UserSettings
@@ -14,6 +15,7 @@ struct SettingsView: View {
 	@Environment(\.presentationMode) var presentationMode
 
 	let biometricsContext = LAContext()
+	let client = KernelClient(appId: "1558429748")
 
 	@State var resetPasscode: Bool = false
 	let version = "1.0"
@@ -71,6 +73,10 @@ struct SettingsView: View {
 					NavigationLink(destination: SettingsPrivacyView()) {
 						Text("Privacy")
 					}
+				}
+				
+				Section {
+					DirectoryFeaturedView(client: client) {}
 				}
 			}
 			.listStyle(InsetGroupedListStyle())

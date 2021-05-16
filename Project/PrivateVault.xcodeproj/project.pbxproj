@@ -99,6 +99,7 @@
 		C8A792DA25E06642009B862D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A792D925E06642009B862D /* Assets.xcassets */; };
 		C8A792DD25E06642009B862D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A792DC25E06642009B862D /* Preview Assets.xcassets */; };
 		C8A792ED25E06D75009B862D /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A792EC25E06D75009B862D /* GalleryView.swift */; };
+		C8CC881F26381DB8001783FF /* KernelDirectoryUI in Frameworks */ = {isa = PBXBuildFile; productRef = C8CC881E26381DB8001783FF /* KernelDirectoryUI */; };
 		C8EFC331260010FA008E8CFA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8EFC330260010FA008E8CFA /* Media.xcassets */; };
 		C8EFC333260010FA008E8CFA /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFC332260010FA008E8CFA /* ActionViewController.swift */; };
 		C8EFC33A260010FA008E8CFA /* PrivateVault Import Action.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C8EFC32E260010FA008E8CFA /* PrivateVault Import Action.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -308,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C89A5D6A25FA29A0007F8E8B /* KeychainAccess in Frameworks */,
+				C8CC881F26381DB8001783FF /* KernelDirectoryUI in Frameworks */,
 				C86F9CC925EA667F00210F64 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -705,6 +707,7 @@
 			name = PrivateVault;
 			packageProductDependencies = (
 				C89A5D6925FA29A0007F8E8B /* KeychainAccess */,
+				C8CC881E26381DB8001783FF /* KernelDirectoryUI */,
 			);
 			productName = PrivateVault;
 			productReference = C8A792D225E06642009B862D /* PrivateVault.app */;
@@ -759,6 +762,7 @@
 			mainGroup = C8A792C925E06642009B862D;
 			packageReferences = (
 				C89A5D6825FA29A0007F8E8B /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				C8CC881D26381DB8001783FF /* XCRemoteSwiftPackageReference "KernelDirectoryUI" */,
 			);
 			productRefGroup = C8A792D325E06642009B862D /* Products */;
 			projectDirPath = "";
@@ -1056,6 +1060,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1075,6 +1080,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MARKETING_NAME = Capsule;
+				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1118,6 +1124,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1131,6 +1138,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MARKETING_NAME = Capsule;
+				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1278,6 +1286,14 @@
 				minimumVersion = 4.2.2;
 			};
 		};
+		C8CC881D26381DB8001783FF /* XCRemoteSwiftPackageReference "KernelDirectoryUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EmilioPelaez/KernelDirectoryUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.6;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1285,6 +1301,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C89A5D6825FA29A0007F8E8B /* XCRemoteSwiftPackageReference "KeychainAccess" */;
 			productName = KeychainAccess;
+		};
+		C8CC881E26381DB8001783FF /* KernelDirectoryUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8CC881D26381DB8001783FF /* XCRemoteSwiftPackageReference "KernelDirectoryUI" */;
+			productName = KernelDirectoryUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 

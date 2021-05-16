@@ -7,6 +7,7 @@
 
 import SwiftUI
 import LocalAuthentication
+import KernelDirectoryUI
 
 struct SettingsView: View {
 	@EnvironmentObject private var settings: UserSettings
@@ -14,9 +15,10 @@ struct SettingsView: View {
 	@Environment(\.presentationMode) var presentationMode
 
 	let biometricsContext = LAContext()
+	let client = KernelClient(appId: "1558429748")
 
 	@State var resetPasscode: Bool = false
-	let version = "0.0.1"
+	let version = "1.0"
 	
 	var biometricSupported: Bool {
 		biometricsContext.availableType != .none
@@ -61,7 +63,7 @@ struct SettingsView: View {
 						Text("Haptic Feedback")
 					}
 				}
-				Section(header: Text("Legal"), footer: footer) {
+				Section(header: Text("Legal")) {
 					NavigationLink(destination: AboutView()) {
 						Text("About")
 					}
@@ -71,6 +73,10 @@ struct SettingsView: View {
 					NavigationLink(destination: SettingsPrivacyView()) {
 						Text("Privacy")
 					}
+				}
+				
+				Section(header: DirectoryFeaturedView.title) {
+					DirectoryFeaturedView(client: client, style: .groupedList) {}
 				}
 			}
 			.listStyle(InsetGroupedListStyle())

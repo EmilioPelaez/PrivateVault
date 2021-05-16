@@ -1291,7 +1291,7 @@
 			repositoryURL = "https://github.com/EmilioPelaez/KernelDirectoryUI";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.5;
+				minimumVersion = 0.0.6;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

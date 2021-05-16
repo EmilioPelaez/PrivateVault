@@ -75,8 +75,8 @@ struct SettingsView: View {
 					}
 				}
 				
-				Section {
-					DirectoryFeaturedView(client: client) {}
+				Section(header: DirectoryFeaturedView.title) {
+					DirectoryFeaturedView(client: client, style: .groupedList) {}
 				}
 			}
 			.listStyle(InsetGroupedListStyle())

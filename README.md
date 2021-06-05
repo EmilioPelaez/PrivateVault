@@ -1,7 +1,11 @@
-![Private Vault Logo](./logo.png)
-# PrivateVault
+![Capsule Logo](./logo.png)
+# Capsule Private Storage
 
-PrivateVault is an iPhone and iPad app for securely storing private user data. It was created by Emilio Peláez, Danny Behar and Ian Manor for the 2021 SwiftUI Jam Hackathon.
+Keep your files away from prying eyes!
+
+Capsule is a completely free app that lets you store files and media behind a passcode.
+
+It was created by Emilio Peláez, Danny Behar and Ian Manor for the 2021 SwiftUI Jam Hackathon.
 
 ## Screenshots
 
@@ -13,22 +17,18 @@ PrivateVault is an iPhone and iPad app for securely storing private user data. I
 </p>
 
 ## Features:
-- [x] PIN-style passcode protection
-- [x] File gallery
-- [x] File search 
-- [x] Tags
-- [x] iPad drag-and-drop
-- [x] Import files and photos from device
-- [x] Built-in camera
-- [x] Document scanner
-- [x] Biometric access (Touch ID / Face ID)
+Easily import your files in multiple ways, use the photo or file pickers, drag them from another app (iPadOS), copy them from the clipboard, or take a photo with the camera.
+
+Use tags to sort and filter your files.
+
+Unlock with FaceID or TouchID for instant access.
 
 ## Building the code
 
 1. Install the latest [Xcode developer tools](https://developer.apple.com/xcode/downloads/) from Apple.
 1. Clone the repository:
     ```shell
-    git clone https://github.com/EmilioPelaez/PrivateVault/
+    git clone https://github.com/EmilioPelaez/Capsule-Private-Storage/
     ```
 1. Open the `PrivateVault.xcodeproj` file in Xcode.
 1. Build the `PrivateVault` scheme.

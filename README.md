@@ -7,13 +7,11 @@ Capsule is a completely free app that lets you store files and media behind a pa
 
 It was created by Emilio Peláez, Danny Behar and Ian Manor for the 2021 SwiftUI Jam Hackathon.
 
-## Screenshots
-
 <p float="left">
-  <img src="./Screenshots/LockScreen.png" alt="Lock Screen" width=23% height=23%>
-  <img src="./Screenshots/Add_Files.png" alt="Add Files" width=23% height=23%>
-  <img src="./Screenshots/Gallery.png" alt="Gallery" width=23% height=23%>
-  <img src="./Screenshots/Tags.png" alt="Tags" width=23% height=23%>
+  <img src="./Screenshots/Screenshot0.png" alt="Lock Screen" width=23% height=23%>
+  <img src="./Screenshots/Screenshot1.png" alt="Import Files" width=23% height=23%>
+  <img src="./Screenshots/Screenshot2.png" alt="Tags" width=23% height=23%>
+  <img src="./Screenshots/Screenshot3.png" alt="Dark Mode" width=23% height=23%>
 </p>
 
 ## Features:
@@ -28,7 +26,7 @@ Unlock with FaceID or TouchID for instant access.
 1. Install the latest [Xcode developer tools](https://developer.apple.com/xcode/downloads/) from Apple.
 1. Clone the repository:
     ```shell
-    git clone https://github.com/EmilioPelaez/Capsule-Private-Storage/
+    git clone https://github.com/EmilioPelaez/CapsulePrivateStorage/
     ```
 1. Open the `PrivateVault.xcodeproj` file in Xcode.
 1. Build the `PrivateVault` scheme.
@@ -41,4 +39,4 @@ If you want to contribute, create your own fork of the repository so you can ope
 
 ## License
 
-PrivateVault is available under the MIT license. See the LICENSE file for more info.
+Capsule is available under the MIT license. See the LICENSE file for more info.

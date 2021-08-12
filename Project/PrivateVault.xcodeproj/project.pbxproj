@@ -139,6 +139,14 @@
 		C8FCB7B325EE59D80002D386 /* DiskStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FCB7B225EE59D80002D386 /* DiskStore.swift */; };
 		C8FCB7B525EED5B50002D386 /* Publisher+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FCB7B425EED5B50002D386 /* Publisher+Actions.swift */; };
 		C8FCB7B725EF9BD80002D386 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FCB7B625EF9BD80002D386 /* ShareSheet.swift */; };
+		F342A8F826BBD08700BF4D9A /* FolderSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F342A8F726BBD08700BF4D9A /* FolderSelectionView.swift */; };
+		F342A8FE26BD115900BF4D9A /* Folder+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F342A8FD26BD115900BF4D9A /* Folder+Creation.swift */; };
+		F342A90026BD171C00BF4D9A /* FolderListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F342A8FF26BD171C00BF4D9A /* FolderListItem.swift */; };
+		F35C405226C41F6F00CE0A36 /* EditFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35C405126C41F6F00CE0A36 /* EditFolderView.swift */; };
+		F3C2B19926C39C06002E2C82 /* CanBeNestedInFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C2B19826C39C06002E2C82 /* CanBeNestedInFolder.swift */; };
+		F3C2B19B26C3A424002E2C82 /* GalleryView+Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C2B19A26C3A424002E2C82 /* GalleryView+Folder.swift */; };
+		F3C494B526A2BA2F003FDC49 /* NewFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C494B426A2BA2F003FDC49 /* NewFolderView.swift */; };
+		F3C494B726A2FA88003FDC49 /* GalleryGridFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C494B626A2FA88003FDC49 /* GalleryGridFolderCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -294,6 +302,14 @@
 		C8FCB7B225EE59D80002D386 /* DiskStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskStore.swift; sourceTree = "<group>"; };
 		C8FCB7B425EED5B50002D386 /* Publisher+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Actions.swift"; sourceTree = "<group>"; };
 		C8FCB7B625EF9BD80002D386 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		F342A8F726BBD08700BF4D9A /* FolderSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSelectionView.swift; sourceTree = "<group>"; };
+		F342A8FD26BD115900BF4D9A /* Folder+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Folder+Creation.swift"; sourceTree = "<group>"; };
+		F342A8FF26BD171C00BF4D9A /* FolderListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListItem.swift; sourceTree = "<group>"; };
+		F35C405126C41F6F00CE0A36 /* EditFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderView.swift; sourceTree = "<group>"; };
+		F3C2B19826C39C06002E2C82 /* CanBeNestedInFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanBeNestedInFolder.swift; sourceTree = "<group>"; };
+		F3C2B19A26C3A424002E2C82 /* GalleryView+Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+Folder.swift"; sourceTree = "<group>"; };
+		F3C494B426A2BA2F003FDC49 /* NewFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFolderView.swift; sourceTree = "<group>"; };
+		F3C494B626A2FA88003FDC49 /* GalleryGridFolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGridFolderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,6 +375,10 @@
 			isa = PBXGroup;
 			children = (
 				C89C9DDE25E19598003505B9 /* ItemEditView.swift */,
+				F3C494B426A2BA2F003FDC49 /* NewFolderView.swift */,
+				F35C405126C41F6F00CE0A36 /* EditFolderView.swift */,
+				F342A8F726BBD08700BF4D9A /* FolderSelectionView.swift */,
+				F342A8FF26BD171C00BF4D9A /* FolderListItem.swift */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -473,10 +493,12 @@
 				C83959BD25E9C00E00521F83 /* GalleryView+DropDelegate.swift */,
 				C86F9CCE25ED910C00210F64 /* GalleryView+Enums.swift */,
 				C83959C125E9C07D00521F83 /* GalleryView+Items.swift */,
+				F3C2B19A26C3A424002E2C82 /* GalleryView+Folder.swift */,
 				C83959B925E9BFA700521F83 /* GalleryView+NavigationButtons.swift */,
 				C83959BF25E9C05F00521F83 /* GalleryView+Sheet.swift */,
 				C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */,
 				C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */,
+				F3C494B626A2FA88003FDC49 /* GalleryGridFolderCell.swift */,
 				C89C9DD725E1773E003505B9 /* EmptyGalleryView.swift */,
 				C89C9DDC25E190C4003505B9 /* FilteredGalleryView.swift */,
 			);
@@ -502,6 +524,7 @@
 				C89C9DEC25E19E44003505B9 /* Tag+Comparable.swift */,
 				C89C9DE625E197C5003505B9 /* Tag+Creation.swift */,
 				C89C9DE025E19671003505B9 /* Tag+Examples.swift */,
+				F342A8FD26BD115900BF4D9A /* Folder+Creation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -603,6 +626,7 @@
 				C87C771C25FB8A2C00EE6362 /* SortMethod.swift */,
 				2B39CD8625E18B6900E63EDD /* UserSettings.swift */,
 				C89C9DF225E1E6F9003505B9 /* Extensions */,
+				F3C2B19826C39C06002E2C82 /* CanBeNestedInFolder.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -861,10 +885,12 @@
 				C8EFD1FA25E1281600CB4141 /* GalleryGridView.swift in Sources */,
 				C8EFD22D25E15BDF00CB4141 /* StoredItem+Creation.swift in Sources */,
 				C87C771D25FB8A2C00EE6362 /* SortMethod.swift in Sources */,
+				F3C2B19B26C3A424002E2C82 /* GalleryView+Folder.swift in Sources */,
 				C8EFD20025E1373F00CB4141 /* UIImage+Resize.swift in Sources */,
 				2B39CDB825E1BB5700E63EDD /* Binding+Map.swift in Sources */,
 				C8EFD22625E14B2B00CB4141 /* Model.xcdatamodeld in Sources */,
 				C8A792D825E06642009B862D /* ContentView.swift in Sources */,
+				F342A8F826BBD08700BF4D9A /* FolderSelectionView.swift in Sources */,
 				C89C9DE725E197C5003505B9 /* Tag+Creation.swift in Sources */,
 				C868FD6825E30B23005A3EA9 /* LAContext+Shared.swift in Sources */,
 				C87C772525FE01B000EE6362 /* SettingsLicenseView.swift in Sources */,
@@ -873,6 +899,7 @@
 				2B39CE0825E32B9500E63EDD /* LinkButton.swift in Sources */,
 				C8EFD22B25E159EA00CB4141 /* StoredItem+Properties.swift in Sources */,
 				C86F9CD125ED99C100210F64 /* ColorButton.swift in Sources */,
+				F35C405226C41F6F00CE0A36 /* EditFolderView.swift in Sources */,
 				C89C9DE525E196A5003505B9 /* PreviewEnvironment.swift in Sources */,
 				C8EFC36426016E00008E8CFA /* UTType+Supported.swift in Sources */,
 				2B39CE0425E32B8100E63EDD /* CreatorRow.swift in Sources */,
@@ -888,6 +915,7 @@
 				C89C9DE125E19671003505B9 /* Tag+Examples.swift in Sources */,
 				C839599525E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift in Sources */,
 				C87C772725FE024900EE6362 /* SettingsPrivacyView.swift in Sources */,
+				F3C494B726A2FA88003FDC49 /* GalleryGridFolderCell.swift in Sources */,
 				C89A5D6E25FADCCC007F8E8B /* SafariView.swift in Sources */,
 				C8EFC3672602B976008E8CFA /* ImportError.swift in Sources */,
 				C86F9CCD25ED8BAB00210F64 /* ItemSelectionView.swift in Sources */,
@@ -918,10 +946,14 @@
 				C8EFD1FC25E128C400CB4141 /* DocumentPicker.swift in Sources */,
 				C839599B25E8332700521F83 /* FilePreview.swift in Sources */,
 				2B39CD8A25E18B8100E63EDD /* SettingsView.swift in Sources */,
+				F342A90026BD171C00BF4D9A /* FolderListItem.swift in Sources */,
 				C87C772225FDF9F900EE6362 /* ScaledForSmallScreenModifier.swift in Sources */,
 				C87C772925FF51A200EE6362 /* LockoutManager.swift in Sources */,
 				C83959A925E8F31500521F83 /* AsynchronousOperation.swift in Sources */,
+				F3C2B19926C39C06002E2C82 /* CanBeNestedInFolder.swift in Sources */,
 				2B39CDC225E1C6C500E63EDD /* String+Capping.swift in Sources */,
+				F3C494B526A2BA2F003FDC49 /* NewFolderView.swift in Sources */,
+				F342A8FE26BD115900BF4D9A /* Folder+Creation.swift in Sources */,
 				C8EFC3472600169F008E8CFA /* URL+Container.swift in Sources */,
 				C89C9DD825E1773E003505B9 /* EmptyGalleryView.swift in Sources */,
 				C83959B325E9AE6900521F83 /* ItemFilter.swift in Sources */,

@@ -9,8 +9,19 @@ import SwiftUI
 
 struct GalleryGridView<M: View>: View {
 	@EnvironmentObject private var settings: UserSettings
-	@FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \StoredItem.timestamp, ascending: false)], animation: .default)
-	var items: FetchedResults<StoredItem>
+	
+	@FetchRequest(
+		sortDescriptors: [NSSortDescriptor(keyPath: \StoredItem.timestamp, ascending: false)],
+		predicate: NSPredicate(format: "folder == nil"),
+		animation: .default
+	) var items: FetchedResults<StoredItem>
+	
+	@FetchRequest(
+		sortDescriptors: [NSSortDescriptor(keyPath: \Folder.name, ascending: false)],
+		predicate: NSPredicate(format: "parent == nil"),
+		animation: .default
+	) var folders: FetchedResults<Folder>
+	
 	
 	@ObservedObject var filter: ItemFilter
 	@Binding var multipleSelection: Bool
@@ -57,6 +68,12 @@ struct GalleryGridView<M: View>: View {
 		} else {
 			ScrollView {
 				SearchBarView(text: searchText, placeholder: "Search files...")
+				LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: settings.columns), spacing: 4) {
+					ForEach(folders) { folder in
+						GalleryGridFolderCell(folder: folder)
+							.contextMenu { folderContextMenu(folder) }
+					}
+				}
 				LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: settings.columns), spacing: 4) {
 					ForEach(filteredItems) { item in
 						GalleryGridCell(item: item, selection: selection(for: item))

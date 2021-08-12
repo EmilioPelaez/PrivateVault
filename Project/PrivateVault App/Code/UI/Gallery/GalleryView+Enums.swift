@@ -17,6 +17,9 @@ extension GalleryView {
 		case documentScanner
 		case share([URL])
 		case itemEdit(StoredItem)
+		case addNewFolder
+		case editFolder(Folder)
+		case folderSelection(CanBeNestedInFolder)
 		
 		var id: Int {
 			switch self {
@@ -28,6 +31,7 @@ extension GalleryView {
 			case .documentScanner: return 5
 			case .share: return 6
 			case .itemEdit: return 7
+			case .addNewFolder: return 8
 			}
 		}
 	}

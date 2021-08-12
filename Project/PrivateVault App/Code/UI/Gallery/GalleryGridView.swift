@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GalleryGridView<M: View>: View {
+struct GalleryGridView<M: View, N: View>: View {
 	@EnvironmentObject private var settings: UserSettings
 	
 	@FetchRequest(
@@ -29,6 +29,7 @@ struct GalleryGridView<M: View>: View {
 	
 	let selection: (StoredItem, [StoredItem]) -> Void
 	let contextMenu: (StoredItem) -> M
+	let folderContextMenu: (Folder) -> N
 
 	var filteredItems: [StoredItem] {
 		items.filter(filter.apply).sorted(by: settings.sort.apply)
@@ -99,7 +100,7 @@ struct GalleryGridView_Previews: PreviewProvider {
 	static let preview = PreviewEnvironment()
 	
 	static var previews: some View {
-		GalleryGridView(filter: ItemFilter(), multipleSelection: .constant(false), selectedItems: .constant([]), selection: { _, _ in }, contextMenu: { _ in EmptyView() })
+		GalleryGridView(filter: ItemFilter(), multipleSelection: .constant(false), selectedItems: .constant([]), selection: { _, _ in }, contextMenu: { _ in EmptyView() }, folderContextMenu: { _ in EmptyView() })
 			.environment(\.managedObjectContext, preview.context)
 			.environmentObject(preview.controller)
 			.environmentObject(UserSettings())

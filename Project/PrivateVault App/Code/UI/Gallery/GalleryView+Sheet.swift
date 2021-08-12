@@ -20,6 +20,8 @@ extension GalleryView {
 			case .itemEdit(let item): ItemEditView(item: item)
 			case .settings: SettingsView()
 			case .addNewFolder: NewFolderView()
+			case .editFolder(let folder): EditFolderView(folder: folder)
+			case .folderSelection(let item): FolderSelectionView(item: item)
 			}
 		}
 		.ignoresSafeArea()

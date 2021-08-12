@@ -32,6 +32,8 @@ extension GalleryView {
 			case .share: return 6
 			case .itemEdit: return 7
 			case .addNewFolder: return 8
+			case .editFolder: return 9
+			case .folderSelection: return 10
 			}
 		}
 	}
@@ -44,6 +46,7 @@ extension GalleryView {
 		case persistenceError(String)
 		case persistenceFatalError(String)
 		case importErrors([ImportError])
+		case deleteFolderConfirmation(Folder)
 		
 		var id: Int {
 			switch self {
@@ -54,6 +57,7 @@ extension GalleryView {
 			case .persistenceError: return 4
 			case .persistenceFatalError: return 5
 			case .importErrors: return 6
+			case .deleteFolderConfirmation: return 7
 			}
 		}
 	}

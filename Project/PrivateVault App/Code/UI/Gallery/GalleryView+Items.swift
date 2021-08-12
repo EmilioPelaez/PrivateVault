@@ -25,6 +25,12 @@ extension GalleryView {
 				Text("Share")
 				Image(systemName: "square.and.arrow.up")
 			}
+			Button {
+				currentSheet = .folderSelection(item)
+			} label: {
+				Text("Add to Folder")
+				Image(systemName: "folder.badge.plus")
+			}
 			Divider()
 			Button {
 				currentAlert = .deleteItemConfirmation(item)

@@ -32,7 +32,7 @@ struct GalleryView: View {
 	
 	var body: some View {
 		ZStack {
-			GalleryGridView(filter: filter, multipleSelection: $multipleSelection, selectedItems: $selectedItems, selection: select, contextMenu: contextMenu)
+			GalleryGridView(filter: filter, multipleSelection: $multipleSelection, selectedItems: $selectedItems, selection: select, contextMenu: contextMenu, folderContextMenu: folderContextMenu)
 			.fullScreenCover(item: $previewSelection, content: quickLookView)
 			Group {
 				if multipleSelection {

@@ -21,8 +21,7 @@ struct GalleryGridView<M: View, N: View>: View {
 		predicate: NSPredicate(format: "parent == nil"),
 		animation: .default
 	) var folders: FetchedResults<Folder>
-	
-	
+
 	@ObservedObject var filter: ItemFilter
 	@Binding var multipleSelection: Bool
 	@Binding var selectedItems: Set<StoredItem>
@@ -100,6 +99,7 @@ struct GalleryGridView_Previews: PreviewProvider {
 	static let preview = PreviewEnvironment()
 	
 	static var previews: some View {
+		// swiftlint:disable line_length
 		GalleryGridView(filter: ItemFilter(), multipleSelection: .constant(false), selectedItems: .constant([]), selection: { _, _ in }, contextMenu: { _ in EmptyView() }, folderContextMenu: { _ in EmptyView() })
 			.environment(\.managedObjectContext, preview.context)
 			.environmentObject(preview.controller)

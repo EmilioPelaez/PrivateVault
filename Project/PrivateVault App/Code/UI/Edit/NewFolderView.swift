@@ -54,7 +54,7 @@ extension NewFolderView {
 				duplicateNameAlert = true
 				return
 			}
-			let _ = Folder(context: persistenceController.context, name: folderName)
+			_ = Folder(context: persistenceController.context, name: folderName)
 			persistenceController.save()
 			presentationMode.wrappedValue.dismiss()
 		}

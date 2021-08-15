@@ -22,9 +22,13 @@ struct FolderSelectionView: View {
 		NavigationView {
 			List(folders) { folder in
 				FolderListItem(name: folder.name ?? "Unknown",
-							   isSelected: item.belongsToFolder(folder)) {
-					item.addToFolder(folder, persistenceController: persistenceController)
-							   }
+							   isSelected: item.belongsToFolder(folder)) { isSelected in
+					if isSelected {
+						item.addToFolder(folder, persistenceController: persistenceController)
+					} else {
+						item.removeFromFolder(folder, persistenceController: persistenceController)
+					}
+				}
 			}
 			.navigationTitle("Add to Folder")
 			.toolbar {

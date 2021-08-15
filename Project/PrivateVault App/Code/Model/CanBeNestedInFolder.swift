@@ -8,6 +8,7 @@
 protocol CanBeNestedInFolder {
 	func belongsToFolder(_ folder: Folder) -> Bool
 	func addToFolder(_ folder: Folder, persistenceController: PersistenceManager)
+	func removeFromFolder(_ folder: Folder, persistenceController: PersistenceManager)
 }
 
 extension StoredItem: CanBeNestedInFolder {
@@ -20,6 +21,11 @@ extension StoredItem: CanBeNestedInFolder {
 		folder.items?.adding(self)
 		persistenceController.save()
 	}
+	
+	func removeFromFolder(_ folder: Folder, persistenceController: PersistenceManager) {
+		self.folder = nil
+		persistenceController.save()
+	}
 }
 
 extension Folder: CanBeNestedInFolder {
@@ -30,6 +36,11 @@ extension Folder: CanBeNestedInFolder {
 	func addToFolder(_ folder: Folder, persistenceController: PersistenceManager) {
 		parent = folder
 		folder.subfolders?.adding(self)
+		persistenceController.save()
+	}
+	
+	func removeFromFolder(_ folder: Folder, persistenceController: PersistenceManager) {
+		self.parent = nil
 		persistenceController.save()
 	}
 }

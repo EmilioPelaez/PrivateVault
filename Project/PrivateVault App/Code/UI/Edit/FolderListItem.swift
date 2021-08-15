@@ -11,17 +11,21 @@ struct FolderListItem: View {
 	let name: String
 	let isSelected: Bool
 	
-	var onSelection: (() -> Void)?
+	var onSelection: ((Bool) -> Void)?
 	
     var body: some View {
 		HStack {
+			FolderShape()
+				.fill(Color.blue)
+				.opacity(0.6)
+				.frame(width: 32, height: 32)
+				.aspectRatio(contentMode: .fit)
 			Text(name)
 			Spacer()
-			Image(systemName: "checkmark.circle")
-				.foregroundColor(isSelected ? .green : .clear)
+			RadioButton(selected: isSelected, size: 16, color: .blue)
 		}
 		.onTapGesture {
-			onSelection?()
+			onSelection?(!isSelected)
 		}
     }
 }

@@ -11,10 +11,10 @@ struct GalleryGridFolderCell: View {
 	let folder: Folder
 	
     var body: some View {
-		Color.blue.opacity(0.2)
-			.frame(height: 80)
-			.cornerRadius(10)
-			.padding(8)
+		FolderShape()
+			.fill(Color.blue)
+			.opacity(0.2)
+			.aspectRatio(contentMode: .fit)
 			.overlay(
 				Text(folder.name ?? "Untitled")
 					.font(.subheadline)

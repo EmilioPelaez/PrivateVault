@@ -11,8 +11,6 @@ struct FolderListItem: View {
 	let name: String
 	let isSelected: Bool
 	
-	var onSelection: ((Bool) -> Void)?
-	
     var body: some View {
 		HStack {
 			FolderShape()
@@ -23,9 +21,6 @@ struct FolderListItem: View {
 			Text(name)
 			Spacer()
 			RadioButton(selected: isSelected, size: 16, color: .blue)
-		}
-		.onTapGesture {
-			onSelection?(!isSelected)
 		}
     }
 }

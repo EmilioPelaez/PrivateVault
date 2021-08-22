@@ -18,17 +18,16 @@ struct FolderSelectionView: View {
 		animation: .default
 	) private var folders: FetchedResults<Folder>
 	
+	var availableFolders: [Folder] {
+		folders.filter { $0 != item as? Folder }
+	}
+	
 	var body: some View {
 		NavigationView {
 			List(folders) { folder in
 				FolderListItem(name: folder.name ?? "Unknown",
-							   isSelected: item.belongsToFolder(folder)) { isSelected in
-					if isSelected {
-						item.addToFolder(folder, persistenceController: persistenceController)
-					} else {
-						item.removeFromFolder(folder, persistenceController: persistenceController)
-					}
-				}
+							   isSelected: item.belongsToFolder(folder))
+					.onTapGesture { didSelectFolder(folder) }
 			}
 			.navigationTitle("Add to Folder")
 			.toolbar {
@@ -41,6 +40,14 @@ struct FolderSelectionView: View {
 					}
 				}
 			}
+		}
+	}
+	
+	func didSelectFolder(_ folder: Folder) {
+		if item.belongsToFolder(folder) {
+			item.removeFromFolder(folder, persistenceController: persistenceController)
+		} else {
+			item.addToFolder(folder, persistenceController: persistenceController)
 		}
 	}
 }

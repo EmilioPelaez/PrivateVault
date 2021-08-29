@@ -144,6 +144,7 @@
 		F342A8FE26BD115900BF4D9A /* Folder+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F342A8FD26BD115900BF4D9A /* Folder+Creation.swift */; };
 		F342A90026BD171C00BF4D9A /* FolderListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F342A8FF26BD171C00BF4D9A /* FolderListItem.swift */; };
 		F35C405226C41F6F00CE0A36 /* EditFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35C405126C41F6F00CE0A36 /* EditFolderView.swift */; };
+		F39B33C726DB8A2500167B67 /* FolderNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39B33C626DB8A2500167B67 /* FolderNavigationView.swift */; };
 		F3C2B19926C39C06002E2C82 /* CanBeNestedInFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C2B19826C39C06002E2C82 /* CanBeNestedInFolder.swift */; };
 		F3C2B19B26C3A424002E2C82 /* GalleryView+Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C2B19A26C3A424002E2C82 /* GalleryView+Folder.swift */; };
 		F3C494B526A2BA2F003FDC49 /* NewFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C494B426A2BA2F003FDC49 /* NewFolderView.swift */; };
@@ -308,6 +309,7 @@
 		F342A8FD26BD115900BF4D9A /* Folder+Creation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Folder+Creation.swift"; sourceTree = "<group>"; };
 		F342A8FF26BD171C00BF4D9A /* FolderListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListItem.swift; sourceTree = "<group>"; };
 		F35C405126C41F6F00CE0A36 /* EditFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderView.swift; sourceTree = "<group>"; };
+		F39B33C626DB8A2500167B67 /* FolderNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderNavigationView.swift; sourceTree = "<group>"; };
 		F3C2B19826C39C06002E2C82 /* CanBeNestedInFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanBeNestedInFolder.swift; sourceTree = "<group>"; };
 		F3C2B19A26C3A424002E2C82 /* GalleryView+Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+Folder.swift"; sourceTree = "<group>"; };
 		F3C494B426A2BA2F003FDC49 /* NewFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFolderView.swift; sourceTree = "<group>"; };
@@ -677,6 +679,7 @@
 				C83959B025E8FD6700521F83 /* Spinner.swift */,
 				C8EFC3682602C6D0008E8CFA /* URLIconPreview.swift */,
 				F30281E626C94C6600462C8C /* FolderShape.swift */,
+				F39B33C626DB8A2500167B67 /* FolderNavigationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -913,6 +916,7 @@
 				C8EFD1FE25E12F6100CB4141 /* GalleryGridCell.swift in Sources */,
 				C88ACB1625E10A790064C160 /* FeedbackGenerator.swift in Sources */,
 				C89C9DD625E16640003505B9 /* StoredItem+Example.swift in Sources */,
+				F39B33C726DB8A2500167B67 /* FolderNavigationView.swift in Sources */,
 				C89C9DDF25E19598003505B9 /* ItemEditView.swift in Sources */,
 				C89C9DEF25E1D804003505B9 /* Binding+Optional.swift in Sources */,
 				C89C9DE125E19671003505B9 /* Tag+Examples.swift in Sources */,

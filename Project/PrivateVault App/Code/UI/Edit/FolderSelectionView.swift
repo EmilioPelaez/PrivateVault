@@ -15,6 +15,7 @@ struct FolderSelectionView: View {
 	
 	@FetchRequest(
 		sortDescriptors: [NSSortDescriptor(keyPath: \Folder.name, ascending: true)],
+		predicate: NSPredicate(format: "parent == nil"),
 		animation: .default
 	) private var folders: FetchedResults<Folder>
 	
@@ -24,9 +25,8 @@ struct FolderSelectionView: View {
 	
 	var body: some View {
 		NavigationView {
-			List(folders) { folder in
-				FolderListItem(name: folder.name ?? "Unknown",
-							   isSelected: item.belongsToFolder(folder))
+			List(availableFolders, children: \.children) { folder in
+				FolderListItem(name: folder.name ?? "Unknown", isSelected: item.belongsToFolder(folder))
 					.onTapGesture { didSelectFolder(folder) }
 			}
 			.navigationTitle("Add to Folder")

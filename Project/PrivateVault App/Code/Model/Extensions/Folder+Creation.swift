@@ -13,3 +13,14 @@ extension Folder {
 		self.name = name
 	}
 }
+
+extension Folder {
+	var children: [Folder]? {
+		let array = subfolders?.allObjects
+		if array?.isEmpty == true {
+			return nil
+		} else {
+			return array  as? [Folder]
+		}
+	}
+}

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FolderSelectionView: View {
-	let item: CanBeNestedInFolder
+	let item: Nestable
 	
 	@EnvironmentObject private var persistenceController: PersistenceManager
 	@Environment(\.presentationMode) var presentationMode
@@ -26,7 +26,7 @@ struct FolderSelectionView: View {
 	var body: some View {
 		NavigationView {
 			List(availableFolders, children: \.children) { folder in
-				FolderListItem(name: folder.name ?? "Unknown", isSelected: item.belongsToFolder(folder))
+				FolderListItem(name: folder.name ?? "Unknown", isSelected: item.belongs(to: folder))
 					.onTapGesture { didSelectFolder(folder) }
 			}
 			.navigationTitle("Add to Folder")
@@ -44,10 +44,10 @@ struct FolderSelectionView: View {
 	}
 	
 	func didSelectFolder(_ folder: Folder) {
-		if item.belongsToFolder(folder) {
-			item.removeFromFolder(folder, persistenceController: persistenceController)
+		if item.belongs(to: folder) {
+			item.remove(from: folder, persistenceController: persistenceController)
 		} else {
-			item.addToFolder(folder, persistenceController: persistenceController)
+			item.add(to: folder, persistenceController: persistenceController)
 		}
 	}
 }

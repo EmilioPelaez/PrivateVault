@@ -145,7 +145,7 @@
 		F342A90026BD171C00BF4D9A /* FolderListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F342A8FF26BD171C00BF4D9A /* FolderListItem.swift */; };
 		F35C405226C41F6F00CE0A36 /* EditFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35C405126C41F6F00CE0A36 /* EditFolderView.swift */; };
 		F39B33C726DB8A2500167B67 /* FolderNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39B33C626DB8A2500167B67 /* FolderNavigationView.swift */; };
-		F3C2B19926C39C06002E2C82 /* CanBeNestedInFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C2B19826C39C06002E2C82 /* CanBeNestedInFolder.swift */; };
+		F3C2B19926C39C06002E2C82 /* Nestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C2B19826C39C06002E2C82 /* Nestable.swift */; };
 		F3C2B19B26C3A424002E2C82 /* GalleryView+Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C2B19A26C3A424002E2C82 /* GalleryView+Folder.swift */; };
 		F3C494B526A2BA2F003FDC49 /* NewFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C494B426A2BA2F003FDC49 /* NewFolderView.swift */; };
 		F3C494B726A2FA88003FDC49 /* GalleryGridFolderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C494B626A2FA88003FDC49 /* GalleryGridFolderCell.swift */; };
@@ -310,7 +310,7 @@
 		F342A8FF26BD171C00BF4D9A /* FolderListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListItem.swift; sourceTree = "<group>"; };
 		F35C405126C41F6F00CE0A36 /* EditFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderView.swift; sourceTree = "<group>"; };
 		F39B33C626DB8A2500167B67 /* FolderNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderNavigationView.swift; sourceTree = "<group>"; };
-		F3C2B19826C39C06002E2C82 /* CanBeNestedInFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanBeNestedInFolder.swift; sourceTree = "<group>"; };
+		F3C2B19826C39C06002E2C82 /* Nestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nestable.swift; sourceTree = "<group>"; };
 		F3C2B19A26C3A424002E2C82 /* GalleryView+Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GalleryView+Folder.swift"; sourceTree = "<group>"; };
 		F3C494B426A2BA2F003FDC49 /* NewFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFolderView.swift; sourceTree = "<group>"; };
 		F3C494B626A2FA88003FDC49 /* GalleryGridFolderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGridFolderCell.swift; sourceTree = "<group>"; };
@@ -630,7 +630,7 @@
 				C87C771C25FB8A2C00EE6362 /* SortMethod.swift */,
 				2B39CD8625E18B6900E63EDD /* UserSettings.swift */,
 				C89C9DF225E1E6F9003505B9 /* Extensions */,
-				F3C2B19826C39C06002E2C82 /* CanBeNestedInFolder.swift */,
+				F3C2B19826C39C06002E2C82 /* Nestable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -958,7 +958,7 @@
 				C87C772225FDF9F900EE6362 /* ScaledForSmallScreenModifier.swift in Sources */,
 				C87C772925FF51A200EE6362 /* LockoutManager.swift in Sources */,
 				C83959A925E8F31500521F83 /* AsynchronousOperation.swift in Sources */,
-				F3C2B19926C39C06002E2C82 /* CanBeNestedInFolder.swift in Sources */,
+				F3C2B19926C39C06002E2C82 /* Nestable.swift in Sources */,
 				2B39CDC225E1C6C500E63EDD /* String+Capping.swift in Sources */,
 				F3C494B526A2BA2F003FDC49 /* NewFolderView.swift in Sources */,
 				F342A8FE26BD115900BF4D9A /* Folder+Creation.swift in Sources */,

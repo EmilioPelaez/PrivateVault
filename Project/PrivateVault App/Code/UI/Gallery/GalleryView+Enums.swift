@@ -19,7 +19,7 @@ extension GalleryView {
 		case itemEdit(StoredItem)
 		case addNewFolder
 		case editFolder(Folder)
-		case folderSelection(CanBeNestedInFolder)
+		case folderSelection(Nestable)
 		
 		var id: Int {
 			switch self {

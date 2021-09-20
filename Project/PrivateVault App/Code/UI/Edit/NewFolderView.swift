@@ -18,6 +18,8 @@ struct NewFolderView: View {
 		animation: .default
 	) private var folders: FetchedResults<Folder>
 	
+	let parent: Folder?
+	
     var body: some View {
 		NavigationView {
 			List {
@@ -54,7 +56,8 @@ extension NewFolderView {
 				duplicateNameAlert = true
 				return
 			}
-			_ = Folder(context: persistenceController.context, name: folderName)
+			let folder = Folder(context: persistenceController.context, name: folderName)
+			folder.parent = parent
 			persistenceController.save()
 			presentationMode.wrappedValue.dismiss()
 		}
@@ -63,6 +66,6 @@ extension NewFolderView {
 
 struct NewFolderView_Previews: PreviewProvider {
     static var previews: some View {
-		NewFolderView()
+		NewFolderView(parent: nil)
     }
 }

@@ -123,7 +123,7 @@ extension GalleryView {
 	}
 	
 	func folderButtonAction() {
-		currentSheet = .addNewFolder
+		currentSheet = .addNewFolder(parent: folder)
 	}
 	
 }

@@ -25,7 +25,7 @@ struct GalleryView: View {
 	@State var currentAlert: AlertItem?
 	@State var previewSelection: PreviewSelection?
 	@State var itemBeingDeleted: StoredItem?
-	@State private var folder: Folder?
+	@State var folder: Folder?
 	@Binding var isLocked: Bool
 	
 	@FetchRequest(sortDescriptors: [], animation: .default)

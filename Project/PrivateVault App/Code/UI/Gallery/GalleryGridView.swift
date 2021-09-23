@@ -57,8 +57,7 @@ struct GalleryGridView<M: View, N: View>: View {
 	}
 
 	var body: some View {
-		FolderNavigationView(folder: $folder)
-		if items.isEmpty {
+		if items.isEmpty && folders.isEmpty {
 			VStack {
 				SearchBarView(text: searchText, placeholder: "Search files...")
 				ZStack {
@@ -68,7 +67,7 @@ struct GalleryGridView<M: View, N: View>: View {
 						.transition(.opacity)
 				}
 			}
-		} else if filteredItems.isEmpty {
+		} else if filteredItems.isEmpty && folders.isEmpty  {
 			VStack {
 				SearchBarView(text: searchText, placeholder: "Search files...")
 				ZStack {

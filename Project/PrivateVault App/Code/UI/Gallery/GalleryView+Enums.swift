@@ -17,7 +17,7 @@ extension GalleryView {
 		case documentScanner
 		case share([URL])
 		case itemEdit(StoredItem)
-		case addNewFolder(parent: Folder?)
+		case addNewFolder
 		case editFolder(Folder)
 		case folderSelection(Nestable)
 		

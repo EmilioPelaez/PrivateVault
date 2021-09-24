@@ -8,9 +8,10 @@
 import CoreData
 
 extension Folder {
-	convenience init(context: NSManagedObjectContext, name: String) {
+	convenience init(context: NSManagedObjectContext, name: String, parent: Folder?) {
 		self.init(context: context)
 		self.name = name
+		self.parent = parent
 	}
 }
 

@@ -38,7 +38,7 @@ struct PreviewEnvironment {
 		items[3].tags = Set(tags[2...3]) as NSSet
 		
 		let folders = ["Images", "Videos", "Documents", "Top Secret"]
-			.map { Folder(context: viewContext, name: $0) }
+			.map { Folder(context: viewContext, name: $0, parent: nil) }
 
 		do {
 			try viewContext.save()

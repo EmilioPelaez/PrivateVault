@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct GalleryGridView<M: View, N: View>: View {
+	
+	@EnvironmentObject private var appState: AppState
 	@EnvironmentObject private var settings: UserSettings
-
 	@ObservedObject var filter: ItemFilter
 	@Binding var multipleSelection: Bool
 	@Binding var selectedItems: Set<StoredItem>
-	@Binding var folder: Folder?
 	
 	let selection: (StoredItem, [StoredItem]) -> Void
 	let contextMenu: (StoredItem) -> M
@@ -42,16 +42,15 @@ struct GalleryGridView<M: View, N: View>: View {
 		})
 	}
 	
-	init(filter: ItemFilter, multipleSelection: Binding<Bool>, selectedItems: Binding<Set<StoredItem>>, folder: Binding<Folder?>, selection: @escaping (StoredItem, [StoredItem]) -> Void, contextMenu: @escaping (StoredItem) -> M, folderContextMenu: @escaping (Folder) -> N) {
+	init(filter: ItemFilter, multipleSelection: Binding<Bool>, selectedItems: Binding<Set<StoredItem>>, folder: Folder?, selection: @escaping (StoredItem, [StoredItem]) -> Void, contextMenu: @escaping (StoredItem) -> M, folderContextMenu: @escaping (Folder) -> N) {
 		self.filter = filter
 		self._multipleSelection = multipleSelection
 		self._selectedItems = selectedItems
-		self._folder = folder
 		self.selection = selection
 		self.contextMenu = contextMenu
 		self.folderContextMenu = folderContextMenu
-		let itemsPredicate = NSPredicate(format: "folder == %@", folder.wrappedValue ?? NSNull())
-		let folderPredicate = NSPredicate(format: "parent == %@", folder.wrappedValue ?? NSNull())
+		let itemsPredicate = NSPredicate(format: "folder == %@", folder ?? NSNull())
+		let folderPredicate = NSPredicate(format: "parent == %@", folder ?? NSNull())
 		itemsFetchRequest = FetchRequest<StoredItem>(entity: StoredItem.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \StoredItem.timestamp, ascending: false)], predicate: itemsPredicate)
 		foldersFetchRequest = FetchRequest<Folder>(entity: Folder.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Folder.name, ascending: false)], predicate: folderPredicate)
 	}
@@ -59,6 +58,7 @@ struct GalleryGridView<M: View, N: View>: View {
 	var body: some View {
 		if items.isEmpty && folders.isEmpty {
 			VStack {
+				FolderNavigationView()
 				SearchBarView(text: searchText, placeholder: "Search files...")
 				ZStack {
 					Color.clear
@@ -69,6 +69,7 @@ struct GalleryGridView<M: View, N: View>: View {
 			}
 		} else if filteredItems.isEmpty && folders.isEmpty {
 			VStack {
+				FolderNavigationView()
 				SearchBarView(text: searchText, placeholder: "Search files...")
 				ZStack {
 					Color.clear
@@ -81,13 +82,13 @@ struct GalleryGridView<M: View, N: View>: View {
 			}
 		} else {
 			VStack {
-				FolderNavigationView(folder: $folder)
+				FolderNavigationView()
 				ScrollView {
 					SearchBarView(text: searchText, placeholder: "Search files...")
 					LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: settings.columns), spacing: 4) {
 						ForEach(folders) { folder in
 							GalleryGridFolderCell(folder: folder)
-								.onTapGesture { self.folder = folder }
+								.onTapGesture { appState.currentFolder = folder }
 								.contextMenu { folderContextMenu(folder) }
 						}
 					}
@@ -120,7 +121,7 @@ struct GalleryGridView_Previews: PreviewProvider {
 		GalleryGridView(filter: ItemFilter(),
 						multipleSelection: .constant(false),
 						selectedItems: .constant([]),
-						folder: .constant(preview.folder),
+						folder: preview.folder,
 						selection: { _, _ in },
 						contextMenu: { _ in EmptyView() },
 						folderContextMenu: { _ in EmptyView() })

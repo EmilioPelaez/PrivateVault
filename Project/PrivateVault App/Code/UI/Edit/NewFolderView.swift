@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NewFolderView: View {
+	
+	@EnvironmentObject private var appState: AppState
 	@EnvironmentObject private var persistenceController: PersistenceManager
 	@Environment(\.presentationMode) var presentationMode
 	@State private var folderName: String = ""
@@ -17,8 +19,6 @@ struct NewFolderView: View {
 		sortDescriptors: [NSSortDescriptor(keyPath: \Folder.name, ascending: true)],
 		animation: .default
 	) private var folders: FetchedResults<Folder>
-	
-	let parent: Folder?
 	
     var body: some View {
 		NavigationView {
@@ -56,8 +56,7 @@ extension NewFolderView {
 				duplicateNameAlert = true
 				return
 			}
-			let folder = Folder(context: persistenceController.context, name: folderName)
-			folder.parent = parent
+			_ = Folder(context: persistenceController.context, name: folderName, parent: appState.currentFolder)
 			persistenceController.save()
 			presentationMode.wrappedValue.dismiss()
 		}
@@ -66,6 +65,6 @@ extension NewFolderView {
 
 struct NewFolderView_Previews: PreviewProvider {
     static var previews: some View {
-		NewFolderView(parent: nil)
+		NewFolderView()
     }
 }

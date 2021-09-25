@@ -9,8 +9,9 @@ import UIKit
 import SwiftUI
 
 struct DocumentPicker: UIViewControllerRepresentable {
+	@EnvironmentObject private var appState: AppState
 	@Environment(\.presentationMode) var presentationMode
-	var selectDocuments: ([URL]) -> Void
+	var selectDocuments: ([URL], Folder?) -> Void
 
 	func makeUIViewController(context: UIViewControllerRepresentableContext<DocumentPicker>) -> UIDocumentPickerViewController {
 		let viewController = UIDocumentPickerViewController(forOpeningContentTypes: .supportedTypes, asCopy: true)
@@ -31,7 +32,7 @@ struct DocumentPicker: UIViewControllerRepresentable {
 		}
 
 		func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-			parent.selectDocuments(urls)
+			parent.selectDocuments(urls, parent.appState.currentFolder)
 		}
 
 		func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {

@@ -9,8 +9,10 @@ import SwiftUI
 import PhotosUI
 
 struct PhotosPicker: UIViewControllerRepresentable {
+	@EnvironmentObject private var appState: AppState
 	@Environment(\.presentationMode) var presentationMode
-	var selectedMedia: ([NSItemProvider]) -> Void
+	
+	var selectedMedia: ([NSItemProvider], Folder?) -> Void
 
 	func makeUIViewController(context: UIViewControllerRepresentableContext<PhotosPicker>) -> PHPickerViewController {
 		var configuration = PHPickerConfiguration()
@@ -33,7 +35,7 @@ struct PhotosPicker: UIViewControllerRepresentable {
 		}
 
 		func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-			parent.selectedMedia(results.map(\.itemProvider))
+			parent.selectedMedia(results.map(\.itemProvider), parent.appState.currentFolder)
 			parent.presentationMode.wrappedValue.dismiss()
 		}
 	}

@@ -115,6 +115,6 @@ extension GalleryView {
 			currentAlert = .emptyClipboard
 			return
 		}
-		persistenceController.receiveItems(clipboard.itemProviders)
+		persistenceController.receiveItems(clipboard.itemProviders, folder: appState.currentFolder)
 	}
 }

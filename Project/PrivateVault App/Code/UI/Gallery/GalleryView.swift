@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GalleryView: View {
 		
-	@EnvironmentObject private var appState: AppState
+	@EnvironmentObject var appState: AppState
 	@EnvironmentObject var persistenceController: PersistenceManager
 	@EnvironmentObject var settings: UserSettings
 	@EnvironmentObject var diskStore: DiskStore

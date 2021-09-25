@@ -47,4 +47,3 @@ struct FolderShape_Previews: PreviewProvider {
 			.previewLayout(.fixed(width: 200, height: 200))
 	}
 }
-

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct NewFolderView: View {
+	
+	@EnvironmentObject private var appState: AppState
 	@EnvironmentObject private var persistenceController: PersistenceManager
 	@Environment(\.presentationMode) var presentationMode
 	@State private var folderName: String = ""
@@ -54,7 +56,7 @@ extension NewFolderView {
 				duplicateNameAlert = true
 				return
 			}
-			_ = Folder(context: persistenceController.context, name: folderName)
+			_ = Folder(context: persistenceController.context, name: folderName, parent: appState.currentFolder)
 			persistenceController.save()
 			presentationMode.wrappedValue.dismiss()
 		}

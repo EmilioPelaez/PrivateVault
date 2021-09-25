@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct FolderNavigationView: View {
-	@Binding var folder: Folder?
+	
+	@EnvironmentObject private var appState: AppState
 	
 	var parentFolders: [Folder] {
 		var parents = [Folder]()
-		var currentFolder = folder?.parent
+		var currentFolder = appState.currentFolder?.parent
 		while let unwrappedFolder = currentFolder {
 			parents.append(unwrappedFolder)
 			currentFolder = currentFolder?.parent
@@ -29,7 +30,7 @@ struct FolderNavigationView: View {
 						chevron
 					}
 					Button {
-						folder = parent
+						appState.currentFolder = parent
 					} label: {
 						Text(parent.name ?? "")
 							.font(.subheadline)
@@ -48,7 +49,7 @@ struct FolderNavigationView: View {
 private extension FolderNavigationView {
 	var homeButton: some View {
 		Button {
-			folder = nil
+			appState.currentFolder = nil
 		} label: {
 			Image(systemName: "house.fill")
 		}
@@ -56,10 +57,10 @@ private extension FolderNavigationView {
 	
 	var currentFolderName: some View {
 		HStack {
-			if folder != nil {
+			if appState.currentFolder != nil {
 				chevron
 			}
-			Text(folder?.name ?? "")
+			Text(appState.currentFolder?.name ?? "")
 				.font(.subheadline)
 				.bold()
 		}
@@ -75,6 +76,6 @@ struct FolderNavigationView_Previews: PreviewProvider {
 	static var preview = PreviewEnvironment()
 	
     static var previews: some View {
-		FolderNavigationView(folder: .constant(preview.folder))
+		FolderNavigationView()
     }
 }

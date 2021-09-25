@@ -26,7 +26,7 @@ struct PreviewEnvironment {
 			.map { "file\($0)" }
 			.compactMap { name -> StoredItem? in
 				guard let image = UIImage(named: name) else { return nil }
-				return StoredItem(context: viewContext, image: image, name: name, extension: "jpg")
+				return StoredItem(context: viewContext, image: image, name: name, extension: "jpg", folder: nil)
 			}
 
 		let tags = ["Images", "Videos", "Documents", "Top Secret"]
@@ -38,7 +38,7 @@ struct PreviewEnvironment {
 		items[3].tags = Set(tags[2...3]) as NSSet
 		
 		let folders = ["Images", "Videos", "Documents", "Top Secret"]
-			.map { Folder(context: viewContext, name: $0) }
+			.map { Folder(context: viewContext, name: $0, parent: nil) }
 
 		do {
 			try viewContext.save()

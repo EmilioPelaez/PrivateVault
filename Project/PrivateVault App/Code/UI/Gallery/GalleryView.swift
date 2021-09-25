@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GalleryView: View {
 		
+	@EnvironmentObject var appState: AppState
 	@EnvironmentObject var persistenceController: PersistenceManager
 	@EnvironmentObject var settings: UserSettings
 	@EnvironmentObject var diskStore: DiskStore
@@ -25,7 +26,6 @@ struct GalleryView: View {
 	@State var currentAlert: AlertItem?
 	@State var previewSelection: PreviewSelection?
 	@State var itemBeingDeleted: StoredItem?
-	@State private var folder: Folder?
 	@Binding var isLocked: Bool
 	
 	@FetchRequest(sortDescriptors: [], animation: .default)
@@ -33,8 +33,13 @@ struct GalleryView: View {
 	
 	var body: some View {
 		ZStack {
-			// swiftlint:disable line_length
-			GalleryGridView(filter: filter, multipleSelection: $multipleSelection, selectedItems: $selectedItems, folder: $folder, selection: select, contextMenu: contextMenu, folderContextMenu: folderContextMenu)
+			GalleryGridView(filter: filter,
+							multipleSelection: $multipleSelection,
+							selectedItems: $selectedItems,
+							folder: appState.currentFolder,
+							selection: select,
+							contextMenu: contextMenu,
+							folderContextMenu: folderContextMenu)
 			.fullScreenCover(item: $previewSelection, content: quickLookView)
 			Group {
 				if multipleSelection {

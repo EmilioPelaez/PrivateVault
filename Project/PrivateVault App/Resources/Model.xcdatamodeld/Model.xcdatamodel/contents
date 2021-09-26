@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18147.2" systemVersion="20D74" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E232" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Folder" representedClassName="Folder" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="StoredItem" inverseName="folder" inverseEntity="StoredItem"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="subfolders" inverseEntity="Folder"/>
+        <relationship name="subfolders" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Folder" inverseName="parent" inverseEntity="Folder"/>
+    </entity>
     <entity name="StoredItem" representedClassName="StoredItem" syncable="YES" codeGenerationType="class">
         <attribute name="data" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="dataTypeValue" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -9,6 +15,7 @@
         <attribute name="previewData" optional="YES" attributeType="Binary"/>
         <attribute name="remoteUrl" optional="YES" attributeType="URI"/>
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="folder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="items" inverseEntity="Folder"/>
         <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tag" inverseName="items" inverseEntity="Tag"/>
     </entity>
     <entity name="Tag" representedClassName="Tag" syncable="YES" codeGenerationType="class">
@@ -16,7 +23,8 @@
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StoredItem" inverseName="tags" inverseEntity="StoredItem"/>
     </entity>
     <elements>
-        <element name="StoredItem" positionX="-63" positionY="-18" width="128" height="164"/>
+        <element name="Folder" positionX="-54" positionY="54" width="128" height="89"/>
+        <element name="StoredItem" positionX="-63" positionY="-18" width="128" height="179"/>
         <element name="Tag" positionX="-63" positionY="36" width="128" height="59"/>
     </elements>
 </model>

@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+	
+	@StateObject private var appState = AppState()
 	@Environment(\.scenePhase) private var scenePhase
 	@EnvironmentObject private var settings: UserSettings
 	@EnvironmentObject private var passcodeManager: PasscodeManager
@@ -42,6 +44,7 @@ struct ContentView: View {
 					isLocked = true
 				}
 			}
+			.environmentObject(appState)
 		}
 	}
 }

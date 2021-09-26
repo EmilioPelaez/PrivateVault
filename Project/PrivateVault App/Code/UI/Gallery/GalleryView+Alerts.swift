@@ -44,6 +44,11 @@ extension GalleryView {
 			return Alert(title: errors.count == 1 ? Text("Error During Import") : Text("\(errors.count) Errors During Import"),
 									 message: Text(errors.displayMessage),
 									 dismissButton: .default(Text("Ok")))
+		case let .deleteFolderConfirmation(folder):
+			return Alert(title: Text("Delete Folder"),
+									 message: Text("Are you sure you want to delete this folder? This action can't be undone."),
+									 primaryButton: .destructive(Text("Delete"), action: { deleteFolder(folder) }),
+									 secondaryButton: .cancel())
 		}
 	}
 }

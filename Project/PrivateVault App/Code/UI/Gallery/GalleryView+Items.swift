@@ -25,6 +25,12 @@ extension GalleryView {
 				Text("Share")
 				Image(systemName: "square.and.arrow.up")
 			}
+			Button {
+				currentSheet = .folderSelection(item)
+			} label: {
+				Text("Add to Folder")
+				Image(systemName: "folder.badge.plus")
+			}
 			Divider()
 			Button {
 				currentAlert = .deleteItemConfirmation(item)
@@ -109,6 +115,6 @@ extension GalleryView {
 			currentAlert = .emptyClipboard
 			return
 		}
-		persistenceController.receiveItems(clipboard.itemProviders)
+		persistenceController.receiveItems(clipboard.itemProviders, folder: appState.currentFolder)
 	}
 }

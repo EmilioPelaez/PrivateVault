@@ -10,7 +10,7 @@ import SwiftUI
 struct GalleryGridFolderCell: View {
 	let folder: Folder
 	
-    var body: some View {
+	var body: some View {
 		FolderShape()
 			.fill(Color.blue)
 			.opacity(0.2)
@@ -28,7 +28,7 @@ struct GalleryGridFolderCell: View {
 struct GalleryGridFolder_Previews: PreviewProvider {
 	static let preview = PreviewEnvironment()
 	
-    static var previews: some View {
+	static var previews: some View {
 		GalleryGridFolderCell(folder: preview.folder)
-    }
+	}
 }

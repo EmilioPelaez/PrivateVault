@@ -62,7 +62,7 @@ extension GalleryView {
 					Image(systemName: "info.circle")
 				}
 				Menu {
-					ForEach(1..<6) { columns in
+					ForEach(1 ..< 6) { columns in
 						Button {
 							withAnimation { settings.columns = columns }
 						}

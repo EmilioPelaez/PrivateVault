@@ -132,7 +132,7 @@ extension PersistenceManager {
 		}
 	}
 	
-	//	If NSItemProvider fails to provide a file at the given URL, but can provide the data, 
+	//	If NSItemProvider fails to provide a file at the given URL, but can provide the data,
 	private func storeItemFallback(_ item: NSItemProvider, url: URL, type: UTType, folder: Folder?, completion: @escaping (Result<Void, ImportError>) -> Void) {
 		item.loadDataRepresentation(forTypeIdentifier: type.identifier) { [self] data, error in
 			guard let data = data else {
@@ -229,7 +229,7 @@ extension PersistenceManager {
 	}
 	
 	private func processResult(_ result: Result<Void, ImportError>) {
-		if case .failure(let error) = result {
+		if case let .failure(error) = result {
 			self.importErrors.append(error)
 		}
 	}

@@ -11,14 +11,14 @@ class AsynchronousOperation: Operation {
 	
 	let operation: (@escaping () -> Void) -> Void
 	
-	public override var isAsynchronous: Bool { true }
-	public override var isExecuting: Bool { state == .executing }
-	public override var isFinished: Bool { state == .finished }
+	override public var isAsynchronous: Bool { true }
+	override public var isExecuting: Bool { state == .executing }
+	override public var isFinished: Bool { state == .finished }
 	
 	init(block: @escaping (@escaping () -> Void) -> Void) {
 		self.operation = block
 		super.init()
-		state = .ready
+		self.state = .ready
 	}
 	
 	override func main() {
@@ -33,7 +33,7 @@ class AsynchronousOperation: Operation {
 		case ready = "Ready"
 		case executing = "Executing"
 		case finished = "Finished"
-		fileprivate var keyPath: String { "is" + self.rawValue }
+		fileprivate var keyPath: String { "is" + rawValue }
 	}
 	
 	/// Thread-safe computed state value

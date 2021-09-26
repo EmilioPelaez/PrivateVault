@@ -22,7 +22,7 @@ extension Folder {
 		if array?.isEmpty == true {
 			return nil
 		} else {
-			return array  as? [Folder]
+			return array as? [Folder]
 		}
 	}
 }

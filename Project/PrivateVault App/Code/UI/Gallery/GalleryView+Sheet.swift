@@ -17,12 +17,12 @@ extension GalleryView {
 			case .cameraPicker: CameraPicker(selectImage: persistenceController.receiveCapturedImage)
 			case .documentPicker: DocumentPicker(selectDocuments: persistenceController.receiveURLs)
 			case .documentScanner: DocumentScanner(didScan: persistenceController.receiveScan)
-			case .share(let items): ShareSheet(items: items)
-			case .itemEdit(let item): ItemEditView(item: item)
+			case let .share(items): ShareSheet(items: items)
+			case let .itemEdit(item): ItemEditView(item: item)
 			case .settings: SettingsView()
 			case .addNewFolder: NewFolderView()
-			case .editFolder(let folder): EditFolderView(folder: folder)
-			case .folderSelection(let item): FolderSelectionView(item: item)
+			case let .editFolder(folder): EditFolderView(folder: folder)
+			case let .folderSelection(item): FolderSelectionView(item: item)
 			}
 		}
 		.ignoresSafeArea()

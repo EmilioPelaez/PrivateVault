@@ -25,8 +25,8 @@ extension View {
 	}
 }
 
-extension NavigationLink where Label == EmptyView {
-	public init?<V: Identifiable>(
+public extension NavigationLink where Label == EmptyView {
+	init?<V: Identifiable>(
 		item: Binding<V?>,
 		destination: @escaping (V) -> Destination
 	) {

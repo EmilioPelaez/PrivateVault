@@ -12,7 +12,7 @@ struct Spinner: View {
 	
 	var body: some View {
 		ZStack {
-			ForEach(0..<9) { index in
+			ForEach(0 ..< 9) { index in
 				Circle()
 					.fill(Color.primary)
 					.frame(width: 4, height: 4)

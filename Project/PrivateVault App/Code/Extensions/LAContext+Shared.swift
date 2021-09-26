@@ -11,11 +11,11 @@ extension LAContext {
 	var availableType: LABiometryType {
 		var error: NSError?
 
-		guard self.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+		guard canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
 			return .none
 		}
 
-		switch self.biometryType {
+		switch biometryType {
 		case .none: return .none
 		case .touchID: return .touchID
 		case .faceID: return .faceID

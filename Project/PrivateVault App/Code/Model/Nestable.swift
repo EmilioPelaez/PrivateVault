@@ -22,8 +22,8 @@ extension StoredItem: Nestable {
 		persistenceController.save()
 	}
 	
-	func remove(from folder: Folder, persistenceController: PersistenceManager) {
-		self.folder = nil
+	func remove(from _: Folder, persistenceController: PersistenceManager) {
+		folder = nil
 		persistenceController.save()
 	}
 }
@@ -39,8 +39,8 @@ extension Folder: Nestable {
 		persistenceController.save()
 	}
 	
-	func remove(from folder: Folder, persistenceController: PersistenceManager) {
-		self.parent = nil
+	func remove(from _: Folder, persistenceController: PersistenceManager) {
+		parent = nil
 		persistenceController.save()
 	}
 }

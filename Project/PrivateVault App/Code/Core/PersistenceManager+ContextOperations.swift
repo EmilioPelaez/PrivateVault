@@ -22,7 +22,7 @@ extension PersistenceManager {
 		do {
 			try context.save()
 		} catch {
-			self.errorString = error.localizedDescription
+			errorString = error.localizedDescription
 		}
 	}
 }

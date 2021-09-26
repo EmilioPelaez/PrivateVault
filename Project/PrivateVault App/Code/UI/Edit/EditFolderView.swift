@@ -19,7 +19,7 @@ struct EditFolderView: View {
 		animation: .default
 	) private var folders: FetchedResults<Folder>
 	
-    var body: some View {
+	var body: some View {
 		NavigationView {
 			List {
 				TextField(folder.name ?? "Enter Name", text: $folderName)
@@ -38,7 +38,7 @@ struct EditFolderView: View {
 				Alert(title: Text("Folder Already Exists"), message: Text("Choose a unique name for your folder."), dismissButton: .default(Text("Ok!")))
 			}
 		}
-    }
+	}
 }
 
 extension EditFolderView {
@@ -65,7 +65,7 @@ extension EditFolderView {
 struct EditFolderView_Previews: PreviewProvider {
 	static let preview = PreviewEnvironment()
 	
-    static var previews: some View {
+	static var previews: some View {
 		EditFolderView(folder: preview.folder)
-    }
+	}
 }

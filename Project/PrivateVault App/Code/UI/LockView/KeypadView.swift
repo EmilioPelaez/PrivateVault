@@ -15,7 +15,7 @@ struct KeypadView<Button: View>: View {
 
 	var body: some View {
 		LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), alignment: .center) {
-			ForEach(1..<10) { index in
+			ForEach(1 ..< 10) { index in
 				KeyButton(title: Text("\(index)"), color: Color(.tertiarySystemFill), textColor: .primary) {
 					feedback()
 					input("\(index)")
@@ -64,9 +64,9 @@ struct KeypadView_Previews: PreviewProvider {
 	@State static var code = ""
 
 	static var previews: some View {
-		KeypadView(input: { _ in }, delete: { }, bottomLeftInput: {
+		KeypadView(input: { _ in }, delete: {}, bottomLeftInput: {
 			Spacer()
 		})
-		.environmentObject(UserSettings())
+			.environmentObject(UserSettings())
 	}
 }

@@ -60,7 +60,7 @@ struct FileTypePickerView: View {
 					.font(.system(size: height / 2))
 					.frame(width: height, height: height)
 					.foregroundColor(.white)
-				.rotationEffect(.degrees(isExpanded ? 225 : 0))
+					.rotationEffect(.degrees(isExpanded ? 225 : 0))
 			}
 			
 		}

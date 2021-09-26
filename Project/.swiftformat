@@ -1,0 +1,5 @@
+--swiftversion 5
+--indent tab
+--self init-only
+--trimwhitespace nonblank-lines
+--disable blankLinesAtEndOfScope,blankLinesAtStartOfScope

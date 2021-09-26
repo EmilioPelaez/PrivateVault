@@ -59,7 +59,7 @@ extension GalleryView {
 		if item.dataType != .url {
 			diskStore.add(item) { result in
 				switch result {
-				case .success(let item):
+				case let .success(item):
 					self.currentSheet = .share([item.url])
 				case .failure: break
 				}

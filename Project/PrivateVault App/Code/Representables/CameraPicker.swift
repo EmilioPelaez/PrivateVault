@@ -21,7 +21,7 @@ struct CameraPicker: UIViewControllerRepresentable {
 		return cameraPicker
 	}
 
-	func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<CameraPicker>) {}
+	func updateUIViewController(_: UIImagePickerController, context _: UIViewControllerRepresentableContext<CameraPicker>) {}
 
 	func makeCoordinator() -> Coordinator {
 		Coordinator(self)
@@ -34,7 +34,7 @@ struct CameraPicker: UIViewControllerRepresentable {
 			self.parent = parent
 		}
 
-		func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+		func imagePickerController(_: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
 			if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
 				parent.selectImage(image.fixOrientation(), parent.appState.currentFolder)
 			}

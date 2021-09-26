@@ -5,8 +5,8 @@
 //  Created by Emilio Peláez on 21/2/21.
 //
 
-import SwiftUI
 import LocalAuthentication
+import SwiftUI
 
 struct BiometricAuthenticationButton: View {
 	@EnvironmentObject private var settings: UserSettings
@@ -56,7 +56,7 @@ struct BiometricAuthenticationButton: View {
 
 struct BiometricAuthenticationButton_Previews: PreviewProvider {
 	static var previews: some View {
-		BiometricAuthenticationButton { }
+		BiometricAuthenticationButton {}
 			.environmentObject(UserSettings())
 	}
 }

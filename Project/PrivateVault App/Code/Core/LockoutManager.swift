@@ -25,7 +25,7 @@ class LockoutManager: ObservableObject {
 	init() {
 		let interval = keychain[data: unlockDateKey]?.withUnsafeBytes { $0.load(as: Double.self) } as TimeInterval?
 		self.unlockDate = interval.map { Date(timeIntervalSinceReferenceDate: $0) }
-		guard self.unlockDate ?? .distantPast > Date() else { return }
+		guard unlockDate ?? .distantPast > Date() else { return }
 		createTimer()
 	}
 	

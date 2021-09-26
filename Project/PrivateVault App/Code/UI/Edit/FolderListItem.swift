@@ -11,7 +11,7 @@ struct FolderListItem: View {
 	let name: String
 	let isSelected: Bool
 	
-    var body: some View {
+	var body: some View {
 		HStack {
 			FolderShape()
 				.fill(Color.blue)
@@ -22,11 +22,11 @@ struct FolderListItem: View {
 			Spacer()
 			RadioButton(selected: isSelected, size: 16, color: .blue)
 		}
-    }
+	}
 }
 
 struct FolderListItem_Previews: PreviewProvider {
-    static var previews: some View {
+	static var previews: some View {
 		FolderListItem(name: "Documents", isSelected: true)
-    }
+	}
 }

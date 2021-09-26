@@ -34,13 +34,13 @@ struct GalleryView: View {
 	var body: some View {
 		ZStack {
 			GalleryGridView(filter: filter,
-							multipleSelection: $multipleSelection,
-							selectedItems: $selectedItems,
-							folder: appState.currentFolder,
-							selection: select,
-							contextMenu: contextMenu,
-							folderContextMenu: folderContextMenu)
-			.fullScreenCover(item: $previewSelection, content: quickLookView)
+			                multipleSelection: $multipleSelection,
+			                selectedItems: $selectedItems,
+			                folder: appState.currentFolder,
+			                selection: select,
+			                contextMenu: contextMenu,
+			                folderContextMenu: folderContextMenu)
+				.fullScreenCover(item: $previewSelection, content: quickLookView)
 			Group {
 				if multipleSelection {
 					selectionButtons

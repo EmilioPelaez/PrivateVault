@@ -5,8 +5,8 @@
 //  Created by Ian Manor on 19/02/21.
 //
 
-import SwiftUI
 import QuickLook
+import SwiftUI
 
 struct QuickLookView: UIViewControllerRepresentable {
 	struct Selection {
@@ -17,7 +17,7 @@ struct QuickLookView: UIViewControllerRepresentable {
 	let store: DiskStore
 	let selection: Selection
 	
-	func makeUIViewController(context: Context) -> UINavigationController {
+	func makeUIViewController(context _: Context) -> UINavigationController {
 		let previewController = Controller(store: store, selection: selection)
 		let action = UIAction { [weak previewController] _ in
 			previewController?.dismiss(animated: true)
@@ -26,9 +26,9 @@ struct QuickLookView: UIViewControllerRepresentable {
 		return UINavigationController(rootViewController: previewController)
 	}
 	
-	func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {}
+	func updateUIViewController(_: UINavigationController, context _: Context) {}
 	
-	static func dismantleUIViewController(_ uiViewController: UINavigationController, coordinator: ()) {
+	static func dismantleUIViewController(_ uiViewController: UINavigationController, coordinator _: ()) {
 		// If we don't remove from the navigation controller this view controller doesn't get released
 		uiViewController.viewControllers = []
 	}
@@ -67,14 +67,14 @@ struct QuickLookView: UIViewControllerRepresentable {
 			self.initialIndex = selection.selectedIndex
 			super.init(nibName: nil, bundle: nil)
 			
-			observer = observe(\.currentPreviewItemIndex, options: [.old, .new]) { [weak self] _, change in
+			self.observer = observe(\.currentPreviewItemIndex, options: [.old, .new]) { [weak self] _, change in
 				guard let newValue = change.newValue else { return }
 				self?.currentPreviewItemIndexDidChange(newValue)
 			}
 		}
 		
 		@available(*, unavailable)
-		required init?(coder: NSCoder) {
+		required init?(coder _: NSCoder) {
 			fatalError("init(coder:) has not been implemented")
 		}
 		
@@ -91,14 +91,14 @@ struct QuickLookView: UIViewControllerRepresentable {
 			items.map(\.storedItem).forEach(store.remove)
 		}
 		
-		func numberOfPreviewItems(in controller: QLPreviewController) -> Int { items.count }
+		func numberOfPreviewItems(in _: QLPreviewController) -> Int { items.count }
 		
-		func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+		func previewController(_: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
 			items[index]
 		}
 		
 		private func currentPreviewItemIndexDidChange(_ index: Int) {
-			guard (0..<items.count).contains(index) else { return }
+			guard (0 ..< items.count).contains(index) else { return }
 			guard !indicesLoaded.contains(index) else { return }
 			indicesLoaded.insert(index)
 			loadItem(items[index]) { _ in
@@ -109,10 +109,10 @@ struct QuickLookView: UIViewControllerRepresentable {
 		private func loadItem(_ item: PreviewItem, completion: @escaping (Result<Void, Error>) -> Void = { _ in }) {
 			store.add(item.storedItem) { result in
 				switch result {
-				case .success(let diskItem):
+				case let .success(diskItem):
 					item.diskItem = diskItem
 					completion(.success(()))
-				case .failure(let error):
+				case let .failure(error):
 					completion(.failure(error))
 				}
 			}

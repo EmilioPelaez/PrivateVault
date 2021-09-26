@@ -33,7 +33,7 @@ extension StoredItem {
 		self.timestamp = Date()
 	}
 	
-	convenience init(context: NSManagedObjectContext, image: UIImage, name: String, extension: String, folder: Folder?) {
+	convenience init(context: NSManagedObjectContext, image: UIImage, name: String, extension _: String, folder: Folder?) {
 		let data = image.pngData()
 		let resizedImage = image.square(200)?.jpegData(compressionQuality: 0.85)
 		self.init(context: context)

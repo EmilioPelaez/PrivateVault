@@ -21,7 +21,7 @@ struct FolderNavigationView: View {
 		return parents.reversed()
 	}
 	
-    var body: some View {
+	var body: some View {
 		ScrollView(.horizontal) {
 			HStack(spacing: 8) {
 				homeButton
@@ -43,7 +43,7 @@ struct FolderNavigationView: View {
 		.padding(.vertical, 8)
 		.padding(.horizontal, 16)
 		.frame(maxWidth: .infinity)
-    }
+	}
 }
 
 private extension FolderNavigationView {
@@ -75,7 +75,7 @@ private extension FolderNavigationView {
 struct FolderNavigationView_Previews: PreviewProvider {
 	static var preview = PreviewEnvironment()
 	
-    static var previews: some View {
+	static var previews: some View {
 		FolderNavigationView()
-    }
+	}
 }

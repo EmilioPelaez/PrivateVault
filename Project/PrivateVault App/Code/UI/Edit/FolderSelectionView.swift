@@ -55,7 +55,7 @@ struct FolderSelectionView: View {
 struct FolderSelectionView_Previews: PreviewProvider {
 	static let preview = PreviewEnvironment()
 	
-    static var previews: some View {
+	static var previews: some View {
 		FolderSelectionView(item: preview.item)
-    }
+	}
 }

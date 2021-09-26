@@ -21,7 +21,7 @@ struct PreviewEnvironment {
 		let controller = PersistenceManager(usage: .preview)
 		let viewContext = controller.container.viewContext
 
-		let items = (1...6)
+		let items = (1 ... 6)
 			.map { $0 % 6 + 1 }
 			.map { "file\($0)" }
 			.compactMap { name -> StoredItem? in
@@ -32,10 +32,10 @@ struct PreviewEnvironment {
 		let tags = ["Images", "Videos", "Documents", "Top Secret"]
 			.map { Tag(context: viewContext, name: $0) }
 
-		items[0].tags = Set(tags[1...3]) as NSSet
+		items[0].tags = Set(tags[1 ... 3]) as NSSet
 		items[1].tags = Set(tags) as NSSet
-		items[2].tags = Set(tags[0...1]) as NSSet
-		items[3].tags = Set(tags[2...3]) as NSSet
+		items[2].tags = Set(tags[0 ... 1]) as NSSet
+		items[3].tags = Set(tags[2 ... 3]) as NSSet
 		
 		let folders = ["Images", "Videos", "Documents", "Top Secret"]
 			.map { Folder(context: viewContext, name: $0, parent: nil) }

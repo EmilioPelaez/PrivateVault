@@ -7,10 +7,10 @@
 
 extension String {
 	func capping(_ maxLength: Int) -> String {
-		if self.count <= maxLength {
+		if count <= maxLength {
 			return self
 		} else {
-			return self.prefix(maxLength - 3) + "..."
+			return prefix(maxLength - 3) + "..."
 		}
 	}
 }

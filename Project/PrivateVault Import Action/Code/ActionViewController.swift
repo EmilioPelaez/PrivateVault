@@ -83,7 +83,7 @@ class ActionViewController: UIViewController {
 			let errorCount = persistence?.importErrors.count ?? 0
 			switch errorCount {
 			case 0: importingLabel.text = "Import Complete!"
-			case 0..<providers.count: importingLabel.text = "Import finished with \(errorCount) errors."
+			case 0 ..< providers.count: importingLabel.text = "Import finished with \(errorCount) errors."
 			case _: importingLabel.text = "Import Failed..."
 			}
 			closeButton.isHidden = false

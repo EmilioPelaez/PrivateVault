@@ -110,7 +110,7 @@ struct GalleryGridView<M: View, N: View>: View {
 		guard multipleSelection else {
 			return .disabled
 		}
-		return selectedItems.contains(item) ? .selected: .unselected
+		return selectedItems.contains(item) ? .selected : .unselected
 	}
 }
 
@@ -119,12 +119,12 @@ struct GalleryGridView_Previews: PreviewProvider {
 
 	static var previews: some View {
 		GalleryGridView(filter: ItemFilter(),
-						multipleSelection: .constant(false),
-						selectedItems: .constant([]),
-						folder: preview.folder,
-						selection: { _, _ in },
-						contextMenu: { _ in EmptyView() },
-						folderContextMenu: { _ in EmptyView() })
+		                multipleSelection: .constant(false),
+		                selectedItems: .constant([]),
+		                folder: preview.folder,
+		                selection: { _, _ in },
+		                contextMenu: { _ in EmptyView() },
+		                folderContextMenu: { _ in EmptyView() })
 			.environment(\.managedObjectContext, preview.context)
 			.environmentObject(preview.controller)
 			.environmentObject(UserSettings())

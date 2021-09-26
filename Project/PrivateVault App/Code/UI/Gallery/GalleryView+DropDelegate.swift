@@ -8,9 +8,9 @@
 import SwiftUI
 
 extension GalleryView: DropDelegate {
-	func dropEntered(info: DropInfo) { dragOver = true }
+	func dropEntered(info _: DropInfo) { dragOver = true }
 	
-	func dropExited(info: DropInfo) { dragOver = false }
+	func dropExited(info _: DropInfo) { dragOver = false }
 	
 	func performDrop(info: DropInfo) -> Bool {
 		persistenceController.receiveItems(info.itemProviders(for: [.image, .video, .movie, .pdf]), folder: appState.currentFolder)

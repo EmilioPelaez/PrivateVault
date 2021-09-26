@@ -41,10 +41,10 @@ enum LinkType {
 
 	var urlString: String {
 		switch self {
-		case .twitter(let urlString): return urlString
-		case .website(let urlString): return urlString
-		case .appStore(let urlString): return urlString
-		case .github(let urlString): return urlString
+		case let .twitter(urlString): return urlString
+		case let .website(urlString): return urlString
+		case let .appStore(urlString): return urlString
+		case let .github(urlString): return urlString
 		}
 	}
 }

@@ -5,8 +5,8 @@
 //  Created by Emilio Peláez on 20/2/21.
 //
 
-import UIKit
 import SwiftUI
+import UIKit
 
 struct DocumentPicker: UIViewControllerRepresentable {
 	@EnvironmentObject private var appState: AppState
@@ -20,7 +20,7 @@ struct DocumentPicker: UIViewControllerRepresentable {
 		return viewController
 	}
 
-	func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: UIViewControllerRepresentableContext<DocumentPicker>) { }
+	func updateUIViewController(_: UIDocumentPickerViewController, context _: UIViewControllerRepresentableContext<DocumentPicker>) {}
 	
 	func makeCoordinator() -> Coordinator { Coordinator(self) }
 
@@ -31,11 +31,11 @@ struct DocumentPicker: UIViewControllerRepresentable {
 			self.parent = parent
 		}
 
-		func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+		func documentPicker(_: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
 			parent.selectDocuments(urls, parent.appState.currentFolder)
 		}
 
-		func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
+		func documentPickerWasCancelled(_: UIDocumentPickerViewController) {
 			parent.presentationMode.wrappedValue.dismiss()
 		}
 	}

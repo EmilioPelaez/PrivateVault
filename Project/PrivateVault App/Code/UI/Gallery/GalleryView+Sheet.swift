@@ -8,6 +8,7 @@
 import SwiftUI
 
 extension GalleryView {
+	//	swiftlint:disable:next cyclomatic_complexity
 	func sheetFor(_ item: SheetItem) -> some View {
 		Group {
 			switch item {

@@ -16,6 +16,7 @@ extension Folder {
 }
 
 extension Folder {
+	//	swiftlint:disable:next discouraged_optional_collection
 	var children: [Folder]? {
 		let array = subfolders?.allObjects
 		if array?.isEmpty == true {

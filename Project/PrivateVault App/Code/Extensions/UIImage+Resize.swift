@@ -101,10 +101,7 @@ extension UIImage {
 		
 		ctx.concatenate(transform)
 		
-		if imageOrientation == .left ||
-			imageOrientation == .leftMirrored ||
-			imageOrientation == .right ||
-			imageOrientation == .rightMirrored {
+		if [.left, .leftMirrored, .right, .rightMirrored].contains(imageOrientation) {
 			ctx.draw(cgImage, in: CGRect(x: 0, y: 0, width: size.height, height: size.width))
 		} else {
 			ctx.draw(cgImage, in: CGRect(x: 0, y: 0, width: size.width, height: size.height))

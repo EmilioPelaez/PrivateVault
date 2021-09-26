@@ -10,7 +10,7 @@ import UIKit
 
 class FeedbackGenerator {
 	static func impact(_ style: UIImpactFeedbackGenerator.FeedbackStyle) {
-		if UIDevice.supportsHapticFeedback {
+		if UIDevice.current.supportsHapticFeedback {
 			UIImpactFeedbackGenerator(style: style).impactOccurred()
 		} else {
 			// swiftlint:disable:next number_separator

@@ -625,15 +625,15 @@
 		C8A792EA25E066B2009B862D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F39F2CA126FD9FC900CCA4B3 /* AppState.swift */,
 				C8EFC3652602B967008E8CFA /* ImportError.swift */,
 				C83959B225E9AE6900521F83 /* ItemFilter.swift */,
+				F3C2B19826C39C06002E2C82 /* Nestable.swift */,
 				C89C9DE425E196A4003505B9 /* PreviewEnvironment.swift */,
 				C89A5D6F25FAE220007F8E8B /* PreviewSelection.swift */,
 				C87C771C25FB8A2C00EE6362 /* SortMethod.swift */,
 				2B39CD8625E18B6900E63EDD /* UserSettings.swift */,
 				C89C9DF225E1E6F9003505B9 /* Extensions */,
-				F3C2B19826C39C06002E2C82 /* Nestable.swift */,
-				F39F2CA126FD9FC900CCA4B3 /* AppState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

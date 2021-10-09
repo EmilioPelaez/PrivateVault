@@ -13,7 +13,7 @@ struct GalleryView: View {
 	@EnvironmentObject var persistenceController: PersistenceManager
 	@EnvironmentObject var settings: UserSettings
 	@EnvironmentObject var diskStore: DiskStore
-	@ObservedObject var filter = ItemFilter()
+	@StateObject var filter = ItemFilter()
 	@State var dragOver = false
 	@State var showLayoutMenu = false
 	@State var showImageActionSheet = false

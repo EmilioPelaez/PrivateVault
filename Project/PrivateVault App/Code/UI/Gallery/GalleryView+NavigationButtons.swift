@@ -95,7 +95,6 @@ extension GalleryView {
 				}
 			} label: {
 				Image(systemName: "ellipsis.circle")
-					.font(.title2)
 			}
 		}
 	}

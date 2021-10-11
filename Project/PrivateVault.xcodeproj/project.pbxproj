@@ -78,6 +78,7 @@
 		C88ACB1625E10A790064C160 /* FeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */; };
 		C88ACB1925E10B450064C160 /* UIDevice+iPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1825E10B450064C160 /* UIDevice+iPad.swift */; };
 		C88ACB1B25E112A70064C160 /* ShakeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1A25E112A70064C160 /* ShakeModifier.swift */; };
+		C892CC862714F85C006278AF /* NSManagedObject+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C892CC852714F85C006278AF /* NSManagedObject+Identifier.swift */; };
 		C89A5D6A25FA29A0007F8E8B /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = C89A5D6925FA29A0007F8E8B /* KeychainAccess */; };
 		C89A5D6C25FA29AD007F8E8B /* PasscodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89A5D6B25FA29AD007F8E8B /* PasscodeManager.swift */; };
 		C89A5D6E25FADCCC007F8E8B /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89A5D6D25FADCCC007F8E8B /* SafariView.swift */; };
@@ -260,6 +261,7 @@
 		C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerator.swift; sourceTree = "<group>"; };
 		C88ACB1825E10B450064C160 /* UIDevice+iPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+iPad.swift"; sourceTree = "<group>"; };
 		C88ACB1A25E112A70064C160 /* ShakeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeModifier.swift; sourceTree = "<group>"; };
+		C892CC852714F85C006278AF /* NSManagedObject+Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Identifier.swift"; sourceTree = "<group>"; };
 		C89A5D6B25FA29AD007F8E8B /* PasscodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeManager.swift; sourceTree = "<group>"; };
 		C89A5D6D25FADCCC007F8E8B /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		C89A5D6F25FAE220007F8E8B /* PreviewSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSelection.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 				C8EFC36226016D5A008E8CFA /* UTType+Supported.swift */,
 				2B081A7325E085FA00F9D522 /* View+Navigation.swift */,
 				C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */,
+				C892CC852714F85C006278AF /* NSManagedObject+Identifier.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -930,6 +933,7 @@
 				C8EFC3672602B976008E8CFA /* ImportError.swift in Sources */,
 				C86F9CCD25ED8BAB00210F64 /* ItemSelectionView.swift in Sources */,
 				C83959BC25E9BFE700521F83 /* GalleryView+Alerts.swift in Sources */,
+				C892CC862714F85C006278AF /* NSManagedObject+Identifier.swift in Sources */,
 				C83959B825E9B17C00521F83 /* FiltersView.swift in Sources */,
 				C83959B125E8FD6700521F83 /* Spinner.swift in Sources */,
 				C83959BA25E9BFA700521F83 /* GalleryView+NavigationButtons.swift in Sources */,

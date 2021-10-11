@@ -26,6 +26,7 @@ struct GalleryView: View {
 	@State var currentAlert: AlertItem?
 	@State var previewSelection: PreviewSelection?
 	@State var itemBeingDeleted: StoredItem?
+	@State var currentFolder: Folder?
 	@Binding var isLocked: Bool
 	
 	@FetchRequest(sortDescriptors: [], animation: .default)
@@ -36,10 +37,12 @@ struct GalleryView: View {
 			GalleryGridView(filter: filter,
 			                multipleSelection: $multipleSelection,
 			                selectedItems: $selectedItems,
-			                folder: appState.currentFolder,
+			                folder: currentFolder,
 			                selection: select,
 			                contextMenu: contextMenu,
 			                folderContextMenu: folderContextMenu)
+				.id(currentFolder?.identifier ?? "Home Folder")
+				.transition(.opacity)
 				.fullScreenCover(item: $previewSelection, content: quickLookView)
 			Group {
 				if multipleSelection {
@@ -74,6 +77,11 @@ struct GalleryView: View {
 			guard !creating, !persistenceController.importErrors.isEmpty else { return }
 			currentAlert = .importErrors(persistenceController.importErrors)
 			persistenceController.flushErrors()
+		}
+		.onChange(of: appState.currentFolder) { folder in
+			withAnimation {
+				currentFolder = folder
+			}
 		}
 		.onAppear {
 			persistenceController.fatalErrorString.map { currentAlert = .persistenceFatalError($0) }

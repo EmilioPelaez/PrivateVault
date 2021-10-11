@@ -88,7 +88,11 @@ struct GalleryGridView<M: View, N: View>: View {
 					LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: settings.columns), spacing: 4) {
 						ForEach(folders) { folder in
 							GalleryGridFolderCell(folder: folder)
-								.onTapGesture { appState.currentFolder = folder }
+								.onTapGesture {
+									withAnimation {
+										appState.currentFolder = folder
+									}
+								}
 								.contextMenu { folderContextMenu(folder) }
 						}
 					}

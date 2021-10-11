@@ -10,23 +10,32 @@ import SwiftUI
 struct FolderListItem: View {
 	let name: String
 	let isSelected: Bool
+	let isSelectable: Bool
+	let action: () -> Void
 	
 	var body: some View {
-		HStack {
-			FolderShape()
-				.fill(Color.blue)
-				.opacity(0.6)
-				.frame(width: 32, height: 32)
-				.aspectRatio(contentMode: .fit)
-			Text(name)
-			Spacer()
-			RadioButton(selected: isSelected, size: 16, color: .blue)
+		Button(action: action) {
+			HStack {
+				FolderShape()
+					.fill(Color.blue)
+					.opacity(0.6)
+					.frame(width: 32, height: 32)
+					.aspectRatio(contentMode: .fit)
+				Text(name)
+					.foregroundColor(.primary)
+				Spacer()
+				RadioButton(selected: isSelected, size: 16, color: .blue)
+			}
 		}
+		.disabled(!isSelectable)
+		.saturation(isSelectable ? 1 : 0)
 	}
 }
 
 struct FolderListItem_Previews: PreviewProvider {
 	static var previews: some View {
-		FolderListItem(name: "Documents", isSelected: true)
+		FolderListItem(name: "Documents", isSelected: true, isSelectable: false) {
+			
+		}
 	}
 }

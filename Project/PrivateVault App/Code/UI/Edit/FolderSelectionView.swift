@@ -19,15 +19,14 @@ struct FolderSelectionView: View {
 		animation: .default
 	) private var folders: FetchedResults<Folder>
 	
-	var availableFolders: [Folder] {
-		folders.filter { $0 != item as? Folder }
-	}
-	
 	var body: some View {
 		NavigationView {
-			List(availableFolders, children: \.children) { folder in
-				FolderListItem(name: folder.name ?? "Unknown", isSelected: item.belongs(to: folder))
-					.onTapGesture { didSelectFolder(folder) }
+			List(Array(folders), children: \.children) { folder in
+				FolderListItem(name: folder.name ?? "Unnamed Folder",
+											 isSelected: item.belongs(to: folder),
+											 isSelectable: item.canBelong(to: folder)) {
+					didSelectFolder(folder)
+				}
 			}
 			.navigationTitle("Add to Folder")
 			.toolbar {

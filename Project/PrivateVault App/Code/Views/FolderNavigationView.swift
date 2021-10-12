@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct FolderNavigationView: View {
-	
 	@EnvironmentObject private var appState: AppState
 	
 	var parentFolders: [Folder] {
@@ -40,8 +39,6 @@ struct FolderNavigationView: View {
 				currentFolderName
 			}
 		}
-		.padding(.vertical, 8)
-		.padding(.horizontal, 16)
 		.frame(maxWidth: .infinity)
 	}
 }
@@ -52,6 +49,7 @@ private extension FolderNavigationView {
 			appState.currentFolder = nil
 		} label: {
 			Image(systemName: "house.fill")
+				.font(.title2)
 		}
 	}
 	
@@ -77,5 +75,6 @@ struct FolderNavigationView_Previews: PreviewProvider {
 	
 	static var previews: some View {
 		FolderNavigationView()
+			.environmentObject(AppState())
 	}
 }

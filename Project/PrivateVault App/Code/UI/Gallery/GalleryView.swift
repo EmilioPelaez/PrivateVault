@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct GalleryView: View {
-		
+	
 	@EnvironmentObject var appState: AppState
 	@EnvironmentObject var persistenceController: PersistenceManager
 	@EnvironmentObject var settings: UserSettings
 	@EnvironmentObject var diskStore: DiskStore
-	@StateObject var filter = ItemFilter()
+	@EnvironmentObject var filter: ItemFilter
 	@State var dragOver = false
 	@State var showLayoutMenu = false
 	@State var showImageActionSheet = false
@@ -34,16 +34,20 @@ struct GalleryView: View {
 	
 	var body: some View {
 		ZStack {
-			GalleryGridView(filter: filter,
-			                multipleSelection: $multipleSelection,
-			                selectedItems: $selectedItems,
-			                folder: currentFolder,
-			                selection: select,
-			                contextMenu: contextMenu,
-			                folderContextMenu: folderContextMenu)
-				.id(currentFolder?.identifier ?? "Home Folder")
-				.transition(.opacity)
-				.fullScreenCover(item: $previewSelection, content: quickLookView)
+			VStack(spacing: 0) {
+				GalleryHeaderView(text: $filter.searchText, placeholder: "Search...")
+				Color(.secondarySystemBackground)
+					.frame(height: 1)
+				GalleryGridView(multipleSelection: $multipleSelection,
+												selectedItems: $selectedItems,
+												folder: currentFolder,
+												selection: select,
+												contextMenu: contextMenu,
+												folderContextMenu: folderContextMenu)
+					.id(currentFolder?.identifier ?? "Home Folder")
+					.transition(.opacity)
+			}
+			.fullScreenCover(item: $previewSelection, content: quickLookView)
 			Group {
 				if multipleSelection {
 					selectionButtons

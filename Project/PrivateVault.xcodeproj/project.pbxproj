@@ -79,6 +79,7 @@
 		C88ACB1925E10B450064C160 /* UIDevice+iPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1825E10B450064C160 /* UIDevice+iPad.swift */; };
 		C88ACB1B25E112A70064C160 /* ShakeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88ACB1A25E112A70064C160 /* ShakeModifier.swift */; };
 		C892CC862714F85C006278AF /* NSManagedObject+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C892CC852714F85C006278AF /* NSManagedObject+Identifier.swift */; };
+		C892CC882714F996006278AF /* GalleryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C892CC872714F996006278AF /* GalleryHeaderView.swift */; };
 		C89A5D6A25FA29A0007F8E8B /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = C89A5D6925FA29A0007F8E8B /* KeychainAccess */; };
 		C89A5D6C25FA29AD007F8E8B /* PasscodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89A5D6B25FA29AD007F8E8B /* PasscodeManager.swift */; };
 		C89A5D6E25FADCCC007F8E8B /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89A5D6D25FADCCC007F8E8B /* SafariView.swift */; };
@@ -262,6 +263,7 @@
 		C88ACB1825E10B450064C160 /* UIDevice+iPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+iPad.swift"; sourceTree = "<group>"; };
 		C88ACB1A25E112A70064C160 /* ShakeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeModifier.swift; sourceTree = "<group>"; };
 		C892CC852714F85C006278AF /* NSManagedObject+Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Identifier.swift"; sourceTree = "<group>"; };
+		C892CC872714F996006278AF /* GalleryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryHeaderView.swift; sourceTree = "<group>"; };
 		C89A5D6B25FA29AD007F8E8B /* PasscodeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeManager.swift; sourceTree = "<group>"; };
 		C89A5D6D25FADCCC007F8E8B /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		C89A5D6F25FAE220007F8E8B /* PreviewSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSelection.swift; sourceTree = "<group>"; };
@@ -496,6 +498,8 @@
 		C88ACB1E25E114AC0064C160 /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
+				C892CC8A2714F9A8006278AF /* Cells */,
+				C892CC892714F99B006278AF /* Empty States */,
 				C8A792EC25E06D75009B862D /* GalleryView.swift */,
 				C83959BB25E9BFE700521F83 /* GalleryView+Alerts.swift */,
 				C83959C325E9C0E900521F83 /* GalleryView+BottomOverlays.swift */,
@@ -506,12 +510,27 @@
 				C83959B925E9BFA700521F83 /* GalleryView+NavigationButtons.swift */,
 				C83959BF25E9C05F00521F83 /* GalleryView+Sheet.swift */,
 				C8EFD1F925E1281600CB4141 /* GalleryGridView.swift */,
-				C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */,
-				F3C494B626A2FA88003FDC49 /* GalleryGridFolderCell.swift */,
-				C89C9DD725E1773E003505B9 /* EmptyGalleryView.swift */,
-				C89C9DDC25E190C4003505B9 /* FilteredGalleryView.swift */,
+				C892CC872714F996006278AF /* GalleryHeaderView.swift */,
 			);
 			path = Gallery;
+			sourceTree = "<group>";
+		};
+		C892CC892714F99B006278AF /* Empty States */ = {
+			isa = PBXGroup;
+			children = (
+				C89C9DDC25E190C4003505B9 /* FilteredGalleryView.swift */,
+				C89C9DD725E1773E003505B9 /* EmptyGalleryView.swift */,
+			);
+			path = "Empty States";
+			sourceTree = "<group>";
+		};
+		C892CC8A2714F9A8006278AF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F3C494B626A2FA88003FDC49 /* GalleryGridFolderCell.swift */,
+				C8EFD1FD25E12F6100CB4141 /* GalleryGridCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		C89C9DD925E17AB8003505B9 /* Tags */ = {
@@ -898,6 +917,7 @@
 				C8EFD22D25E15BDF00CB4141 /* StoredItem+Creation.swift in Sources */,
 				C87C771D25FB8A2C00EE6362 /* SortMethod.swift in Sources */,
 				F3C2B19B26C3A424002E2C82 /* GalleryView+Folder.swift in Sources */,
+				C892CC882714F996006278AF /* GalleryHeaderView.swift in Sources */,
 				C8EFD20025E1373F00CB4141 /* UIImage+Resize.swift in Sources */,
 				2B39CDB825E1BB5700E63EDD /* Binding+Map.swift in Sources */,
 				C8EFD22625E14B2B00CB4141 /* Model.xcdatamodeld in Sources */,

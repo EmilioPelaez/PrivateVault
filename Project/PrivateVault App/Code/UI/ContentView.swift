@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
 	
 	@StateObject private var appState = AppState()
+	@StateObject private var filter = ItemFilter()
 	@Environment(\.scenePhase) private var scenePhase
 	@EnvironmentObject private var settings: UserSettings
 	@EnvironmentObject private var passcodeManager: PasscodeManager
@@ -45,6 +46,7 @@ struct ContentView: View {
 				}
 			}
 			.environmentObject(appState)
+			.environmentObject(filter)
 		}
 	}
 }
@@ -58,5 +60,6 @@ struct ContentView_Previews: PreviewProvider {
 			.environmentObject(preview.controller)
 			.environmentObject(UserSettings())
 			.environmentObject(PasscodeManager())
+			.environmentObject(AppState())
 	}
 }

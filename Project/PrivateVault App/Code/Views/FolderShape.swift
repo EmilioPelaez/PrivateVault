@@ -44,6 +44,7 @@ struct FolderShape: Shape {
 struct FolderShape_Previews: PreviewProvider {
 	static var previews: some View {
 		FolderShape()
+			.folderStyle()
 			.previewLayout(.fixed(width: 200, height: 200))
 	}
 }

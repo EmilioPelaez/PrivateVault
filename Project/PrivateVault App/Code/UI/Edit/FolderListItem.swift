@@ -17,8 +17,7 @@ struct FolderListItem: View {
 		Button(action: action) {
 			HStack {
 				FolderShape()
-					.fill(Color.blue)
-					.opacity(0.6)
+					.folderStyle()
 					.frame(width: 32, height: 32)
 					.aspectRatio(contentMode: .fit)
 				Text(name)

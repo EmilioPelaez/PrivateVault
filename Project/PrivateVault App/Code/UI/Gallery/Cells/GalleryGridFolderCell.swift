@@ -12,8 +12,7 @@ struct GalleryGridFolderCell: View {
 	
 	var body: some View {
 		FolderShape()
-			.fill(Color.blue)
-			.opacity(0.2)
+			.folderStyle()
 			.aspectRatio(contentMode: .fit)
 			.overlay(
 				Text(folder.name ?? "Untitled")

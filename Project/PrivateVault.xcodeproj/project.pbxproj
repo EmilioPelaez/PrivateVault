@@ -101,6 +101,8 @@
 		C8A792DA25E06642009B862D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A792D925E06642009B862D /* Assets.xcassets */; };
 		C8A792DD25E06642009B862D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A792DC25E06642009B862D /* Preview Assets.xcassets */; };
 		C8A792ED25E06D75009B862D /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A792EC25E06D75009B862D /* GalleryView.swift */; };
+		C8C5D9AF271644C400CE967D /* View+FolderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5D9AE271644C400CE967D /* View+FolderStyle.swift */; };
+		C8C5D9B0271644C400CE967D /* View+FolderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5D9AE271644C400CE967D /* View+FolderStyle.swift */; };
 		C8CC881F26381DB8001783FF /* KernelDirectoryUI in Frameworks */ = {isa = PBXBuildFile; productRef = C8CC881E26381DB8001783FF /* KernelDirectoryUI */; };
 		C8EFC331260010FA008E8CFA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8EFC330260010FA008E8CFA /* Media.xcassets */; };
 		C8EFC333260010FA008E8CFA /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFC332260010FA008E8CFA /* ActionViewController.swift */; };
@@ -286,6 +288,7 @@
 		C8A792DC25E06642009B862D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C8A792DE25E06642009B862D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8A792EC25E06D75009B862D /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
+		C8C5D9AE271644C400CE967D /* View+FolderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+FolderStyle.swift"; sourceTree = "<group>"; };
 		C8EFC32E260010FA008E8CFA /* PrivateVault Import Action.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PrivateVault Import Action.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EFC330260010FA008E8CFA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		C8EFC332260010FA008E8CFA /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
@@ -453,6 +456,7 @@
 				2B39CDBB25E1BEAB00E63EDD /* ContentMode+description.swift */,
 				C868FD6725E30B23005A3EA9 /* LAContext+Shared.swift */,
 				C839599425E7BF0600521F83 /* NSItemProvider+LoadPhoto.swift */,
+				C892CC852714F85C006278AF /* NSManagedObject+Identifier.swift */,
 				C8FCB7B425EED5B50002D386 /* Publisher+Actions.swift */,
 				2B39CDC125E1C6C500E63EDD /* String+Capping.swift */,
 				C88ACB1825E10B450064C160 /* UIDevice+iPad.swift */,
@@ -462,7 +466,7 @@
 				C8EFC36226016D5A008E8CFA /* UTType+Supported.swift */,
 				2B081A7325E085FA00F9D522 /* View+Navigation.swift */,
 				C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */,
-				C892CC852714F85C006278AF /* NSManagedObject+Identifier.swift */,
+				C8C5D9AE271644C400CE967D /* View+FolderStyle.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -919,6 +923,7 @@
 				F3C2B19B26C3A424002E2C82 /* GalleryView+Folder.swift in Sources */,
 				C892CC882714F996006278AF /* GalleryHeaderView.swift in Sources */,
 				C8EFD20025E1373F00CB4141 /* UIImage+Resize.swift in Sources */,
+				C8C5D9AF271644C400CE967D /* View+FolderStyle.swift in Sources */,
 				2B39CDB825E1BB5700E63EDD /* Binding+Map.swift in Sources */,
 				C8EFD22625E14B2B00CB4141 /* Model.xcdatamodeld in Sources */,
 				C8A792D825E06642009B862D /* ContentView.swift in Sources */,
@@ -1020,6 +1025,7 @@
 				C8EFC34E26001A11008E8CFA /* PersistenceManager+Creation.swift in Sources */,
 				C8EFC3662602B967008E8CFA /* ImportError.swift in Sources */,
 				C8EFC35D26001A61008E8CFA /* VNDocumentCameraScan+PDF.swift in Sources */,
+				C8C5D9B0271644C400CE967D /* View+FolderStyle.swift in Sources */,
 				C8EFC35126001A19008E8CFA /* AsynchronousOperation.swift in Sources */,
 				C8EFC35B26001A46008E8CFA /* Tag+Comparable.swift in Sources */,
 				C8EFC36326016D5A008E8CFA /* UTType+Supported.swift in Sources */,

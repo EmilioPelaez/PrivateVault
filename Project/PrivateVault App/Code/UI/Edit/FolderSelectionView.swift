@@ -21,13 +21,27 @@ struct FolderSelectionView: View {
 	
 	var body: some View {
 		NavigationView {
-			List(Array(folders), children: \.children) { folder in
-				FolderListItem(name: folder.name ?? "Unnamed Folder",
-											 isSelected: item.belongs(to: folder),
-											 isSelectable: item.canBelong(to: folder)) {
-					didSelectFolder(folder)
+			Group {
+				if folders.isEmpty {
+					VStack {
+						FolderShape()
+							.folderStyle()
+							.frame(width: 25, height: 25)
+						Text("No Folders")
+							.foregroundColor(.secondary)
+							.font(.headline)
+					}
+				} else {
+					List(Array(folders), children: \.children) { folder in
+						FolderListItem(name: folder.name ?? "Unnamed Folder",
+													 isSelected: item.belongs(to: folder),
+													 isSelectable: item.canBelong(to: folder)) {
+							didSelectFolder(folder)
+						}
+					}
 				}
 			}
+			
 			.navigationTitle("Add to Folder")
 			.toolbar {
 				ToolbarItem(placement: .navigationBarLeading) {

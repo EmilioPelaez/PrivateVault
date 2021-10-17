@@ -24,7 +24,6 @@ struct EmptyGalleryView: View {
 					.multilineTextAlignment(.center)
 					.font(.caption)
 					.foregroundColor(Color(.secondaryLabel))
-				
 			}
 		}
 		.frame(maxWidth: 300)

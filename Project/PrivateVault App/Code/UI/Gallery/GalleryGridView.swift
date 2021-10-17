@@ -51,7 +51,14 @@ struct GalleryGridView<M: View, N: View>: View {
 	}
 
 	var body: some View {
-		if items.isEmpty && folders.isEmpty {
+		if items.isEmpty && folders.isEmpty && appState.currentFolder != nil {
+			ZStack {
+				Color.clear
+				EmptyFolderView()
+					.frame(maxWidth: 280)
+					.transition(.opacity)
+			}
+		} else if items.isEmpty && folders.isEmpty {
 			ZStack {
 				Color.clear
 				EmptyGalleryView()
@@ -74,9 +81,7 @@ struct GalleryGridView<M: View, N: View>: View {
 					ForEach(sortedFolders) { folder in
 						GalleryGridFolderCell(folder: folder, style: items.isEmpty ? .folder : .compact)
 							.onTapGesture {
-								withAnimation {
-									appState.currentFolder = folder
-								}
+								appState.currentFolder = folder
 							}
 							.contextMenu { folderContextMenu(folder) }
 					}

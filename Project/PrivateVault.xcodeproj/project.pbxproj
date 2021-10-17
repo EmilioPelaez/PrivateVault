@@ -392,10 +392,6 @@
 			isa = PBXGroup;
 			children = (
 				C89C9DDE25E19598003505B9 /* ItemEditView.swift */,
-				F3C494B426A2BA2F003FDC49 /* NewFolderView.swift */,
-				F35C405126C41F6F00CE0A36 /* EditFolderView.swift */,
-				F342A8F726BBD08700BF4D9A /* FolderSelectionView.swift */,
-				F342A8FF26BD171C00BF4D9A /* FolderListItem.swift */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -641,6 +637,7 @@
 				C88ACB1D25E1149C0064C160 /* LockView */,
 				C88ACB1E25E114AC0064C160 /* Gallery */,
 				C83959B425E9B14400521F83 /* Edit */,
+				C8C5D9B8271C376700CE967D /* Folders */,
 				C89C9DD925E17AB8003505B9 /* Tags */,
 				2B39CD8D25E18BBC00E63EDD /* Settings */,
 			);
@@ -676,6 +673,17 @@
 				C83959BF25E9C05F00521F83 /* GalleryView+Sheet.swift */,
 			);
 			path = "GalleryView Extensions";
+			sourceTree = "<group>";
+		};
+		C8C5D9B8271C376700CE967D /* Folders */ = {
+			isa = PBXGroup;
+			children = (
+				F35C405126C41F6F00CE0A36 /* EditFolderView.swift */,
+				F342A8FF26BD171C00BF4D9A /* FolderListItem.swift */,
+				F342A8F726BBD08700BF4D9A /* FolderSelectionView.swift */,
+				F3C494B426A2BA2F003FDC49 /* NewFolderView.swift */,
+			);
+			path = Folders;
 			sourceTree = "<group>";
 		};
 		C8EFC32F260010FA008E8CFA /* PrivateVault Import Action */ = {

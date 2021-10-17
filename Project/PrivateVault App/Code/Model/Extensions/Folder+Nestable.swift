@@ -18,14 +18,13 @@ extension Folder: Nestable {
 		return canBelong(to: parent)
 	}
 	
-	func add(to folder: Folder, persistenceController: PersistenceManager) {
+	func add(to folder: Folder) {
 		parent = folder
 		folder.subfolders?.adding(self)
-		persistenceController.save()
 	}
 	
-	func remove(from _: Folder, persistenceController: PersistenceManager) {
+	func remove(from folder: Folder) {
+		guard parent == folder else { return }
 		parent = nil
-		persistenceController.save()
 	}
 }

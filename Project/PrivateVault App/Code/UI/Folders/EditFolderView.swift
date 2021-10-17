@@ -27,7 +27,7 @@ struct EditFolderView: View {
 			.listStyle(InsetGroupedListStyle())
 			.navigationTitle("Edit Folder")
 			.toolbar {
-				ToolbarItem(placement: .primaryAction) {
+				ToolbarItem(placement: .confirmationAction) {
 					saveButton
 				}
 				ToolbarItem(placement: .cancellationAction) {

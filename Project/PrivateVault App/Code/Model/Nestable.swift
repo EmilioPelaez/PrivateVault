@@ -8,6 +8,6 @@
 protocol Nestable {
 	func belongs(to folder: Folder) -> Bool
 	func canBelong(to folder: Folder) -> Bool
-	func add(to folder: Folder, persistenceController: PersistenceManager)
-	func remove(from folder: Folder, persistenceController: PersistenceManager)
+	func add(to folder: Folder)
+	func remove(from folder: Folder)
 }

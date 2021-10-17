@@ -58,10 +58,11 @@ struct FolderSelectionView: View {
 	
 	func didSelectFolder(_ folder: Folder) {
 		if item.belongs(to: folder) {
-			item.remove(from: folder, persistenceController: persistenceController)
+			item.remove(from: folder)
 		} else {
-			item.add(to: folder, persistenceController: persistenceController)
+			item.add(to: folder)
 		}
+		persistenceController.save()
 	}
 }
 

@@ -30,6 +30,10 @@ struct GalleryGridView<M: View, N: View>: View {
 		foldersFetchRequest.wrappedValue
 	}
 
+	var sortedFolders: [Folder] {
+		folders.sorted(by: settings.sort.apply)
+	}
+	
 	var filteredItems: [StoredItem] {
 		items.filter(filter.apply).sorted(by: settings.sort.apply)
 	}
@@ -67,7 +71,7 @@ struct GalleryGridView<M: View, N: View>: View {
 			ScrollView {
 				VStack(spacing: 4) {
 				LazyVGrid(columns: [GridItem(.adaptive(minimum: 150, maximum: 200), spacing: 4)], spacing: 4) {
-					ForEach(folders) { folder in
+					ForEach(sortedFolders) { folder in
 						GalleryGridFolderCell(folder: folder, style: items.isEmpty ? .folder : .compact)
 							.onTapGesture {
 								withAnimation {

@@ -65,9 +65,10 @@ struct GalleryGridView<M: View, N: View>: View {
 			}
 		} else {
 			ScrollView {
-				LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: settings.columns), spacing: 4) {
+				VStack(spacing: 4) {
+				LazyVGrid(columns: [GridItem(.adaptive(minimum: 150, maximum: 200), spacing: 4)], spacing: 4) {
 					ForEach(folders) { folder in
-						GalleryGridFolderCell(folder: folder)
+						GalleryGridFolderCell(folder: folder, style: items.isEmpty ? .folder : .compact)
 							.onTapGesture {
 								withAnimation {
 									appState.currentFolder = folder
@@ -83,8 +84,9 @@ struct GalleryGridView<M: View, N: View>: View {
 							.contextMenu { contextMenu(item) }
 					}
 				}
-				.padding(4)
 				.padding(.bottom, 69)
+				}
+				.padding(4)
 			}
 		}
 	}

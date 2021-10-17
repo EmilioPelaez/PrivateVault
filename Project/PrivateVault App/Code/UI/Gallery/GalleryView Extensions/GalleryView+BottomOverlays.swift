@@ -17,8 +17,8 @@ extension GalleryView {
 			}
 			HStack(alignment: .bottom) {
 				FileTypePickerView(action: selectType)
-				tagOverlay
 				folderButton
+				tagOverlay
 			}
 			.padding(.horizontal)
 			.padding(.bottom, 10)
@@ -95,7 +95,7 @@ extension GalleryView {
 	}
 	
 	var folderButton: some View {
-		ColorButton(color: .orange, imageName: "folder.fill", action: folderButtonAction)
+		ColorButton(color: .orange, imageName: "folder.fill.badge.plus", action: folderButtonAction)
 	}
 	
 	var processingView: some View {

@@ -102,7 +102,6 @@
 		C8A792DD25E06642009B862D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A792DC25E06642009B862D /* Preview Assets.xcassets */; };
 		C8A792ED25E06D75009B862D /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A792EC25E06D75009B862D /* GalleryView.swift */; };
 		C8C5D9AF271644C400CE967D /* View+FolderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5D9AE271644C400CE967D /* View+FolderStyle.swift */; };
-		C8C5D9B0271644C400CE967D /* View+FolderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5D9AE271644C400CE967D /* View+FolderStyle.swift */; };
 		C8C5D9B32716463900CE967D /* StoredItem+Nestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5D9B22716463900CE967D /* StoredItem+Nestable.swift */; };
 		C8C5D9B62716466400CE967D /* Folder+Nestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5D9B52716466400CE967D /* Folder+Nestable.swift */; };
 		C8CC881F26381DB8001783FF /* KernelDirectoryUI in Frameworks */ = {isa = PBXBuildFile; productRef = C8CC881E26381DB8001783FF /* KernelDirectoryUI */; };
@@ -421,6 +420,7 @@
 		C87C772025FD6D8200EE6362 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				C8C5D9AE271644C400CE967D /* View+FolderStyle.swift */,
 				46F26BEE25E19C8600070858 /* LockedOutModifier.swift */,
 				C87C772125FDF9F900EE6362 /* ScaledForSmallScreenModifier.swift */,
 				C88ACB1A25E112A70064C160 /* ShakeModifier.swift */,
@@ -464,7 +464,6 @@
 				C8EFC3462600169F008E8CFA /* URL+Container.swift */,
 				C839599625E82D9200521F83 /* URL+Filename.swift */,
 				C8EFC36226016D5A008E8CFA /* UTType+Supported.swift */,
-				C8C5D9AE271644C400CE967D /* View+FolderStyle.swift */,
 				2B081A7325E085FA00F9D522 /* View+Navigation.swift */,
 				C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */,
 			);
@@ -1049,7 +1048,6 @@
 				C8EFC34E26001A11008E8CFA /* PersistenceManager+Creation.swift in Sources */,
 				C8EFC3662602B967008E8CFA /* ImportError.swift in Sources */,
 				C8EFC35D26001A61008E8CFA /* VNDocumentCameraScan+PDF.swift in Sources */,
-				C8C5D9B0271644C400CE967D /* View+FolderStyle.swift in Sources */,
 				C8EFC35126001A19008E8CFA /* AsynchronousOperation.swift in Sources */,
 				C8EFC35B26001A46008E8CFA /* Tag+Comparable.swift in Sources */,
 				C8EFC36326016D5A008E8CFA /* UTType+Supported.swift in Sources */,

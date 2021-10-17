@@ -28,7 +28,7 @@ extension GalleryView {
 			Button {
 				currentSheet = .folderSelection(item)
 			} label: {
-				Text("Add to Folder")
+				Text("Move to Folder")
 				Image(systemName: "folder.badge.plus")
 			}
 			Divider()

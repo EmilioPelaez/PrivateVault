@@ -34,15 +34,15 @@ struct GalleryHeaderView: View {
 				case .navigation:
 					FolderNavigationView()
 						.transition(.asymmetric(insertion: .move(edge: .leading),
-																		removal: .move(edge: .trailing))
-													.combined(with: .opacity)
-													.animation(.linear))
+						                        removal: .move(edge: .trailing))
+								.combined(with: .opacity)
+								.animation(.linear))
 				case .search:
 					SearchBarView(text: $text, placeholder: placeholder)
 						.transition(.asymmetric(insertion: .move(edge: .trailing),
-																		removal: .move(edge: .leading))
-													.combined(with: .opacity)
-													.animation(.linear))
+						                        removal: .move(edge: .leading))
+								.combined(with: .opacity)
+								.animation(.linear))
 				}
 			}
 			Button(action: toggleState) {

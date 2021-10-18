@@ -12,6 +12,7 @@ struct GalleryGridFolderCell: View {
 		case compact
 		case folder
 	}
+
 	let folder: Folder
 	let style: Style
 	
@@ -32,15 +33,15 @@ struct GalleryGridFolderCell: View {
 			.clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
 		case .folder:
 			FolderShape()
-						.folderStyle()
-						.aspectRatio(contentMode: .fit)
-						.overlay(
-							Text(folder.name ?? "Untitled Folder")
-								.font(.headline)
-								.multilineTextAlignment(.center)
-								.foregroundColor(.black)
-								.padding(4)
-						)
+				.folderStyle()
+				.aspectRatio(contentMode: .fit)
+				.overlay(
+					Text(folder.name ?? "Untitled Folder")
+						.font(.headline)
+						.multilineTextAlignment(.center)
+						.foregroundColor(.black)
+						.padding(4)
+				)
 		}
 	}
 }

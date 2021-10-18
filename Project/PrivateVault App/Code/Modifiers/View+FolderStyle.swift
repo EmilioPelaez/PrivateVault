@@ -9,16 +9,14 @@ import SwiftUI
 
 extension Shape {
 	func folderStyle() -> some View {
-		self
-			.fill(.blue)
+		fill(.blue)
 			.brightness(0.3)
 	}
 }
 
 extension View {
 	func folderStyle() -> some View {
-		self
-			.foregroundColor(.blue)
+		foregroundColor(.blue)
 			.brightness(0.3)
 	}
 }

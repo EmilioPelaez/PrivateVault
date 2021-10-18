@@ -9,14 +9,16 @@ import SwiftUI
 
 extension View {
 	func navigation<V: Identifiable, Destination: View>(item: Binding<V?>,
-	                                                    destination: @escaping (V) -> Destination) -> some View {
+	                                                    destination: @escaping (V) -> Destination) -> some View
+	{
 		background(NavigationLink(item: item, destination: destination))
 	}
 }
 
 extension View {
 	func navigation<Destination: View>(isPresenting: Binding<Bool>,
-	                                   destination: Destination) -> some View {
+	                                   destination: Destination) -> some View
+	{
 		background(NavigationLink(destination: destination, isActive: isPresenting) {})
 	}
 }

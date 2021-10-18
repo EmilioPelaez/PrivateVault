@@ -39,11 +39,11 @@ struct GalleryView: View {
 				Color(.secondarySystemBackground)
 					.frame(height: 1)
 				GalleryGridView(multipleSelection: $multipleSelection,
-												selectedItems: $selectedItems,
-												folder: currentFolder,
-												selection: select,
-												contextMenu: contextMenu,
-												folderContextMenu: folderContextMenu)
+				                selectedItems: $selectedItems,
+				                folder: currentFolder,
+				                selection: select,
+				                contextMenu: contextMenu,
+				                folderContextMenu: folderContextMenu)
 					.id(currentFolder?.identifier ?? "Home Folder")
 					.transition(.opacity)
 			}

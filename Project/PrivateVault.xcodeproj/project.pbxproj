@@ -422,10 +422,10 @@
 		C87C772025FD6D8200EE6362 /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
-				C8C5D9AE271644C400CE967D /* View+FolderStyle.swift */,
 				46F26BEE25E19C8600070858 /* LockedOutModifier.swift */,
 				C87C772125FDF9F900EE6362 /* ScaledForSmallScreenModifier.swift */,
 				C88ACB1A25E112A70064C160 /* ShakeModifier.swift */,
+				C8C5D9AE271644C400CE967D /* View+FolderStyle.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -436,6 +436,14 @@
 				2B39CDFD25E3290500E63EDD /* .swiftlint.yml */,
 			);
 			name = Config;
+			sourceTree = "<group>";
+		};
+		C88213A3271D36C50001F17D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F3C2B19826C39C06002E2C82 /* Nestable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		C88ACB1425E10A6C0064C160 /* Utilities */ = {
@@ -516,9 +524,9 @@
 		C892CC892714F99B006278AF /* Empty States */ = {
 			isa = PBXGroup;
 			children = (
+				C8C5D9B9271C77C600CE967D /* EmptyFolderView.swift */,
 				C89C9DD725E1773E003505B9 /* EmptyGalleryView.swift */,
 				C89C9DDC25E190C4003505B9 /* FilteredGalleryView.swift */,
-				C8C5D9B9271C77C600CE967D /* EmptyFolderView.swift */,
 			);
 			path = "Empty States";
 			sourceTree = "<group>";
@@ -614,6 +622,7 @@
 				C8EFD20325E13D0E00CB4141 /* Views */,
 				C87C772025FD6D8200EE6362 /* Modifiers */,
 				C88ACB1425E10A6C0064C160 /* Utilities */,
+				C88213A3271D36C50001F17D /* Protocols */,
 				C88ACB1C25E114850064C160 /* Representables */,
 				C88ACB1725E10B370064C160 /* Extensions */,
 			);
@@ -652,7 +661,6 @@
 				F39F2CA126FD9FC900CCA4B3 /* AppState.swift */,
 				C8EFC3652602B967008E8CFA /* ImportError.swift */,
 				C83959B225E9AE6900521F83 /* ItemFilter.swift */,
-				F3C2B19826C39C06002E2C82 /* Nestable.swift */,
 				C89C9DE425E196A4003505B9 /* PreviewEnvironment.swift */,
 				C89A5D6F25FAE220007F8E8B /* PreviewSelection.swift */,
 				C87C771C25FB8A2C00EE6362 /* SortMethod.swift */,

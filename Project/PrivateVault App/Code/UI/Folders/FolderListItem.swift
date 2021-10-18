@@ -33,8 +33,6 @@ struct FolderListItem: View {
 
 struct FolderListItem_Previews: PreviewProvider {
 	static var previews: some View {
-		FolderListItem(name: "Documents", isSelected: true, isSelectable: false) {
-			
-		}
+		FolderListItem(name: "Documents", isSelected: true, isSelectable: false) {}
 	}
 }

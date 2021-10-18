@@ -77,23 +77,23 @@ struct GalleryGridView<M: View, N: View>: View {
 		} else {
 			ScrollView {
 				VStack(spacing: 4) {
-				LazyVGrid(columns: [GridItem(.adaptive(minimum: 150, maximum: 200), spacing: 4)], spacing: 4) {
-					ForEach(sortedFolders) { folder in
-						GalleryGridFolderCell(folder: folder, style: items.isEmpty ? .folder : .compact)
-							.onTapGesture {
-								appState.currentFolder = folder
-							}
-							.contextMenu { folderContextMenu(folder) }
+					LazyVGrid(columns: [GridItem(.adaptive(minimum: 150, maximum: 200), spacing: 4)], spacing: 4) {
+						ForEach(sortedFolders) { folder in
+							GalleryGridFolderCell(folder: folder, style: items.isEmpty ? .folder : .compact)
+								.onTapGesture {
+									appState.currentFolder = folder
+								}
+								.contextMenu { folderContextMenu(folder) }
+						}
 					}
-				}
-				LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: settings.columns), spacing: 4) {
-					ForEach(filteredItems) { item in
-						GalleryGridCell(item: item, selection: selection(for: item))
-							.onTapGesture { selection(item, filteredItems) }
-							.contextMenu { contextMenu(item) }
+					LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 4), count: settings.columns), spacing: 4) {
+						ForEach(filteredItems) { item in
+							GalleryGridCell(item: item, selection: selection(for: item))
+								.onTapGesture { selection(item, filteredItems) }
+								.contextMenu { contextMenu(item) }
+						}
 					}
-				}
-				.padding(.bottom, 69)
+					.padding(.bottom, 69)
 				}
 				.padding(4)
 			}

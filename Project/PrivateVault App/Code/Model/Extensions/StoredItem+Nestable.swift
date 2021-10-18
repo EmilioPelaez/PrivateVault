@@ -12,7 +12,7 @@ extension StoredItem: Nestable {
 		folder == self.folder
 	}
 	
-	func canBelong(to folder: Folder) -> Bool {
+	func canBelong(to _: Folder) -> Bool {
 		true
 	}
 	

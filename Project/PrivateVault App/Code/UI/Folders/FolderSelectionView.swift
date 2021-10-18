@@ -34,8 +34,8 @@ struct FolderSelectionView: View {
 				} else {
 					List(Array(folders), children: \.children) { folder in
 						FolderListItem(name: folder.name ?? "Untitled Folder",
-													 isSelected: item.belongs(to: folder),
-													 isSelectable: item.canBelong(to: folder)) {
+						               isSelected: item.belongs(to: folder),
+						               isSelectable: item.canBelong(to: folder)) {
 							didSelectFolder(folder)
 						}
 					}

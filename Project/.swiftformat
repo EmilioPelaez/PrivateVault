@@ -2,4 +2,4 @@
 --indent tab
 --self init-only
 --trimwhitespace nonblank-lines
---disable blankLinesAtEndOfScope,blankLinesAtStartOfScope
+--disable blankLinesAtEndOfScope,blankLinesAtStartOfScope,wrapMultilineStatementBraces

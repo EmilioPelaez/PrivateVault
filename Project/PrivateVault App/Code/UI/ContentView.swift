@@ -15,6 +15,7 @@ struct ContentView: View {
 	@EnvironmentObject private var settings: UserSettings
 	@EnvironmentObject private var passcodeManager: PasscodeManager
 	@State var isLocked = true
+	@State var attemptedToShowReviewPrompt = false
 
 	var body: some View {
 		if !passcodeManager.passcodeSet {
@@ -43,6 +44,10 @@ struct ContentView: View {
 			.onChange(of: scenePhase) { phase in
 				if [.inactive, .background].contains(phase) {
 					isLocked = true
+				}
+				if phase == .active, !attemptedToShowReviewPrompt {
+					ReviewPromptManager()?.trigger()
+					attemptedToShowReviewPrompt = true
 				}
 			}
 			.environmentObject(appState)

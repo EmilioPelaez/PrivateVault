@@ -8,32 +8,24 @@
 import SwiftUI
 
 struct FolderShape: Shape {
+	
+	static let preferredAspectRatio: CGFloat = 1.2
+	static let tabHeightFactor: CGFloat = 0.125
+	
 	func path(in rect: CGRect) -> Path {
 		var path = Path()
 		let width = rect.size.width
 		let height = rect.size.height
+		let tabHeight = height * FolderShape.tabHeightFactor
+		let cornerSize = CGSize(side: min(width, height) * 0.1)
 		
-		path.move(to: CGPoint(x: 0.83333 * width, y: 0.25 * height))
-		path.addLine(to: CGPoint(x: 0.45833 * width, y: 0.25 * height))
-		path.addLine(to: CGPoint(x: 0.375 * width, y: 0.16667 * height))
-		path.addLine(to: CGPoint(x: 0.16667 * width, y: 0.16667 * height))
-		path.addCurve(to: CGPoint(x: 0.08333 * width, y: 0.25 * height), control1: CGPoint(x: 0.12083 * width, y: 0.16667 * height), control2: CGPoint(x: 0.08333 * width, y: 0.20417 * height))
-		path.addLine(to: CGPoint(x: 0.08333 * width, y: 0.41667 * height))
-		path.addLine(to: CGPoint(x: 0.91667 * width, y: 0.41667 * height))
-		path.addLine(to: CGPoint(x: 0.91667 * width, y: 0.33333 * height))
-		path.addCurve(to: CGPoint(x: 0.83333 * width, y: 0.25 * height), control1: CGPoint(x: 0.91667 * width, y: 0.2875 * height), control2: CGPoint(x: 0.87917 * width, y: 0.25 * height))
+		path.addRoundedRect(in: rect.inset(by: UIEdgeInsets(top: tabHeight, left: 0, bottom: 0, right: 0)), cornerSize: cornerSize)
+		path.addRoundedRect(in: CGRect(x: 0, y: 0, width: width * 0.4, height: tabHeight * 2.5), cornerSize: cornerSize)
 		
-		path.closeSubpath()
-		
-		path.move(to: CGPoint(x: 0.83333 * width, y: 0.25 * height))
-		path.addLine(to: CGPoint(x: 0.16667 * width, y: 0.25 * height))
-		path.addCurve(to: CGPoint(x: 0.08333 * width, y: 0.33333 * height), control1: CGPoint(x: 0.12083 * width, y: 0.25 * height), control2: CGPoint(x: 0.08333 * width, y: 0.2875 * height))
-		path.addLine(to: CGPoint(x: 0.08333 * width, y: 0.75 * height))
-		path.addCurve(to: CGPoint(x: 0.16667 * width, y: 0.83333 * height), control1: CGPoint(x: 0.08333 * width, y: 0.79583 * height), control2: CGPoint(x: 0.12083 * width, y: 0.83333 * height))
-		path.addLine(to: CGPoint(x: 0.83333 * width, y: 0.83333 * height))
-		path.addCurve(to: CGPoint(x: 0.91667 * width, y: 0.75 * height), control1: CGPoint(x: 0.87917 * width, y: 0.83333 * height), control2: CGPoint(x: 0.91667 * width, y: 0.79583 * height))
-		path.addLine(to: CGPoint(x: 0.91667 * width, y: 0.33333 * height))
-		path.addCurve(to: CGPoint(x: 0.83333 * width, y: 0.25 * height), control1: CGPoint(x: 0.91667 * width, y: 0.2875 * height), control2: CGPoint(x: 0.87917 * width, y: 0.25 * height))
+		path.move(to: CGPoint(x: width * 0.25, y: 0))
+		path.addLine(to: CGPoint(x: width * 0.35, y: 0))
+		path.addLine(to: CGPoint(x: width * 0.5, y: tabHeight))
+		path.addLine(to: CGPoint(x: width * 0.35, y: tabHeight))
 		
 		path.closeSubpath()
 		
@@ -45,6 +37,7 @@ struct FolderShape_Previews: PreviewProvider {
 	static var previews: some View {
 		FolderShape()
 			.folderStyle()
-			.previewLayout(.fixed(width: 200, height: 200))
+			.previewLayout(.fixed(width: 240, height: 200))
+			.padding()
 	}
 }

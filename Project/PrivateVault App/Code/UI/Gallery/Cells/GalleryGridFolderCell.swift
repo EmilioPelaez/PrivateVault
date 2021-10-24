@@ -32,16 +32,24 @@ struct GalleryGridFolderCell: View {
 			.background(Color(.quaternarySystemFill))
 			.clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
 		case .folder:
-			FolderShape()
-				.folderStyle()
-				.aspectRatio(contentMode: .fit)
-				.overlay(
-					Text(folder.name ?? "Untitled Folder")
-						.font(.headline)
-						.multilineTextAlignment(.center)
-						.foregroundColor(.black)
-						.padding(4)
-				)
+			ZStack {
+				FolderShape()
+					.folderStyle()
+					.aspectRatio(FolderShape.preferredAspectRatio, contentMode: .fill)
+				GeometryReader { proxy in
+					ZStack {
+						Color.clear
+						Text(folder.name ?? "Untitled Folder")
+							.font(.headline)
+							.multilineTextAlignment(.center)
+							.lineLimit(2)
+							.foregroundColor(.black)
+							.padding(4)
+							.padding(.top, ceil(proxy.size.height * FolderShape.tabHeightFactor))
+					}
+				}
+			}
+			.padding(8)
 		}
 	}
 }

@@ -17,7 +17,7 @@ struct EmptyFolderView: View {
 				Text("Your folder is empty!")
 					.font(.title2)
 					.multilineTextAlignment(.center)
-				Text("Add some files by holding over an existing item or folder and tap \"Move to Folder\"")
+				Text("Add some files by holding over an existing item or folder and tap \"Move\"")
 					.multilineTextAlignment(.center)
 			}
 		}

@@ -113,7 +113,7 @@ extension PersistenceManager {
 		guard !type.conforms(to: .url) else {
 			_ = item.loadObject(ofClass: URL.self) { [self] url, error in
 				guard let url = url else {
-					print(error?.localizedDescription ?? "Unknown error")
+					assertionFailure("Error: \(error?.localizedDescription ?? "Unknown error")")
 					return completion(.failure(.cantLoadURL))
 				}
 				storeRemoteUrl(url, folder: folder, completion: completion)
@@ -122,7 +122,7 @@ extension PersistenceManager {
 		}
 		item.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { [self] url, error in
 			guard let url = url else {
-				print(error?.localizedDescription ?? "Unkown error")
+				assertionFailure("Error: \(error?.localizedDescription ?? "Unknown error")")
 				return completion(.failure(.cantReadFile))
 			}
 			guard FileManager.default.fileExists(atPath: url.absoluteString) else {
@@ -136,7 +136,7 @@ extension PersistenceManager {
 	private func storeItemFallback(_ item: NSItemProvider, url: URL, type: UTType, folder: Folder?, completion: @escaping (Result<Void, ImportError>) -> Void) {
 		item.loadDataRepresentation(forTypeIdentifier: type.identifier) { [self] data, error in
 			guard let data = data else {
-				print(error?.localizedDescription ?? "Unkown error")
+				assertionFailure("Error: \(error?.localizedDescription ?? "Unknown error")")
 				return completion(.failure(.cantReadFile))
 			}
 			do {
@@ -148,7 +148,7 @@ extension PersistenceManager {
 				
 				storeItem(at: newURL, folder: folder, type: type, completion: completion)
 			} catch {
-				print("Error", error)
+				assertionFailure("Error \(error.localizedDescription)")
 				completion(.failure(.cantReadFile))
 			}
 		}
@@ -219,7 +219,7 @@ extension PersistenceManager {
 				guard let imageProvider = metadata.imageProvider else { return createItem(name: name) }
 				imageProvider.loadObject(ofClass: UIImage.self) { image, error in
 					guard let image = image as? UIImage, let previewData = image.square(previewSize)?.jpegData(compressionQuality: 0.85) else {
-						print(error?.localizedDescription ?? "Unknown error")
+						assertionFailure("Error: \(error?.localizedDescription ?? "Unknown error")")
 						return createItem(name: name)
 					}
 					createItem(name: name, preview: previewData)

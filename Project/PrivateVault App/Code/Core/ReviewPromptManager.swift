@@ -27,7 +27,7 @@ class ReviewPromptManager {
 			.compactMap { $0 as? UIWindowScene }
 			.first
 		guard let windowScene = scene else {
-			print("Window Scene is nil")
+			assertionFailure("Window Scene is nil")
 			return nil
 		}
 		

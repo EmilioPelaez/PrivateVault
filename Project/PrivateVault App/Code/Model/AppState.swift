@@ -8,5 +8,9 @@
 import Combine
 
 class AppState: ObservableObject {
+	@Published var isLocked = true
+	
 	@Published var currentFolder: Folder?
+	
+	@Published var attemptedToShowReviewPrompt = false
 }

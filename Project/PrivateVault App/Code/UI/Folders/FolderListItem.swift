@@ -18,8 +18,7 @@ struct FolderListItem: View {
 			HStack {
 				FolderShape()
 					.folderStyle()
-					.frame(width: 32, height: 32)
-					.aspectRatio(contentMode: .fit)
+					.frame(width: 20 * FolderShape.preferredAspectRatio, height: 20)
 				Text(name)
 					.foregroundColor(.primary)
 				Spacer()

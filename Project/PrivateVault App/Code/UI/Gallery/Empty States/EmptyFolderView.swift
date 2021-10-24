@@ -12,7 +12,7 @@ struct EmptyFolderView: View {
 		VStack(spacing: 10) {
 			FolderShape()
 				.folderStyle()
-				.frame(width: 150, height: 150)
+				.frame(width: 150, height: 150 / FolderShape.preferredAspectRatio)
 			VStack(spacing: 8) {
 				Text("Your folder is empty!")
 					.font(.title2)

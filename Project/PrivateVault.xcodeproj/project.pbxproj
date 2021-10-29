@@ -107,6 +107,7 @@
 		C8C5D9B62716466400CE967D /* Folder+Nestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5D9B52716466400CE967D /* Folder+Nestable.swift */; };
 		C8C5D9BA271C77C600CE967D /* EmptyFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5D9B9271C77C600CE967D /* EmptyFolderView.swift */; };
 		C8CC881F26381DB8001783FF /* KernelDirectoryUI in Frameworks */ = {isa = PBXBuildFile; productRef = C8CC881E26381DB8001783FF /* KernelDirectoryUI */; };
+		C8EC6C1B272C6EA700C4D287 /* FolderNavigationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EC6C1A272C6EA700C4D287 /* FolderNavigationViewViewModel.swift */; };
 		C8EFC331260010FA008E8CFA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8EFC330260010FA008E8CFA /* Media.xcassets */; };
 		C8EFC333260010FA008E8CFA /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFC332260010FA008E8CFA /* ActionViewController.swift */; };
 		C8EFC33A260010FA008E8CFA /* PrivateVault Import Action.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C8EFC32E260010FA008E8CFA /* PrivateVault Import Action.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -296,6 +297,7 @@
 		C8C5D9B22716463900CE967D /* StoredItem+Nestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredItem+Nestable.swift"; sourceTree = "<group>"; };
 		C8C5D9B52716466400CE967D /* Folder+Nestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Folder+Nestable.swift"; sourceTree = "<group>"; };
 		C8C5D9B9271C77C600CE967D /* EmptyFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFolderView.swift; sourceTree = "<group>"; };
+		C8EC6C1A272C6EA700C4D287 /* FolderNavigationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderNavigationViewViewModel.swift; sourceTree = "<group>"; };
 		C8EFC32E260010FA008E8CFA /* PrivateVault Import Action.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PrivateVault Import Action.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EFC330260010FA008E8CFA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		C8EFC332260010FA008E8CFA /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
@@ -734,6 +736,7 @@
 				C839599A25E8332700521F83 /* FilePreview.swift */,
 				468A75DB25E0976E00B87597 /* FileTypePickerView.swift */,
 				F39B33C626DB8A2500167B67 /* FolderNavigationView.swift */,
+				C8EC6C1A272C6EA700C4D287 /* FolderNavigationViewViewModel.swift */,
 				F30281E626C94C6600462C8C /* FolderShape.swift */,
 				C83959AE25E8F9B300521F83 /* ImportProcessView.swift */,
 				C83959A425E85FFA00521F83 /* ItemPreview.swift */,
@@ -983,6 +986,7 @@
 				C8C5D9B62716466400CE967D /* Folder+Nestable.swift in Sources */,
 				C8EFD1FE25E12F6100CB4141 /* GalleryGridCell.swift in Sources */,
 				C88ACB1625E10A790064C160 /* FeedbackGenerator.swift in Sources */,
+				C8EC6C1B272C6EA700C4D287 /* FolderNavigationViewViewModel.swift in Sources */,
 				C89C9DD625E16640003505B9 /* StoredItem+Example.swift in Sources */,
 				F39B33C726DB8A2500167B67 /* FolderNavigationView.swift in Sources */,
 				C89C9DDF25E19598003505B9 /* ItemEditView.swift in Sources */,

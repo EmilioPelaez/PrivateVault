@@ -9,37 +9,54 @@ import SwiftUI
 
 struct FolderNavigationView: View {
 	@EnvironmentObject private var appState: AppState
-	
-	var parentFolders: [Folder] {
-		var parents = [Folder]()
-		var currentFolder = appState.currentFolder?.parent
-		while let unwrappedFolder = currentFolder {
-			parents.append(unwrappedFolder)
-			currentFolder = currentFolder?.parent
-		}
-		return parents.reversed()
-	}
+	@State var viewModel: ViewModel = .empty
 	
 	var body: some View {
 		ScrollView(.horizontal) {
 			HStack(spacing: 8) {
 				homeButton
-				ForEach(parentFolders) { parent in
-					if !parentFolders.isEmpty {
-						chevron
-					}
-					Button {
-						appState.currentFolder = parent
-					} label: {
-						Text(parent.name ?? "")
-							.font(.subheadline)
-							.bold()
+				ForEach(viewModel.intermediaryFolders) { folder in
+					FolderView(folder: folder) {
+						appState.currentFolder = folder
 					}
 				}
-				currentFolderName
+				if let currentFolder = viewModel.currentFolder {
+					FolderView(folder: currentFolder, action: nil)
+				}
 			}
 		}
 		.frame(maxWidth: .infinity)
+		.onChange(of: appState.currentFolder) { folder in
+			withAnimation { viewModel = ViewModel(currentFolder: folder) }
+		}
+	}
+}
+
+private extension FolderNavigationView {
+	struct FolderView: View {
+		let folder: Folder
+		let action: (() -> Void)?
+		var body: some View {
+			HStack(spacing: 4) {
+				Image(systemName: "chevron.backward")
+					.foregroundColor(.blue.opacity(0.5))
+				if let action = action {
+					Button(action: action) {
+						title
+					}
+				} else {
+					title
+				}
+			}
+			.id(folder.name ?? "Identifier")
+			.transition(.opacity)
+		}
+		
+		var title: some View {
+			Text(folder.name ?? "")
+				.font(.subheadline)
+				.bold()
+		}
 	}
 }
 
@@ -52,29 +69,13 @@ private extension FolderNavigationView {
 				.font(.title2)
 		}
 	}
-	
-	var currentFolderName: some View {
-		HStack {
-			if appState.currentFolder != nil {
-				chevron
-			}
-			Text(appState.currentFolder?.name ?? "")
-				.font(.subheadline)
-				.bold()
-		}
-	}
-	
-	var chevron: some View {
-		Image(systemName: "chevron.backward")
-			.foregroundColor(.blue.opacity(0.5))
-	}
 }
 
 struct FolderNavigationView_Previews: PreviewProvider {
 	static var preview = PreviewEnvironment()
 	
 	static var previews: some View {
-		FolderNavigationView()
+		FolderNavigationView(viewModel: .empty)
 			.environmentObject(AppState())
 	}
 }

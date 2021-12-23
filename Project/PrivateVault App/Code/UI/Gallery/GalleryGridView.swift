@@ -22,6 +22,8 @@ struct GalleryGridView<M: View, N: View>: View {
 	private var itemsFetchRequest: FetchRequest<StoredItem>
 	private var foldersFetchRequest: FetchRequest<Folder>
 	
+	private let folder: Folder?
+	
 	private var items: FetchedResults<StoredItem> {
 		itemsFetchRequest.wrappedValue
 	}
@@ -48,10 +50,11 @@ struct GalleryGridView<M: View, N: View>: View {
 		let folderPredicate = NSPredicate(format: "parent == %@", folder ?? NSNull())
 		itemsFetchRequest = FetchRequest<StoredItem>(entity: StoredItem.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \StoredItem.timestamp, ascending: false)], predicate: itemsPredicate)
 		foldersFetchRequest = FetchRequest<Folder>(entity: Folder.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Folder.name, ascending: false)], predicate: folderPredicate)
+		self.folder = folder
 	}
 
 	var body: some View {
-		if items.isEmpty && folders.isEmpty && appState.currentFolder != nil {
+		if items.isEmpty && folders.isEmpty && folder != nil {
 			ZStack {
 				Color.clear
 				EmptyFolderView()

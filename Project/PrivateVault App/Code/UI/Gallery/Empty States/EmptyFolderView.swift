@@ -9,11 +9,11 @@ import SwiftUI
 
 struct EmptyFolderView: View {
 	var body: some View {
-		VStack(spacing: 10) {
+		VStack(spacing: 30) {
 			FolderShape()
 				.folderStyle()
 				.frame(width: 150, height: 150 / FolderShape.preferredAspectRatio)
-			VStack(spacing: 8) {
+			VStack(spacing: 15) {
 				Text("Your folder is empty!")
 					.font(.title2)
 					.multilineTextAlignment(.center)

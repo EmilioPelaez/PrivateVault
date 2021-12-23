@@ -62,3 +62,9 @@ extension GalleryView {
 		}
 	}
 }
+
+extension GalleryView.SheetItem: Equatable {
+	static func ==(lhs: GalleryView.SheetItem, rhs: GalleryView.SheetItem) -> Bool {
+		lhs.id == rhs.id
+	}
+}

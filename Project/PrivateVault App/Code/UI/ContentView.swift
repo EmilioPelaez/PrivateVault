@@ -43,10 +43,6 @@ struct ContentView: View {
 				if [.inactive, .background].contains(phase) {
 					appState.isLocked = true
 				}
-				if phase == .active, !appState.attemptedToShowReviewPrompt {
-					ReviewPromptManager()?.trigger()
-					appState.attemptedToShowReviewPrompt = true
-				}
 			}
 			.environmentObject(appState)
 			.environmentObject(filter)

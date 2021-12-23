@@ -74,6 +74,14 @@ struct GalleryView: View {
 			previewSelection = nil
 			itemBeingDeleted = nil
 		}
+		.onChange(of: currentSheet) { newValue in
+			if newValue == nil, !appState.attemptedToShowReviewPrompt {
+				DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+					ReviewPromptManager()?.trigger()
+				}
+				appState.attemptedToShowReviewPrompt = true
+			}
+		}
 		.onChange(of: persistenceController.errorString) {
 			$0.map { currentAlert = .persistenceError($0) }
 		}

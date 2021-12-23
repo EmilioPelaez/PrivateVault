@@ -20,7 +20,7 @@ struct AboutView: View {
 						Text("Capsule")
 							.bold()
 							.font(.title)
-						Text("Version 0.0.1")
+						Text("Version 1.1")
 							.font(.subheadline)
 					}
 					.padding(.top, 10)
@@ -28,7 +28,7 @@ struct AboutView: View {
 				}
 				.padding()
 				VStack(alignment: .leading, spacing: 8) {
-					CreatorRow(name: "Emilio Peláez", title: "Programmer", links: [
+					CreatorRow(name: "Emilio Peláez", title: "Lead Programmer", links: [
 						.website("http://emiliopelaez.me"),
 						.twitter("http://twitter.com/EmilioPelaez"),
 						.appStore("https://apps.apple.com/us/developer/emilio-pelaez/id408763858"),
@@ -41,6 +41,9 @@ struct AboutView: View {
 						.website("https://www.ianmanor.com/portfolio"),
 						.twitter("https://twitter.com/ian_manor"),
 						.github("https://www.github.com/imvm"),
+					])
+					CreatorRow(name: "Elena Meneghini", title: "Programmer (Folders)", links: [
+						.github("https://github.com/elenamene"),
 					])
 					CreatorRow(name: "Daniel Behar", title: "Programmer", links: [
 						.twitter("https://twitter.com/dannybehar"),

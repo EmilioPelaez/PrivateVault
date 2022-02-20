@@ -263,6 +263,7 @@
 		C87C772425FE01B000EE6362 /* SettingsLicenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLicenseView.swift; sourceTree = "<group>"; };
 		C87C772625FE024900EE6362 /* SettingsPrivacyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPrivacyView.swift; sourceTree = "<group>"; };
 		C87C772825FF51A200EE6362 /* LockoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockoutManager.swift; sourceTree = "<group>"; };
+		C88A075B27C2E71D00EE401B /* Folders.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Folders.xcdatamodel; sourceTree = "<group>"; };
 		C88ACB1025E106D00064C160 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		C88ACB1225E109FD0064C160 /* InputDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDisplay.swift; sourceTree = "<group>"; };
 		C88ACB1525E10A790064C160 /* FeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackGenerator.swift; sourceTree = "<group>"; };
@@ -1429,9 +1430,10 @@
 		C8EFD22425E14B2B00CB4141 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C88A075B27C2E71D00EE401B /* Folders.xcdatamodel */,
 				C8EFD22525E14B2B00CB4141 /* Model.xcdatamodel */,
 			);
-			currentVersion = C8EFD22525E14B2B00CB4141 /* Model.xcdatamodel */;
+			currentVersion = C88A075B27C2E71D00EE401B /* Folders.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

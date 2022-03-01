@@ -29,6 +29,7 @@
 		46F26BEC25E19C6700070858 /* AttemptsRemainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */; };
 		46F26BEF25E19C8600070858 /* LockedOutModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F26BEE25E19C8600070858 /* LockedOutModifier.swift */; };
 		C8102C9527CED7A600ABC77C /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8102C9327CED7A600ABC77C /* Screenshots.swift */; };
+		C81B5DB62634703500CAC43F /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81B5DB52634703500CAC43F /* SnapshotHelper.swift */; };
 		C839598F25E7A69300521F83 /* PersistenceManager+ContextOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839598E25E7A69300521F83 /* PersistenceManager+ContextOperations.swift */; };
 		C839599125E7A6AF00521F83 /* PersistenceManager+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599025E7A6AF00521F83 /* PersistenceManager+Creation.swift */; };
 		C839599325E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */; };
@@ -227,6 +228,7 @@
 		46F26BEE25E19C8600070858 /* LockedOutModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockedOutModifier.swift; sourceTree = "<group>"; };
 		C8102C9327CED7A600ABC77C /* Screenshots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
 		C8102C9427CED7A600ABC77C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C81B5DB52634703500CAC43F /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		C82FF3962610937C00726A22 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C82FF3972610938400726A22 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C839598E25E7A69300521F83 /* PersistenceManager+ContextOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceManager+ContextOperations.swift"; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 		C8102C9227CED7A600ABC77C /* Screenshots */ = {
 			isa = PBXGroup;
 			children = (
+				C81B5DB52634703500CAC43F /* SnapshotHelper.swift */,
 				C8102C9327CED7A600ABC77C /* Screenshots.swift */,
 				C8102C9427CED7A600ABC77C /* Info.plist */,
 			);
@@ -1133,6 +1136,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8102C9527CED7A600ABC77C /* Screenshots.swift in Sources */,
+				C81B5DB62634703500CAC43F /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

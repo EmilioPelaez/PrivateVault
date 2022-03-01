@@ -28,6 +28,7 @@
 		468A75E125E15B9300B87597 /* SoundEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A75E025E15B9300B87597 /* SoundEffect.swift */; };
 		46F26BEC25E19C6700070858 /* AttemptsRemainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */; };
 		46F26BEF25E19C8600070858 /* LockedOutModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F26BEE25E19C8600070858 /* LockedOutModifier.swift */; };
+		C8102C9527CED7A600ABC77C /* Screenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8102C9327CED7A600ABC77C /* Screenshots.swift */; };
 		C839598F25E7A69300521F83 /* PersistenceManager+ContextOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839598E25E7A69300521F83 /* PersistenceManager+ContextOperations.swift */; };
 		C839599125E7A6AF00521F83 /* PersistenceManager+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599025E7A6AF00521F83 /* PersistenceManager+Creation.swift */; };
 		C839599325E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = C839599225E7B1C300521F83 /* VNDocumentCameraScan+PDF.swift */; };
@@ -107,6 +108,8 @@
 		C8C5D9B62716466400CE967D /* Folder+Nestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5D9B52716466400CE967D /* Folder+Nestable.swift */; };
 		C8C5D9BA271C77C600CE967D /* EmptyFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C5D9B9271C77C600CE967D /* EmptyFolderView.swift */; };
 		C8CC881F26381DB8001783FF /* KernelDirectoryUI in Frameworks */ = {isa = PBXBuildFile; productRef = C8CC881E26381DB8001783FF /* KernelDirectoryUI */; };
+		C8DF066A263410B800645E8C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DF0669263410B800645E8C /* Constants.swift */; };
+		C8DF066C2634189F00645E8C /* OverrideColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8DF066B2634189F00645E8C /* OverrideColorScheme.swift */; };
 		C8EC6C1B272C6EA700C4D287 /* FolderNavigationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EC6C1A272C6EA700C4D287 /* FolderNavigationViewViewModel.swift */; };
 		C8EFC331260010FA008E8CFA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8EFC330260010FA008E8CFA /* Media.xcassets */; };
 		C8EFC333260010FA008E8CFA /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EFC332260010FA008E8CFA /* ActionViewController.swift */; };
@@ -168,6 +171,13 @@
 			remoteGlobalIDString = C8A792D125E06642009B862D;
 			remoteInfo = PrivateVault;
 		};
+		C8DF066426340F2C00645E8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8A792CA25E06642009B862D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C8A792D125E06642009B862D;
+			remoteInfo = PrivateVault;
+		};
 		C8EFC338260010FA008E8CFA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C8A792CA25E06642009B862D /* Project object */;
@@ -215,6 +225,8 @@
 		468A75E025E15B9300B87597 /* SoundEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SoundEffect.swift; path = "PrivateVault App/Code/UI/SoundEffect.swift"; sourceTree = SOURCE_ROOT; };
 		46F26BEB25E19C6700070858 /* AttemptsRemainingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttemptsRemainingView.swift; sourceTree = "<group>"; };
 		46F26BEE25E19C8600070858 /* LockedOutModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockedOutModifier.swift; sourceTree = "<group>"; };
+		C8102C9327CED7A600ABC77C /* Screenshots.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screenshots.swift; sourceTree = "<group>"; };
+		C8102C9427CED7A600ABC77C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C82FF3962610937C00726A22 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		C82FF3972610938400726A22 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C839598E25E7A69300521F83 /* PersistenceManager+ContextOperations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceManager+ContextOperations.swift"; sourceTree = "<group>"; };
@@ -298,6 +310,9 @@
 		C8C5D9B22716463900CE967D /* StoredItem+Nestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoredItem+Nestable.swift"; sourceTree = "<group>"; };
 		C8C5D9B52716466400CE967D /* Folder+Nestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Folder+Nestable.swift"; sourceTree = "<group>"; };
 		C8C5D9B9271C77C600CE967D /* EmptyFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFolderView.swift; sourceTree = "<group>"; };
+		C8DF065F26340F2C00645E8C /* Screenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Screenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8DF0669263410B800645E8C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C8DF066B2634189F00645E8C /* OverrideColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrideColorScheme.swift; sourceTree = "<group>"; };
 		C8EC6C1A272C6EA700C4D287 /* FolderNavigationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderNavigationViewViewModel.swift; sourceTree = "<group>"; };
 		C8EFC32E260010FA008E8CFA /* PrivateVault Import Action.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PrivateVault Import Action.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8EFC330260010FA008E8CFA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
@@ -353,6 +368,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C8DF065C26340F2C00645E8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C8EFC32B260010FA008E8CFA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -394,6 +416,15 @@
 			path = PrivateVaultTests;
 			sourceTree = "<group>";
 		};
+		C8102C9227CED7A600ABC77C /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				C8102C9327CED7A600ABC77C /* Screenshots.swift */,
+				C8102C9427CED7A600ABC77C /* Info.plist */,
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
 		C83959B425E9B14400521F83 /* Edit */ = {
 			isa = PBXGroup;
 			children = (
@@ -430,6 +461,7 @@
 				46F26BEE25E19C8600070858 /* LockedOutModifier.swift */,
 				C87C772125FDF9F900EE6362 /* ScaledForSmallScreenModifier.swift */,
 				C88ACB1A25E112A70064C160 /* ShakeModifier.swift */,
+				C8DF066B2634189F00645E8C /* OverrideColorScheme.swift */,
 				C8C5D9AE271644C400CE967D /* View+FolderStyle.swift */,
 			);
 			path = Modifiers;
@@ -579,6 +611,7 @@
 				C8A792D425E06642009B862D /* PrivateVault App */,
 				C8EFC32F260010FA008E8CFA /* PrivateVault Import Action */,
 				2B39CE2425E33B5200E63EDD /* PrivateVaultTests */,
+				C8102C9227CED7A600ABC77C /* Screenshots */,
 				C87C772325FE013700EE6362 /* Config */,
 				C8A792D325E06642009B862D /* Products */,
 				C86F9CC625EA666000210F64 /* Frameworks */,
@@ -592,6 +625,7 @@
 				C8A792D225E06642009B862D /* PrivateVault.app */,
 				2B39CE2325E33B5200E63EDD /* PrivateVaultTests.xctest */,
 				C8EFC32E260010FA008E8CFA /* PrivateVault Import Action.appex */,
+				C8DF065F26340F2C00645E8C /* Screenshots.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -620,6 +654,7 @@
 		C8A792E425E06693009B862D /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				C8DF0669263410B800645E8C /* Constants.swift */,
 				C8A792D525E06642009B862D /* PrivateVaultApp.swift */,
 				C8EFD22725E14BCA00CB4141 /* Core */,
 				C8A792EA25E066B2009B862D /* Model */,
@@ -811,6 +846,24 @@
 			productReference = C8A792D225E06642009B862D /* PrivateVault.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C8DF065E26340F2C00645E8C /* Screenshots */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C8DF066826340F2C00645E8C /* Build configuration list for PBXNativeTarget "Screenshots" */;
+			buildPhases = (
+				C8DF065B26340F2C00645E8C /* Sources */,
+				C8DF065C26340F2C00645E8C /* Frameworks */,
+				C8DF065D26340F2C00645E8C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C8DF066526340F2C00645E8C /* PBXTargetDependency */,
+			);
+			name = Screenshots;
+			productName = Screenshots;
+			productReference = C8DF065F26340F2C00645E8C /* Screenshots.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		C8EFC32D260010FA008E8CFA /* PrivateVault Import Action */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C8EFC33E260010FA008E8CFA /* Build configuration list for PBXNativeTarget "PrivateVault Import Action" */;
@@ -844,6 +897,10 @@
 					C8A792D125E06642009B862D = {
 						CreatedOnToolsVersion = 12.5;
 					};
+					C8DF065E26340F2C00645E8C = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = C8A792D125E06642009B862D;
+					};
 					C8EFC32D260010FA008E8CFA = {
 						CreatedOnToolsVersion = 12.5;
 					};
@@ -869,6 +926,7 @@
 				C8A792D125E06642009B862D /* PrivateVault */,
 				C8EFC32D260010FA008E8CFA /* PrivateVault Import Action */,
 				2B39CE2225E33B5200E63EDD /* PrivateVaultTests */,
+				C8DF065E26340F2C00645E8C /* Screenshots */,
 			);
 		};
 /* End PBXProject section */
@@ -898,6 +956,13 @@
 				C86F9CBB25EA5AE900210F64 /* Denied.wav in Resources */,
 				C87A579E26037AD3002C6216 /* Model.sqlite-shm in Resources */,
 				C86F9CC225EA60C100210F64 /* OpenLong.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8DF065D26340F2C00645E8C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1032,6 +1097,7 @@
 				2B39CD8A25E18B8100E63EDD /* SettingsView.swift in Sources */,
 				F342A90026BD171C00BF4D9A /* FolderListItem.swift in Sources */,
 				C87C772225FDF9F900EE6362 /* ScaledForSmallScreenModifier.swift in Sources */,
+				C8DF066A263410B800645E8C /* Constants.swift in Sources */,
 				C87C772925FF51A200EE6362 /* LockoutManager.swift in Sources */,
 				C83959A925E8F31500521F83 /* AsynchronousOperation.swift in Sources */,
 				F3C2B19926C39C06002E2C82 /* Nestable.swift in Sources */,
@@ -1045,6 +1111,7 @@
 				2B081A7425E085FA00F9D522 /* View+Navigation.swift in Sources */,
 				C83959A725E8621600521F83 /* VideoIconPreview.swift in Sources */,
 				C8EFC3692602C6D0008E8CFA /* URLIconPreview.swift in Sources */,
+				C8DF066C2634189F00645E8C /* OverrideColorScheme.swift in Sources */,
 				C83959AF25E8F9B300521F83 /* ImportProcessView.swift in Sources */,
 				C89C9DED25E19E44003505B9 /* Tag+Comparable.swift in Sources */,
 				C868FD6325E2D458005A3EA9 /* AboutView.swift in Sources */,
@@ -1058,6 +1125,14 @@
 				C86F9CCF25ED910C00210F64 /* GalleryView+Enums.swift in Sources */,
 				C8C5D9BA271C77C600CE967D /* EmptyFolderView.swift in Sources */,
 				460E096225E077C4001343C2 /* KeypadView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8DF065B26340F2C00645E8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8102C9527CED7A600ABC77C /* Screenshots.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1094,6 +1169,11 @@
 			isa = PBXTargetDependency;
 			target = C8A792D125E06642009B862D /* PrivateVault */;
 			targetProxy = 2B39CE2825E33B5200E63EDD /* PBXContainerItemProxy */;
+		};
+		C8DF066526340F2C00645E8C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C8A792D125E06642009B862D /* PrivateVault */;
+			targetProxy = C8DF066426340F2C00645E8C /* PBXContainerItemProxy */;
 		};
 		C8EFC339260010FA008E8CFA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1311,6 +1391,44 @@
 			};
 			name = Release;
 		};
+		C8DF066626340F2C00645E8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FS696NSBK7;
+				INFOPLIST_FILE = Screenshots/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.Screenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PrivateVault;
+			};
+			name = Debug;
+		};
+		C8DF066726340F2C00645E8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FS696NSBK7;
+				INFOPLIST_FILE = Screenshots/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.Screenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PrivateVault;
+			};
+			name = Release;
+		};
 		C8EFC33C260010FA008E8CFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1379,6 +1497,15 @@
 			buildConfigurations = (
 				C8A792E225E06642009B862D /* Debug */,
 				C8A792E325E06642009B862D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C8DF066826340F2C00645E8C /* Build configuration list for PBXNativeTarget "Screenshots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8DF066626340F2C00645E8C /* Debug */,
+				C8DF066726340F2C00645E8C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

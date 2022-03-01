@@ -18,7 +18,7 @@ struct GalleryView: View {
 	@State var showLayoutMenu = false
 	@State var showImageActionSheet = false
 	@State var showPermissionAlert = false
-	@State var showTags = false
+	@State var showTags = demoTags
 	@State var showProcessing = false
 	@State var multipleSelection = false
 	@State var selectedItems: Set<StoredItem> = []

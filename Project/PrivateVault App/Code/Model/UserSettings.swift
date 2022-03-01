@@ -38,6 +38,12 @@ class UserSettings: ObservableObject {
 	
 	//	Ignored for now
 	@Published var contentMode: ContentMode = .fit
+	
+	init(demo: Bool = false) {
+		guard demo else { return }
+		showDetails = true
+		columns = 3
+	}
 }
 
 private extension String {

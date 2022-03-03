@@ -1,9 +1,9 @@
 ![Capsule Logo](./logo.png)
-# Capsule Private Storage
+# Private Vault Storage
 
 Keep your files away from prying eyes!
 
-Capsule is a completely free app that lets you store files and media behind a passcode.
+Private Vault is a completely free app that lets you store files and media behind a passcode.
 
 It was created by Emilio Peláez, Danny Behar and Ian Manor for the 2021 SwiftUI Jam Hackathon.
 
@@ -26,7 +26,7 @@ Unlock with FaceID or TouchID for instant access.
 1. Install the latest [Xcode developer tools](https://developer.apple.com/xcode/downloads/) from Apple.
 1. Clone the repository:
     ```shell
-    git clone https://github.com/EmilioPelaez/CapsulePrivateStorage/
+    git clone https://github.com/EmilioPelaez/PrivateVaultStorage/
     ```
 1. Open the `PrivateVault.xcodeproj` file in Xcode.
 1. Build the `PrivateVault` scheme.
@@ -39,4 +39,4 @@ If you want to contribute, create your own fork of the repository so you can ope
 
 ## License
 
-Capsule is available under the MIT license. See the LICENSE file for more info.
+Private Vault is available under the MIT license. See the LICENSE file for more info.

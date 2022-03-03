@@ -8,7 +8,7 @@
 import Combine
 
 class AppState: ObservableObject {
-	@Published var isLocked = true
+	@Published var isLocked = !demoContent
 	
 	@Published var currentFolder: Folder?
 	

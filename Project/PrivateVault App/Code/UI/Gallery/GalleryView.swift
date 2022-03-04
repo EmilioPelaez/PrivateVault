@@ -32,6 +32,9 @@ struct GalleryView: View {
 	@FetchRequest(sortDescriptors: [], animation: .default)
 	var tags: FetchedResults<Tag>
 	
+	@FetchRequest(sortDescriptors: [], animation: .default)
+	var folders: FetchedResults<Folder>
+	
 	var body: some View {
 		ZStack {
 			VStack(spacing: 0) {
@@ -97,6 +100,9 @@ struct GalleryView: View {
 		}
 		.onAppear {
 			persistenceController.fatalErrorString.map { currentAlert = .persistenceFatalError($0) }
+			if demoContent && !demoFolders {
+				appState.currentFolder = folders.first { $0.name == "My Files" }
+			}
 		}
 		.onDrop(of: [.fileURL], delegate: self)
 	}

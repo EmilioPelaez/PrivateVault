@@ -34,13 +34,22 @@ class Screenshots: XCTestCase {
 		snapshot("1_Import")
 	}
 	
+	func testFolders() throws {
+		let app = XCUIApplication()
+		app.launchArguments = ["Demo Content", "Demo Skip Passcode", "Demo Folders"]
+		setupSnapshot(app)
+		app.launch()
+		
+		snapshot("2_Folders")
+	}
+	
 	func testTags() throws {
 		let app = XCUIApplication()
 		app.launchArguments = ["Demo Content", "Demo Skip Passcode", "Demo Tags"]
 		setupSnapshot(app)
 		app.launch()
 		
-		snapshot("2_Tags")
+		snapshot("3_Tags")
 	}
 	
 	func testDarkMode() throws {
@@ -49,6 +58,6 @@ class Screenshots: XCTestCase {
 		setupSnapshot(app)
 		app.launch()
 		
-		snapshot("3_DarkMode")
+		snapshot("4_DarkMode")
 	}
 }

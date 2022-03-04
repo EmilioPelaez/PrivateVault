@@ -39,6 +39,14 @@ var demoImport: Bool {
 	#endif
 }
 
+var demoFolders: Bool {
+	#if targetEnvironment(simulator)
+	return ProcessInfo.processInfo.arguments.contains("Demo Folders")
+	#else
+	return false
+	#endif
+}
+
 var demoTags: Bool {
 	#if targetEnvironment(simulator)
 	return ProcessInfo.processInfo.arguments.contains("Demo Tags")

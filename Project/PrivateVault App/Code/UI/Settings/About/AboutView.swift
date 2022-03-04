@@ -17,7 +17,7 @@ struct AboutView: View {
 						.frame(width: 120, height: 120)
 						.clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous))
 					VStack(alignment: .leading, spacing: 8) {
-						Text("Capsule")
+						Text("Private Vault")
 							.bold()
 							.font(.title)
 						Text("Version 1.1")

@@ -63,7 +63,7 @@ struct GalleryView: View {
 			.sheet(item: $currentSheet, content: sheetFor)
 			processingView
 		}
-		.navigationTitle("Capsule")
+		.navigationTitle("Vault")
 		.toolbar {
 			leadingButtons
 			trailingButton

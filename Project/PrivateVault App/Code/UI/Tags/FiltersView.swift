@@ -109,7 +109,7 @@ struct FiltersView_Previews: PreviewProvider {
 	static let preview = PreviewEnvironment()
 	
 	static var previews: some View {
-		FiltersView(filter: .preview(with: preview)) { }
+		FiltersView(filter: .preview(with: preview)) {}
 			.environment(\.managedObjectContext, preview.context)
 			.previewLayout(.sizeThatFits)
 	}

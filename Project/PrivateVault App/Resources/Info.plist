@@ -26,11 +26,11 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Take pictures to store them in Capsule</string>
+	<string>Take pictures to store them in your vault</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>FaceID will be used to unlock your files</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Store your images in Capsule</string>
+	<string>Store your images in your vault</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

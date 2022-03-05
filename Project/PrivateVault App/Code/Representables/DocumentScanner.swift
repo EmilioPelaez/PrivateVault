@@ -9,8 +9,10 @@ import SwiftUI
 import VisionKit
 
 struct DocumentScanner: UIViewControllerRepresentable {
+	@EnvironmentObject private var appState: AppState
 	@Environment(\.presentationMode) var presentationMode
-	let didScan: (VNDocumentCameraScan) -> Void
+	
+	let didScan: (VNDocumentCameraScan, Folder?) -> Void
 	
 	func makeCoordinator() -> Coordinator { Coordinator(parent: self) }
 	
@@ -20,7 +22,7 @@ struct DocumentScanner: UIViewControllerRepresentable {
 		return documentViewController
 	}
 	
-	func updateUIViewController(_ uiViewController: VNDocumentCameraViewController, context: Context) { }
+	func updateUIViewController(_: VNDocumentCameraViewController, context _: Context) {}
 	
 	class Coordinator: NSObject, VNDocumentCameraViewControllerDelegate {
 		var parent: DocumentScanner
@@ -29,8 +31,8 @@ struct DocumentScanner: UIViewControllerRepresentable {
 			self.parent = parent
 		}
 		
-		func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
-			parent.didScan(scan)
+		func documentCameraViewController(_: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
+			parent.didScan(scan, parent.appState.currentFolder)
 			parent.presentationMode.wrappedValue.dismiss()
 		}
 	}

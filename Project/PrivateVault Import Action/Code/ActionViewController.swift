@@ -29,6 +29,7 @@ class ActionViewController: UIViewController {
 	private var errors: [ImportError] = []
 	
 	private var bag: Set<AnyCancellable> = []
+	var folder: Folder?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -65,7 +66,7 @@ class ActionViewController: UIViewController {
 		
 		guard !providers.isEmpty else { return }
 		let persistence = PersistenceManager(usage: .importExtension)
-		persistence.receiveItems(providers)
+		persistence.receiveItems(providers, folder: folder)
 		persistence.$creatingFiles
 			.filter { !$0 }
 			.dropFirst()
@@ -82,7 +83,7 @@ class ActionViewController: UIViewController {
 			let errorCount = persistence?.importErrors.count ?? 0
 			switch errorCount {
 			case 0: importingLabel.text = "Import Complete!"
-			case 0..<providers.count: importingLabel.text = "Import finished with \(errorCount) errors."
+			case 0 ..< providers.count: importingLabel.text = "Import finished with \(errorCount) errors."
 			case _: importingLabel.text = "Import Failed..."
 			}
 			closeButton.isHidden = false

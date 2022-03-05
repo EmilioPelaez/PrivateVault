@@ -17,6 +17,7 @@ extension GalleryView {
 			}
 			HStack(alignment: .bottom) {
 				FileTypePickerView(action: selectType)
+				folderButton
 				tagOverlay
 			}
 			.padding(.horizontal)
@@ -93,6 +94,10 @@ extension GalleryView {
 		}
 	}
 	
+	var folderButton: some View {
+		ColorButton(color: .orange, imageName: "folder.fill.badge.plus", action: folderButtonAction)
+	}
+	
 	var processingView: some View {
 		ZStack(alignment: .bottomTrailing) {
 			Color.clear
@@ -115,6 +120,10 @@ extension GalleryView {
 		} else {
 			SoundEffect.close.play()
 		}
+	}
+	
+	func folderButtonAction() {
+		currentSheet = .addNewFolder
 	}
 	
 }

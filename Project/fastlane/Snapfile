@@ -1,0 +1,21 @@
+# Uncomment the lines below you want to change by removing the # in the beginning
+
+# A list of devices you want to take the screenshots from
+devices([
+  "iPhone 8",
+  "iPhone 8 Plus",
+  "iPhone 12 Pro",
+  "iPhone 12 Pro Max",
+  "iPad Pro (9.7-inch)",
+  "iPad Pro (12.9-inch) (5th generation)"
+])
+
+languages([
+  "en-US",
+])
+
+scheme("Screenshots")
+clear_previous_screenshots(true)
+override_status_bar(true)
+skip_open_summary(true)
+number_of_retries(3)

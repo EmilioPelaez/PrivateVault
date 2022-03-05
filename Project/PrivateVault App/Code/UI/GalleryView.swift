@@ -15,11 +15,11 @@ struct GalleryView: View {
 		[
 			GridItem(.flexible()),
 			GridItem(.flexible()),
-			GridItem(.flexible())
+			GridItem(.flexible()),
 		]
 	}
 
-	var data: [Item] = (1...6)
+	var data: [Item] = (1 ... 6)
 		.map { "file\($0)" }
 		.compactMap { UIImage(named: $0) }
 		.map(Item.init)
@@ -35,7 +35,7 @@ struct GalleryView: View {
 								.aspectRatio(contentMode: contentMode)
 						)
 						.clipped()
-						.onTapGesture {  }
+						.onTapGesture {}
 				}
 			}
 		}

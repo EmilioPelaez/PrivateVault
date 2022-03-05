@@ -8,6 +8,6 @@
 import UIKit
 
 extension UIDevice {
-	static var isiPad: Bool { current.userInterfaceIdiom == .pad }
-	static var supportsHapticFeedback: Bool { !isiPad }
+	var isiPad: Bool { userInterfaceIdiom == .pad }
+	var supportsHapticFeedback: Bool { !isiPad }
 }

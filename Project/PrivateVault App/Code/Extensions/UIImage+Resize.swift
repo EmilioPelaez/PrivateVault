@@ -14,7 +14,7 @@ extension UIImage {
 		defer {
 			UIGraphicsEndImageContext()
 		}
-		self.draw(in: CGRect(origin: .zero, size: newSize))
+		draw(in: CGRect(origin: .zero, size: newSize))
 		guard let image = UIGraphicsGetImageFromCurrentImageContext() else {
 			assertionFailure("Unable to get image from context")
 			return nil
@@ -40,7 +40,7 @@ extension UIImage {
 			rect = CGRect(origin: CGPoint(x: 0, y: (side - newSize.height) / 2), size: newSize)
 		}
 		
-		self.draw(in: rect)
+		draw(in: rect)
 		guard let image = UIGraphicsGetImageFromCurrentImageContext() else {
 			assertionFailure("Unable to get image from context")
 			return nil
@@ -62,7 +62,7 @@ extension UIImage {
 		
 		// We need to calculate the proper transformation to make the image upright.
 		// We do it in 2 steps: Rotate if Left/Right/Down, and then flip if Mirrored.
-		var transform: CGAffineTransform = CGAffineTransform.identity
+		var transform = CGAffineTransform.identity
 		
 		if imageOrientation == .down || imageOrientation == .downMirrored {
 			transform = transform.translatedBy(x: size.width, y: size.height)
@@ -91,19 +91,17 @@ extension UIImage {
 		
 		// Now we draw the underlying CGImage into a new context, applying the transform
 		// calculated above.
-		guard let ctx: CGContext = CGContext(data: nil, width: Int(size.width), height: Int(size.height),
-																				 bitsPerComponent: cgImage.bitsPerComponent, bytesPerRow: 0,
-																				 space: colorSpace,
-																				 bitmapInfo: cgImage.bitmapInfo.rawValue) else {
+		guard let ctx = CGContext(data: nil, width: Int(size.width), height: Int(size.height),
+		                          bitsPerComponent: cgImage.bitsPerComponent, bytesPerRow: 0,
+		                          space: colorSpace,
+		                          bitmapInfo: cgImage.bitmapInfo.rawValue)
+		else {
 			return self
 		}
 		
 		ctx.concatenate(transform)
 		
-		if imageOrientation == .left ||
-				imageOrientation == .leftMirrored ||
-				imageOrientation == .right ||
-				imageOrientation == .rightMirrored {
+		if [.left, .leftMirrored, .right, .rightMirrored].contains(imageOrientation) {
 			ctx.draw(cgImage, in: CGRect(x: 0, y: 0, width: size.height, height: size.width))
 		} else {
 			ctx.draw(cgImage, in: CGRect(x: 0, y: 0, width: size.width, height: size.height))

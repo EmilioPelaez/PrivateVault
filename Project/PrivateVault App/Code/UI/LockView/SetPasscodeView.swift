@@ -58,8 +58,8 @@ struct SetPasscodeView: View {
 		}
 		.alert(isPresented: $showMismatchAlert) {
 			Alert(title: Text("Try Again!"),
-						message: Text("Make sure your passcodes match."),
-						dismissButton: .default(Text("Ok!")))
+			      message: Text("Make sure your passcodes match."),
+			      dismissButton: .default(Text("Ok!")))
 		}
 		.onChange(of: codeLengthIndex) { index in
 			withAnimation {

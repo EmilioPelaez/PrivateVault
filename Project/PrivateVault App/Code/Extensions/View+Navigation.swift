@@ -8,28 +8,21 @@
 import SwiftUI
 
 extension View {
-	func navigation<V: Identifiable, Destination: View>(
-		item: Binding<V?>,
-		destination: @escaping (V) -> Destination
-	) -> some View {
+	func navigation<V: Identifiable, Destination: View>(item: Binding<V?>,
+	                                                    destination: @escaping (V) -> Destination) -> some View {
 		background(NavigationLink(item: item, destination: destination))
 	}
 }
 
 extension View {
-	func navigation<Destination: View>(
-		isPresenting: Binding<Bool>,
-		destination: Destination
-	) -> some View {
+	func navigation<Destination: View>(isPresenting: Binding<Bool>,
+	                                   destination: Destination) -> some View {
 		background(NavigationLink(destination: destination, isActive: isPresenting) {})
 	}
 }
 
-extension NavigationLink where Label == EmptyView {
-	public init?<V: Identifiable>(
-		item: Binding<V?>,
-		destination: @escaping (V) -> Destination
-	) {
+public extension NavigationLink where Label == EmptyView {
+	init?<V: Identifiable>(item: Binding<V?>, destination: @escaping (V) -> Destination) {
 		if let value = item.wrappedValue {
 			let isActive: Binding<Bool> = Binding(
 				get: { item.wrappedValue != nil },

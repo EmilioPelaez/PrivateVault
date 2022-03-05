@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct GalleryView: View {
-		
+	
+	@EnvironmentObject var appState: AppState
 	@EnvironmentObject var persistenceController: PersistenceManager
 	@EnvironmentObject var settings: UserSettings
 	@EnvironmentObject var diskStore: DiskStore
-	@ObservedObject var filter = ItemFilter()
+	@EnvironmentObject var filter: ItemFilter
 	@State var dragOver = false
 	@State var showLayoutMenu = false
 	@State var showImageActionSheet = false
 	@State var showPermissionAlert = false
-	@State var showTags = false
+	@State var showTags = demoTags
 	@State var showProcessing = false
 	@State var multipleSelection = false
 	@State var selectedItems: Set<StoredItem> = []
@@ -25,14 +26,30 @@ struct GalleryView: View {
 	@State var currentAlert: AlertItem?
 	@State var previewSelection: PreviewSelection?
 	@State var itemBeingDeleted: StoredItem?
+	@State var currentFolder: Folder?
 	@Binding var isLocked: Bool
 	
 	@FetchRequest(sortDescriptors: [], animation: .default)
 	var tags: FetchedResults<Tag>
 	
+	@FetchRequest(sortDescriptors: [], animation: .default)
+	var folders: FetchedResults<Folder>
+	
 	var body: some View {
 		ZStack {
-			GalleryGridView(filter: filter, multipleSelection: $multipleSelection, selectedItems: $selectedItems, selection: select, contextMenu: contextMenu)
+			VStack(spacing: 0) {
+				GalleryHeaderView(text: $filter.searchText, placeholder: "Search...")
+				Color(.secondarySystemBackground)
+					.frame(height: 1)
+				GalleryGridView(multipleSelection: $multipleSelection,
+				                selectedItems: $selectedItems,
+				                folder: currentFolder,
+				                selection: select,
+				                contextMenu: contextMenu,
+				                folderContextMenu: folderContextMenu)
+					.id(currentFolder?.identifier ?? "Home Folder")
+					.transition(.opacity)
+			}
 			.fullScreenCover(item: $previewSelection, content: quickLookView)
 			Group {
 				if multipleSelection {
@@ -46,7 +63,7 @@ struct GalleryView: View {
 			.sheet(item: $currentSheet, content: sheetFor)
 			processingView
 		}
-		.navigationTitle("Capsule")
+		.navigationTitle("Vault")
 		.toolbar {
 			leadingButtons
 			trailingButton
@@ -60,6 +77,14 @@ struct GalleryView: View {
 			previewSelection = nil
 			itemBeingDeleted = nil
 		}
+		.onChange(of: currentSheet) { newValue in
+			if newValue == nil, !appState.attemptedToShowReviewPrompt {
+				DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+					ReviewPromptManager()?.trigger()
+				}
+				appState.attemptedToShowReviewPrompt = true
+			}
+		}
 		.onChange(of: persistenceController.errorString) {
 			$0.map { currentAlert = .persistenceError($0) }
 		}
@@ -68,8 +93,16 @@ struct GalleryView: View {
 			currentAlert = .importErrors(persistenceController.importErrors)
 			persistenceController.flushErrors()
 		}
+		.onChange(of: appState.currentFolder) { folder in
+			withAnimation {
+				currentFolder = folder
+			}
+		}
 		.onAppear {
 			persistenceController.fatalErrorString.map { currentAlert = .persistenceFatalError($0) }
+			if demoContent && !demoFolders {
+				appState.currentFolder = folders.first { $0.name == "My Files" }
+			}
 		}
 		.onDrop(of: [.fileURL], delegate: self)
 	}

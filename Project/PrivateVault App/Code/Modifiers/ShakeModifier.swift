@@ -16,7 +16,7 @@ struct ShakeModifier: GeometryEffect {
 		distance * sin(animatableData * .pi * CGFloat(shakeCount))
 	}
 
-	func effectValue(size: CGSize) -> ProjectionTransform {
+	func effectValue(size _: CGSize) -> ProjectionTransform {
 		ProjectionTransform(CGAffineTransform(translationX: translation, y: 0))
 	}
 }

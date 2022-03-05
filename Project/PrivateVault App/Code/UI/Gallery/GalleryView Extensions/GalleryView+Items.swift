@@ -25,6 +25,12 @@ extension GalleryView {
 				Text("Share")
 				Image(systemName: "square.and.arrow.up")
 			}
+			Button {
+				currentSheet = .folderSelection(item)
+			} label: {
+				Text("Move")
+				Image(systemName: "folder.badge.plus")
+			}
 			Divider()
 			Button {
 				currentAlert = .deleteItemConfirmation(item)
@@ -53,7 +59,7 @@ extension GalleryView {
 		if item.dataType != .url {
 			diskStore.add(item) { result in
 				switch result {
-				case .success(let item):
+				case let .success(item):
 					self.currentSheet = .share([item.url])
 				case .failure: break
 				}
@@ -109,6 +115,6 @@ extension GalleryView {
 			currentAlert = .emptyClipboard
 			return
 		}
-		persistenceController.receiveItems(clipboard.itemProviders)
+		persistenceController.receiveItems(clipboard.itemProviders, folder: appState.currentFolder)
 	}
 }

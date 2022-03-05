@@ -5,23 +5,25 @@
 //  Created by Ian Manor on 19/02/21.
 //
 
-import SwiftUI
 import PhotosUI
+import SwiftUI
 
 struct PhotosPicker: UIViewControllerRepresentable {
+	@EnvironmentObject private var appState: AppState
 	@Environment(\.presentationMode) var presentationMode
-	var selectedMedia: ([NSItemProvider]) -> Void
+	
+	var selectedMedia: ([NSItemProvider], Folder?) -> Void
 
 	func makeUIViewController(context: UIViewControllerRepresentableContext<PhotosPicker>) -> PHPickerViewController {
 		var configuration = PHPickerConfiguration()
 		configuration.selectionLimit = 0
-		configuration.filter = .any(of: [.images, .videos/*, .livePhotos*/])
+		configuration.filter = .any(of: [.images, .videos /* , .livePhotos */ ])
 		let imagePicker = PHPickerViewController(configuration: configuration)
 		imagePicker.delegate = context.coordinator
 		return imagePicker
 	}
 
-	func updateUIViewController(_ uiViewController: PHPickerViewController, context: UIViewControllerRepresentableContext<PhotosPicker>) { }
+	func updateUIViewController(_: PHPickerViewController, context _: UIViewControllerRepresentableContext<PhotosPicker>) {}
 
 	func makeCoordinator() -> Coordinator { Coordinator(self) }
 
@@ -32,8 +34,8 @@ struct PhotosPicker: UIViewControllerRepresentable {
 			self.parent = parent
 		}
 
-		func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-			parent.selectedMedia(results.map(\.itemProvider))
+		func picker(_: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+			parent.selectedMedia(results.map(\.itemProvider), parent.appState.currentFolder)
 			parent.presentationMode.wrappedValue.dismiss()
 		}
 	}

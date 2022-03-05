@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+	
+	@StateObject private var appState = AppState()
+	@StateObject private var filter = ItemFilter()
 	@Environment(\.scenePhase) private var scenePhase
 	@EnvironmentObject private var settings: UserSettings
 	@EnvironmentObject private var passcodeManager: PasscodeManager
-	@State var isLocked = true
 
 	var body: some View {
 		if !passcodeManager.passcodeSet {
@@ -19,29 +21,31 @@ struct ContentView: View {
 				withAnimation {
 					passcodeManager.passcodeLength = newLength
 					passcodeManager.passcode = newCode
-					isLocked = false
+					appState.isLocked = false
 				}
 			}
 			.transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
 		} else {
 			NavigationView {
-				GalleryView(isLocked: $isLocked)
+				GalleryView(isLocked: $appState.isLocked)
 			}
 			.navigationViewStyle(StackNavigationViewStyle())
 			.transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing)))
 			.overlay(
 				Group {
-					if isLocked {
-						LockView(isLocked: $isLocked)
+					if appState.isLocked {
+						LockView(isLocked: $appState.isLocked)
 							.transition(.asymmetric(insertion: .opacity, removal: .move(edge: .bottom)))
 					}
 				}
 			)
 			.onChange(of: scenePhase) { phase in
 				if [.inactive, .background].contains(phase) {
-					isLocked = true
+					appState.isLocked = true
 				}
 			}
+			.environmentObject(appState)
+			.environmentObject(filter)
 		}
 	}
 }
@@ -55,5 +59,6 @@ struct ContentView_Previews: PreviewProvider {
 			.environmentObject(preview.controller)
 			.environmentObject(UserSettings())
 			.environmentObject(PasscodeManager())
+			.environmentObject(AppState())
 	}
 }

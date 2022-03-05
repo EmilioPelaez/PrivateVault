@@ -11,9 +11,9 @@ import UIKit
 struct ShareSheet: UIViewControllerRepresentable {
 	let items: [Any]
 	
-	func makeUIViewController(context: UIViewControllerRepresentableContext<ShareSheet>) -> UIActivityViewController {
+	func makeUIViewController(context _: UIViewControllerRepresentableContext<ShareSheet>) -> UIActivityViewController {
 		UIActivityViewController(activityItems: items, applicationActivities: nil)
 	}
 	
-	func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ShareSheet>) { }
+	func updateUIViewController(_: UIActivityViewController, context _: UIViewControllerRepresentableContext<ShareSheet>) {}
 }

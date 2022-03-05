@@ -47,7 +47,7 @@ class ItemFilter: ObservableObject {
 	
 	func apply(_ item: StoredItem) -> Bool {
 		if !selectedTypes.isEmpty, !selectedTypes.contains(item.dataType) {
-				return false
+			return false
 		}
 		if !selectedTags.isEmpty, !selectedTags.allSatisfy({ item.tags?.contains($0) ?? false }) {
 			return false

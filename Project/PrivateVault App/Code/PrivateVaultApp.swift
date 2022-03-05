@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct PrivateVaultApp: App {
-	@ObservedObject var persistenceController = PersistenceManager(usage: .main)
-	@ObservedObject var passcodeManager = PasscodeManager()
-	@ObservedObject var settings = UserSettings()
+	@ObservedObject var persistenceController = PersistenceManager(usage: demoContent ? .screenshots : .main)
+	@ObservedObject var passcodeManager = PasscodeManager(demo: demoContent)
+	@ObservedObject var settings = UserSettings(demo: demoContent)
 	@ObservedObject var diskStore = DiskStore()
 
 	var body: some Scene {
@@ -22,6 +22,7 @@ struct PrivateVaultApp: App {
 				.environmentObject(passcodeManager)
 				.environmentObject(diskStore)
 				.environmentObject(settings)
+				.overrideColorScheme(override: demoOverrideDarkMode, colorScheme: .dark)
 		}
 	}
 }

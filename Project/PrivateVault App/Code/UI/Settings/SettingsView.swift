@@ -5,9 +5,9 @@
 //  Created by Ian Manor on 20/02/21.
 //
 
-import SwiftUI
-import LocalAuthentication
 import KernelDirectoryUI
+import LocalAuthentication
+import SwiftUI
 
 struct SettingsView: View {
 	@EnvironmentObject private var settings: UserSettings
@@ -44,7 +44,7 @@ struct SettingsView: View {
 						}
 					}
 					HStack {
-						Stepper(value: $settings.maxAttempts, in: 1...10) {
+						Stepper(value: $settings.maxAttempts, in: 1 ... 10) {
 							HStack {
 								Text("Attempt Limit")
 								Text("\(settings.maxAttempts)")

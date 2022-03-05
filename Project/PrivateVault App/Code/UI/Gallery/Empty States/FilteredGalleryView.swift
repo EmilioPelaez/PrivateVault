@@ -38,7 +38,7 @@ struct FilteredGalleryView: View {
 }
 
 struct FilteredGalleryView_Previews: PreviewProvider {
-    static var previews: some View {
-			FilteredGalleryView { }
-    }
+	static var previews: some View {
+		FilteredGalleryView {}
+	}
 }

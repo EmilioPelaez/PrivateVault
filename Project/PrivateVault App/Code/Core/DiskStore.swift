@@ -55,7 +55,7 @@ class DiskStore: ObservableObject {
 				}
 				group.leave()
 			}
-				.store(in: &bag)
+			.store(in: &bag)
 		}
 		
 		group.notify(queue: .main) {

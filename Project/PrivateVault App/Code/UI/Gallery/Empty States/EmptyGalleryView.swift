@@ -15,7 +15,7 @@ struct EmptyGalleryView: View {
 				.aspectRatio(CGSize(width: 765, height: 573), contentMode: .fit)
 				.padding(.horizontal, 45)
 			VStack(spacing: 8) {
-				Text("Your Capsule is empty!")
+				Text("Your vault is empty!")
 					.font(.title2)
 					.multilineTextAlignment(.center)
 				Text("Add some files to get started :)")
@@ -24,7 +24,6 @@ struct EmptyGalleryView: View {
 					.multilineTextAlignment(.center)
 					.font(.caption)
 					.foregroundColor(Color(.secondaryLabel))
-				
 			}
 		}
 		.frame(maxWidth: 300)

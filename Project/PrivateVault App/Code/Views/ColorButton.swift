@@ -33,7 +33,7 @@ struct ColorButton: View {
 
 struct ColorButton_Previews: PreviewProvider {
 	static var previews: some View {
-		ColorButton(color: .red, imageName: "trash") { }
+		ColorButton(color: .red, imageName: "trash") {}
 			.padding()
 			.previewLayout(.sizeThatFits)
 	}

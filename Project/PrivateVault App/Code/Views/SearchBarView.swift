@@ -12,27 +12,23 @@ struct SearchBarView: View {
 	var placeholder: String?
 
 	var body: some View {
-		VStack(spacing: .zero) {
+		HStack {
 			HStack {
-				HStack {
-					Image(systemName: "magnifyingglass")
+				Image(systemName: "magnifyingglass")
+					.font(.headline)
+					.foregroundColor(Color(.secondaryLabel))
+				TextField(placeholder ?? "Search", text: $text)
+				if !text.isEmpty {
+					Image(systemName: "multiply.circle.fill")
 						.foregroundColor(Color(.secondaryLabel))
-					TextField(placeholder ?? "Search", text: $text)
-					if !text.isEmpty {
-						Image(systemName: "multiply.circle.fill")
-							.foregroundColor(Color(.secondaryLabel))
-							.onTapGesture { self.text = "" }
-					}
+						.onTapGesture { self.text = "" }
 				}
-				.padding(8)
-				.background(
-					RoundedRectangle(cornerRadius: 12).foregroundColor(Color(.tertiarySystemFill))
-				)
 			}
-			.animation(.linear(duration: 0.16))
-			.padding([.top, .bottom], 8)
-			.padding(.horizontal)
-			Divider().background(Color(.systemGray5))
+			.padding(8)
+			.background(
+				RoundedRectangle(cornerRadius: 12).foregroundColor(Color(.tertiarySystemFill))
+			)
 		}
+		.animation(.linear(duration: 0.16))
 	}
 }

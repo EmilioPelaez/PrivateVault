@@ -39,7 +39,7 @@ struct FileTypePickerView: View {
 	}
 	
 	@EnvironmentObject var settings: UserSettings
-	@State var isExpanded: Bool = false
+	@State var isExpanded: Bool = demoImport
 	let height: CGFloat = 60
 	let margin: CGFloat = 5
 	var action: (FileType) -> Void
@@ -60,7 +60,7 @@ struct FileTypePickerView: View {
 					.font(.system(size: height / 2))
 					.frame(width: height, height: height)
 					.foregroundColor(.white)
-				.rotationEffect(.degrees(isExpanded ? 225 : 0))
+					.rotationEffect(.degrees(isExpanded ? 225 : 0))
 			}
 			
 		}

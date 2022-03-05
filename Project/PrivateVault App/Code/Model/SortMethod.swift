@@ -17,12 +17,16 @@ enum SortMethod: Int, CaseIterable, Identifiable {
 	func apply(lhs: StoredItem, rhs: StoredItem) -> Bool {
 		switch self {
 		case .alphabeticalAscending:
-			return lhs.name ?? "" < rhs.name ?? ""
+			return (lhs.name ?? "").localizedStandardCompare(rhs.name ?? "") == .orderedAscending
 		case .chronologicalDescending:
 			return lhs.timestamp ?? .distantFuture > rhs.timestamp ?? .distantFuture
 		case .dataType:
 			return lhs.dataType.index < rhs.dataType.index
 		}
+	}
+	
+	func apply(lhs: Folder, rhs: Folder) -> Bool {
+		(lhs.name ?? "").localizedStandardCompare(rhs.name ?? "") == .orderedAscending
 	}
 }
 

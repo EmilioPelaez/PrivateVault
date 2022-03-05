@@ -22,7 +22,7 @@ extension Binding {
 
 extension Binding where Value == Int {
 	func toString() -> Binding<String> {
-		self.map(to: String.init) {
+		map(to: String.init) {
 			Int($0.filter(\.isNumber)) ?? 0
 		}
 	}

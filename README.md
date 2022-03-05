@@ -1,4 +1,4 @@
-![Capsule Logo](./logo.png)
+![Private Vault Logo](./logo.png)
 # Private Vault Storage
 
 Keep your files away from prying eyes!
@@ -26,7 +26,7 @@ Unlock with FaceID or TouchID for instant access.
 1. Install the latest [Xcode developer tools](https://developer.apple.com/xcode/downloads/) from Apple.
 1. Clone the repository:
     ```shell
-    git clone https://github.com/EmilioPelaez/PrivateVaultStorage/
+    git clone https://github.com/EmilioPelaez/PrivateVault/
     ```
 1. Open the `PrivateVault.xcodeproj` file in Xcode.
 1. Build the `PrivateVault` scheme.

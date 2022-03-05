@@ -6,8 +6,8 @@
 //  Copyright © 2020 Emilio Peláez. All rights reserved.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 extension Publisher {
 	

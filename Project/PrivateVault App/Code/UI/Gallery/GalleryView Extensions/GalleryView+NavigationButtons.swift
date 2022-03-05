@@ -62,7 +62,7 @@ extension GalleryView {
 					Image(systemName: "info.circle")
 				}
 				Menu {
-					ForEach(1..<6) { columns in
+					ForEach(1 ..< 6) { columns in
 						Button {
 							withAnimation { settings.columns = columns }
 						}
@@ -95,7 +95,6 @@ extension GalleryView {
 				}
 			} label: {
 				Image(systemName: "ellipsis.circle")
-					.font(.title2)
 			}
 		}
 	}

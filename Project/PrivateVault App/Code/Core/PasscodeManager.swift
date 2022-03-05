@@ -17,9 +17,14 @@ class PasscodeManager: ObservableObject {
 	
 	private let passcodeKey = "passcode"
 	private let passcodeLengthKey = "passcodeLength"
-	init() {
-		self.passcode = keychain[passcodeKey] ?? ""
-		self.passcodeLength = keychain[data: passcodeLengthKey]?.withUnsafeBytes { $0.load(as: Int.self) } ?? 6
+	init(demo: Bool = false) {
+		if demo {
+			self.passcode = "000000"
+			self.passcodeLength = 6
+		} else {
+			self.passcode = keychain[passcodeKey] ?? ""
+			self.passcodeLength = keychain[data: passcodeLengthKey]?.withUnsafeBytes { $0.load(as: Int.self) } ?? 6
+		}
 		updatePasscodeSet()
 	}
 	

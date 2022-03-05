@@ -13,7 +13,7 @@ extension VNDocumentCameraScan {
 	func generatePDF() -> PDFDocument {
 		let document = PDFDocument()
 		
-		(0..<pageCount)
+		(0 ..< pageCount)
 			.lazy
 			.map { self.imageOfPage(at: $0) }
 			.compactMap(PDFPage.init)

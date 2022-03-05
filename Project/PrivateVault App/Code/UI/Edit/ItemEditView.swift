@@ -41,12 +41,13 @@ struct ItemEditView: View {
 			.listStyle(InsetGroupedListStyle())
 			.navigationTitle("Edit")
 			.toolbar {
-				ToolbarItem(placement: .navigationBarLeading) {
+				ToolbarItem(placement: .confirmationAction) {
 					Button {
 						presentationMode.wrappedValue.dismiss()
+						persistenceController.save()
 					}
 					label: {
-						Image(systemName: "xmark.circle.fill")
+						Text("Save")
 					}
 				}
 			}
@@ -65,7 +66,6 @@ struct ItemEditView: View {
 				item.addToTags(tag)
 			}
 		}
-		persistenceController.save()
 	}
 }
 

@@ -5,12 +5,13 @@
 //  Created by Emilio Peláez on 30/03/22.
 //
 
+import LockScreen
 import SwiftUI
 
 struct ContentView: View {
 	var body: some View {
-		Text("Hello, world!")
-			.padding()
+		InputDisplay(input: "AB", codeLength: 4)
+			.extend()
 	}
 }
 

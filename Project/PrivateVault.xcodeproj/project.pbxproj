@@ -28,6 +28,14 @@
 		C8FBECEC27F3C66100DECDAA /* Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C8FBECB527F3C63400DECDAA /* Shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C8FBECF227F3C68100DECDAA /* HierarchyResponder in Frameworks */ = {isa = PBXBuildFile; productRef = C8FBECF127F3C68100DECDAA /* HierarchyResponder */; };
 		C8FBECF427F3C68800DECDAA /* HierarchyResponder in Frameworks */ = {isa = PBXBuildFile; productRef = C8FBECF327F3C68800DECDAA /* HierarchyResponder */; };
+		C8FBECF827F3CC9D00DECDAA /* InputDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECF727F3CC9D00DECDAA /* InputDisplay.swift */; };
+		C8FBECFA27F3CCAB00DECDAA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECF927F3CCAB00DECDAA /* Constants.swift */; };
+		C8FBED0027F3CCBF00DECDAA /* Color+Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECFD27F3CCBF00DECDAA /* Color+Standard.swift */; };
+		C8FBED0127F3CCBF00DECDAA /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECFB27F3CCBF00DECDAA /* Color+Hex.swift */; };
+		C8FBED0227F3CCBF00DECDAA /* View+OnChangeEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECFE27F3CCBF00DECDAA /* View+OnChangeEqual.swift */; };
+		C8FBED0327F3CCBF00DECDAA /* View+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECFF27F3CCBF00DECDAA /* View+Padding.swift */; };
+		C8FBED0427F3CCBF00DECDAA /* View+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECFC27F3CCBF00DECDAA /* View+Preview.swift */; };
+		C8FBED0627F3CD2B00DECDAA /* View+Extend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBED0527F3CD2B00DECDAA /* View+Extend.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +134,14 @@
 		C8FBECC827F3C63F00DECDAA /* SharedUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedUI.h; sourceTree = "<group>"; };
 		C8FBECD627F3C64F00DECDAA /* LockScreen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LockScreen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FBECD827F3C64F00DECDAA /* LockScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LockScreen.h; sourceTree = "<group>"; };
+		C8FBECF727F3CC9D00DECDAA /* InputDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputDisplay.swift; sourceTree = "<group>"; };
+		C8FBECF927F3CCAB00DECDAA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C8FBECFB27F3CCBF00DECDAA /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		C8FBECFC27F3CCBF00DECDAA /* View+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Preview.swift"; sourceTree = "<group>"; };
+		C8FBECFD27F3CCBF00DECDAA /* Color+Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Standard.swift"; sourceTree = "<group>"; };
+		C8FBECFE27F3CCBF00DECDAA /* View+OnChangeEqual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+OnChangeEqual.swift"; sourceTree = "<group>"; };
+		C8FBECFF27F3CCBF00DECDAA /* View+Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Padding.swift"; sourceTree = "<group>"; };
+		C8FBED0527F3CD2B00DECDAA /* View+Extend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extend.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +239,13 @@
 			isa = PBXGroup;
 			children = (
 				C8FBECC827F3C63F00DECDAA /* SharedUI.h */,
+				C8FBECF927F3CCAB00DECDAA /* Constants.swift */,
+				C8FBECFB27F3CCBF00DECDAA /* Color+Hex.swift */,
+				C8FBECFD27F3CCBF00DECDAA /* Color+Standard.swift */,
+				C8FBECFE27F3CCBF00DECDAA /* View+OnChangeEqual.swift */,
+				C8FBECFF27F3CCBF00DECDAA /* View+Padding.swift */,
+				C8FBECFC27F3CCBF00DECDAA /* View+Preview.swift */,
+				C8FBED0527F3CD2B00DECDAA /* View+Extend.swift */,
 			);
 			path = SharedUI;
 			sourceTree = "<group>";
@@ -231,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				C8FBECD827F3C64F00DECDAA /* LockScreen.h */,
+				C8FBECF727F3CC9D00DECDAA /* InputDisplay.swift */,
 			);
 			path = LockScreen;
 			sourceTree = "<group>";
@@ -461,6 +485,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8FBED0227F3CCBF00DECDAA /* View+OnChangeEqual.swift in Sources */,
+				C8FBED0027F3CCBF00DECDAA /* Color+Standard.swift in Sources */,
+				C8FBED0627F3CD2B00DECDAA /* View+Extend.swift in Sources */,
+				C8FBED0327F3CCBF00DECDAA /* View+Padding.swift in Sources */,
+				C8FBECFA27F3CCAB00DECDAA /* Constants.swift in Sources */,
+				C8FBED0127F3CCBF00DECDAA /* Color+Hex.swift in Sources */,
+				C8FBED0427F3CCBF00DECDAA /* View+Preview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +499,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8FBECF827F3CC9D00DECDAA /* InputDisplay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,6 +656,7 @@
 		C8FBECAE27F3C59400DECDAA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -653,6 +686,7 @@
 		C8FBECAF27F3C59400DECDAA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,34 +1,14 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "KernelDirectoryUI",
-        "repositoryURL": "https://github.com/EmilioPelaez/KernelDirectoryUI",
-        "state": {
-          "branch": null,
-          "revision": "d36e7b4234ade7fd5b2779eae0cad8fa54dae532",
-          "version": "0.0.6"
-        }
-      },
-      {
-        "package": "KeychainAccess",
-        "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess",
-        "state": {
-          "branch": null,
-          "revision": "84e546727d66f1adc5439debad16270d0fdd04e7",
-          "version": "4.2.2"
-        }
-      },
-      {
-        "package": "RESTClient",
-        "repositoryURL": "https://github.com/EmilioPelaez/RESTClient",
-        "state": {
-          "branch": null,
-          "revision": "36d6cbe4bc0a780ae472ccc793612fac642ff6fb",
-          "version": "0.9.2"
-        }
+  "pins" : [
+    {
+      "identity" : "hierarchyresponder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EmilioPelaez/HierarchyResponder",
+      "state" : {
+        "revision" : "e2d54f14b606cd20e663b9affcf7d4e50b0d34d7",
+        "version" : "1.0.0"
       }
-    ]
-  },
-  "version": 1
+    }
+  ],
+  "version" : 2
 }

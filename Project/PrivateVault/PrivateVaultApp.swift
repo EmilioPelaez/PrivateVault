@@ -11,7 +11,7 @@ import SwiftUI
 struct PrivateVaultApp: App {
 	var body: some Scene {
 		WindowGroup {
-			ContentView()
+			LockRouter()
 		}
 	}
 }

@@ -10,12 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
 	var body: some View {
-		VStack(spacing: .paddingMedium) {
-			InputDisplay(input: "AB", codeLength: 4)
-				.tint(.primary)
-			KeypadView()
-		}
-		.frame(maxWidth: .keypadMaxWidth)
+		LockScreen()
 	}
 }
 

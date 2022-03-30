@@ -9,8 +9,25 @@ import SharedUI
 import SwiftUI
 
 public struct InputDisplay: View {
+	@Environment(\.passcodeState) var passcodeState
+	
 	let input: String
 	let codeLength: Int
+	
+	var color: Color {
+		switch passcodeState {
+		case .undefined: return .primary
+		case .incorrect: return .red
+		case .correct: return .green
+		}
+	}
+	
+	var backgroundOpacity: Double {
+		switch passcodeState {
+		case .undefined: return .backgroundAlpha
+		case .incorrect, .correct: return .disabledAlpha
+		}
+	}
 	
 	public init(input: String, codeLength: Int) {
 		self.input = input
@@ -20,13 +37,10 @@ public struct InputDisplay: View {
 	public var body: some View {
 		HStack(spacing: 0) {
 			ForEach(0 ..< codeLength, id: \.self) { index in
-				Group {
-					Text(index < input.count ? "●" : "○")
-						.font(.largeTitle)
-						.foregroundStyle(.tint)
-				}
-				.extendHorizontally()
-				.transition(.scale(scale: .ulpOfOne, anchor: .trailing))
+				Text(index < input.count ? "●" : "○")
+					.font(.largeTitle)
+					.foregroundStyle(.tint)
+					.extendHorizontally()
 			}
 		}
 		.largePadding(.vertical)
@@ -34,8 +48,9 @@ public struct InputDisplay: View {
 		.background(
 			RoundedRectangle(cornerRadius: .paddingLarge, style: .continuous)
 				.foregroundStyle(.tint)
-				.opacity(.backgroundAlpha)
+				.opacity(backgroundOpacity)
 		)
+		.tint(color)
 	}
 }
 

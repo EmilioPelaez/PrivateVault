@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C81E1D2C27F50346006815DE /* LockScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81E1D2B27F50346006815DE /* LockScreen.swift */; };
+		C81E1D2E27F50433006815DE /* LockScreenResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81E1D2D27F50433006815DE /* LockScreenResponder.swift */; };
+		C81E1D3027F50AE1006815DE /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81E1D2F27F50AE1006815DE /* Environment.swift */; };
+		C81E1D3227F50AEA006815DE /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81E1D3127F50AEA006815DE /* Events.swift */; };
+		C81E1D3427F51110006815DE /* LockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81E1D3327F51110006815DE /* LockRouter.swift */; };
 		C8FBECA327F3C59200DECDAA /* PrivateVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */; };
 		C8FBECA527F3C59200DECDAA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECA427F3C59200DECDAA /* ContentView.swift */; };
 		C8FBECA727F3C59400DECDAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FBECA627F3C59400DECDAA /* Assets.xcassets */; };
@@ -126,6 +131,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C81E1D2B27F50346006815DE /* LockScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreen.swift; sourceTree = "<group>"; };
+		C81E1D2D27F50433006815DE /* LockScreenResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenResponder.swift; sourceTree = "<group>"; };
+		C81E1D2F27F50AE1006815DE /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		C81E1D3127F50AEA006815DE /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		C81E1D3327F51110006815DE /* LockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockRouter.swift; sourceTree = "<group>"; };
 		C8FBEC9F27F3C59200DECDAA /* PrivateVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivateVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateVaultApp.swift; sourceTree = "<group>"; };
 		C8FBECA427F3C59200DECDAA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -219,6 +229,7 @@
 			children = (
 				C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */,
 				C8FBECA427F3C59200DECDAA /* ContentView.swift */,
+				C81E1D3327F51110006815DE /* LockRouter.swift */,
 				C8FBECA627F3C59400DECDAA /* Assets.xcassets */,
 				C8FBECA827F3C59400DECDAA /* Preview Content */,
 			);
@@ -256,9 +267,13 @@
 			isa = PBXGroup;
 			children = (
 				C8FBECD827F3C64F00DECDAA /* LockScreen.h */,
+				C81E1D2F27F50AE1006815DE /* Environment.swift */,
+				C81E1D3127F50AEA006815DE /* Events.swift */,
+				C81E1D2B27F50346006815DE /* LockScreen.swift */,
 				C8FBECF727F3CC9D00DECDAA /* InputDisplay.swift */,
 				C8FBED0D27F3D64F00DECDAA /* KeypadView.swift */,
 				C8FBED0927F3D23900DECDAA /* KeyButton.swift */,
+				C81E1D2D27F50433006815DE /* LockScreenResponder.swift */,
 			);
 			path = LockScreen;
 			sourceTree = "<group>";
@@ -487,6 +502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8FBECA527F3C59200DECDAA /* ContentView.swift in Sources */,
+				C81E1D3427F51110006815DE /* LockRouter.swift in Sources */,
 				C8FBECA327F3C59200DECDAA /* PrivateVaultApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,8 +533,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C81E1D2C27F50346006815DE /* LockScreen.swift in Sources */,
+				C81E1D3027F50AE1006815DE /* Environment.swift in Sources */,
 				C8FBED0A27F3D23900DECDAA /* KeyButton.swift in Sources */,
 				C8FBECF827F3CC9D00DECDAA /* InputDisplay.swift in Sources */,
+				C81E1D3227F50AEA006815DE /* Events.swift in Sources */,
+				C81E1D2E27F50433006815DE /* LockScreenResponder.swift in Sources */,
 				C8FBED0E27F3D64F00DECDAA /* KeypadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

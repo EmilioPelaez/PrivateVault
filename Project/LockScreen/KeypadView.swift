@@ -9,12 +9,6 @@ import HierarchyResponder
 import SharedUI
 import SwiftUI
 
-struct KeyDownEvent: Event {
-	let value: String
-}
-struct KeypadDeleteEvent: Event {}
-struct BiometricUnlockEvent: Event {}
-
 public struct KeypadView: View {
 	@Environment(\.biometricSymbolName) var biometricSymbolName
 	

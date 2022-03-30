@@ -17,7 +17,9 @@ public extension CGFloat {
 	
 	static let disabledAlpha: CGFloat = 0.25
 	static let secondaryAlpha: CGFloat = 0.7
-	static let backgroundAlpha: CGFloat = 0.1
+	static let backgroundAlpha: CGFloat = 0.05
+	
+	static let keypadMaxWidth: CGFloat = 280
 	
 	static let macSidebarMinWidth: CGFloat = 200
 	static let macWindowMinWidth = macSidebarMinWidth + paddingLarge + contentWidth + paddingLarge
@@ -30,5 +32,5 @@ public extension CGFloat {
 public extension Double {
 	static let disabledAlpha: CGFloat = 0.25
 	static let secondaryAlpha: CGFloat = 0.7
-	static let backgroundAlpha: CGFloat = 0.1
+	static let backgroundAlpha: CGFloat = 0.05
 }

@@ -11,14 +11,20 @@ import SwiftUI
 struct LockScreenResponder: ViewModifier {
 	@Environment(\.triggerEvent) var triggerEvent
 	
-	let passcode: String = "1234"
+	@Environment(\.passcodeMaxAttempts) var maxAttempts
+	
+	@StateObject var passcodeManager = PasscodeManager()
+	@StateObject var lockoutManager = LockoutManager()
+	
+	var passcode: String { passcodeManager.passcode }
 	@State var input: String = ""
 	@State var passcodeState = PasscodeState.undefined
 	@State var disabled = false
+	@State var attempts = 0
 	
 	func body(content: Content) -> some View {
 		content
-			.allowsHitTesting(!disabled)
+			.allowsHitTesting(!(disabled || lockoutManager.isLockedOut))
 			.handleEvent(KeyDownEvent.self, handler: handleKeyDown)
 			.handleEvent(KeypadDeleteEvent.self, handler: handleBackspace)
 			.handleEvent(BiometricsSuccessEvent.self) {
@@ -31,6 +37,11 @@ struct LockScreenResponder: ViewModifier {
 			}
 			.environment(\.passcodeState, passcodeState)
 			.environment(\.passcodeEntered, input)
+			.environment(\.passcodeLength, passcodeManager.passcodeLength)
+			.environment(\.passcodeLockedOut, lockoutManager.isLockedOut)
+			.environment(\.passcodeLockedOutDate, lockoutManager.unlockDate)
+			.environment(\.passcodeAttemptsRemaining, maxAttempts - attempts)
+			.onChange(of: lockoutManager.isLockedOut, equals: false) { attempts = 0 }
 	}
 	
 	func handleKeyDown(_ event: KeyDownEvent) {
@@ -53,6 +64,10 @@ struct LockScreenResponder: ViewModifier {
 				}
 			} else if input.count == passcode.count {
 				passcodeState = .incorrect
+				attempts += 1
+				if attempts == maxAttempts {
+					lockoutManager.lockout()
+				}
 				disabled = true
 				DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 					input = ""

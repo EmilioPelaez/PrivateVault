@@ -16,6 +16,7 @@ public struct LockScreen: View {
 		ZStack {
 			Color.systemBackground
 			VStack(spacing: .paddingMedium) {
+				AttemptsView()
 				InputDisplay()
 				KeypadView()
 			}

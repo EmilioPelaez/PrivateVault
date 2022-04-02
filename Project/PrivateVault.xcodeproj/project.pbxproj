@@ -12,8 +12,9 @@
 		C81E1D3027F50AE1006815DE /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81E1D2F27F50AE1006815DE /* Environment.swift */; };
 		C81E1D3227F50AEA006815DE /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81E1D3127F50AEA006815DE /* Events.swift */; };
 		C81E1D3427F51110006815DE /* LockRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81E1D3327F51110006815DE /* LockRouter.swift */; };
+		C81E1D3627F8E3EE006815DE /* BiometricsResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81E1D3527F8E3EE006815DE /* BiometricsResponder.swift */; };
+		C81E1D3827F8E765006815DE /* LAContext+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81E1D3727F8E765006815DE /* LAContext+Shared.swift */; };
 		C8FBECA327F3C59200DECDAA /* PrivateVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */; };
-		C8FBECA527F3C59200DECDAA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECA427F3C59200DECDAA /* ContentView.swift */; };
 		C8FBECA727F3C59400DECDAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FBECA627F3C59400DECDAA /* Assets.xcassets */; };
 		C8FBECAA27F3C59400DECDAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FBECA927F3C59400DECDAA /* Preview Assets.xcassets */; };
 		C8FBECB827F3C63400DECDAA /* Shared.h in Headers */ = {isa = PBXBuildFile; fileRef = C8FBECB727F3C63400DECDAA /* Shared.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -136,9 +137,10 @@
 		C81E1D2F27F50AE1006815DE /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		C81E1D3127F50AEA006815DE /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		C81E1D3327F51110006815DE /* LockRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockRouter.swift; sourceTree = "<group>"; };
+		C81E1D3527F8E3EE006815DE /* BiometricsResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsResponder.swift; sourceTree = "<group>"; };
+		C81E1D3727F8E765006815DE /* LAContext+Shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LAContext+Shared.swift"; sourceTree = "<group>"; };
 		C8FBEC9F27F3C59200DECDAA /* PrivateVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivateVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateVaultApp.swift; sourceTree = "<group>"; };
-		C8FBECA427F3C59200DECDAA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C8FBECA627F3C59400DECDAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8FBECA927F3C59400DECDAA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C8FBECB527F3C63400DECDAA /* Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -228,7 +230,6 @@
 			isa = PBXGroup;
 			children = (
 				C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */,
-				C8FBECA427F3C59200DECDAA /* ContentView.swift */,
 				C81E1D3327F51110006815DE /* LockRouter.swift */,
 				C8FBECA627F3C59400DECDAA /* Assets.xcassets */,
 				C8FBECA827F3C59400DECDAA /* Preview Content */,
@@ -274,6 +275,8 @@
 				C8FBED0D27F3D64F00DECDAA /* KeypadView.swift */,
 				C8FBED0927F3D23900DECDAA /* KeyButton.swift */,
 				C81E1D2D27F50433006815DE /* LockScreenResponder.swift */,
+				C81E1D3527F8E3EE006815DE /* BiometricsResponder.swift */,
+				C81E1D3727F8E765006815DE /* LAContext+Shared.swift */,
 			);
 			path = LockScreen;
 			sourceTree = "<group>";
@@ -501,7 +504,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C8FBECA527F3C59200DECDAA /* ContentView.swift in Sources */,
 				C81E1D3427F51110006815DE /* LockRouter.swift in Sources */,
 				C8FBECA327F3C59200DECDAA /* PrivateVaultApp.swift in Sources */,
 			);
@@ -537,9 +539,11 @@
 				C81E1D3027F50AE1006815DE /* Environment.swift in Sources */,
 				C8FBED0A27F3D23900DECDAA /* KeyButton.swift in Sources */,
 				C8FBECF827F3CC9D00DECDAA /* InputDisplay.swift in Sources */,
+				C81E1D3827F8E765006815DE /* LAContext+Shared.swift in Sources */,
 				C81E1D3227F50AEA006815DE /* Events.swift in Sources */,
 				C81E1D2E27F50433006815DE /* LockScreenResponder.swift in Sources */,
 				C8FBED0E27F3D64F00DECDAA /* KeypadView.swift in Sources */,
+				C81E1D3627F8E3EE006815DE /* BiometricsResponder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +709,7 @@
 				DEVELOPMENT_TEAM = FS696NSBK7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Unlock your Private Vault";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -735,6 +740,7 @@
 				DEVELOPMENT_TEAM = FS696NSBK7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Unlock your Private Vault";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

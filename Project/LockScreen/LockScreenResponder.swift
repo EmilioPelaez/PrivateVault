@@ -12,7 +12,7 @@ struct LockScreenResponder: ViewModifier {
 	@Environment(\.triggerEvent) var triggerEvent
 	
 	let passcode: String = "1234"
-	@Binding var input: String
+	@State var input: String = ""
 	@State var passcodeState = PasscodeState.undefined
 	@State var disabled = false
 	
@@ -21,7 +21,16 @@ struct LockScreenResponder: ViewModifier {
 			.allowsHitTesting(!disabled)
 			.handleEvent(KeyDownEvent.self, handler: handleKeyDown)
 			.handleEvent(KeypadDeleteEvent.self, handler: handleBackspace)
+			.handleEvent(BiometricsSuccessEvent.self) {
+				input = passcode
+				updateState()
+			}
+			.handleError(BiometricsFailureError.self) { error in
+				input = String(Array(repeating: "_", count: passcode.count))
+				updateState()
+			}
 			.environment(\.passcodeState, passcodeState)
+			.environment(\.passcodeEntered, input)
 	}
 	
 	func handleKeyDown(_ event: KeyDownEvent) {
@@ -58,7 +67,7 @@ struct LockScreenResponder: ViewModifier {
 }
 
 extension View {
-	func lockScreenResponder(input: Binding<String>) -> some View {
-		modifier(LockScreenResponder(input: input))
+	func lockScreenResponder() -> some View {
+		modifier(LockScreenResponder())
 	}
 }

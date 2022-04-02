@@ -12,4 +12,3 @@ struct KeyDownEvent: Event {
 	let value: String
 }
 struct KeypadDeleteEvent: Event {}
-struct BiometricUnlockEvent: Event {}

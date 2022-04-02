@@ -13,13 +13,31 @@ enum PasscodeState {
 	case incorrect
 }
 
-struct PasscodeStateEnvironmentKey: EnvironmentKey {
+struct PasscodeStateKey: EnvironmentKey {
 	static var defaultValue = PasscodeState.undefined
+}
+
+struct PasscodeEnteredKey: EnvironmentKey {
+	static var defaultValue = ""
+}
+
+struct PasscodeLengthKey: EnvironmentKey {
+	static var defaultValue = 4
 }
 
 extension EnvironmentValues {
 	var passcodeState: PasscodeState {
-		get { self[PasscodeStateEnvironmentKey.self] }
-		set { self[PasscodeStateEnvironmentKey.self] = newValue }
+		get { self[PasscodeStateKey.self] }
+		set { self[PasscodeStateKey.self] = newValue }
+	}
+	
+	var passcodeEntered: String {
+		get { self[PasscodeEnteredKey.self] }
+		set { self[PasscodeEnteredKey.self] = newValue }
+	}
+	
+	var passcodeLength: Int {
+		get { self[PasscodeLengthKey.self] }
+		set { self[PasscodeLengthKey.self] = newValue }
 	}
 }

@@ -8,11 +8,10 @@
 import SharedUI
 import SwiftUI
 
-public struct InputDisplay: View {
+struct InputDisplay: View {
+	@Environment(\.passcodeEntered) var passcodeEntered
+	@Environment(\.passcodeLength) var passcodeLength
 	@Environment(\.passcodeState) var passcodeState
-	
-	let input: String
-	let codeLength: Int
 	
 	var color: Color {
 		switch passcodeState {
@@ -29,15 +28,10 @@ public struct InputDisplay: View {
 		}
 	}
 	
-	public init(input: String, codeLength: Int) {
-		self.input = input
-		self.codeLength = codeLength
-	}
-	
-	public var body: some View {
+	var body: some View {
 		HStack(spacing: 0) {
-			ForEach(0 ..< codeLength, id: \.self) { index in
-				Text(index < input.count ? "●" : "○")
+			ForEach(0 ..< passcodeLength, id: \.self) { index in
+				Text(index < passcodeEntered.count ? "●" : "○")
 					.font(.largeTitle)
 					.foregroundStyle(.tint)
 					.extendHorizontally()
@@ -56,13 +50,14 @@ public struct InputDisplay: View {
 
 struct InputDisplay_Previews: PreviewProvider {
 	static var previews: some View {
-		VStack(spacing: 0) {
-			InputDisplay(input: "X", codeLength: 4)
-				.preparePreview()
-			
-			InputDisplay(input: "XX", codeLength: 6)
-				.preparePreview()
+		VStack(spacing: 10) {
+			InputDisplay()
+				.environment(\.passcodeLength, 4)
+			InputDisplay()
+				.environment(\.passcodeLength, 6)
 		}
+		.preparePreview()
+		.environment(\.passcodeEntered, "XX")
 		.previewLayout(.sizeThatFits)
 		.previewColorSchemes()
 	}

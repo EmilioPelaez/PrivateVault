@@ -14,7 +14,7 @@ struct LockRouter: View {
 	var body: some View {
 		if locked {
 			LockScreen()
-				.transition(.asymmetric(insertion: .identity, removal: .move(edge: .bottom)))
+				.transition(.move(edge: .bottom))
 				.handleEvent(UnlockEvent.self, handler: unlock)
 				.zIndex(1)
 		} else {
@@ -28,20 +28,12 @@ struct LockRouter: View {
 	}
 	
 	func lock() {
-		withAnimation {
-			locked = true
-		}
+		locked = true
 	}
 	
 	func unlock() {
 		withAnimation {
 			locked = false
 		}
-	}
-}
-
-struct LockRouter_Previews: PreviewProvider {
-	static var previews: some View {
-		LockRouter()
 	}
 }

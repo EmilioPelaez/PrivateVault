@@ -10,20 +10,19 @@ import SharedUI
 import SwiftUI
 
 public struct LockScreen: View {
-	@State var input: String = ""
-	
 	public init() {}
 	
 	public var body: some View {
 		ZStack {
 			Color.systemBackground
 			VStack(spacing: .paddingMedium) {
-				InputDisplay(input: input, codeLength: 4)
+				InputDisplay()
 				KeypadView()
 			}
 			.frame(maxWidth: .keypadMaxWidth)
 		}
-		.lockScreenResponder(input: $input)
+		.biometricsResponder()
+		.lockScreenResponder()
 	}
 }
 

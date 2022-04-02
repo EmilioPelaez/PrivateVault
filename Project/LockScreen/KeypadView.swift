@@ -10,21 +10,24 @@ import SharedUI
 import SwiftUI
 
 public struct KeypadView: View {
-	@Environment(\.biometricSymbolName) var biometricSymbolName
+	@Environment(\.biometricsState) var biometricState
 	
 	public init() {}
 	
+	var columns: [GridItem] {
+		Array(repeating: GridItem(.flexible(), spacing: .paddingSmall), count: 3)
+	}
+	
 	public var body: some View {
-		LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: .paddingSmall), count: 3),
-							alignment: .center,
-							spacing: .paddingSmall) {
+		LazyVGrid(columns: columns, alignment: .center, spacing: .paddingSmall) {
 			ForEach(1 ..< 10) {
 				button(for: $0)
 			}
-			KeyButton(event: BiometricUnlockEvent(), opacity: .disabledAlpha) {
-				Image(systemName: biometricSymbolName)
+			KeyButton(event: BiometricsRequestEvent(), opacity: .disabledAlpha) {
+				Image(systemName: biometricState.imageName)
 			}
 			.tint(.green)
+			.opacity(biometricState.available ? 1 : 0)
 			button(for: 0)
 			KeyButton(event: KeypadDeleteEvent(), opacity: .disabledAlpha) {
 				Image(systemName: "delete.left")

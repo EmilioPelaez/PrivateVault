@@ -24,6 +24,7 @@
 		C8300C1727F918CB00270E0A /* PasscodeSetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8300C1627F918CB00270E0A /* PasscodeSetHeader.swift */; };
 		C8300C1927F9198F00270E0A /* PasscodeSetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8300C1827F9198F00270E0A /* PasscodeSetScreen.swift */; };
 		C8300C1B27F91EDB00270E0A /* AppLockResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8300C1A27F91EDA00270E0A /* AppLockResponder.swift */; };
+		C8300C1D27F929F300270E0A /* EnvironmentMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8300C1C27F929F300270E0A /* EnvironmentMapper.swift */; };
 		C8FBECA327F3C59200DECDAA /* PrivateVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */; };
 		C8FBECA727F3C59400DECDAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FBECA627F3C59400DECDAA /* Assets.xcassets */; };
 		C8FBECAA27F3C59400DECDAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FBECA927F3C59400DECDAA /* Preview Assets.xcassets */; };
@@ -157,6 +158,7 @@
 		C8300C1627F918CB00270E0A /* PasscodeSetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeSetHeader.swift; sourceTree = "<group>"; };
 		C8300C1827F9198F00270E0A /* PasscodeSetScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeSetScreen.swift; sourceTree = "<group>"; };
 		C8300C1A27F91EDA00270E0A /* AppLockResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLockResponder.swift; sourceTree = "<group>"; };
+		C8300C1C27F929F300270E0A /* EnvironmentMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentMapper.swift; sourceTree = "<group>"; };
 		C8FBEC9F27F3C59200DECDAA /* PrivateVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivateVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateVaultApp.swift; sourceTree = "<group>"; };
 		C8FBECA627F3C59400DECDAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				C8FBECF927F3CCAB00DECDAA /* Constants.swift */,
 				C8FBED0F27F3DB0500DECDAA /* EnvironmentKeys.swift */,
 				C8300C1427F9188000270E0A /* EnvironmentAnimator.swift */,
+				C8300C1C27F929F300270E0A /* EnvironmentMapper.swift */,
 				C8FBED1127F3DBBC00DECDAA /* Extensions */,
 			);
 			path = SharedUI;
@@ -597,6 +600,7 @@
 				C8FBED0627F3CD2B00DECDAA /* View+Extend.swift in Sources */,
 				C8FBED0327F3CCBF00DECDAA /* View+Padding.swift in Sources */,
 				C8FBECFA27F3CCAB00DECDAA /* Constants.swift in Sources */,
+				C8300C1D27F929F300270E0A /* EnvironmentMapper.swift in Sources */,
 				C8FBED0127F3CCBF00DECDAA /* Color+Hex.swift in Sources */,
 				C8FBED0427F3CCBF00DECDAA /* View+Preview.swift in Sources */,
 				C8300C1527F9188000270E0A /* EnvironmentAnimator.swift in Sources */,

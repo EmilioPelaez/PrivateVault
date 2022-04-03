@@ -9,11 +9,11 @@ import HierarchyResponder
 import SwiftUI
 import LockScreen
 
-struct LockRouter: View {
+struct LockRouter: ViewModifier {
 	@Environment(\.passcodeSet) var passcodeSet
 	@Environment(\.appLocked) var appLocked
 	
-	var body: some View {
+	func body(content: Content) -> some View {
 		if !passcodeSet {
 			PasscodeSetScreen()
 				.transition(.move(edge: .bottom))
@@ -23,12 +23,14 @@ struct LockRouter: View {
 				.transition(.move(edge: .bottom))
 				.zIndex(1)
 		} else {
-			EventButton(LockEvent()) {
-				Label("Lock", systemImage: "lock.fill")
-			}
-			.buttonStyle(.borderedProminent)
-			.tint(.red)
-			.transition(.scale(scale: 0.85))
+			content
+				.transition(.scale(scale: 0.85))
 		}
+	}
+}
+
+extension View {
+	func lockRouter() -> some View {
+		modifier(LockRouter())
 	}
 }

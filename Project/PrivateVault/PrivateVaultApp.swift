@@ -6,14 +6,17 @@
 //
 
 import LockScreen
+import Settings
 import SwiftUI
 
 @main
 struct PrivateVaultApp: App {
 	var body: some Scene {
 		WindowGroup {
-			LockRouter()
+			ContentView()
+				.lockRouter()
 				.appLockResponder()
+				.settingsProvider()
 		}
 	}
 }

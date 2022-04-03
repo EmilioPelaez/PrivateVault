@@ -7,6 +7,8 @@
 
 import HierarchyResponder
 import LocalAuthentication
+import Shared
+import SharedUI
 import SwiftUI
 
 struct BiometricsRequestEvent: Event {}
@@ -18,23 +20,6 @@ struct BiometricsFailureError: Error {
 extension View {
 	func biometricsResponder(reason: String = "Biometrics access required to unlock application") -> some View {
 		modifier(BiometricsResponder(reason: reason))
-	}
-}
-
-struct BiometricsState {
-	let name: String
-	let imageName: String
-	let available: Bool
-}
-
-struct BiometricsStateKey: EnvironmentKey {
-	static var defaultValue = BiometricsState.touchID
-}
-
-extension EnvironmentValues {
-	var biometricsState: BiometricsState {
-		get { self[BiometricsStateKey.self] }
-		set { self[BiometricsStateKey.self] = newValue }
 	}
 }
 
@@ -73,10 +58,4 @@ struct BiometricsResponder: ViewModifier {
 			}
 		}
 	}
-}
-
-extension BiometricsState {
-	static let none: BiometricsState = BiometricsState(name: "", imageName: "questionmark.circle", available: false)
-	static let faceID = BiometricsState(name: "FaceID", imageName: "faceid", available: true)
-	static let touchID = BiometricsState(name: "TouchID", imageName: "touchid", available: true)
 }

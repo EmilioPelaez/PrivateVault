@@ -6,11 +6,12 @@
 //
 
 import HierarchyResponder
+import SharedUI
 import SwiftUI
 
 struct AppLockResponder: ViewModifier {
 	@StateObject var passcodeManager = PasscodeManager()
-	@State var locked = false
+	@State var locked = true
 	
 	func body(content: Content) -> some View {
 		content

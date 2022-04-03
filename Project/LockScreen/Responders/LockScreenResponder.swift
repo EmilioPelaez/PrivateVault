@@ -6,6 +6,7 @@
 //
 
 import HierarchyResponder
+import SharedUI
 import SwiftUI
 
 struct LockScreenResponder: ViewModifier {

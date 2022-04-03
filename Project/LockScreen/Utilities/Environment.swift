@@ -81,11 +81,6 @@ extension EnvironmentValues {
 		set { self[PasscodeLengthKey.self] = newValue }
 	}
 	
-	var passcodeMaxAttempts: Int {
-		get { self[PasscodeMaxAttemptsKey.self] }
-		set { self[PasscodeMaxAttemptsKey.self] = newValue }
-	}
-	
 	var passcodeAttemptsRemaining: Int {
 		get { self[PasscodeAttemptsRemainingKey.self] }
 		set { self[PasscodeAttemptsRemainingKey.self] = newValue }

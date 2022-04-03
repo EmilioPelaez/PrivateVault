@@ -5,10 +5,11 @@
 //  Created by Emilio Peláez on 03/04/22.
 //
 
+import SharedUI
 import SwiftUI
 
 struct AttemptsView: View {
-	@Environment(\.passcodeMaxAttempts) var passcodeMaxAttempts
+	@Environment(\.settingsMaxAttempts) var passcodeMaxAttempts
 	@Environment(\.passcodeAttemptsRemaining) var passcodeAttemptsRemaining
 	@Environment(\.passcodeLockedOutDate) var passcodeLockedOutDate
 	@Environment(\.passcodeLockedOut) var passcodeLockedOut

@@ -12,7 +12,7 @@ import SwiftUI
 struct LockScreenResponder: ViewModifier {
 	@Environment(\.triggerEvent) var triggerEvent
 	
-	@Environment(\.passcodeMaxAttempts) var maxAttempts
+	@Environment(\.settingsMaxAttempts) var maxAttempts
 	@EnvironmentObject var passcodeManager: PasscodeManager
 	
 	@StateObject var lockoutManager = LockoutManager()

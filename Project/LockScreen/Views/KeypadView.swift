@@ -11,6 +11,7 @@ import SwiftUI
 
 public struct KeypadView: View {
 	@Environment(\.biometricsState) var biometricState
+	@Environment(\.settingsBiometrics) var settingsBiometrics
 	
 	public init() {}
 	
@@ -27,7 +28,7 @@ public struct KeypadView: View {
 				Image(systemName: biometricState.imageName)
 			}
 			.tint(.green)
-			.opacity(biometricState.available ? 1 : 0)
+			.opacity(biometricState.available && settingsBiometrics ? 1 : 0)
 			button(for: 0)
 			KeyButton(event: KeypadDeleteEvent(), opacity: .disabledAlpha) {
 				Image(systemName: "delete.left")

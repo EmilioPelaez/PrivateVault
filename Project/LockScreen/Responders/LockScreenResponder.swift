@@ -12,8 +12,8 @@ struct LockScreenResponder: ViewModifier {
 	@Environment(\.triggerEvent) var triggerEvent
 	
 	@Environment(\.passcodeMaxAttempts) var maxAttempts
+	@EnvironmentObject var passcodeManager: PasscodeManager
 	
-	@StateObject var passcodeManager = PasscodeManager()
 	@StateObject var lockoutManager = LockoutManager()
 	
 	var passcode: String { passcodeManager.passcode }

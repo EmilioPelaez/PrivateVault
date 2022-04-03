@@ -13,6 +13,26 @@ enum PasscodeState {
 	case incorrect
 }
 
+struct PasscodeSetKey: EnvironmentKey {
+	static var defaultValue = false
+}
+
+struct AppLockedKey: EnvironmentKey {
+	static var defaultValue = true
+}
+
+public extension EnvironmentValues {
+	var passcodeSet: Bool {
+		get { self[PasscodeSetKey.self] }
+		set { self[PasscodeSetKey.self] = newValue }
+	}
+	
+	var appLocked: Bool {
+		get { self[AppLockedKey.self] }
+		set { self[AppLockedKey.self] = newValue }
+	}
+}
+
 struct PasscodeStateKey: EnvironmentKey {
 	static var defaultValue = PasscodeState.undefined
 }

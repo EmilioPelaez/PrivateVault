@@ -30,5 +30,6 @@ public struct LockScreen: View {
 struct LockScreen_Previews: PreviewProvider {
 	static var previews: some View {
 		LockScreen()
+			.environmentObject(PasscodeManager())
 	}
 }

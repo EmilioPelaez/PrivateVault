@@ -17,7 +17,7 @@ class PasscodeManager: ObservableObject {
 	
 	private let passcodeKey = "passcode"
 	private let passcodeLengthKey = "passcodeLength"
-	init(demo: Bool = true) {
+	init(demo: Bool = false) {
 		if demo {
 			self.passcode = "000000"
 			self.passcodeLength = 6
@@ -28,8 +28,13 @@ class PasscodeManager: ObservableObject {
 		updatePasscodeSet()
 	}
 	
+	func setPasscode(_ passcode: String) {
+		self.passcode = passcode
+		passcodeLength = passcode.count
+	}
+	
 	@Published
-	var passcode: String {
+	private(set) var passcode: String {
 		didSet {
 			keychain[passcodeKey] = passcode
 			updatePasscodeSet()
@@ -37,7 +42,7 @@ class PasscodeManager: ObservableObject {
 	}
 	
 	@Published
-	var passcodeLength: Int {
+	private(set) var passcodeLength: Int {
 		didSet {
 			withUnsafeBytes(of: passcodeLength) { keychain[data: passcodeLengthKey] = Data($0) }
 			updatePasscodeSet()

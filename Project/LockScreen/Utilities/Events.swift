@@ -7,13 +7,19 @@
 
 import HierarchyResponder
 
-public struct UnlockEvent: Event {}
+public struct LockEvent: Event {
+	public init() {}
+}
+public struct UnlockEvent: Event {
+	public init() {}
+}
+
 struct KeyDownEvent: Event {
 	let value: String
 }
 struct KeypadDeleteEvent: Event {}
 
-public struct PasscodeSetEvent: Event {
+struct PasscodeSetEvent: Event {
 	public let passcode: String
 }
 struct PasscodeLengthSetEvent: Event {

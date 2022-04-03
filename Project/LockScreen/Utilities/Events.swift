@@ -12,3 +12,10 @@ struct KeyDownEvent: Event {
 	let value: String
 }
 struct KeypadDeleteEvent: Event {}
+
+public struct PasscodeSetEvent: Event {
+	public let passcode: String
+}
+struct PasscodeLengthSetEvent: Event {
+	let length: Int
+}

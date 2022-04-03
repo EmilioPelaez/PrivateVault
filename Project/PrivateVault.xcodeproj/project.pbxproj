@@ -19,6 +19,10 @@
 		C8300C0827F905AB00270E0A /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = C8300C0727F905AB00270E0A /* KeychainAccess */; };
 		C8300C0A27F9074800270E0A /* LockoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8300C0927F9074800270E0A /* LockoutManager.swift */; };
 		C8300C1127F90F5400270E0A /* AttemptsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8300C1027F90F5400270E0A /* AttemptsView.swift */; };
+		C8300C1327F9175300270E0A /* PasscodeSetResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8300C1227F9175300270E0A /* PasscodeSetResponder.swift */; };
+		C8300C1527F9188000270E0A /* EnvironmentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8300C1427F9188000270E0A /* EnvironmentAnimator.swift */; };
+		C8300C1727F918CB00270E0A /* PasscodeSetHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8300C1627F918CB00270E0A /* PasscodeSetHeader.swift */; };
+		C8300C1927F9198F00270E0A /* PasscodeSetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8300C1827F9198F00270E0A /* PasscodeSetScreen.swift */; };
 		C8FBECA327F3C59200DECDAA /* PrivateVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */; };
 		C8FBECA727F3C59400DECDAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FBECA627F3C59400DECDAA /* Assets.xcassets */; };
 		C8FBECAA27F3C59400DECDAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FBECA927F3C59400DECDAA /* Preview Assets.xcassets */; };
@@ -147,6 +151,10 @@
 		C8300C0227F9055F00270E0A /* PasscodeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeManager.swift; sourceTree = "<group>"; };
 		C8300C0927F9074800270E0A /* LockoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockoutManager.swift; sourceTree = "<group>"; };
 		C8300C1027F90F5400270E0A /* AttemptsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptsView.swift; sourceTree = "<group>"; };
+		C8300C1227F9175300270E0A /* PasscodeSetResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeSetResponder.swift; sourceTree = "<group>"; };
+		C8300C1427F9188000270E0A /* EnvironmentAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentAnimator.swift; sourceTree = "<group>"; };
+		C8300C1627F918CB00270E0A /* PasscodeSetHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeSetHeader.swift; sourceTree = "<group>"; };
+		C8300C1827F9198F00270E0A /* PasscodeSetScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeSetScreen.swift; sourceTree = "<group>"; };
 		C8FBEC9F27F3C59200DECDAA /* PrivateVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivateVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateVaultApp.swift; sourceTree = "<group>"; };
 		C8FBECA627F3C59400DECDAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -219,6 +227,7 @@
 				C8FBECF727F3CC9D00DECDAA /* InputDisplay.swift */,
 				C8FBED0927F3D23900DECDAA /* KeyButton.swift */,
 				C8FBED0D27F3D64F00DECDAA /* KeypadView.swift */,
+				C8300C1627F918CB00270E0A /* PasscodeSetHeader.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,6 +237,7 @@
 			children = (
 				C81E1D3527F8E3EE006815DE /* BiometricsResponder.swift */,
 				C81E1D2D27F50433006815DE /* LockScreenResponder.swift */,
+				C8300C1227F9175300270E0A /* PasscodeSetResponder.swift */,
 			);
 			path = Responders;
 			sourceTree = "<group>";
@@ -315,6 +325,7 @@
 				C8FBECC827F3C63F00DECDAA /* SharedUI.h */,
 				C8FBECF927F3CCAB00DECDAA /* Constants.swift */,
 				C8FBED0F27F3DB0500DECDAA /* EnvironmentKeys.swift */,
+				C8300C1427F9188000270E0A /* EnvironmentAnimator.swift */,
 				C8FBED1127F3DBBC00DECDAA /* Extensions */,
 			);
 			path = SharedUI;
@@ -323,9 +334,10 @@
 		C8FBECD727F3C64F00DECDAA /* LockScreen */ = {
 			isa = PBXGroup;
 			children = (
-				C8300C0F27F909CE00270E0A /* Extensions */,
 				C8FBECD827F3C64F00DECDAA /* LockScreen.h */,
 				C81E1D2B27F50346006815DE /* LockScreen.swift */,
+				C8300C1827F9198F00270E0A /* PasscodeSetScreen.swift */,
+				C8300C0F27F909CE00270E0A /* Extensions */,
 				C8300C0E27F909C800270E0A /* Managers */,
 				C8300C0C27F909B800270E0A /* Responders */,
 				C8300C0D27F909C000270E0A /* Utilities */,
@@ -584,6 +596,7 @@
 				C8FBECFA27F3CCAB00DECDAA /* Constants.swift in Sources */,
 				C8FBED0127F3CCBF00DECDAA /* Color+Hex.swift in Sources */,
 				C8FBED0427F3CCBF00DECDAA /* View+Preview.swift in Sources */,
+				C8300C1527F9188000270E0A /* EnvironmentAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,15 +605,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				C81E1D2C27F50346006815DE /* LockScreen.swift in Sources */,
+				C8300C1727F918CB00270E0A /* PasscodeSetHeader.swift in Sources */,
 				C8300C0A27F9074800270E0A /* LockoutManager.swift in Sources */,
 				C8300C0327F9055F00270E0A /* PasscodeManager.swift in Sources */,
 				C81E1D3027F50AE1006815DE /* Environment.swift in Sources */,
 				C8FBED0A27F3D23900DECDAA /* KeyButton.swift in Sources */,
+				C8300C1327F9175300270E0A /* PasscodeSetResponder.swift in Sources */,
 				C8FBECF827F3CC9D00DECDAA /* InputDisplay.swift in Sources */,
 				C8300C1127F90F5400270E0A /* AttemptsView.swift in Sources */,
 				C81E1D3827F8E765006815DE /* LAContext+Shared.swift in Sources */,
 				C81E1D3227F50AEA006815DE /* Events.swift in Sources */,
 				C81E1D2E27F50433006815DE /* LockScreenResponder.swift in Sources */,
+				C8300C1927F9198F00270E0A /* PasscodeSetScreen.swift in Sources */,
 				C8FBED0E27F3D64F00DECDAA /* KeypadView.swift in Sources */,
 				C81E1D3627F8E3EE006815DE /* BiometricsResponder.swift in Sources */,
 			);

@@ -41,6 +41,10 @@ struct PasscodeLockedOutDateKey: EnvironmentKey {
 	static var defaultValue: Date? = nil
 }
 
+struct PasscodeConfirmingKey: EnvironmentKey {
+	static var defaultValue = false
+}
+
 extension EnvironmentValues {
 	var passcodeState: PasscodeState {
 		get { self[PasscodeStateKey.self] }
@@ -75,5 +79,10 @@ extension EnvironmentValues {
 	var passcodeLockedOutDate: Date? {
 		get { self[PasscodeLockedOutDateKey.self] }
 		set { self[PasscodeLockedOutDateKey.self] = newValue }
+	}
+	
+	var passcodeConfirming: Bool {
+		get { self[PasscodeConfirmingKey.self] }
+		set { self[PasscodeConfirmingKey.self] = newValue }
 	}
 }

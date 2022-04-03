@@ -5,11 +5,11 @@
 //  Created by Emilio Peláez on 30/03/22.
 //
 
-import HierarchyResponder
 import SharedUI
 import SwiftUI
 
 public struct LockScreen: View {
+	
 	public init() {}
 	
 	public var body: some View {

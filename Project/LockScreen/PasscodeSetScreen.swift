@@ -21,8 +21,8 @@ public struct PasscodeSetScreen: View {
 				KeypadView()
 			}
 			.frame(maxWidth: .keypadMaxWidth)
-			.passcodeSetResponder()
 		}
+		.passcodeSetResponder()
 	}
 }
 

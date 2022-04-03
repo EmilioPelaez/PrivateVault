@@ -27,6 +27,7 @@ public struct SettingsScreen: View {
 					}
 				}
 			}
+			.changePasscodeRouter()
 		}
 	}
 }

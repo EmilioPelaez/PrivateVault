@@ -19,7 +19,7 @@ struct KeyDownEvent: Event {
 }
 struct KeypadDeleteEvent: Event {}
 
-struct PasscodeSetEvent: Event {
+public struct PasscodeSetEvent: Event {
 	public let passcode: String
 }
 struct PasscodeLengthSetEvent: Event {

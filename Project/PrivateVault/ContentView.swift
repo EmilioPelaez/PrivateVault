@@ -11,9 +11,6 @@ import Settings
 import SwiftUI
 
 struct ContentView: View {
-	
-	@State var showSettings = false
-	
 	var body: some View {
 		NavigationView {
 			EventButton(LockEvent()) {
@@ -22,19 +19,7 @@ struct ContentView: View {
 			.buttonStyle(.borderedProminent)
 			.tint(.red)
 			.navigationTitle("Vault")
-			.toolbar {
-				ToolbarItem(placement: .navigationBarTrailing) {
-					Button {
-						showSettings = true
-					}
-					label: {
-						Image(systemName: "gear")
-					}
-				}
-			}
-		}
-		.sheet(isPresented: $showSettings) {
-			SettingsScreen()
+			.settingsRouter()
 		}
 	}
 }

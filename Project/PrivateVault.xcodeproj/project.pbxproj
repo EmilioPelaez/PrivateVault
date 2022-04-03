@@ -51,6 +51,8 @@
 		C8300C6127F937FA00270E0A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8300C6027F937FA00270E0A /* ContentView.swift */; };
 		C8300C6427F93A0B00270E0A /* BiometricsState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8300C6327F93A0B00270E0A /* BiometricsState.swift */; };
 		C8300C6527F93A6900270E0A /* SortMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8300C4527F930DE00270E0A /* SortMethod.swift */; };
+		C8300C6827F93E2500270E0A /* ChangePasscodeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8300C6727F93E2500270E0A /* ChangePasscodeRouter.swift */; };
+		C8300C6A27F93F1400270E0A /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8300C6927F93F1400270E0A /* SettingsRouter.swift */; };
 		C8FBECA327F3C59200DECDAA /* PrivateVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */; };
 		C8FBECA727F3C59400DECDAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FBECA627F3C59400DECDAA /* Assets.xcassets */; };
 		C8FBECAA27F3C59400DECDAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FBECA927F3C59400DECDAA /* Preview Assets.xcassets */; };
@@ -244,6 +246,8 @@
 		C8300C5427F9361700270E0A /* LinkType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkType.swift; sourceTree = "<group>"; };
 		C8300C6027F937FA00270E0A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C8300C6327F93A0B00270E0A /* BiometricsState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsState.swift; sourceTree = "<group>"; };
+		C8300C6727F93E2500270E0A /* ChangePasscodeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasscodeRouter.swift; sourceTree = "<group>"; };
+		C8300C6927F93F1400270E0A /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
 		C8FBEC9F27F3C59200DECDAA /* PrivateVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivateVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateVaultApp.swift; sourceTree = "<group>"; };
 		C8FBECA627F3C59400DECDAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -378,6 +382,7 @@
 				C8300C2E27F92F8300270E0A /* SettingsScreen.swift */,
 				C8300C5E27F936FE00270E0A /* Models */,
 				C8300C5D27F936E900270E0A /* Providers */,
+				C8300C6627F93E1100270E0A /* Routers */,
 				C8300C5B27F9367900270E0A /* Utilities */,
 				C8300C5A27F9367200270E0A /* Views */,
 			);
@@ -431,6 +436,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		C8300C6627F93E1100270E0A /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				C8300C6727F93E2500270E0A /* ChangePasscodeRouter.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
 		C8FBEC9627F3C59200DECDAA = {
 			isa = PBXGroup;
 			children = (
@@ -465,6 +478,7 @@
 				C8300C6027F937FA00270E0A /* ContentView.swift */,
 				C8FBECA627F3C59400DECDAA /* Assets.xcassets */,
 				C8FBECA827F3C59400DECDAA /* Preview Content */,
+				C8300C6927F93F1400270E0A /* SettingsRouter.swift */,
 			);
 			path = PrivateVault;
 			sourceTree = "<group>";
@@ -798,6 +812,7 @@
 				C8300C4227F9304500270E0A /* UserSettings.swift in Sources */,
 				C8300C4F27F935EE00270E0A /* PrivacyView.swift in Sources */,
 				C8300C5527F9361700270E0A /* LinkButton.swift in Sources */,
+				C8300C6827F93E2500270E0A /* ChangePasscodeRouter.swift in Sources */,
 				C8300C5027F935EE00270E0A /* LicenseView.swift in Sources */,
 				C8300C4827F930F400270E0A /* Environment.swift in Sources */,
 				C8300C5727F9361700270E0A /* CreatorRow.swift in Sources */,
@@ -809,6 +824,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C81E1D3427F51110006815DE /* LockRouter.swift in Sources */,
+				C8300C6A27F93F1400270E0A /* SettingsRouter.swift in Sources */,
 				C8FBECA327F3C59200DECDAA /* PrivateVaultApp.swift in Sources */,
 				C8300C6127F937FA00270E0A /* ContentView.swift in Sources */,
 			);

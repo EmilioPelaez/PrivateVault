@@ -444,6 +444,15 @@
 			path = Routers;
 			sourceTree = "<group>";
 		};
+		C8505C5B27FA512F00669977 /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				C81E1D3327F51110006815DE /* LockRouter.swift */,
+				C8300C6927F93F1400270E0A /* SettingsRouter.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
 		C8FBEC9627F3C59200DECDAA = {
 			isa = PBXGroup;
 			children = (
@@ -474,11 +483,10 @@
 			isa = PBXGroup;
 			children = (
 				C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */,
-				C81E1D3327F51110006815DE /* LockRouter.swift */,
 				C8300C6027F937FA00270E0A /* ContentView.swift */,
-				C8FBECA627F3C59400DECDAA /* Assets.xcassets */,
+				C8505C5B27FA512F00669977 /* Routers */,
 				C8FBECA827F3C59400DECDAA /* Preview Content */,
-				C8300C6927F93F1400270E0A /* SettingsRouter.swift */,
+				C8FBECA627F3C59400DECDAA /* Assets.xcassets */,
 			);
 			path = PrivateVault;
 			sourceTree = "<group>";

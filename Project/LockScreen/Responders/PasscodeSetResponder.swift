@@ -27,6 +27,7 @@ struct PasscodeSetResponder: ViewModifier {
 			.environment(\.passcodeEntered, input)
 			.environment(\.passcodeLength, passcodeLength)
 			.environment(\.passcodeConfirming, confirming)
+			.environment(\.biometricsState, .none)
 	}
 	
 	func handleKeyDown(_ event: KeyDownEvent) {

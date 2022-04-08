@@ -10,6 +10,7 @@ import HierarchyResponder
 public struct LockEvent: Event {
 	public init() {}
 }
+
 public struct UnlockEvent: Event {
 	public init() {}
 }
@@ -17,11 +18,13 @@ public struct UnlockEvent: Event {
 struct KeyDownEvent: Event {
 	let value: String
 }
+
 struct KeypadDeleteEvent: Event {}
 
 public struct PasscodeSetEvent: Event {
 	public let passcode: String
 }
+
 struct PasscodeLengthSetEvent: Event {
 	let length: Int
 }

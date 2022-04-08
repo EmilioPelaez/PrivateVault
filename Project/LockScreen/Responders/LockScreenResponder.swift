@@ -32,7 +32,7 @@ struct LockScreenResponder: ViewModifier {
 				input = passcode
 				updateState()
 			}
-			.handleError(BiometricsFailureError.self) { error in
+			.handleError(BiometricsFailureError.self) {
 				input = String(Array(repeating: "_", count: passcode.count))
 				updateState()
 			}

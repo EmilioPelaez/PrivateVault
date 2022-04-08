@@ -33,7 +33,7 @@ struct EnvironmentAnimator<Value: Equatable>: ViewModifier {
 }
 
 public extension View {
-	func animateEnvironment<Key: EnvironmentKey>(_ path: WritableKeyPath<EnvironmentValues, Key.Value>, key: Key.Type) -> some View where Key.Value: Equatable {
+	func animateEnvironment<Key: EnvironmentKey>(_ path: WritableKeyPath<EnvironmentValues, Key.Value>, key _: Key.Type) -> some View where Key.Value: Equatable {
 		modifier(EnvironmentAnimator(path, defaultValue: Key.defaultValue))
 	}
 	

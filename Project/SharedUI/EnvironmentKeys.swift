@@ -40,7 +40,6 @@ struct SettingsHapticFeedbackKey: EnvironmentKey {
 	static let defaultValue = true
 }
 
-
 public extension EnvironmentValues {
 
 	var biometricsState: BiometricsState {
@@ -62,18 +61,22 @@ public extension EnvironmentValues {
 		get { self[SettingsColumnsKey.self] }
 		set { self[SettingsColumnsKey.self] = newValue }
 	}
+
 	var settingsSort: SortMethod {
 		get { self[SettingsSortKey.self] }
 		set { self[SettingsSortKey.self] = newValue }
 	}
+
 	var settingsShowDetails: Bool {
 		get { self[SettingsShowDetailsKey.self] }
 		set { self[SettingsShowDetailsKey.self] = newValue }
 	}
+
 	var settingsSound: Bool {
 		get { self[SettingsSoundsKey.self] }
 		set { self[SettingsSoundsKey.self] = newValue }
 	}
+
 	var settingsHapticFeedback: Bool {
 		get { self[SettingsHapticFeedbackKey.self] }
 		set { self[SettingsHapticFeedbackKey.self] = newValue }

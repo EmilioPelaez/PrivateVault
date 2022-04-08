@@ -58,7 +58,7 @@ struct PasscodeLockedOutKey: EnvironmentKey {
 }
 
 struct PasscodeLockedOutDateKey: EnvironmentKey {
-	static var defaultValue: Date? = nil
+	static var defaultValue: Date?
 }
 
 struct PasscodeConfirmingKey: EnvironmentKey {

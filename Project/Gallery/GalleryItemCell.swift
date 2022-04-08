@@ -31,11 +31,11 @@ struct GalleryItemCell: View {
 struct GalleryItemCell_Previews: PreviewProvider {
 	static var previews: some View {
 		GalleryItemCell(item: .init(id: "",
-																title: "Hello There",
-																subtitle: "General\nKenobi",
-																kind: .folder))
-		.frame(width: 200)
-		.fixedSize()
-		.preparePreview()
+		                            title: "Hello There",
+		                            subtitle: "General\nKenobi",
+		                            kind: .folder))
+			.frame(width: 200)
+			.fixedSize()
+			.preparePreview()
 	}
 }

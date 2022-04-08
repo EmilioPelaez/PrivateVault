@@ -15,7 +15,10 @@ struct EnvironmentMapper<Source, Destination>: ViewModifier {
 	
 	let transform: (Source) -> Destination
 	
-	init(source: WritableKeyPath<EnvironmentValues, Source>, destination: WritableKeyPath<EnvironmentValues, Destination>, defaultValue: Destination, transform: @escaping (Source) -> Destination) {
+	init(source: WritableKeyPath<EnvironmentValues, Source>,
+	     destination: WritableKeyPath<EnvironmentValues, Destination>,
+	     defaultValue: Destination,
+	     transform: @escaping (Source) -> Destination) {
 		self.sourceKeyPath = source
 		self.destinationKeyPath = destination
 		self._output = .init(initialValue: defaultValue)

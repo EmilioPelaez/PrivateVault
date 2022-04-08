@@ -6,9 +6,9 @@
 //
 
 import CGMath
+import HierarchyResponder
 import SharedUI
 import SwiftUI
-import HierarchyResponder
 
 public struct GalleryGrid: View {
 	@Environment(\.triggerEvent) var triggerEvent
@@ -16,9 +16,7 @@ public struct GalleryGrid: View {
 	let items: [GalleryItem]
 	
 	var columns: [GridItem] {
-		[.init(.adaptive(minimum: 150, maximum: 250),
-					 spacing: .paddingMedium,
-					 alignment: .center)]
+		[.init(.adaptive(minimum: 150, maximum: 250), spacing: .paddingMedium, alignment: .center)]
 	}
 	
 	public init(items: [GalleryItem]) {
@@ -51,11 +49,11 @@ public struct GalleryGrid: View {
 struct Gallery_Previews: PreviewProvider {
 	static var previews: some View {
 		GalleryGrid(items:
-									(0..<10)
-			.map { "\($0)" }
-			.map { GalleryItem(id: $0, title: "Hello", subtitle: "World", kind: .folder) }
+			(0 ..< 10)
+				.map { "\($0)" }
+				.map { GalleryItem(id: $0, title: "Hello", subtitle: "World", kind: .folder) }
 		)
-			.frame(maxWidth: 500)
-			.preparePreview()
+		.frame(maxWidth: 500)
+		.preparePreview()
 	}
 }

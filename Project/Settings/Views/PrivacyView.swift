@@ -24,9 +24,9 @@ struct PrivacyView: View {
 					guard let url = URL(string: "https://github.com/EmilioPelaez/PrivateVault") else { return }
 					UIApplication.shared.open(url)
 				}
-				label: {
-					Text("View Source Code")
-				}
+					label: {
+						Text("View Source Code")
+					}
 			}
 			.frame(maxWidth: .infinity)
 			.padding()

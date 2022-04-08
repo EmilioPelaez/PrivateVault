@@ -5,8 +5,8 @@
 //  Created by Emilio Peláez on 03/04/22.
 //
 
-import SwiftUI
 import HierarchyResponder
+import SwiftUI
 
 struct SettingsView: View {
 	@Environment(\.biometricsState) var biometricsState
@@ -21,7 +21,7 @@ struct SettingsView: View {
 					}
 				}
 				HStack {
-					Stepper(value: $settings.maxAttempts, in: 1...10) {
+					Stepper(value: $settings.maxAttempts, in: 1 ... 10) {
 						Label("Attempt Limit", systemImage: "\(settings.maxAttempts).circle")
 					}
 				}
@@ -35,7 +35,7 @@ struct SettingsView: View {
 				}
 				Toggle(isOn: $settings.hapticFeedback) {
 					Label("Haptic Feedback",
-								systemImage: settings.hapticFeedback ? "iphone.radiowaves.left.and.right" : "iphone")
+					      systemImage: settings.hapticFeedback ? "iphone.radiowaves.left.and.right" : "iphone")
 				}
 			}
 			Section(header: Text("Legal")) {

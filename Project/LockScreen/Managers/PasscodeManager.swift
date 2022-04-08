@@ -13,7 +13,7 @@ class PasscodeManager: ObservableObject {
 	private let keychain = Keychain().synchronizable(true)
 	
 	@Published
-	var passcodeSet: Bool = false
+	var passcodeSet = false
 	
 	private let passcodeKey = "passcode"
 	private let passcodeLengthKey = "passcodeLength"

@@ -21,7 +21,7 @@ struct AttemptsView: View {
 	var body: some View {
 		if let date = passcodeLockedOutDate, passcodeLockedOut {
 			Text("Try again in ") +
-			Text(date, style: .timer)
+				Text(date, style: .timer)
 		} else if passcodeAttemptsRemaining < passcodeMaxAttempts {
 			Text(attemptsRemainString)
 		}

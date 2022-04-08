@@ -6,8 +6,8 @@
 //
 
 import HierarchyResponder
-import SwiftUI
 import LockScreen
+import SwiftUI
 
 struct LockRouter: ViewModifier {
 	@Environment(\.passcodeSet) var passcodeSet

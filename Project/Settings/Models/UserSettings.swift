@@ -42,8 +42,8 @@ class UserSettings: ObservableObject {
 	
 	init(demo: Bool = false) {
 		guard demo else { return }
-		showDetails = true
-		columns = 3
+		self.showDetails = true
+		self.columns = 3
 	}
 }
 

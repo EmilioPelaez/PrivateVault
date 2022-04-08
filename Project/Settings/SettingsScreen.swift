@@ -16,18 +16,18 @@ public struct SettingsScreen: View {
 	public var body: some View {
 		NavigationView {
 			SettingsView()
-			.navigationTitle("Settings")
-			.toolbar {
-				ToolbarItem(placement: .navigationBarLeading) {
-					Button {
-						presentationMode.wrappedValue.dismiss()
-					}
-					label: {
-						Image(systemName: "xmark.circle.fill")
+				.navigationTitle("Settings")
+				.toolbar {
+					ToolbarItem(placement: .navigationBarLeading) {
+						Button {
+							presentationMode.wrappedValue.dismiss()
+						}
+							label: {
+								Image(systemName: "xmark.circle.fill")
+							}
 					}
 				}
-			}
-			.changePasscodeRouter()
+				.changePasscodeRouter()
 		}
 	}
 }

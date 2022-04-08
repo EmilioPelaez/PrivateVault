@@ -59,7 +59,11 @@ struct FilePreview: View {
 			path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY + foldLength))
 			path.addArc(center: CGPoint(x: rect.maxX - cornerLength, y: rect.maxY - cornerLength), radius: cornerLength, startAngle: .degrees(0), endAngle: .degrees(90), clockwise: false)
 			path.addArc(center: CGPoint(x: rect.minX + cornerLength, y: rect.maxY - cornerLength), radius: cornerLength, startAngle: .degrees(90), endAngle: .degrees(180), clockwise: false)
-			path.addArc(center: CGPoint(x: rect.minX + cornerLength, y: rect.minX + cornerLength), radius: cornerLength, startAngle: .degrees(180), endAngle: .degrees(270), clockwise: false)
+			path.addArc(center: CGPoint(x: rect.minX + cornerLength, y: rect.minX + cornerLength),
+			            radius: cornerLength,
+			            startAngle: .degrees(180),
+			            endAngle: .degrees(270),
+			            clockwise: false)
 			path.closeSubpath()
 			
 			return path

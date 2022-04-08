@@ -35,10 +35,10 @@ struct CreatorRow: View {
 struct CreatorRow_Previews: PreviewProvider {
 	static var previews: some View {
 		CreatorRow(name: "Bob",
-							 title: "Programmer",
-							 links: [.twitter("twitter.com/bob"), .github("github.com/bob")])
-		.preparePreview()
-		.previewFontSizes()
-		.previewColorSchemes()
+		           title: "Programmer",
+		           links: [.twitter("twitter.com/bob"), .github("github.com/bob")])
+			.preparePreview()
+			.previewFontSizes()
+			.previewColorSchemes()
 	}
 }

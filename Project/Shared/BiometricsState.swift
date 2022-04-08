@@ -14,7 +14,7 @@ public struct BiometricsState {
 }
 
 public extension BiometricsState {
-	static let none: BiometricsState = BiometricsState(name: "", imageName: "questionmark.circle", available: false)
+	static let none = BiometricsState(name: "", imageName: "questionmark.circle", available: false)
 	static let faceID = BiometricsState(name: "FaceID", imageName: "faceid", available: true)
 	static let touchID = BiometricsState(name: "TouchID", imageName: "touchid", available: true)
 }

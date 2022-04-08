@@ -11,6 +11,7 @@ import SwiftUI
 public struct ItemSelectedEvent: Event {
 	public let item: GalleryItem
 }
+
 public struct ItemContextEvent: Event {
 	public enum Action: CaseIterable {
 		case edit, share, move, delete
@@ -33,6 +34,7 @@ extension ItemContextEvent.Action {
 		case .delete: return "Delete"
 		}
 	}
+
 	var systemImage: String {
 		switch self {
 		case .edit: return "square.and.pencil"

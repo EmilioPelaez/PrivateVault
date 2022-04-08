@@ -18,9 +18,9 @@ struct SettingsRouter: ViewModifier {
 					Button {
 						showSettings = true
 					}
-					label: {
-						Image(systemName: "gear")
-					}
+						label: {
+							Image(systemName: "gear")
+						}
 				}
 			}
 			.sheet(isPresented: $showSettings) {

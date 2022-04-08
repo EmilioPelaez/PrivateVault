@@ -15,14 +15,14 @@ struct LinkButton: View {
 			guard let url = URL(string: linkType.urlString) else { return }
 			UIApplication.shared.open(url)
 		}
-		label: {
-			Image(systemName: linkType.systemName)
-				.frame(width: 40, height: 40)
-				.background(linkType.color)
-				.cornerRadius(20)
-				.foregroundColor(.white)
-				.font(.system(size: linkType.size, weight: .regular, design: .default))
-		}
+			label: {
+				Image(systemName: linkType.systemName)
+					.frame(width: 40, height: 40)
+					.background(linkType.color)
+					.cornerRadius(20)
+					.foregroundColor(.white)
+					.font(.system(size: linkType.size, weight: .regular, design: .default))
+			}
 	}
 }
 

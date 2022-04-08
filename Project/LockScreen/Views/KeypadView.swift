@@ -47,7 +47,6 @@ public struct KeypadView: View {
 	}
 }
 
-
 struct KeypadView_Previews: PreviewProvider {
 	static var previews: some View {
 		KeypadView()

@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct GalleryItem: Identifiable {
-	enum Kind {
+public struct GalleryItem: Identifiable {
+	public enum Kind {
 		case folder
 		case file
 		case image
@@ -16,10 +16,17 @@ struct GalleryItem: Identifiable {
 		case url
 	}
 	
-	let id: String
-	let title: String
-	let subtitle: String
-	let kind: Kind
+	public let id: String
+	public let title: String
+	public let subtitle: String
+	public let kind: Kind
+	
+	public init(id: String, title: String, subtitle: String, kind: GalleryItem.Kind) {
+		self.id = id
+		self.title = title
+		self.subtitle = subtitle
+		self.kind = kind
+	}
 	
 }
 

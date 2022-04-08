@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "cgmath",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EmilioPelaez/CGMath",
+      "state" : {
+        "revision" : "352dc9a0c5ea8db162714944c68de1fa7ae3e4bf",
+        "version" : "1.0.4"
+      }
+    },
+    {
       "identity" : "hierarchyresponder",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/EmilioPelaez/HierarchyResponder",

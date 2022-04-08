@@ -1,0 +1,143 @@
+opt_in_rules:
+  - anyobject_protocol
+  - array_init
+  - attributes
+  - balanced_xctest_lifecycle
+  - capture_variable
+  - closure_end_indentation
+  - closure_spacing
+  - collection_alignment
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
+  - contains_over_first_not_nil
+  - contains_over_range_nil_comparison
+  - convenience_type
+  - discarded_notification_center_observer
+  - discouraged_assert
+  - discouraged_object_literal
+  - discouraged_optional_boolean
+  - discouraged_optional_collection
+  - empty_collection_literal
+  - empty_count
+  - empty_string
+  - empty_xctest_method
+  - enum_case_associated_values_count
+  - expiring_todo
+  - explicit_init
+  - fatal_error_message
+  - file_name_no_space
+  - first_where
+  - flatmap_over_map_reduce
+  - force_unwrapping
+  - identical_operands
+  - implicit_return
+  - implicitly_unwrapped_optional
+  - joined_default_parameter
+  - last_where
+  - legacy_multiple
+  - legacy_objc_type
+  - legacy_random
+  - literal_expression_end_indentation
+  - lower_acl_than_parent
+  - modifier_order
+# - multiline_arguments disabled temporarily due to false positives
+  - multiline_function_chains
+  - multiline_literal_brackets
+  - multiline_parameters
+#  - number_separator
+  - operator_usage_whitespace
+  - optional_enum_case_matching
+  - overridden_super_call
+  - pattern_matching_keywords
+  - prefer_self_type_over_type_of_self
+  - prefer_zero_over_explicit_init
+  - private_action
+  - private_outlet
+  - redundant_nil_coalescing
+  - redundant_type_annotation
+  - single_test_class
+  - sorted_first_last
+  - sorted_imports
+  - static_operator
+  - strong_iboutlet
+  - test_case_accessibility
+  - toggle_bool
+  - trailing_closure
+  - unavailable_function
+  - unneeded_parentheses_in_closure_argument
+  - untyped_error_in_catch
+  - unused_import
+  - xct_specific_matcher
+  - yoda_condition
+
+disabled_rules:
+  - deployment_target
+  - no_fallthrough_only
+  - trailing_comma
+  - trailing_whitespace
+  - unused_enumerated
+  - vertical_parameter_alignment
+
+enum_case_associated_values_count:
+  error: 10
+
+file_length:
+  warning: 500
+
+function_body_length:
+  warning: 50
+
+function_parameter_count:
+  warning: 10
+  error: 20
+
+identifier_name:
+  min_length:
+    error: 3
+  max_length:
+    error: 40
+  excluded:
+    - id
+    - Id
+    - i
+    - j
+    - k
+    - x
+    - y
+    - z
+    - on
+    - us
+
+nesting:
+  type_level: 
+    warning: 4
+    error: 8
+  function_level:
+    warning: 6
+    error: 10
+
+type_body_length:
+  warning: 300
+  error: 500
+
+type_name:
+  min_length:
+    warning: 3
+    error: 1
+  max_length:
+    warning: 50
+    error: 100
+
+large_tuple:
+  warning: 4
+  error: 6
+
+line_length:
+  warning: 180
+  ignores_comments: true
+
+excluded:
+- Pods
+- Carthage
+- "*Tests"
+- "*Preview"

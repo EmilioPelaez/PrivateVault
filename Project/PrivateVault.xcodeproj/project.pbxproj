@@ -783,6 +783,7 @@
 			buildConfigurationList = C8FBECAD27F3C59400DECDAA /* Build configuration list for PBXNativeTarget "PrivateVault" */;
 			buildPhases = (
 				C8FBEC9B27F3C59200DECDAA /* Sources */,
+				C8505C9B2800891D00669977 /* Lint */,
 				C8FBEC9C27F3C59200DECDAA /* Frameworks */,
 				C8FBEC9D27F3C59200DECDAA /* Resources */,
 				C8FBECC027F3C63400DECDAA /* Embed Frameworks */,
@@ -978,6 +979,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C8505C9B2800891D00669977 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C8300C1F27F92F7900270E0A /* Sources */ = {

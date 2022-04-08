@@ -1,0 +1,7 @@
+--exclude .github,Carthage,Example.xcodeproj,fastlane
+
+--indent tab
+--ifdef no-indent
+--self init-only
+--trimwhitespace nonblank-lines
+--disable blankLinesAtEndOfScope,blankLinesAtStartOfScope,wrapMultilineStatementBraces

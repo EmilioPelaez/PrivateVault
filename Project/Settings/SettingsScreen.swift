@@ -6,10 +6,11 @@
 //
 
 import LockScreen
+import SharedUI
 import SwiftUI
 
 public struct SettingsScreen: View {
-	@Environment(\.presentationMode) var presentationMode
+	@Environment(\.dismiss) var dismiss
 	
 	public init() {}
 	
@@ -19,12 +20,7 @@ public struct SettingsScreen: View {
 				.navigationTitle("Settings")
 				.toolbar {
 					ToolbarItem(placement: .navigationBarLeading) {
-						Button {
-							presentationMode.wrappedValue.dismiss()
-						}
-							label: {
-								Image(systemName: "xmark.circle.fill")
-							}
+						ModalDismissButton(dismiss)
 					}
 				}
 				.changePasscodeRouter()

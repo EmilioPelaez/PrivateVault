@@ -76,6 +76,7 @@
 		C8505C96280048EB00669977 /* FolderIconPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8505C95280048EB00669977 /* FolderIconPreview.swift */; };
 		C8505C9828004BFE00669977 /* GalleryGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8505C9728004BFE00669977 /* GalleryGrid.swift */; };
 		C8505C9A2800530600669977 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8505C992800530600669977 /* Events.swift */; };
+		C8505C9D280210B000669977 /* ModalDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8505C9C280210B000669977 /* ModalDismissButton.swift */; };
 		C8FBECA327F3C59200DECDAA /* PrivateVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */; };
 		C8FBECA727F3C59400DECDAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FBECA627F3C59400DECDAA /* Assets.xcassets */; };
 		C8FBECAA27F3C59400DECDAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FBECA927F3C59400DECDAA /* Preview Assets.xcassets */; };
@@ -320,6 +321,7 @@
 		C8505C95280048EB00669977 /* FolderIconPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderIconPreview.swift; sourceTree = "<group>"; };
 		C8505C9728004BFE00669977 /* GalleryGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryGrid.swift; sourceTree = "<group>"; };
 		C8505C992800530600669977 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		C8505C9C280210B000669977 /* ModalDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalDismissButton.swift; sourceTree = "<group>"; };
 		C8FBEC9F27F3C59200DECDAA /* PrivateVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivateVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateVaultApp.swift; sourceTree = "<group>"; };
 		C8FBECA627F3C59400DECDAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -641,6 +643,7 @@
 				C8FBED0F27F3DB0500DECDAA /* EnvironmentKeys.swift */,
 				C8300C1427F9188000270E0A /* EnvironmentAnimator.swift */,
 				C8300C1C27F929F300270E0A /* EnvironmentMapper.swift */,
+				C8505C9C280210B000669977 /* ModalDismissButton.swift */,
 				C8FBED1127F3DBBC00DECDAA /* Extensions */,
 			);
 			path = SharedUI;
@@ -1072,6 +1075,7 @@
 				C8FBED0327F3CCBF00DECDAA /* View+Padding.swift in Sources */,
 				C8FBECFA27F3CCAB00DECDAA /* Constants.swift in Sources */,
 				C8300C1D27F929F300270E0A /* EnvironmentMapper.swift in Sources */,
+				C8505C9D280210B000669977 /* ModalDismissButton.swift in Sources */,
 				C8FBED0127F3CCBF00DECDAA /* Color+Hex.swift in Sources */,
 				C8FBED0427F3CCBF00DECDAA /* View+Preview.swift in Sources */,
 				C8300C1527F9188000270E0A /* EnvironmentAnimator.swift in Sources */,

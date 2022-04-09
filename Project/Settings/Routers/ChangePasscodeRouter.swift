@@ -7,6 +7,7 @@
 
 import HierarchyResponder
 import LockScreen
+import SharedUI
 import SwiftUI
 
 struct ChangePasscodeRouter: ViewModifier {
@@ -19,6 +20,12 @@ struct ChangePasscodeRouter: ViewModifier {
 			}
 			.sheet(isPresented: $changePasscode) {
 				PasscodeSetScreen()
+					.overlay {
+						ModalDismissButton($changePasscode)
+							.font(.title)
+							.largePadding()
+							.extend(alignment: .topLeading)
+					}
 					.receiveEvent(PasscodeSetEvent.self) {
 						changePasscode = false
 						return .notHandled

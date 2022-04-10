@@ -33,7 +33,7 @@ public struct ModalDismissButton: View {
 
 struct ModalDismissButton_Previews: PreviewProvider {
 	static var previews: some View {
-		ModalDismissButton { }
+		ModalDismissButton {}
 			.preparePreview()
 			.previewFontSizes()
 			.previewColorSchemes()

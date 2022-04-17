@@ -1,0 +1,16 @@
+{
+  "default": {
+    "title": {
+      "color": "#FFFFFF",
+      "font": "./fonts/Font.ttc"
+    },
+    "background": "./background-darkgray.jpg",
+    "font_scale_factor": 0.2,
+    "padding": "3%x3%",
+    "title_min_height": "20%"
+  },
+
+
+  "data": [
+  ]
+}

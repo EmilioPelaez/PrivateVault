@@ -23,10 +23,10 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Generate new localized screenshots
 
-### ios screenshots_upload
+### ios upload_screenshots
 
 ```sh
-[bundle exec] fastlane ios screenshots_upload
+[bundle exec] fastlane ios upload_screenshots
 ```
 
 Generate new localized screenshots

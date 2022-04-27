@@ -13,19 +13,8 @@ struct SettingsRouter: ViewModifier {
 	
 	func body(content: Content) -> some View {
 		content
-			.toolbar {
-				ToolbarItem(placement: .navigationBarTrailing) {
-					Button {
-						showSettings = true
-					}
-						label: {
-							Image(systemName: "gear")
-						}
-				}
-			}
-			.sheet(isPresented: $showSettings) {
-				SettingsScreen()
-			}
+			.handleEvent(ShowSettingsEvent.self) { showSettings = true }
+			.sheet(isPresented: $showSettings) { SettingsScreen() }
 	}
 }
 

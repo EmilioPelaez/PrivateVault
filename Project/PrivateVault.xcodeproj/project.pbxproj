@@ -118,6 +118,7 @@
 		C8AE8B3A2818F47A00D7C791 /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8B372818F47900D7C791 /* CameraPicker.swift */; };
 		C8AE8B3B2818F47A00D7C791 /* DocumentScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8B382818F47900D7C791 /* DocumentScanner.swift */; };
 		C8AE8B3C2818F47A00D7C791 /* PhotosPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8B392818F47900D7C791 /* PhotosPicker.swift */; };
+		C8AE8B3E2818FBAF00D7C791 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8B3D2818FBAF00D7C791 /* Events.swift */; };
 		C8FBECA327F3C59200DECDAA /* PrivateVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */; };
 		C8FBECA727F3C59400DECDAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FBECA627F3C59400DECDAA /* Assets.xcassets */; };
 		C8FBECAA27F3C59400DECDAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FBECA927F3C59400DECDAA /* Preview Assets.xcassets */; };
@@ -443,6 +444,7 @@
 		C8AE8B372818F47900D7C791 /* CameraPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
 		C8AE8B382818F47900D7C791 /* DocumentScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentScanner.swift; sourceTree = "<group>"; };
 		C8AE8B392818F47900D7C791 /* PhotosPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotosPicker.swift; sourceTree = "<group>"; };
+		C8AE8B3D2818FBAF00D7C791 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		C8FBEC9F27F3C59200DECDAA /* PrivateVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivateVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateVaultApp.swift; sourceTree = "<group>"; };
 		C8FBECA627F3C59400DECDAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -804,13 +806,13 @@
 			children = (
 				C8FBECA127F3C59200DECDAA /* PrivateVault */,
 				C8FBECB627F3C63400DECDAA /* Shared */,
+				C8505CA4280229E900669977 /* Persistence */,
 				C8FBECC727F3C63F00DECDAA /* SharedUI */,
 				C8FBECD727F3C64F00DECDAA /* LockScreen */,
-				C8300C2427F92F7900270E0A /* Settings */,
 				C8505C6328003FE700669977 /* Gallery */,
-				C8505CA4280229E900669977 /* Persistence */,
 				C8AE8B062818E7EC00D7C791 /* ActionButtons */,
 				C8AE8B2B2818F41000D7C791 /* ImportScreens */,
+				C8300C2427F92F7900270E0A /* Settings */,
 				C8FBECA027F3C59200DECDAA /* Products */,
 				C8FBECE127F3C65E00DECDAA /* Frameworks */,
 			);
@@ -838,6 +840,7 @@
 			children = (
 				C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */,
 				C8300C6027F937FA00270E0A /* ContentView.swift */,
+				C8AE8B3D2818FBAF00D7C791 /* Events.swift */,
 				C8505C5B27FA512F00669977 /* Routers */,
 				C8FBECA827F3C59400DECDAA /* Preview Content */,
 				C8FBECA627F3C59400DECDAA /* Assets.xcassets */,
@@ -1451,6 +1454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8AE8B3E2818FBAF00D7C791 /* Events.swift in Sources */,
 				C81E1D3427F51110006815DE /* LockRouter.swift in Sources */,
 				C8300C6A27F93F1400270E0A /* SettingsRouter.swift in Sources */,
 				C8FBECA327F3C59200DECDAA /* PrivateVaultApp.swift in Sources */,

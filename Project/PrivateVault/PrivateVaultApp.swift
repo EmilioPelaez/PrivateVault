@@ -14,6 +14,7 @@ struct PrivateVaultApp: App {
 	var body: some Scene {
 		WindowGroup {
 			ContentView()
+				.settingsRouter()
 				.importRouter()
 				.lockRouter()
 				.appLockResponder()

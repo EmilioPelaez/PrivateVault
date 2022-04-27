@@ -14,8 +14,7 @@ extension VNDocumentCameraScan {
 		let document = PDFDocument()
 		
 		(0 ..< pageCount)
-			.lazy
-			.map { self.imageOfPage(at: $0) }
+			.map { imageOfPage(at: $0) }
 			.compactMap(PDFPage.init)
 			.enumerated()
 			.map { ($1, $0) }

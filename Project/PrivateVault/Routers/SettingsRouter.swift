@@ -19,6 +19,7 @@ struct SettingsRouter: ViewModifier {
 }
 
 extension View {
+	///	Shows `SettingsScreen`
 	func settingsRouter() -> some View {
 		modifier(SettingsRouter())
 	}

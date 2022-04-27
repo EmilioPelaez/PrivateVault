@@ -39,6 +39,8 @@ struct AppLockResponder: ViewModifier {
 }
 
 public extension View {
+	///	Receives lock-related events and provides lock-related environment
+	///	values and objects
 	func appLockResponder() -> some View {
 		modifier(AppLockResponder())
 	}

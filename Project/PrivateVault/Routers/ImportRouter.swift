@@ -23,6 +23,7 @@ struct ImportRouter: ViewModifier {
 }
 
 extension View {
+	///	Handles import events to show importer screens
 	func importRouter() -> some View {
 		modifier(ImportRouter())
 	}

@@ -26,6 +26,7 @@ struct SettingsProvider: ViewModifier {
 }
 
 public extension View {
+	/// Provides settings environment objects and values
 	func settingsProvider() -> some View {
 		modifier(SettingsProvider())
 	}

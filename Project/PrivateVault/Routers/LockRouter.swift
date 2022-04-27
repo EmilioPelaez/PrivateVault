@@ -30,6 +30,7 @@ struct LockRouter: ViewModifier {
 }
 
 extension View {
+	///	Shows and hides the lock screen, as well as the passcode set screen
 	func lockRouter() -> some View {
 		modifier(LockRouter())
 	}

@@ -5,8 +5,9 @@
 //  Created by Emilio Peláez on 26/04/22.
 //
 
-import SwiftUI
+import ImportScreens
 import SharedUI
+import SwiftUI
 
 struct ImportRouter: ViewModifier {
 	@State var importAction: ImportType?
@@ -15,6 +16,9 @@ struct ImportRouter: ViewModifier {
 		content
 			.handleEvent(ImportEvent.self) { importAction = $0.type }
 			.fileImporter(isPresented: $importAction.for(.document), allowedContentTypes: [.item], allowsMultipleSelection: true) { _ in }
+			.cameraImporter(isPresented: $importAction.for(.camera)) { _ in }
+			.documentScanner(isPresented: $importAction.for(.scan)) { _ in }
+			.mediaImporter(isPresented: $importAction.for(.album)) { _ in }
 	}
 }
 

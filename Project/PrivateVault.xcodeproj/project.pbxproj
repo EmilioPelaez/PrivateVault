@@ -98,6 +98,19 @@
 		C8505CD92802E90500669977 /* Folder+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8505CCF2802E90500669977 /* Folder+Creation.swift */; };
 		C8505CDB2802E90500669977 /* Tag+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8505CD12802E90500669977 /* Tag+Comparable.swift */; };
 		C8505CDE2802E90500669977 /* StoredItem+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8505CD42802E90500669977 /* StoredItem+Properties.swift */; };
+		C8AE8B082818E7EC00D7C791 /* ActionButtons.h in Headers */ = {isa = PBXBuildFile; fileRef = C8AE8B072818E7EC00D7C791 /* ActionButtons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C8AE8B0B2818E7EC00D7C791 /* ActionButtons.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8AE8B052818E7EC00D7C791 /* ActionButtons.framework */; };
+		C8AE8B0C2818E7EC00D7C791 /* ActionButtons.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C8AE8B052818E7EC00D7C791 /* ActionButtons.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C8AE8B112818E80600D7C791 /* HierarchyResponder in Frameworks */ = {isa = PBXBuildFile; productRef = C8AE8B102818E80600D7C791 /* HierarchyResponder */; };
+		C8AE8B122818E80600D7C791 /* Shared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FBECB527F3C63400DECDAA /* Shared.framework */; };
+		C8AE8B132818E80600D7C791 /* Shared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C8FBECB527F3C63400DECDAA /* Shared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C8AE8B162818E80600D7C791 /* SharedUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FBECC627F3C63F00DECDAA /* SharedUI.framework */; };
+		C8AE8B172818E80600D7C791 /* SharedUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C8FBECC627F3C63F00DECDAA /* SharedUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C8AE8B1C2818E81600D7C791 /* ImportSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8B1B2818E81600D7C791 /* ImportSelectionView.swift */; };
+		C8AE8B1E2818EAAE00D7C791 /* ImportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8B1D2818EAAE00D7C791 /* ImportType.swift */; };
+		C8AE8B202818EB2900D7C791 /* HierarchyResponder in Frameworks */ = {isa = PBXBuildFile; productRef = C8AE8B1F2818EB2900D7C791 /* HierarchyResponder */; };
+		C8AE8B222818EB7000D7C791 /* ImportButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8B212818EB7000D7C791 /* ImportButton.swift */; };
+		C8AE8B242818EE0700D7C791 /* ImportRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8B232818EE0700D7C791 /* ImportRouter.swift */; };
 		C8FBECA327F3C59200DECDAA /* PrivateVaultApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */; };
 		C8FBECA727F3C59400DECDAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FBECA627F3C59400DECDAA /* Assets.xcassets */; };
 		C8FBECAA27F3C59400DECDAA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8FBECA927F3C59400DECDAA /* Preview Assets.xcassets */; };
@@ -188,6 +201,27 @@
 			remoteGlobalIDString = C8505CA2280229E900669977;
 			remoteInfo = Persistence;
 		};
+		C8AE8B092818E7EC00D7C791 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8FBEC9727F3C59200DECDAA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C8AE8B042818E7EC00D7C791;
+			remoteInfo = ActionButtons;
+		};
+		C8AE8B142818E80600D7C791 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8FBEC9727F3C59200DECDAA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C8FBECB427F3C63400DECDAA;
+			remoteInfo = Shared;
+		};
+		C8AE8B182818E80600D7C791 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C8FBEC9727F3C59200DECDAA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C8FBECC527F3C63F00DECDAA;
+			remoteInfo = SharedUI;
+		};
 		C8FBECB927F3C63400DECDAA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C8FBEC9727F3C59200DECDAA /* Project object */;
@@ -258,6 +292,18 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C8AE8B1A2818E80600D7C791 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C8AE8B132818E80600D7C791 /* Shared.framework in Embed Frameworks */,
+				C8AE8B172818E80600D7C791 /* SharedUI.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C8FBECC027F3C63400DECDAA /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -270,6 +316,7 @@
 				C8FBECCD27F3C63F00DECDAA /* SharedUI.framework in Embed Frameworks */,
 				C8FBECDD27F3C64F00DECDAA /* LockScreen.framework in Embed Frameworks */,
 				C8300C2A27F92F7900270E0A /* Settings.framework in Embed Frameworks */,
+				C8AE8B0C2818E7EC00D7C791 /* ActionButtons.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,6 +417,12 @@
 		C8505CCF2802E90500669977 /* Folder+Creation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Folder+Creation.swift"; sourceTree = "<group>"; };
 		C8505CD12802E90500669977 /* Tag+Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Tag+Comparable.swift"; sourceTree = "<group>"; };
 		C8505CD42802E90500669977 /* StoredItem+Properties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoredItem+Properties.swift"; sourceTree = "<group>"; };
+		C8AE8B052818E7EC00D7C791 /* ActionButtons.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ActionButtons.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8AE8B072818E7EC00D7C791 /* ActionButtons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActionButtons.h; sourceTree = "<group>"; };
+		C8AE8B1B2818E81600D7C791 /* ImportSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportSelectionView.swift; sourceTree = "<group>"; };
+		C8AE8B1D2818EAAE00D7C791 /* ImportType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportType.swift; sourceTree = "<group>"; };
+		C8AE8B212818EB7000D7C791 /* ImportButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportButton.swift; sourceTree = "<group>"; };
+		C8AE8B232818EE0700D7C791 /* ImportRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportRouter.swift; sourceTree = "<group>"; };
 		C8FBEC9F27F3C59200DECDAA /* PrivateVault.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PrivateVault.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8FBECA227F3C59200DECDAA /* PrivateVaultApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateVaultApp.swift; sourceTree = "<group>"; };
 		C8FBECA627F3C59400DECDAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -426,12 +479,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C8AE8B022818E7EC00D7C791 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8AE8B162818E80600D7C791 /* SharedUI.framework in Frameworks */,
+				C8AE8B112818E80600D7C791 /* HierarchyResponder in Frameworks */,
+				C8AE8B122818E80600D7C791 /* Shared.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C8FBEC9C27F3C59200DECDAA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C8FBECBB27F3C63400DECDAA /* Shared.framework in Frameworks */,
 				C8FBECCC27F3C63F00DECDAA /* SharedUI.framework in Frameworks */,
+				C8AE8B0B2818E7EC00D7C791 /* ActionButtons.framework in Frameworks */,
 				C8505CA9280229E900669977 /* Persistence.framework in Frameworks */,
 				C8505C922800486C00669977 /* CGMath in Frameworks */,
 				C8505C6828003FE700669977 /* Gallery.framework in Frameworks */,
@@ -454,6 +518,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8FBECEB27F3C66100DECDAA /* Shared.framework in Frameworks */,
+				C8AE8B202818EB2900D7C791 /* HierarchyResponder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +659,7 @@
 			children = (
 				C81E1D3327F51110006815DE /* LockRouter.swift */,
 				C8300C6927F93F1400270E0A /* SettingsRouter.swift */,
+				C8AE8B232818EE0700D7C791 /* ImportRouter.swift */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -683,6 +749,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		C8AE8B062818E7EC00D7C791 /* ActionButtons */ = {
+			isa = PBXGroup;
+			children = (
+				C8AE8B072818E7EC00D7C791 /* ActionButtons.h */,
+				C8AE8B1B2818E81600D7C791 /* ImportSelectionView.swift */,
+				C8AE8B212818EB7000D7C791 /* ImportButton.swift */,
+			);
+			path = ActionButtons;
+			sourceTree = "<group>";
+		};
 		C8FBEC9627F3C59200DECDAA = {
 			isa = PBXGroup;
 			children = (
@@ -693,6 +769,7 @@
 				C8300C2427F92F7900270E0A /* Settings */,
 				C8505C6328003FE700669977 /* Gallery */,
 				C8505CA4280229E900669977 /* Persistence */,
+				C8AE8B062818E7EC00D7C791 /* ActionButtons */,
 				C8FBECA027F3C59200DECDAA /* Products */,
 				C8FBECE127F3C65E00DECDAA /* Frameworks */,
 			);
@@ -709,6 +786,7 @@
 				C8300C2327F92F7900270E0A /* Settings.framework */,
 				C8505C6228003FE700669977 /* Gallery.framework */,
 				C8505CA3280229E900669977 /* Persistence.framework */,
+				C8AE8B052818E7EC00D7C791 /* ActionButtons.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -751,6 +829,7 @@
 				C8FBED0F27F3DB0500DECDAA /* EnvironmentKeys.swift */,
 				C8300C1427F9188000270E0A /* EnvironmentAnimator.swift */,
 				C8300C1C27F929F300270E0A /* EnvironmentMapper.swift */,
+				C8AE8B1D2818EAAE00D7C791 /* ImportType.swift */,
 				C8505C9C280210B000669977 /* ModalDismissButton.swift */,
 				C8FBED1127F3DBBC00DECDAA /* Extensions */,
 			);
@@ -816,6 +895,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8505CA6280229E900669977 /* Persistence.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8AE8B002818E7EC00D7C791 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8AE8B082818E7EC00D7C791 /* ActionButtons.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -918,6 +1005,30 @@
 			productReference = C8505CA3280229E900669977 /* Persistence.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		C8AE8B042818E7EC00D7C791 /* ActionButtons */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C8AE8B0F2818E7EC00D7C791 /* Build configuration list for PBXNativeTarget "ActionButtons" */;
+			buildPhases = (
+				C8AE8B002818E7EC00D7C791 /* Headers */,
+				C8AE8B012818E7EC00D7C791 /* Sources */,
+				C8AE8B022818E7EC00D7C791 /* Frameworks */,
+				C8AE8B032818E7EC00D7C791 /* Resources */,
+				C8AE8B1A2818E80600D7C791 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C8AE8B152818E80600D7C791 /* PBXTargetDependency */,
+				C8AE8B192818E80600D7C791 /* PBXTargetDependency */,
+			);
+			name = ActionButtons;
+			packageProductDependencies = (
+				C8AE8B102818E80600D7C791 /* HierarchyResponder */,
+			);
+			productName = ActionButtons;
+			productReference = C8AE8B052818E7EC00D7C791 /* ActionButtons.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		C8FBEC9E27F3C59200DECDAA /* PrivateVault */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C8FBECAD27F3C59400DECDAA /* Build configuration list for PBXNativeTarget "PrivateVault" */;
@@ -937,6 +1048,7 @@
 				C8300C2827F92F7900270E0A /* PBXTargetDependency */,
 				C8505C6728003FE700669977 /* PBXTargetDependency */,
 				C8505CA8280229E900669977 /* PBXTargetDependency */,
+				C8AE8B0A2818E7EC00D7C791 /* PBXTargetDependency */,
 			);
 			name = PrivateVault;
 			packageProductDependencies = (
@@ -982,6 +1094,9 @@
 				C8FBECEE27F3C66100DECDAA /* PBXTargetDependency */,
 			);
 			name = SharedUI;
+			packageProductDependencies = (
+				C8AE8B1F2818EB2900D7C791 /* HierarchyResponder */,
+			);
 			productName = SharedUI;
 			productReference = C8FBECC627F3C63F00DECDAA /* SharedUI.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1033,6 +1148,10 @@
 						CreatedOnToolsVersion = 13.3;
 						LastSwiftMigration = 1330;
 					};
+					C8AE8B042818E7EC00D7C791 = {
+						CreatedOnToolsVersion = 13.3.1;
+						LastSwiftMigration = 1330;
+					};
 					C8FBEC9E27F3C59200DECDAA = {
 						CreatedOnToolsVersion = 13.3;
 					};
@@ -1074,6 +1193,7 @@
 				C8300C2227F92F7900270E0A /* Settings */,
 				C8505C6128003FE700669977 /* Gallery */,
 				C8505CA2280229E900669977 /* Persistence */,
+				C8AE8B042818E7EC00D7C791 /* ActionButtons */,
 			);
 		};
 /* End PBXProject section */
@@ -1095,6 +1215,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		C8505CA1280229E900669977 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C8AE8B032818E7EC00D7C791 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1217,6 +1344,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C8AE8B012818E7EC00D7C791 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8AE8B222818EB7000D7C791 /* ImportButton.swift in Sources */,
+				C8AE8B1C2818E81600D7C791 /* ImportSelectionView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C8FBEC9B27F3C59200DECDAA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1224,6 +1360,7 @@
 				C81E1D3427F51110006815DE /* LockRouter.swift in Sources */,
 				C8300C6A27F93F1400270E0A /* SettingsRouter.swift in Sources */,
 				C8FBECA327F3C59200DECDAA /* PrivateVaultApp.swift in Sources */,
+				C8AE8B242818EE0700D7C791 /* ImportRouter.swift in Sources */,
 				C8300C6127F937FA00270E0A /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1241,6 +1378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8AE8B1E2818EAAE00D7C791 /* ImportType.swift in Sources */,
 				C8FBED0227F3CCBF00DECDAA /* View+OnChangeEqual.swift in Sources */,
 				C8FBED1027F3DB0500DECDAA /* EnvironmentKeys.swift in Sources */,
 				C8FBED0027F3CCBF00DECDAA /* Color+Standard.swift in Sources */,
@@ -1320,6 +1458,21 @@
 			isa = PBXTargetDependency;
 			target = C8505CA2280229E900669977 /* Persistence */;
 			targetProxy = C8505CA7280229E900669977 /* PBXContainerItemProxy */;
+		};
+		C8AE8B0A2818E7EC00D7C791 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C8AE8B042818E7EC00D7C791 /* ActionButtons */;
+			targetProxy = C8AE8B092818E7EC00D7C791 /* PBXContainerItemProxy */;
+		};
+		C8AE8B152818E80600D7C791 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C8FBECB427F3C63400DECDAA /* Shared */;
+			targetProxy = C8AE8B142818E80600D7C791 /* PBXContainerItemProxy */;
+		};
+		C8AE8B192818E80600D7C791 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C8FBECC527F3C63F00DECDAA /* SharedUI */;
+			targetProxy = C8AE8B182818E80600D7C791 /* PBXContainerItemProxy */;
 		};
 		C8FBECBA27F3C63400DECDAA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1533,6 +1686,69 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.Persistence;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C8AE8B0D2818E7EC00D7C791 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FS696NSBK7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.ActionButtons;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C8AE8B0E2818E7EC00D7C791 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FS696NSBK7;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.emiliopelaez.ActionButtons;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1935,6 +2151,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		C8AE8B0F2818E7EC00D7C791 /* Build configuration list for PBXNativeTarget "ActionButtons" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C8AE8B0D2818E7EC00D7C791 /* Debug */,
+				C8AE8B0E2818E7EC00D7C791 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C8FBEC9A27F3C59200DECDAA /* Build configuration list for PBXProject "PrivateVault" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -2049,6 +2274,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C8505C902800486B00669977 /* XCRemoteSwiftPackageReference "CGMath" */;
 			productName = CGMath;
+		};
+		C8AE8B102818E80600D7C791 /* HierarchyResponder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8FBECF027F3C68100DECDAA /* XCRemoteSwiftPackageReference "HierarchyResponder" */;
+			productName = HierarchyResponder;
+		};
+		C8AE8B1F2818EB2900D7C791 /* HierarchyResponder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8FBECF027F3C68100DECDAA /* XCRemoteSwiftPackageReference "HierarchyResponder" */;
+			productName = HierarchyResponder;
 		};
 		C8FBECF127F3C68100DECDAA /* HierarchyResponder */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -9,6 +9,7 @@ import HierarchyResponder
 import LockScreen
 import Settings
 import SwiftUI
+import ActionButtons
 
 struct ContentView: View {
 	var body: some View {
@@ -19,6 +20,11 @@ struct ContentView: View {
 			.buttonStyle(.borderedProminent)
 			.tint(.red)
 			.navigationTitle("Vault")
+			.extend()
+			.overlay(alignment: .bottomLeading) {
+				ImportSelectionView()
+					.largePadding()
+			}
 			.settingsRouter()
 		}
 	}

@@ -1373,6 +1373,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_NAME = Vault;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.emiliopelaez.Private-Vault";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1396,6 +1397,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_NAME = Vault;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.emiliopelaez.Private-Vault";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

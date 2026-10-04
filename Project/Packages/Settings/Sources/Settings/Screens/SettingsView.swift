@@ -5,7 +5,6 @@
 //  Created by Ian Manor on 20/02/21.
 //
 
-import KernelDirectoryUI
 import LocalAuthentication
 import LockScreen
 import Middleware
@@ -17,7 +16,6 @@ public struct SettingsView: View {
 	@Environment(\.presentationMode) var presentationMode
 
 	let biometricsContext = LAContext()
-	let client = KernelClient(appId: "1558429748")
 
 	@State var resetPasscode: Bool = false
 	let version = "1.0"
@@ -77,10 +75,6 @@ public struct SettingsView: View {
 					NavigationLink(destination: SettingsPrivacyView()) {
 						Text("Privacy")
 					}
-				}
-				
-				Section(header: DirectoryFeaturedView.title) {
-					DirectoryFeaturedView(client: client, style: .groupedList) {}
 				}
 			}
 			.listStyle(InsetGroupedListStyle())

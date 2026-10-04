@@ -1,5 +1,5 @@
 {
-  "originHash" : "9719d984883d94eef24da88292128f9f8416e5ce28469e2e10cd4c8f42b85022",
+  "originHash" : "db990326f80a9ae93b9fd3aeb65ec1e904e1250d7ec03f04e417aa00ad051d68",
   "pins" : [
     {
       "identity" : "cgmath",
@@ -20,30 +20,12 @@
       }
     },
     {
-      "identity" : "kerneldirectoryui",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/EmilioPelaez/KernelDirectoryUI",
-      "state" : {
-        "revision" : "d36e7b4234ade7fd5b2779eae0cad8fa54dae532",
-        "version" : "0.0.6"
-      }
-    },
-    {
       "identity" : "keychainaccess",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kishikawakatsumi/KeychainAccess",
       "state" : {
         "revision" : "84e546727d66f1adc5439debad16270d0fdd04e7",
         "version" : "4.2.2"
-      }
-    },
-    {
-      "identity" : "restclient",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/EmilioPelaez/RESTClient",
-      "state" : {
-        "revision" : "36d6cbe4bc0a780ae472ccc793612fac642ff6fb",
-        "version" : "0.9.2"
       }
     },
     {

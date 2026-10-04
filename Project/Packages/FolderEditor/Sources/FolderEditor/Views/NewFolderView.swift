@@ -5,6 +5,7 @@
 //  Created by Elena Meneghini on 17/07/2021.
 //
 
+import CoreData
 import Middleware
 import Persistence
 import SwiftUI

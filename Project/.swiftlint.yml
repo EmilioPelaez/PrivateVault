@@ -27,7 +27,7 @@ disabled_rules:
   - large_tuple
   - nesting
   - notification_center_detachment
-  - operator_whitespace
+  - function_name_whitespace
   - unused_optional_binding
   - trailing_comma
   - trailing_whitespace
@@ -68,3 +68,4 @@ excluded:
 - Pods
 - Tests
 - Screenshots
+- Packages/*/Package.swift

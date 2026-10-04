@@ -14,8 +14,8 @@ struct PickedFile: Transferable {
 	let url: URL
 	
 	static var transferRepresentation: some TransferRepresentation {
-		FileRepresentation(importedContentType: .image, importing: PickedFile.init)
-		FileRepresentation(importedContentType: .audiovisualContent, importing: PickedFile.init)
+		FileRepresentation(importedContentType: .image) { try PickedFile(received: $0) }
+		FileRepresentation(importedContentType: .audiovisualContent) { try PickedFile(received: $0) }
 	}
 	
 	init(received: ReceivedTransferredFile) throws {

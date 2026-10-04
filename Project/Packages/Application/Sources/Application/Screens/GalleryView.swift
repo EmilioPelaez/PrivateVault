@@ -5,6 +5,7 @@
 //  Created by Emilio Peláez on 19/2/21.
 //
 
+import CoreData
 import Gallery
 import ItemViews
 import Middleware
@@ -79,7 +80,7 @@ struct GalleryView: View {
 		}
 		.alert(item: $currentAlert, content: alert)
 		.photosPicker(isPresented: $showPhotosPicker, selection: $pickedPhotos, matching: .any(of: [.images, .videos]))
-		.onChange(of: pickedPhotos) { items in
+		.onChange(of: pickedPhotos) { _, items in
 			guard !items.isEmpty else { return }
 			persistenceController.receiveItems(items, folder: appState.currentFolder)
 			pickedPhotos = []
@@ -88,8 +89,8 @@ struct GalleryView: View {
 			guard case let .success(urls) = result else { return }
 			persistenceController.receiveURLs(urls, folder: appState.currentFolder)
 		}
-		.onChange(of: isLocked) {
-			guard $0 else { return }
+		.onChange(of: isLocked) { _, isLocked in
+			guard isLocked else { return }
 			showImageActionSheet = false
 			showPermissionAlert = false
 			showPhotosPicker = false
@@ -98,7 +99,7 @@ struct GalleryView: View {
 			previewSelection = nil
 			itemBeingDeleted = nil
 		}
-		.onChange(of: currentSheet) { newValue in
+		.onChange(of: currentSheet) { _, newValue in
 			if newValue == nil, !appState.attemptedToShowReviewPrompt {
 				DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 					ReviewPromptManager()?.trigger()
@@ -106,15 +107,15 @@ struct GalleryView: View {
 				appState.attemptedToShowReviewPrompt = true
 			}
 		}
-		.onChange(of: persistenceController.errorString) {
-			$0.map { currentAlert = .persistenceError($0) }
+		.onChange(of: persistenceController.errorString) { _, error in
+			error.map { currentAlert = .persistenceError($0) }
 		}
-		.onChange(of: persistenceController.creatingFiles) { creating in
+		.onChange(of: persistenceController.creatingFiles) { _, creating in
 			guard !creating, !persistenceController.importErrors.isEmpty else { return }
 			currentAlert = .importErrors(persistenceController.importErrors)
 			persistenceController.flushErrors()
 		}
-		.onChange(of: appState.currentFolder) { folder in
+		.onChange(of: appState.currentFolder) { _, folder in
 			withAnimation {
 				currentFolder = folder
 			}

@@ -35,7 +35,7 @@ public struct SettingsView: View {
 	}
 
 	public var body: some View {
-		NavigationView {
+		NavigationStack {
 			Form {
 				Section(header: Text("Security")) {
 					if biometricSupported {
@@ -53,8 +53,17 @@ public struct SettingsView: View {
 							}
 						}
 					}
-					NavigationLink(destination: resetView, isActive: $resetPasscode) {
-						Text("Reset Passcode")
+					Button {
+						resetPasscode = true
+					} label: {
+						HStack {
+							Text("Reset Passcode")
+								.foregroundColor(.primary)
+							Spacer()
+							Image(systemName: "chevron.right")
+								.font(.footnote.weight(.semibold))
+								.foregroundColor(Color(.tertiaryLabel))
+						}
 					}
 				}
 				Section(header: Text("General")) {
@@ -79,6 +88,7 @@ public struct SettingsView: View {
 			}
 			.listStyle(InsetGroupedListStyle())
 			.navigationTitle("Settings")
+			.navigationDestination(isPresented: $resetPasscode) { resetView }
 			.toolbar {
 				ToolbarItem(placement: .navigationBarLeading) {
 					Button {

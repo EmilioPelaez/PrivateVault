@@ -68,7 +68,7 @@ public struct SetPasscodeView: View {
 			      message: Text("Make sure your passcodes match."),
 			      dismissButton: .default(Text("Ok!")))
 		}
-		.onChange(of: codeLengthIndex) { index in
+		.onChange(of: codeLengthIndex) { _, index in
 			withAnimation {
 				codeLength = [4, 6][index]
 				code = String(code.prefix(max(0, codeLength - 1)))

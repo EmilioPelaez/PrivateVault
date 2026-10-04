@@ -34,6 +34,6 @@ public struct SearchBarView: View {
 				RoundedRectangle(cornerRadius: 12).foregroundColor(Color(.tertiarySystemFill))
 			)
 		}
-		.animation(.linear(duration: 0.16))
+		.animation(.linear(duration: 0.16), value: text.isEmpty)
 	}
 }

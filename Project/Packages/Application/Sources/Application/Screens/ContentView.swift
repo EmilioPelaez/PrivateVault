@@ -42,7 +42,7 @@ struct ContentView: View {
 					}
 				}
 			)
-			.onChange(of: scenePhase) { phase in
+			.onChange(of: scenePhase) { _, phase in
 				if [.inactive, .background].contains(phase) {
 					appState.isLocked = true
 				}

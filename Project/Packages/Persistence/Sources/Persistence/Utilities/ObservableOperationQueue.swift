@@ -8,7 +8,7 @@
 import Combine
 import Foundation
 
-public class ObservableOperationQueue: OperationQueue {
+public class ObservableOperationQueue: OperationQueue, @unchecked Sendable {
 	
 	@Published public var isRunning: Bool = false
 	

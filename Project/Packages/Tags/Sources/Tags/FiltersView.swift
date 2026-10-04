@@ -5,6 +5,7 @@
 //  Created by Emilio Peláez on 26/2/21.
 //
 
+import CoreData
 import Middleware
 import Persistence
 import SharedUI

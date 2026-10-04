@@ -110,7 +110,7 @@ extension GalleryView {
 			}
 		}
 		.padding()
-		.onChange(of: persistenceController.creatingFiles) { creating in
+		.onChange(of: persistenceController.creatingFiles) { _, creating in
 			withAnimation { showProcessing = creating }
 		}
 	}

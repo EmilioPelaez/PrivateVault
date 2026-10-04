@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class AsynchronousOperation: Operation {
+public class AsynchronousOperation: Operation, @unchecked Sendable {
 	
 	public let operation: (@escaping () -> Void) -> Void
 	

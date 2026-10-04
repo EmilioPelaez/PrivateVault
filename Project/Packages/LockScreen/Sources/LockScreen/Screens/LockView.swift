@@ -54,7 +54,7 @@ public struct LockView: View {
 			}
 			.frame(maxWidth: 280)
 			.scaledForSmallScreen(cutoff: 640, scale: 0.9)
-			.onChange(of: lockoutManager.isLockedOut) { value in
+			.onChange(of: lockoutManager.isLockedOut) { _, value in
 				guard !value else { return }
 				attempts = 0
 				code = ""

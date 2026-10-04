@@ -5,6 +5,7 @@
 //  Created by Elena Meneghini on 05/08/2021.
 //
 
+import CoreData
 import ItemViews
 import Persistence
 import SwiftUI

@@ -27,7 +27,7 @@ public extension PersistenceManager {
 	func receiveImage(_ image: UIImage, name: String, fileExtension: String, folder: Folder?) {
 		addOperation { [self] complete in
 			storeImage(image: image, name: name, fileExtension: fileExtension, folder: folder) {
-				processResult($0)
+				self.processResult($0)
 				complete()
 			}
 		}
@@ -36,7 +36,7 @@ public extension PersistenceManager {
 	func receiveScan(_ scan: VNDocumentCameraScan, folder: Folder?) {
 		addOperation { [self] complete in
 			storeScan(scan, name: "Scanned Document", fileExtension: "pdf", folder: folder) {
-				processResult($0)
+				self.processResult($0)
 				complete()
 			}
 		}
@@ -47,9 +47,9 @@ public extension PersistenceManager {
 			addOperation { complete in
 				//	URLs from the file importer are security-scoped, this is a no-op for the rest
 				let isScoped = url.startAccessingSecurityScopedResource()
-				storeItem(at: url, folder: folder) {
+				self.storeItem(at: url, folder: folder) {
 					if isScoped { url.stopAccessingSecurityScopedResource() }
-					processResult($0)
+					self.processResult($0)
 					complete()
 				}
 			}
@@ -59,8 +59,8 @@ public extension PersistenceManager {
 	func receiveItems(_ items: [PhotosPickerItem], folder: Folder?) {
 		items.forEach { [self] item in
 			addOperation { complete in
-				storeItem(item, folder: folder) {
-					processResult($0)
+				self.storeItem(item, folder: folder) {
+					self.processResult($0)
 					complete()
 				}
 			}
@@ -70,8 +70,8 @@ public extension PersistenceManager {
 	func receiveItems(_ items: [NSItemProvider], folder: Folder?) {
 		items.forEach { [self] item in
 			addOperation { complete in
-				storeItem(item, folder: folder) {
-					processResult($0)
+				self.storeItem(item, folder: folder) {
+					self.processResult($0)
 					complete()
 				}
 			}
@@ -227,19 +227,22 @@ public extension PersistenceManager {
 		QLThumbnailGenerator.shared.generateBestRepresentation(for: request) { [self] representation, _ in
 			let previewData = representation?.uiImage.pngData()
 			DispatchQueue.main.async {
-				_ = StoredItem(context: context, data: data, previewData: previewData, type: .file, name: url.filename, fileExtension: url.pathExtension, folder: folder)
+				_ = StoredItem(context: self.context, data: data, previewData: previewData, type: .file, name: url.filename, fileExtension: url.pathExtension, folder: folder)
 				completion(.success(()))
 			}
 		}
 	}
 	
 	private func storeRemoteUrl(_ url: URL, folder: Folder?, completion: @escaping (Result<Void, ImportError>) -> Void) {
+		//	Managed objects can't cross into the metadata callback, the folder is looked up again on the main queue
+		let folderID = folder?.objectID
 		DispatchQueue.main.async {
 			let provider = LPMetadataProvider()
 			provider.startFetchingMetadata(for: url) { [self] metadata, error in
 				func createItem(name: String? = nil, preview: Data? = nil) {
 					DispatchQueue.main.async {
-						_ = StoredItem(context: context, url: url, previewData: preview, name: name ?? url.absoluteString, folder: folder)
+						let folder = folderID.flatMap { self.context.object(with: $0) as? Folder }
+						_ = StoredItem(context: self.context, url: url, previewData: preview, name: name ?? url.absoluteString, folder: folder)
 						completion(.success(()))
 					}
 				}
@@ -247,7 +250,7 @@ public extension PersistenceManager {
 				let name = metadata.title
 				guard let imageProvider = metadata.imageProvider else { return createItem(name: name) }
 				imageProvider.loadObject(ofClass: UIImage.self) { image, error in
-					guard let image = image as? UIImage, let previewData = image.square(previewSize)?.jpegData(compressionQuality: 0.85) else {
+					guard let image = image as? UIImage, let previewData = image.square(self.previewSize)?.jpegData(compressionQuality: 0.85) else {
 						assertionFailure("Error: \(error?.localizedDescription ?? "Unknown error")")
 						return createItem(name: name)
 					}

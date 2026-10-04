@@ -126,14 +126,14 @@ public class DiskStore: ObservableObject {
 		let task = Future<URL, Error> { [self] promise in
 			queue.async {
 				do {
-					let fileUrl = try url(for: item)
+					let fileUrl = try self.url(for: item)
 					try FileManager.default.createDirectory(at: fileUrl.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
 					try? FileManager.default.removeItem(at: fileUrl)
 					guard let data = item.data else {
 						throw StoreError.missingData
 					}
 					try data.write(to: fileUrl)
-					if let diskItem = stored[id] {
+					if let diskItem = self.stored[id] {
 						diskItem.task = Just(fileUrl)
 							.setFailureType(to: Error.self)
 							.eraseToAnyPublisher()

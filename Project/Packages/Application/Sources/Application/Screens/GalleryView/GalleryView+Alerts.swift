@@ -14,19 +14,19 @@ extension GalleryView {
 		case .showPermissionAlert:
 			return Alert(title: Text("Camera Access"),
 			             message: Text("PrivateVault doesn't have access to use your camera, please update your privacy settings."),
-			             primaryButton: .default(Text("Settings"), action: {
+			             primaryButton: .default(Text("Settings")) {
 			             	URL(string: UIApplication.openSettingsURLString).map { UIApplication.shared.open($0) }
-			             }),
+			             },
 			             secondaryButton: .cancel())
 		case let .deleteItemConfirmation(item):
 			return Alert(title: Text("Delete File"),
 			             message: Text("Are you sure you want to delete this item? This action can't be undone."),
-			             primaryButton: .destructive(Text("Delete"), action: { delete(item) }),
+			             primaryButton: .destructive(Text("Delete")) { delete(item) },
 			             secondaryButton: .cancel())
 		case let .deleteItemsConfirmation(items):
 			return Alert(title: Text("Delete Files"),
 			             message: Text("Are you sure you want to delete \(items.count) item? This action can't be undone."),
-			             primaryButton: .destructive(Text("Delete"), action: { delete(items) }),
+			             primaryButton: .destructive(Text("Delete")) { delete(items) },
 			             secondaryButton: .cancel())
 		case .emptyClipboard:
 			return Alert(title: Text("Empty Clipboard"),
@@ -47,7 +47,7 @@ extension GalleryView {
 		case let .deleteFolderConfirmation(folder):
 			return Alert(title: Text("Delete Folder"),
 			             message: Text("Are you sure you want to delete this folder? This action can't be undone."),
-			             primaryButton: .destructive(Text("Delete"), action: { deleteFolder(folder) }),
+			             primaryButton: .destructive(Text("Delete")) { deleteFolder(folder) },
 			             secondaryButton: .cancel())
 		}
 	}

@@ -31,7 +31,7 @@ public struct FolderNavigationView: View {
 			}
 		}
 		.extendHorizontally()
-		.onChange(of: appState.currentFolder) { folder in
+		.onChange(of: appState.currentFolder) { _, folder in
 			withAnimation { viewModel = ViewModel(currentFolder: folder) }
 		}
 	}

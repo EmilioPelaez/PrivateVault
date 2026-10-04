@@ -8,6 +8,7 @@
 import Middleware
 import SharedUI
 import SwiftUI
+import UIToolKit
 
 public struct LockView: View {
 	enum CodeState {
@@ -60,6 +61,9 @@ public struct LockView: View {
 				code = ""
 				codeState = .undefined
 			}
+		}
+		.onShake {
+			withAnimation { settings.biometrics = true }
 		}
 	}
 

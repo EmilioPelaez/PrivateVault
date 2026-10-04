@@ -11,6 +11,7 @@ let localPackages: [String] = [
 	"SharedUI",
 ]
 let remotePackages = [
+	RemotePackage("https://github.com/EmilioPelaez/ToolKit", .version("0.0.0"), package: "ToolKit", products: "UIToolKit"),
 	RemotePackage("https://github.com/kishikawakatsumi/KeychainAccess", .version("4.2.2")),
 ]
 

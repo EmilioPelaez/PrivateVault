@@ -58,6 +58,10 @@ public struct SetPasscodeView: View {
 				InputDisplay(input: $code, codeLength: codeLength, textColor: textColor, displayColor: displayColor)
 				KeypadView(input: input, delete: delete) { Spacer() }
 					.disabled(waitingForAnimation)
+				Label("This password cannot be recovered, always keep a copy of your files elsewhere", systemImage: "exclamationmark.triangle.fill")
+					.font(.footnote)
+					.foregroundColor(.red)
+					.fixedSize(horizontal: false, vertical: true)
 			}
 			.frame(maxWidth: 280)
 			.scaledForSmallScreen(cutoff: 667, scale: 0.9)

@@ -28,5 +28,6 @@ public struct Application: View {
 			.environmentObject(diskStore)
 			.environmentObject(settings)
 			.if(demoOverrideDarkMode) { $0.colorScheme(.dark) }
+			.onShakeController()
 	}
 }

@@ -9,11 +9,12 @@ import LocalAuthentication
 import LockScreen
 import Middleware
 import SwiftUI
+import UIToolKit
 
 public struct SettingsView: View {
 	@EnvironmentObject private var settings: UserSettings
 	@EnvironmentObject private var passcodeManager: PasscodeManager
-	@Environment(\.presentationMode) var presentationMode
+	@Environment(\.dismiss) var dismiss
 
 	let biometricsContext = LAContext()
 
@@ -90,13 +91,8 @@ public struct SettingsView: View {
 			.navigationTitle("Settings")
 			.navigationDestination(isPresented: $resetPasscode) { resetView }
 			.toolbar {
-				ToolbarItem(placement: .navigationBarLeading) {
-					Button {
-						presentationMode.wrappedValue.dismiss()
-					}
-					label: {
-						Image(systemName: "xmark.circle.fill")
-					}
+				ToolbarItem(placement: .cancellationAction) {
+					ModalDismissButton(dismiss)
 				}
 			}
 		}

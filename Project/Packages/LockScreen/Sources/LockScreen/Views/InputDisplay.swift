@@ -5,6 +5,7 @@
 //  Created by Emilio Peláez on 20/2/21.
 //
 
+import SharedUI
 import SwiftUI
 
 public struct InputDisplay: View {
@@ -34,9 +35,10 @@ public struct InputDisplay: View {
 			}
 		}
 		.padding(.vertical, 20)
-		.background(
-			RoundedRectangle(cornerRadius: 20, style: .continuous)
-				.fill(displayColor?.opacity(0.2) ?? Color(.tertiarySystemFill))
+		.tintedGlass(
+			displayColor?.opacity(0.2) ?? Color(.tertiarySystemFill),
+			in: RoundedRectangle(cornerRadius: 20, style: .continuous),
+			interactive: false
 		)
 	}
 }

@@ -68,15 +68,14 @@ public struct KeyButton<Body: View>: View {
 	
 	public var body: some View {
 		Button(action: action) {
-			ZStack {
-				color
-				title
-					.font(.largeTitle)
-					.foregroundColor(textColor)
-			}
+			title
+				.font(.largeTitle)
+				.foregroundColor(textColor)
+				.frame(maxWidth: .infinity, maxHeight: .infinity)
+				.tintedGlass(color)
+				.contentShape(Circle())
 		}
 		.aspectRatio(1, contentMode: .fill)
-		.clipShape(Circle())
 	}
 }
 

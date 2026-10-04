@@ -19,21 +19,17 @@ public struct ColorButton: View {
 	}
 	
 	public var body: some View {
-		ZStack {
-			Circle()
-				.fill(color)
-				.shadow(color: Color(white: 0, opacity: 0.2), radius: 4, x: 0, y: 2)
-			Button(action: action) {
-				Group {
-					Image(systemName: imageName)
-				}
-				.font(.system(size: 30))
-				.foregroundColor(.white)
-				.transition(.opacity)
+		Button(action: action) {
+			Group {
+				Image(systemName: imageName)
 			}
+			.font(.system(size: 30))
+			.foregroundColor(.white)
+			.transition(.opacity)
 			.frame(width: 60, height: 60)
+			.tintedGlass(color, fallbackShadow: true)
+			.contentShape(Circle())
 		}
-		.frame(width: 60, height: 60)
 	}
 }
 

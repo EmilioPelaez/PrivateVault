@@ -1,0 +1,40 @@
+//
+//  EmptyGalleryView.swift
+//  PrivateVault
+//
+//  Created by Emilio Peláez on 20/2/21.
+//
+
+import SwiftUI
+
+public struct EmptyGalleryView: View {
+	public init() {}
+	
+	public var body: some View {
+		VStack(spacing: 50) {
+			Image("EmptyGallery")
+				.resizable()
+				.aspectRatio(CGSize(width: 765, height: 573), contentMode: .fit)
+				.padding(.horizontal, 45)
+			VStack(spacing: 8) {
+				Text("Your vault is empty!")
+					.font(.title2)
+					.multilineTextAlignment(.center)
+				Text("Add some files to get started :)")
+					.multilineTextAlignment(.center)
+				Text("If you're reinstalling the app and have iCloud enabled, your items will appear shortly.")
+					.multilineTextAlignment(.center)
+					.font(.caption)
+					.foregroundColor(Color(.secondaryLabel))
+			}
+		}
+		.frame(maxWidth: 300)
+		.padding(.bottom, 100)
+	}
+}
+
+struct EmptyGalleryView_Previews: PreviewProvider {
+	static var previews: some View {
+		EmptyGalleryView()
+	}
+}

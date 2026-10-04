@@ -1,34 +1,33 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "KernelDirectoryUI",
-        "repositoryURL": "https://github.com/EmilioPelaez/KernelDirectoryUI",
-        "state": {
-          "branch": null,
-          "revision": "d36e7b4234ade7fd5b2779eae0cad8fa54dae532",
-          "version": "0.0.6"
-        }
-      },
-      {
-        "package": "KeychainAccess",
-        "repositoryURL": "https://github.com/kishikawakatsumi/KeychainAccess",
-        "state": {
-          "branch": null,
-          "revision": "84e546727d66f1adc5439debad16270d0fdd04e7",
-          "version": "4.2.2"
-        }
-      },
-      {
-        "package": "RESTClient",
-        "repositoryURL": "https://github.com/EmilioPelaez/RESTClient",
-        "state": {
-          "branch": null,
-          "revision": "36d6cbe4bc0a780ae472ccc793612fac642ff6fb",
-          "version": "0.9.2"
-        }
+  "originHash" : "9992fbe8fa23177959fcc609da72735c9c762572310de3843e10091ab3e58a89",
+  "pins" : [
+    {
+      "identity" : "kerneldirectoryui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EmilioPelaez/KernelDirectoryUI",
+      "state" : {
+        "revision" : "d36e7b4234ade7fd5b2779eae0cad8fa54dae532",
+        "version" : "0.0.6"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "keychainaccess",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kishikawakatsumi/KeychainAccess",
+      "state" : {
+        "revision" : "84e546727d66f1adc5439debad16270d0fdd04e7",
+        "version" : "4.2.2"
+      }
+    },
+    {
+      "identity" : "restclient",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EmilioPelaez/RESTClient",
+      "state" : {
+        "revision" : "36d6cbe4bc0a780ae472ccc793612fac642ff6fb",
+        "version" : "0.9.2"
+      }
+    }
+  ],
+  "version" : 3
 }

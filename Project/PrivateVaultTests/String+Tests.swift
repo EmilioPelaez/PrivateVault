@@ -7,7 +7,7 @@
 
 import XCTest
 
-@testable import PrivateVault
+@testable import Shared
 
 class StringExtensionTests: XCTestCase {
 	func testStringCapping() {

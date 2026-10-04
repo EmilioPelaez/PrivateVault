@@ -5,7 +5,7 @@
 //  Created by Emilio Peláez on 20/2/21.
 //
 
-import Shared
+import CGMath
 import UIKit
 
 public extension UIImage {

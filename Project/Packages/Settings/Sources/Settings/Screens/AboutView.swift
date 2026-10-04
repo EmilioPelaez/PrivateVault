@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ToolKit
 
 public struct AboutView: View {
 	public init() {}
@@ -22,7 +23,7 @@ public struct AboutView: View {
 						Text("Private Vault")
 							.bold()
 							.font(.title)
-						Text("Version 1.1")
+						Text("Version \(Bundle.main.version.numberString)")
 							.font(.subheadline)
 					}
 					.padding(.top, 10)

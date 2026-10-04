@@ -6,11 +6,12 @@
 //
 
 import AudioToolbox
+import ToolKit
 import UIKit
 
 public class FeedbackGenerator {
 	public static func impact(_ style: UIImpactFeedbackGenerator.FeedbackStyle) {
-		if UIDevice.current.supportsHapticFeedback {
+		if Platform.current != .pad {
 			UIImpactFeedbackGenerator(style: style).impactOccurred()
 		} else {
 			// swiftlint:disable:next number_separator

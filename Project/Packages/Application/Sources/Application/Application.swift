@@ -9,8 +9,8 @@ import LockScreen
 import Middleware
 import Persistence
 import Shared
-import SharedUI
 import SwiftUI
+import UIToolKit
 
 public struct Application: View {
 	@StateObject private var persistenceController = PersistenceManager(usage: demoContent ? .screenshots : .main)
@@ -27,6 +27,6 @@ public struct Application: View {
 			.environmentObject(passcodeManager)
 			.environmentObject(diskStore)
 			.environmentObject(settings)
-			.overrideColorScheme(override: demoOverrideDarkMode, colorScheme: .dark)
+			.if(demoOverrideDarkMode) { $0.colorScheme(.dark) }
 	}
 }

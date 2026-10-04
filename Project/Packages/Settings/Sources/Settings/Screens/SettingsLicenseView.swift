@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIToolKit
 
 public struct SettingsLicenseView: View {
 	let license = """
@@ -38,7 +39,7 @@ public struct SettingsLicenseView: View {
 	public var body: some View {
 		ScrollView {
 			Text(license)
-				.frame(maxWidth: .infinity)
+				.extendHorizontally()
 				.padding()
 		}
 		.navigationBarTitle("License", displayMode: .inline)

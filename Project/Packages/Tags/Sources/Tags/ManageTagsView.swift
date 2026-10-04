@@ -7,7 +7,6 @@
 
 import Middleware
 import Persistence
-import SharedUI
 import SwiftUI
 
 public struct ManageTagsView: View {

@@ -6,7 +6,6 @@
 //
 
 import Persistence
-import SharedUI
 import SwiftUI
 
 extension GalleryView {

@@ -5,10 +5,10 @@
 import PackageDescription
 
 let name = "Persistence"
-let localPackages: [String] = [
-	"Shared",
+let localPackages: [String] = []
+let remotePackages = [
+	RemotePackage("https://github.com/EmilioPelaez/CGMath", .version("1.0.0")),
 ]
-let remotePackages: [RemotePackage] = []
 
 let package = Package(
 	name: name,

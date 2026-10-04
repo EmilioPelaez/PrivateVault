@@ -8,6 +8,7 @@
 import Middleware
 import Persistence
 import SwiftUI
+import UIToolKit
 
 public struct FolderNavigationView: View {
 	@EnvironmentObject private var appState: AppState
@@ -29,7 +30,7 @@ public struct FolderNavigationView: View {
 				}
 			}
 		}
-		.frame(maxWidth: .infinity)
+		.extendHorizontally()
 		.onChange(of: appState.currentFolder) { folder in
 			withAnimation { viewModel = ViewModel(currentFolder: folder) }
 		}

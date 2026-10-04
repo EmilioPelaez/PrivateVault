@@ -8,7 +8,9 @@ let name = "SharedUI"
 let localPackages: [String] = [
 	"Shared",
 ]
-let remotePackages: [RemotePackage] = []
+let remotePackages = [
+	RemotePackage("https://github.com/EmilioPelaez/ToolKit", .version("0.0.0"), products: "ToolKit"),
+]
 
 let package = Package(
 	name: name,

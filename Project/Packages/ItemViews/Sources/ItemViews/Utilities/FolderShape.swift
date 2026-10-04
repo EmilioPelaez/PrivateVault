@@ -5,7 +5,7 @@
 //  Created by Elena Meneghini on 15/08/2021.
 //
 
-import Shared
+import CGMath
 import SwiftUI
 
 public struct FolderShape: Shape {

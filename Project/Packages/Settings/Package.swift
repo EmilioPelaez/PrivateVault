@@ -10,6 +10,7 @@ let localPackages: [String] = [
 	"Middleware",
 ]
 let remotePackages = [
+	RemotePackage("https://github.com/EmilioPelaez/ToolKit", .version("0.0.0"), products: "ToolKit", "UIToolKit"),
 	RemotePackage("https://github.com/EmilioPelaez/KernelDirectoryUI", .version("0.0.6")),
 ]
 

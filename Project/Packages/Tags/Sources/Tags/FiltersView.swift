@@ -81,7 +81,7 @@ public struct FiltersView: View {
 			}
 		}
 		.padding(.vertical, 6)
-		.background(VisualEffectView(style: .systemThickMaterial))
+		.background(.thickMaterial)
 		.cornerRadius(10)
 		.frame(maxWidth: 220)
 		.shadow(color: Color(white: 0, opacity: 0.2), radius: 50, x: 0, y: 0)

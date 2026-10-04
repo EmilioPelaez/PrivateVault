@@ -5,8 +5,8 @@
 //  Created by Emilio Peláez on 20/2/21.
 //
 
+import CGMath
 import CoreData
-import Shared
 import UIKit
 
 public struct PreviewEnvironment {

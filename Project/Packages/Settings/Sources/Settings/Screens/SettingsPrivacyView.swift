@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIToolKit
 
 public struct SettingsPrivacyView: View {
 	public init() {}
@@ -30,7 +31,7 @@ public struct SettingsPrivacyView: View {
 					Text("View Source Code")
 				}
 			}
-			.frame(maxWidth: .infinity)
+			.extendHorizontally()
 			.padding()
 		}
 		.navigationBarTitle("Privacy", displayMode: .inline)

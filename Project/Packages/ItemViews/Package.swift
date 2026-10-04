@@ -7,9 +7,10 @@ import PackageDescription
 let name = "ItemViews"
 let localPackages: [String] = [
 	"Persistence",
-	"Shared",
 ]
-let remotePackages: [RemotePackage] = []
+let remotePackages = [
+	RemotePackage("https://github.com/EmilioPelaez/CGMath", .version("1.0.0")),
+]
 
 let package = Package(
 	name: name,

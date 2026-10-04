@@ -12,8 +12,8 @@ The Xcode project is under `Project/`. The app target (`PrivateVault App/`) only
 
 | Package | Role |
 |---------|------|
-| `Shared` | Non-UI helpers: demo launch-argument flags (`Constants.swift`), `CGSize` and `String` extensions |
-| `SharedUI` | Reusable views, modifiers and representables (`Spinner`, `ColorButton`, `SearchBarView`, `ShareSheet`, `.shake()`…), `SoundEffect`, `FeedbackGenerator` |
+| `Shared` | Non-UI helpers: demo launch-argument flags (`Constants.swift`) and `String.capping` |
+| `SharedUI` | Reusable views, modifiers and representables (`ColorButton`, `RadioButton`, `SearchBarView`, `ShareSheet`, `.shake()`…), `SoundEffect`, `FeedbackGenerator` |
 | `Persistence` | Core Data model and `StoredItem` / `Folder` / `Tag` classes, `PersistenceManager` (store setup and importing), `DiskStore`, `PreviewCache`, `SortMethod`, `PreviewEnvironment` |
 | `Middleware` | State objects shared across features: `AppState`, `UserSettings`, `ItemFilter` |
 | `ItemViews` | Item thumbnails and previews, `FolderShape`, `QuickLookView` |
@@ -28,7 +28,7 @@ The Xcode project is under `Project/`. The app target (`PrivateVault App/`) only
 
 The app target links only `Application`. The `PrivateVault Import Action` share extension links only `Persistence`.
 
-Dependencies point downwards: `Shared` → `SharedUI` / `Persistence` → `Middleware` → feature packages → `Application`. Feature packages do not depend on `Application`, and `Gallery` does not depend on `Settings`, `Tags`, `ItemEditor` or `ImportScreens`.
+Dependencies point downwards: `Shared` / `Persistence` → `SharedUI` / `Middleware` → feature packages → `Application`. Feature packages do not depend on `Application`, and `Gallery` does not depend on `Settings`, `Tags`, `ItemEditor` or `ImportScreens`.
 
 ## Architecture Notes
 
@@ -36,6 +36,7 @@ Dependencies point downwards: `Shared` → `SharedUI` / `Persistence` → `Middl
 - **Data** is read with `@FetchRequest` on the Core Data classes directly; writes go through `PersistenceManager`.
 - **Core Data classes are hand-written** in `Persistence/Model/` because generated classes are not visible outside the package. When the model changes, update those classes too. The model is loaded from the package bundle in `PersistenceManager`.
 - **Packages build in Swift 5 language mode** (`swiftLanguageMode(.v5)` in each `Package.swift`).
+- **Shared helpers come from [ToolKit](https://github.com/EmilioPelaez/ToolKit) and CGMath first.** `Platform`, `.if`, `.extendHorizontally()`, `Bundle.main.version` and the `CGSize` helpers (`init(side:)`, `aspectRatio`, `*`, `/`) are used from there; check both before adding a local extension.
 - **Images and sounds** stay in the app target and resolve from `Bundle.main`, so they do not appear in package previews.
 
 ## New Packages

@@ -14,7 +14,6 @@ public struct ImportProcessView: View {
 		HStack {
 			Text("Processing...")
 				.font(.headline)
-//			Spinner() Spins weirdly when run, works on previews
 		}
 		.padding()
 		.padding(.horizontal, 6)

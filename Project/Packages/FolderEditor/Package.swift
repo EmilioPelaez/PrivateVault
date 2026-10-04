@@ -11,7 +11,9 @@ let localPackages: [String] = [
 	"Persistence",
 	"SharedUI",
 ]
-let remotePackages: [RemotePackage] = []
+let remotePackages = [
+	RemotePackage("https://github.com/EmilioPelaez/ToolKit", .version("0.0.0"), package: "ToolKit", products: "UIToolKit"),
+]
 
 let package = Package(
 	name: name,

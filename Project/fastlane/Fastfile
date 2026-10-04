@@ -16,16 +16,40 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Generate new localized screenshots"
-  lane :screenshots do
-    capture_screenshots
-    frame_screenshots
+  desc "Capture and frame screenshots"
+  lane :screenshots do |options|
+    snapshot_options = { scheme: "Screenshots" }
+    snapshot_options[:devices] = [options[:device]] if options[:device]
+    snapshot_options[:languages] = [options[:language]] if options[:language]
+    snapshot(snapshot_options)
+    frame_screenshots(path: "./fastlane/screenshots", resume: true)
   end
-end
 
-platform :ios do
-  desc "Generate new localized screenshots"
+  desc "Capture iPad screenshots without framing"
+  lane :ipad_screenshots do
+    snapshot(
+      scheme: "Screenshots",
+      devices: ["iPad Pro 13-inch"],
+      languages: ["en-US"],
+      output_directory: "./fastlane/screenshots_ipad",
+      clear_previous_screenshots: false,
+    )
+  end
+
+  desc "Upload screenshots to App Store Connect"
   lane :upload_screenshots do
-    upload_to_app_store(skip_binary_upload: true, skip_metadata: true, overwrite_screenshots: true)
+    upload_to_app_store(
+      skip_metadata: true,
+      skip_binary_upload: true,
+      overwrite_screenshots: true
+    )
+    # The iPad screenshots are unframed, and unframed files are skipped when a folder has framed ones,
+    # so they are uploaded from their own folder without clearing what was just uploaded
+    upload_to_app_store(
+      screenshots_path: "./fastlane/screenshots_ipad",
+      skip_metadata: true,
+      skip_binary_upload: true,
+      overwrite_screenshots: false
+    )
   end
 end

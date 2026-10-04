@@ -2,20 +2,26 @@
 
 # A list of devices you want to take the screenshots from
 devices([
-  "iPhone 8",
-  "iPhone 8 Plus",
-  "iPhone 12 Pro",
-  "iPhone 12 Pro Max",
-  "iPad Pro (9.7-inch)",
-  "iPad Pro (12.9-inch) (5th generation)"
+  "iPhone 18 Pro",
+  "iPhone 18 Pro Max",
+  "iPhone SE (3rd generation)",
 ])
 
 languages([
   "en-US",
 ])
 
+# The name of the scheme which contains the UI Tests
 scheme("Screenshots")
-clear_previous_screenshots(true)
+
+# Where should the resulting screenshots be stored?
+output_directory("./fastlane/screenshots")
+
 override_status_bar(true)
+disable_slide_to_type(true)
 skip_open_summary(true)
-number_of_retries(3)
+concurrent_simulators(true)
+clear_previous_screenshots(false)
+
+# For more information about all available options run
+# fastlane action snapshot

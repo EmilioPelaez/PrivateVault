@@ -21,7 +21,15 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios screenshots
 ```
 
-Generate new localized screenshots
+Capture and frame screenshots
+
+### ios ipad_screenshots
+
+```sh
+[bundle exec] fastlane ios ipad_screenshots
+```
+
+Capture iPad screenshots without framing
 
 ### ios upload_screenshots
 
@@ -29,7 +37,7 @@ Generate new localized screenshots
 [bundle exec] fastlane ios upload_screenshots
 ```
 
-Generate new localized screenshots
+Upload screenshots to App Store Connect
 
 ----
 

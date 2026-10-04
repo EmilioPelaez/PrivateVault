@@ -10,9 +10,6 @@ import UIToolKit
 
 public struct SettingsLicenseView: View {
 	let license = """
-	
-	public init() {}
-	
 	MIT License
 
 	Copyright (c) 2021 Emilio Peláez
@@ -35,6 +32,8 @@ public struct SettingsLicenseView: View {
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 	SOFTWARE.
 	"""
+	
+	public init() {}
 	
 	public var body: some View {
 		ScrollView {

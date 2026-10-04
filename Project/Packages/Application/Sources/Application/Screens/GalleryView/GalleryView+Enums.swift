@@ -12,9 +12,7 @@ extension GalleryView {
 	enum SheetItem: Identifiable {
 		case tags
 		case settings
-		case imagePicker
 		case cameraPicker
-		case documentPicker
 		case documentScanner
 		case share([URL])
 		case itemEdit(StoredItem)
@@ -26,9 +24,7 @@ extension GalleryView {
 			switch self {
 			case .tags: return 0
 			case .settings: return 1
-			case .imagePicker: return 2
 			case .cameraPicker: return 3
-			case .documentPicker: return 4
 			case .documentScanner: return 5
 			case .share: return 6
 			case .itemEdit: return 7

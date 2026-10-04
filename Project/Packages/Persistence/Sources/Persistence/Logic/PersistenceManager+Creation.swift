@@ -9,7 +9,9 @@ import AVFoundation
 import CGMath
 import LinkPresentation
 import Photos
+import PhotosUI
 import QuickLook
+import SwiftUI
 import UIKit
 import VisionKit
 
@@ -43,7 +45,21 @@ public extension PersistenceManager {
 	func receiveURLs(_ urls: [URL], folder: Folder?) {
 		urls.forEach { [self] url in
 			addOperation { complete in
+				//	URLs from the file importer are security-scoped, this is a no-op for the rest
+				let isScoped = url.startAccessingSecurityScopedResource()
 				storeItem(at: url, folder: folder) {
+					if isScoped { url.stopAccessingSecurityScopedResource() }
+					processResult($0)
+					complete()
+				}
+			}
+		}
+	}
+	
+	func receiveItems(_ items: [PhotosPickerItem], folder: Folder?) {
+		items.forEach { [self] item in
+			addOperation { complete in
+				storeItem(item, folder: folder) {
 					processResult($0)
 					complete()
 				}
@@ -105,6 +121,18 @@ public extension PersistenceManager {
 			return completion(.failure(.cantReadFile))
 		}
 		storeItem(at: url, folder: folder, type: type, completion: completion)
+	}
+	
+	private func storeItem(_ item: PhotosPickerItem, folder: Folder?, completion: @escaping (Result<Void, ImportError>) -> Void) {
+		item.loadTransferable(type: PickedFile.self) { [self] result in
+			guard case let .success(file?) = result else {
+				return completion(.failure(.cantReadFile))
+			}
+			storeItem(at: file.url, folder: folder) {
+				file.remove()
+				completion($0)
+			}
+		}
 	}
 	
 	private func storeItem(_ item: NSItemProvider, folder: Folder?, completion: @escaping (Result<Void, ImportError>) -> Void) {

@@ -98,8 +98,8 @@ extension GalleryView {
 	func selectType(_ type: FileTypePickerView.FileType) {
 		switch type {
 		case .camera: requestCameraAuthorization()
-		case .album: currentSheet = .imagePicker
-		case .document: currentSheet = .documentPicker
+		case .album: showPhotosPicker = true
+		case .document: showFileImporter = true
 		case .scan: currentSheet = .documentScanner
 		case .clipboard: importFromClipboard()
 		}

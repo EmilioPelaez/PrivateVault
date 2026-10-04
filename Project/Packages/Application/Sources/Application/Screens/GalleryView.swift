@@ -9,6 +9,7 @@ import Gallery
 import ItemViews
 import Middleware
 import Persistence
+import PhotosUI
 import Shared
 import SwiftUI
 
@@ -23,6 +24,9 @@ struct GalleryView: View {
 	@State var showLayoutMenu = false
 	@State var showImageActionSheet = false
 	@State var showPermissionAlert = false
+	@State var showPhotosPicker = false
+	@State var showFileImporter = false
+	@State var pickedPhotos: [PhotosPickerItem] = []
 	@State var showTags = demoTags
 	@State var showProcessing = false
 	@State var multipleSelection = false
@@ -74,10 +78,22 @@ struct GalleryView: View {
 			trailingButton
 		}
 		.alert(item: $currentAlert, content: alert)
+		.photosPicker(isPresented: $showPhotosPicker, selection: $pickedPhotos, matching: .any(of: [.images, .videos]))
+		.onChange(of: pickedPhotos) { items in
+			guard !items.isEmpty else { return }
+			persistenceController.receiveItems(items, folder: appState.currentFolder)
+			pickedPhotos = []
+		}
+		.fileImporter(isPresented: $showFileImporter, allowedContentTypes: .supportedTypes, allowsMultipleSelection: true) { result in
+			guard case let .success(urls) = result else { return }
+			persistenceController.receiveURLs(urls, folder: appState.currentFolder)
+		}
 		.onChange(of: isLocked) {
 			guard $0 else { return }
 			showImageActionSheet = false
 			showPermissionAlert = false
+			showPhotosPicker = false
+			showFileImporter = false
 			currentSheet = nil
 			previewSelection = nil
 			itemBeingDeleted = nil

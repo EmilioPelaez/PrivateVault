@@ -19,9 +19,7 @@ extension GalleryView {
 		Group {
 			switch item {
 			case .tags: ManageTagsView(filter: filter)
-			case .imagePicker: PhotosPicker(selectedMedia: persistenceController.receiveItems)
 			case .cameraPicker: CameraPicker(selectImage: persistenceController.receiveCapturedImage)
-			case .documentPicker: DocumentPicker(selectDocuments: persistenceController.receiveURLs)
 			case .documentScanner: DocumentScanner(didScan: persistenceController.receiveScan)
 			case let .share(items): ShareSheet(items: items)
 			case let .itemEdit(item): ItemEditView(item: item)

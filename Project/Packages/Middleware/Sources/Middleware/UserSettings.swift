@@ -29,7 +29,7 @@ public class UserSettings: ObservableObject {
 		didSet { UserDefaults.standard.set(showDetails, forKey: .showDetails) }
 	}
 	
-	@Published public var sound = UserDefaults.standard.object(forKey: .sound) as? Bool ?? true {
+	@Published public var sound = UserDefaults.standard.object(forKey: .sound) as? Bool ?? false {
 		didSet { UserDefaults.standard.set(sound, forKey: .sound) }
 	}
 	

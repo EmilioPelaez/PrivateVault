@@ -48,23 +48,37 @@ public struct EditFolderView: View {
 }
 
 public extension EditFolderView {
+	@ViewBuilder
 	var cancelButton: some View {
-		Button("Cancel") {
-			presentationMode.wrappedValue.dismiss()
+		if #available(iOS 26.0, *) {
+			Button(role: .cancel, action: cancel)
+		} else {
+			Button("Cancel", action: cancel)
 		}
 	}
 	
+	@ViewBuilder
 	var saveButton: some View {
-		Button("Save") {
-			guard !folderName.isEmpty else { return }
-			guard !folders.contains(where: { $0.name == folderName }) else {
-				duplicateNameAlert = true
-				return
-			}
-			folder.name = folderName
-			persistenceController.save()
-			presentationMode.wrappedValue.dismiss()
+		if #available(iOS 26.0, *) {
+			Button(role: .confirm, action: save)
+		} else {
+			Button("Save", action: save)
 		}
+	}
+	
+	func cancel() {
+		presentationMode.wrappedValue.dismiss()
+	}
+	
+	func save() {
+		guard !folderName.isEmpty else { return }
+		guard !folders.contains(where: { $0.name == folderName }) else {
+			duplicateNameAlert = true
+			return
+		}
+		folder.name = folderName
+		persistenceController.save()
+		presentationMode.wrappedValue.dismiss()
 	}
 }
 

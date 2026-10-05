@@ -16,6 +16,11 @@ import UIKit
 import VisionKit
 
 public extension PersistenceManager {
+	//	Files above this size, in bytes, show a warning after being imported
+	static let largeFileSize = 10 * 1024 * 1024
+	static let largeFileWarningTitle = "Large File"
+	static let largeFileWarningMessage = "Files larger than 10 MB may have trouble syncing through iCloud. It's recommended to keep an extra copy of all your files."
+	
 	var previewSize: CGFloat {
 		min(UIScreen.main.bounds.width / 2, 500)
 	}
@@ -94,6 +99,7 @@ public extension PersistenceManager {
 		}
 		DispatchQueue.main.async { [self] in
 			_ = StoredItem(context: context, data: data, previewData: previewData, type: .image, name: name, fileExtension: fileExtension, folder: folder)
+			self.registerImportedData(data)
 			save()
 			completion(.success(()))
 		}
@@ -111,6 +117,7 @@ public extension PersistenceManager {
 		}
 		DispatchQueue.main.async { [self] in
 			_ = StoredItem(context: context, data: data, previewData: previewData, type: .file, name: name, fileExtension: fileExtension, folder: folder)
+			self.registerImportedData(data)
 			save()
 			completion(.success(()))
 		}
@@ -215,6 +222,7 @@ public extension PersistenceManager {
 		let previewData = image?.pngData()
 		DispatchQueue.main.async { [self] in
 			_ = StoredItem(context: context, data: data, previewData: previewData, type: .video, name: url.filename, fileExtension: url.pathExtension, folder: folder)
+			self.registerImportedData(data)
 			completion(.success(()))
 		}
 	}
@@ -228,6 +236,7 @@ public extension PersistenceManager {
 			let previewData = representation?.uiImage.pngData()
 			DispatchQueue.main.async {
 				_ = StoredItem(context: self.context, data: data, previewData: previewData, type: .file, name: url.filename, fileExtension: url.pathExtension, folder: folder)
+				self.registerImportedData(data)
 				completion(.success(()))
 			}
 		}
@@ -258,6 +267,11 @@ public extension PersistenceManager {
 				}
 			}
 		}
+	}
+	
+	private func registerImportedData(_ data: Data) {
+		guard data.count > Self.largeFileSize else { return }
+		importedLargeFile = true
 	}
 	
 	private func processResult(_ result: Result<Void, ImportError>) {

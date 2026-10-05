@@ -111,9 +111,18 @@ struct GalleryView: View {
 			error.map { currentAlert = .persistenceError($0) }
 		}
 		.onChange(of: persistenceController.creatingFiles) { _, creating in
-			guard !creating, !persistenceController.importErrors.isEmpty else { return }
-			currentAlert = .importErrors(persistenceController.importErrors)
-			persistenceController.flushErrors()
+			guard !creating else { return }
+			if !persistenceController.importErrors.isEmpty {
+				currentAlert = .importErrors(persistenceController.importErrors)
+				persistenceController.flushErrors()
+			} else {
+				showLargeFileWarningIfNeeded()
+			}
+		}
+		.onChange(of: currentAlert?.id) { _, alert in
+			//	Shown once the import errors alert, if any, has been dismissed
+			guard alert == nil else { return }
+			showLargeFileWarningIfNeeded()
 		}
 		.onChange(of: appState.currentFolder) { _, folder in
 			withAnimation {

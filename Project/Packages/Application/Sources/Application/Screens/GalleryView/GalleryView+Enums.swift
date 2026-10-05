@@ -44,6 +44,7 @@ extension GalleryView {
 		case persistenceFatalError(String)
 		case importErrors([ImportError])
 		case deleteFolderConfirmation(Folder)
+		case largeFileWarning
 		
 		var id: Int {
 			switch self {
@@ -55,6 +56,7 @@ extension GalleryView {
 			case .persistenceFatalError: return 5
 			case .importErrors: return 6
 			case .deleteFolderConfirmation: return 7
+			case .largeFileWarning: return 8
 			}
 		}
 	}

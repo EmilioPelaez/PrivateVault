@@ -44,11 +44,21 @@ extension GalleryView {
 			return Alert(title: errors.count == 1 ? Text("Error During Import") : Text("\(errors.count) Errors During Import"),
 			             message: Text(errors.displayMessage),
 			             dismissButton: .default(Text("Ok")))
+		case .largeFileWarning:
+			return Alert(title: Text(PersistenceManager.largeFileWarningTitle),
+			             message: Text(PersistenceManager.largeFileWarningMessage),
+			             dismissButton: .default(Text("Ok")))
 		case let .deleteFolderConfirmation(folder):
 			return Alert(title: Text("Delete Folder"),
 			             message: Text("Are you sure you want to delete this folder? This action can't be undone."),
 			             primaryButton: .destructive(Text("Delete")) { deleteFolder(folder) },
 			             secondaryButton: .cancel())
 		}
+	}
+	
+	func showLargeFileWarningIfNeeded() {
+		guard persistenceController.importedLargeFile, currentAlert == nil, !persistenceController.creatingFiles else { return }
+		persistenceController.flushLargeFileWarning()
+		currentAlert = .largeFileWarning
 	}
 }

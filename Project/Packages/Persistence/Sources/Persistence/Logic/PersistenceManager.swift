@@ -18,6 +18,8 @@ public class PersistenceManager: ObservableObject {
 	@Published public var errorString: String?
 	@Published public var fatalErrorString: String?
 	public var importErrors: [ImportError] = []
+	//	Set when an imported file is larger than `largeFileSize`, cleared with `flushLargeFileWarning`
+	public var importedLargeFile = false
 	
 	public var bag: Set<AnyCancellable> = []
 	
@@ -121,5 +123,9 @@ public class PersistenceManager: ObservableObject {
 	
 	public func flushErrors() {
 		importErrors = []
+	}
+	
+	public func flushLargeFileWarning() {
+		importedLargeFile = false
 	}
 }

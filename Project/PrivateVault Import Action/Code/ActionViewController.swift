@@ -90,10 +90,19 @@ class ActionViewController: UIViewController {
 			closeButton.isHidden = false
 			errorButton.isHidden = errorCount == 0
 		}
+		showLargeFileWarningIfNeeded()
 	}
 	
 	@IBAction func close() {
 		extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+	}
+	
+	private func showLargeFileWarningIfNeeded() {
+		guard let persistence = persistence, persistence.importedLargeFile else { return }
+		persistence.flushLargeFileWarning()
+		let alert = UIAlertController(title: PersistenceManager.largeFileWarningTitle, message: PersistenceManager.largeFileWarningMessage, preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "Ok", style: .default))
+		present(alert, animated: true)
 	}
 	
 	@IBAction func showErrors() {

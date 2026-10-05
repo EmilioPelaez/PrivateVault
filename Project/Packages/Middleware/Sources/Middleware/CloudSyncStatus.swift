@@ -11,7 +11,7 @@ public enum CloudSyncStatus: Hashable {
 	case unknown
 	case syncing
 	case synced
-	case error
+	case error(String)
 }
 
 public extension EnvironmentValues {

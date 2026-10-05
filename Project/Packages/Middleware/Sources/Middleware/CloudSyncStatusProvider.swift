@@ -31,11 +31,21 @@ struct CloudSyncStatusProvider: ViewModifier {
 			return
 		}
 		activeEvents.remove(event.identifier)
-		if event.error != nil {
-			status = .error
+		if let error = event.error {
+			status = .error(error.syncDescription)
 		} else if activeEvents.isEmpty {
 			status = .synced
 		}
+	}
+}
+
+private extension Error {
+	var syncDescription: String {
+		let error = self as NSError
+		guard let underlying = error.userInfo[NSUnderlyingErrorKey] as? NSError else {
+			return error.localizedDescription
+		}
+		return error.localizedDescription + "\n\n" + underlying.localizedDescription
 	}
 }
 

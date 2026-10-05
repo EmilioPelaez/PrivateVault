@@ -107,14 +107,22 @@ extension FileTypePickerView {
 			Button {
 				action(fileType)
 			} label: {
-				VStack(spacing: 2) {
-					Image(systemName: fileType.systemName)
-						.font(.system(size: height / 2))
-						.frame(width: height, height: height)
+				if #available(iOS 26.0, *) {
+					icon
+						.foregroundStyle(Color.primary)
+						.glassEffect(.regular.interactive(), in: Circle())
+				} else {
+					icon
 						.background(Circle().fill(Color.white))
 						.foregroundColor(.blue)
 				}
 			}
+		}
+		
+		var icon: some View {
+			Image(systemName: fileType.systemName)
+				.font(.system(size: height / 2))
+				.frame(width: height, height: height)
 		}
 	}
 }

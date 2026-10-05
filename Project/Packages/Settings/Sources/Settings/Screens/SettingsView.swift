@@ -75,6 +75,9 @@ public struct SettingsView: View {
 						Text("Haptic Feedback")
 					}
 				}
+				Section(header: Text("iCloud")) {
+					CloudSyncStatusRow()
+				}
 				Section(header: Text("Legal")) {
 					NavigationLink(destination: AboutView()) {
 						Text("About")

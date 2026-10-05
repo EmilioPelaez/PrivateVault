@@ -30,6 +30,8 @@ public class PersistenceManager: ObservableObject {
 		case screenshots
 	}
 	
+	public static let cloudKitIdentifier = "iCloud.com.emiliopelaez.Private-Vault"
+	
 	//	Loaded once and shared, the model lives in this package's bundle
 	private static let model: NSManagedObjectModel = {
 		guard let url = Bundle.module.url(forResource: "Model", withExtension: "momd") else {
@@ -44,7 +46,7 @@ public class PersistenceManager: ObservableObject {
 	public convenience init(usage: Usage) {
 		switch usage {
 		case .main:
-			self.init(modelName: "Model", model: Self.model, cloudKitIdentifier: "iCloud.com.emiliopelaez.Private-Vault", baseUrl: .container, inMemory: false)
+			self.init(modelName: "Model", model: Self.model, cloudKitIdentifier: Self.cloudKitIdentifier, baseUrl: .container, inMemory: false)
 		case .preview:
 			self.init(modelName: "Model", model: Self.model, inMemory: true)
 		case .importExtension:

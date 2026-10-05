@@ -8,6 +8,7 @@ let name = "Settings"
 let localPackages: [String] = [
 	"LockScreen",
 	"Middleware",
+	"Persistence",
 ]
 let remotePackages = [
 	RemotePackage("https://github.com/EmilioPelaez/ToolKit", .version("0.0.0"), products: "ToolKit", "UIToolKit"),

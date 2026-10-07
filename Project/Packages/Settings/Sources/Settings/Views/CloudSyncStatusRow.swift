@@ -12,44 +12,43 @@ import SwiftUI
 struct CloudSyncStatusRow: View {
 	@Environment(\.iCloudEnabled) private var iCloudEnabled
 	@Environment(\.cloudSyncStatus) private var status
-	@State private var showError = false
+	@State private var showDetails = false
 	
 	var body: some View {
-		if let errorMessage {
-			Button {
-				showError = true
-			} label: {
-				content
-					.contentShape(Rectangle())
-			}
-			.buttonStyle(.plain)
-			.alert("Sync Error", isPresented: $showError) {
-				Button("Ok") {}
-			} message: {
-				Text(errorMessage)
-			}
-		} else {
-			content
-		}
-	}
-	
-	private var content: some View {
-		LabeledContent("Sync Status") {
-			HStack(spacing: 6) {
-				Circle()
-					.fill(color)
-					.frame(width: 8, height: 8)
-				Text(title)
-				if errorMessage != nil {
-					Image(systemName: "info.circle")
+		Button {
+			showDetails = true
+		} label: {
+			LabeledContent("Sync Status") {
+				HStack(spacing: 6) {
+					Circle()
+						.fill(color)
+						.frame(width: 8, height: 8)
+					Text(title)
 				}
+				.foregroundStyle(.secondary)
 			}
+		}
+		.foregroundStyle(.primary)
+		.alert(alertTitle, isPresented: $showDetails) {
+			Button("Ok") {}
+		} message: {
+			Text(message)
 		}
 	}
 	
-	private var errorMessage: String? {
-		guard case let .error(message) = status else { return nil }
-		return message
+	private var alertTitle: String {
+		if case .error = status { return "Sync Error" }
+		return "iCloud Sync"
+	}
+	
+	private var message: String {
+		switch status {
+		case .unknown where iCloudEnabled: "No sync activity has been reported yet. Your vault syncs with iCloud automatically."
+		case .unknown: "iCloud isn't available on this device. Sign in to iCloud in Settings to sync your vault."
+		case .syncing: "Your vault is syncing with iCloud."
+		case .synced: "Your vault is up to date with iCloud."
+		case let .error(message): message
+		}
 	}
 	
 	private var title: String {

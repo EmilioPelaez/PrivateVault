@@ -11,6 +11,7 @@ import SwiftUI
 
 public struct KeypadView<Button: View>: View {
 	@EnvironmentObject private var settings: UserSettings
+	@FocusState private var isFocused: Bool
 	let input: (String) -> Void
 	let delete: () -> Void
 	let bottomLeftInput: () -> (Button)
@@ -44,6 +45,20 @@ public struct KeypadView<Button: View>: View {
 				feedback()
 				delete()
 			}
+		}
+		.focusable()
+		.focusEffectDisabled()
+		.focused($isFocused)
+		.onAppear { isFocused = true }
+		.onKeyPress(characters: .decimalDigits) { press in
+			feedback()
+			input(press.characters)
+			return .handled
+		}
+		.onKeyPress(.delete) {
+			feedback()
+			delete()
+			return .handled
 		}
 	}
 	

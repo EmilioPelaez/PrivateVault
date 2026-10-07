@@ -5,6 +5,7 @@
 //  Created by Daniel Behar on 2/20/21.
 //
 
+import SharedUI
 import SwiftUI
 
 public struct AttemptsRemainingView: View {
@@ -33,8 +34,7 @@ public struct AttemptsRemainingView: View {
 		}
 		.font(.headline)
 		.padding(10)
-		.background(Color.red.opacity(0.2))
-		.clipShape(Capsule())
+		.tintedGlass(Color.red.opacity(0.2), in: Capsule(), interactive: false)
 	}
 }
 

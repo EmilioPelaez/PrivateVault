@@ -24,7 +24,7 @@ public struct TintedGlassModifier<S: Shape>: ViewModifier {
 	public func body(content: Content) -> some View {
 		if #available(iOS 26.0, *) {
 			content
-				.glassEffect(.regular.interactive(interactive).tint(color), in: shape)
+				.glassEffect(.clear.interactive(interactive).tint(color), in: shape)
 		} else {
 			content
 				.background(
